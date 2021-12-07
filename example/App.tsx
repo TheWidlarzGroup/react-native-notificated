@@ -2,16 +2,21 @@ import React from 'react'
 import { SafeAreaView, Text } from 'react-native'
 import { useNotificationEvent, useNotifications } from 'react-native-notification'
 
-const eventType = 'Hello'
-const callback = () => console.log('It is here!', Date.now())
+interface TimeNotificationPayload {
+  time: Date
+}
+
+const eventType = 'TIME'
+const eventPayload: TimeNotificationPayload = { time: new Date() }
+const eventCallback = (p?: TimeNotificationPayload) => console.log('It is here!', p?.time)
 
 const App = () => {
-  const removeHelloEvent = useNotificationEvent(eventType, callback)
+  const removeHelloEvent = useNotificationEvent(eventType, eventCallback)
   const { emit } = useNotifications()
 
   return (
     <SafeAreaView>
-      <Text onPress={() => emit('Hello')}>Hello it is me</Text>
+      <Text onPress={() => emit(eventType, eventPayload)}>Time Event</Text>
       <Text onPress={removeHelloEvent}>Remove Event</Text>
     </SafeAreaView>
   )

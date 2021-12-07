@@ -1,2 +1,2 @@
 export type EventType = string
-export type ArgsFunc = (...args: any) => void
+export type EventCallback = (payload?: any) => void

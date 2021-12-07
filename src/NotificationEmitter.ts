@@ -1,8 +1,8 @@
-import type { ArgsFunc, EventType } from './types'
+import type { EventCallback, EventType } from './types'
 
 interface NotificationListener {
   eventType: EventType
-  callback: ArgsFunc
+  callback: EventCallback
 }
 
 export namespace NotificationsEmitter {
@@ -12,7 +12,7 @@ export namespace NotificationsEmitter {
     listeners.delete(listener)
   }
 
-  export const addListener = (eventType: EventType, callback: ArgsFunc) => {
+  export const addListener = (eventType: EventType, callback: EventCallback) => {
     const listener = { eventType, callback }
     listeners.add(listener)
 
@@ -30,7 +30,7 @@ export namespace NotificationsEmitter {
     }
   }
 
-  export const emit = (eventType: EventType, ...args: any) => {
-    listeners.forEach((listener) => listener.eventType === eventType && listener.callback(args))
+  export const emit = <T>(eventType: EventType, payload?: T) => {
+    listeners.forEach((listener) => listener.eventType === eventType && listener.callback(payload))
   }
 }
