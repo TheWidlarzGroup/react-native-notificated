@@ -1,5 +1,4 @@
-import { NotificationsEmitter } from './NotificationEmitter'
-import { useNotificationEvent } from './useNotificationEvent'
-import { useNotifications } from './useNotifications'
+import { NotificationsEmitter } from './services/NotificationEmitter'
+import { Notifications, notify } from './core/Notifications'
 
-export { NotificationsEmitter, useNotificationEvent, useNotifications }
+export { NotificationsEmitter, notify, Notifications }
