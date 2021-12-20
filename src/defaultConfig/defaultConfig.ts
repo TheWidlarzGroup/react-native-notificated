@@ -8,25 +8,32 @@ type NotificationConfig = {
   duration: number
 }
 
-type Variant<T> = T extends FC<infer Props>
-  ? {
-      component: FC<Props>
-      defaultProps?: Partial<Props>
-      config?: Partial<NotificationConfig>
-    }
-  : never
+export type ComponentProps<T> = T extends FC<infer Props> ? Props : never
 
-type DefaultVariants = {
+type Variant<T> = {
+  component: T
+  defaultProps?: Partial<ComponentProps<T>>
+  config?: Partial<NotificationConfig>
+}
+
+export type VariantsMap = Readonly<Record<string, Variant<unknown>>>
+
+export type _DefaultVariants = {
   success: Variant<typeof SuccessNotification>
   error: Variant<typeof ErrorNotification>
   warning: Variant<typeof WarningNotification>
   undo: Variant<typeof UndoNotification>
 }
 
-const defaultVariants: DefaultVariants = {
+export type RequiredProps<T extends Variant<unknown>> = Omit<
+  ComponentProps<T['component']>,
+  keyof T['defaultProps']
+> &
+  Partial<ComponentProps<T['component']>>
+
+const defaultVariants: _DefaultVariants = {
   success: {
     component: SuccessNotification,
-    defaultProps: {},
   },
   warning: {
     component: WarningNotification,
@@ -36,18 +43,23 @@ const defaultVariants: DefaultVariants = {
   },
   undo: {
     component: UndoNotification,
+    defaultProps: {
+      onPress: console.log,
+    },
   },
+} as const
+
+export type DefaultVariants = typeof defaultVariants
+
+export type NotificationsConfig<Variants> = {
+  defaultNotificationTime: number
+  defaultNotificationTimeLong: number
+  notificationMsgLengthTimerThreshold: number
+
+  variants: Variants
 }
 
-type Config<Variants = DefaultVariants> = {
-  defaultNotificationTime?: number
-  defaultNotificationTimeLong?: number
-  notificationMsgLengthTimerThreshold?: number
-
-  variants?: Variants
-}
-
-export const InAppNotificationsConfig: Config = {
+export const InAppNotificationsConfig: NotificationsConfig<_DefaultVariants> = {
   defaultNotificationTime: 3000,
   defaultNotificationTimeLong: 5000,
   notificationMsgLengthTimerThreshold: 100,

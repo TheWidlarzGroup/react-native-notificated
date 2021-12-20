@@ -1,13 +1,14 @@
 import React from 'react'
 import {StyleSheet, Text, View} from 'react-native'
-import type {NotificationConfig} from "../../types/config";
-import {themeBase} from "./theme";
+import {themeBase} from './theme'
 
 interface Props {
-  notificationConfig: NotificationConfig
+  title: string
+  message: string
+  onPress: () => void
 }
 
-export const UndoNotification = ({notificationConfig}: Props) => {
+export const UndoNotification = (notificationConfig: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.errorMsg}>{notificationConfig.title}</Text>

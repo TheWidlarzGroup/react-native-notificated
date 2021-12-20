@@ -9,8 +9,8 @@ import { InAppNotificationsConfig } from '../defaultConfig/defaultConfig'
 import { InAppNotification } from './InAppNotification'
 import { NotificationsEmitter } from 'react-native-notification'
 import { themeBase } from '../defaultConfig/components/theme'
-import type {NotificationConfig} from "../types/config";
-import {useTimer} from "../hooks/useTimer";
+import type { NotificationConfig } from '../types/config'
+import { useTimer } from '../hooks/useTimer'
 
 const { width } = Dimensions.get('window')
 const notificationWidth = width - themeBase.spacing.s * 2
