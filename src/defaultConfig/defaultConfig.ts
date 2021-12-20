@@ -39,12 +39,12 @@ const defaultVariants: DefaultVariants = {
   },
 }
 
-type Config = {
+type Config<Variants = DefaultVariants> = {
   defaultNotificationTime?: number
   defaultNotificationTimeLong?: number
   notificationMsgLengthTimerThreshold?: number
 
-  variants?: Record<string, Variant>
+  variants?: Variants
 }
 
 export const InAppNotificationsConfig: Config = {
