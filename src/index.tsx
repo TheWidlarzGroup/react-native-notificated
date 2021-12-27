@@ -1,4 +1,3 @@
-import { NotificationsEmitter } from './services/NotificationEmitter'
-import { Notifications, notify } from './core/Notifications'
+import { createNotifications } from './core/createNotifications'
 
-export { NotificationsEmitter, notify, Notifications }
+export { createNotifications }

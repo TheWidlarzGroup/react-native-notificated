@@ -1,16 +1,15 @@
 /** @format */
 
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { Dimensions, Platform, StyleSheet, View, Pressable } from 'react-native'
+import { Dimensions, Platform, StyleSheet, View } from 'react-native'
 import Animated, { Extrapolate, interpolate, useAnimatedStyle } from 'react-native-reanimated'
 import { SwipeConfig, useSwipe } from '../hooks/useSwipe'
 import { LongPressGestureHandler, PanGestureHandler } from 'react-native-gesture-handler'
-import { InAppNotificationsConfig } from '../defaultConfig/defaultConfig'
-import { InAppNotification } from './InAppNotification'
-import { NotificationsEmitter } from 'react-native-notification'
-import { themeBase } from '../defaultConfig/components/theme'
-import type { NotificationConfig } from '../types/config'
 import { useTimer } from '../hooks/useTimer'
+import { themeBase } from '../defaultConfig/components/theme'
+import { emitter, useNotificationConfig } from './useNotificationConfig'
+import type { EmitParam } from './createNotifications'
+import { VariantsRenderer } from './VariantsRenderer'
 
 const { width } = Dimensions.get('window')
 const notificationWidth = width - themeBase.spacing.s * 2
@@ -22,18 +21,17 @@ const targetOffsetY = true ? 40 : 10
 const isAndroid = Platform.OS === 'android'
 const maxLongPressDragDistance = 300
 
-const emitter = NotificationsEmitter
-
-export const notify = (config: NotificationConfig) => {
-  emitter.emit('add_notification', config)
-}
+type Config = EmitParam<unknown>
 
 export const Notifications = () => {
-  const [notificationsQueue, setNotificationsQueue] = useState<NotificationConfig[]>([])
-  const notificationConfig = notificationsQueue[0]
-
+  const notificationsConfigs = useNotificationConfig()
   const panHandlerRef = useRef(null)
   const longPressHandlerRef = useRef(null)
+  const { clearTimer, resetTimer } = useTimer()
+  const resetToCurrentTimer = () => resetTimer(swipeBack, getConfigTime(notificationConfig))
+
+  const [notificationsQueue, setNotificationsQueue] = useState<Config[]>([])
+  const notificationConfig = notificationsQueue[0]
 
   const onSwipeBack = useCallback(() => {
     emitter.emit('pop_notification')
@@ -44,12 +42,8 @@ export const Notifications = () => {
     onSwipeBack,
   })
 
-  const { clearTimer, resetTimer } = useTimer()
-
-  const resetToCurrentTimer = () => resetTimer(swipeBack, getConfigTime(notificationConfig))
-
   const handleNewNotification = useCallback(
-    (config: NotificationConfig) => {
+    (config: Config) => {
       const targetTime = getConfigTime(config)
       resetTimer(swipeBack, targetTime)
 
@@ -60,9 +54,7 @@ export const Notifications = () => {
 
   const popNotification = useCallback(() => {
     setNotificationsQueue((prev) => {
-      const updatedNotificationsQueue = prev.filter(
-        (_: NotificationConfig, index: number) => index !== 0
-      )
+      const updatedNotificationsQueue = prev.filter((_, index: number) => index !== 0)
 
       if (updatedNotificationsQueue.length > 0) {
         const currentNotification = updatedNotificationsQueue[0]
@@ -75,12 +67,12 @@ export const Notifications = () => {
   }, [handleNewNotification])
 
   useEffect(() => {
-    emitter.addListener('add_notification', (config: NotificationConfig) => {
+    emitter.addListener('add_notification', (config: Config) => {
       setNotificationsQueue((prev) => {
         // Check if the unique id already in queue
-        if (config?.id && prev.filter((notification) => notification?.id === config?.id)?.length) {
-          return prev
-        }
+        // if (config?.id && prev.filter((notification) => notification?.id === config?.id)?.length) {
+        //   return prev
+        // }
 
         if (prev.length === 0) {
           handleNewNotification(config)
@@ -97,17 +89,6 @@ export const Notifications = () => {
       emitter.removeEvent('pop_notification')
     }
   }, [popNotification, swipeBack, swipeIn, handleNewNotification])
-
-  const onNotificationPress = (clickAction?: () => void | undefined) => {
-    if (clickAction) {
-      return () => {
-        swipeBack()
-        clickAction()
-      }
-    }
-
-    return undefined
-  }
 
   const animatedStyles = useAnimatedStyle(() => {
     return isAndroid
@@ -149,9 +130,10 @@ export const Notifications = () => {
             onActivated={clearTimer}
             onEnded={resetToCurrentTimer}>
             <View style={styles.boxWrapper}>
-              <Pressable onPress={onNotificationPress(notificationConfig.onPress)}>
-                <InAppNotification {...{ notificationConfig }} />
-              </Pressable>
+              <VariantsRenderer {...{ config: notificationsConfigs, notificationConfig }} />
+              {/*<Pressable onPress={onNotificationPress(notificationConfig.onPress)}>*/}
+              {/*<InAppNotification {...{ notificationConfig }} />*/}
+              {/*</Pressable>*/}
             </View>
           </LongPressGestureHandler>
         )}
@@ -184,13 +166,8 @@ const styles = StyleSheet.create({
   },
 })
 
-const getConfigTime = ({ time, msg }: NotificationConfig) => {
-  if (time) {
-    return time
-  }
-  return (msg ?? '').length > InAppNotificationsConfig.notificationMsgLengthTimerThreshold
-    ? InAppNotificationsConfig.defaultNotificationTimeLong
-    : InAppNotificationsConfig.defaultNotificationTime
+const getConfigTime = (_: any) => {
+  return 3000
 }
 
 type ConfigTypeKey = 'ios' | 'android'

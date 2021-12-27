@@ -1,6 +1,6 @@
 import React from 'react'
-import {StyleSheet, Text, View} from 'react-native'
-import {themeBase} from "./theme";
+import { StyleSheet, Text, View } from 'react-native'
+import { themeBase } from './theme'
 
 interface Props {
   title: string

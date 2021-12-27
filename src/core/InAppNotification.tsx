@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { themeBase } from '../defaultConfig/components/theme'
-import type {NotificationConfig} from "../types/config";
+import type { NotificationConfig } from '../types/config'
 
 interface Props {
   notificationConfig: NotificationConfig

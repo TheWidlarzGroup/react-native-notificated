@@ -1,6 +1,6 @@
 import React from 'react'
-import {StyleSheet, Text, View} from 'react-native'
-import {themeBase} from './theme'
+import { StyleSheet, Text, View } from 'react-native'
+import { themeBase } from './theme'
 
 interface Props {
   title: string
@@ -11,7 +11,9 @@ interface Props {
 export const UndoNotification = (notificationConfig: Props) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.errorMsg}>{notificationConfig.title}</Text>
+      <Text onPress={notificationConfig.onPress} style={styles.errorMsg}>
+        {notificationConfig.title}
+      </Text>
     </View>
   )
 }
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    backgroundColor: 'orange',
+    backgroundColor: 'pink',
     height: 50,
   },
 })

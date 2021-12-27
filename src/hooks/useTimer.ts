@@ -1,21 +1,21 @@
-import {useCallback, useRef} from "react";
+import { useCallback, useRef } from 'react'
 
 export const useTimer = () => {
-    const timerId = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const timerId = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-    const clearTimer = useCallback(() => {
-        if (timerId.current !== null) {
-            clearTimeout(timerId.current)
-        }
-    }, [])
+  const clearTimer = useCallback(() => {
+    if (timerId.current !== null) {
+      clearTimeout(timerId.current)
+    }
+  }, [])
 
-    const resetTimer = useCallback(
-        (callback: () => void, duration: number) => {
-            clearTimer()
-            timerId.current = setTimeout(callback, duration)
-        },
-        [clearTimer]
-    )
+  const resetTimer = useCallback(
+    (callback: () => void, duration: number) => {
+      clearTimer()
+      timerId.current = setTimeout(callback, duration)
+    },
+    [clearTimer]
+  )
 
-    return {clearTimer, resetTimer}
+  return { clearTimer, resetTimer }
 }

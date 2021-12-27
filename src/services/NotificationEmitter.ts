@@ -1,4 +1,4 @@
-import type {EventCallback, EventType} from "../types/config";
+import type { EventCallback, EventType } from '../types/config'
 
 interface NotificationListener {
   eventType: EventType
