@@ -2,8 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "react-native-notification": ["./src/index"],
-      "Constants/*": ["./src/constants/*"]
+      "react-native-notification": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

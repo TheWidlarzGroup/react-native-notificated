@@ -1,4 +1,4 @@
-import type { EventCallback, EventType } from './types'
+import type { EventCallback, EventType } from '../types/config'
 
 interface NotificationListener {
   eventType: EventType
@@ -16,7 +16,6 @@ export namespace NotificationsEmitter {
     const listener = { eventType, callback }
     listeners.add(listener)
 
-    // Maybe we should return just listener? idk -> leave it for further investigation
     return () => removeListener(listener)
   }
 
