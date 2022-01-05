@@ -1,17 +1,18 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { NotificationBase } from './NotificationBase'
 import { themeBase } from './theme'
-
 interface Props {
   title: string
   message: string
 }
 
-export const ErrorNotification = (notificationConfig: Props) => {
+export const ErrorNotification = ({ message, title }: Props) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.errorMsg}>{notificationConfig.title}</Text>
-    </View>
+    // <View style={styles.container}>
+    //   <Text style={styles.errorMsg}>{notificationConfig.title}</Text>
+    // </View>
+    <NotificationBase text={message} title={title} accentColor="red" rounded theme="dark" />
   )
 }
 

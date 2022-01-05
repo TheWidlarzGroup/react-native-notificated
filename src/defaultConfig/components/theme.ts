@@ -25,4 +25,16 @@ export const themeBase = {
     xxl: 22,
     xxxl: 24,
   },
+  borderRadius: {
+    s: 12,
+    m: 24,
+  },
+  bgColor: {
+    regular: '#FFFFFF',
+    dark: '#2D2D2D',
+  },
+  color: {
+    regular: '#505050',
+    dark: '#FAFAFA',
+  },
 }
