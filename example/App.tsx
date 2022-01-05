@@ -5,12 +5,11 @@ import { createNotifications } from 'react-native-notification'
 const { NotificationsProvider, notify } = createNotifications({
   defaultGlobalConfig: {
     titleSize: 4,
-    bgColor: 'red',
     title: 'KURŁA ZBYCHU!!!',
   },
   defaultErrorConfig: {
     titleSize: 20,
-    borderRadius: 5,
+    borderRadius: 30,
   },
   defaultSuccessConfig: {
     titleSize: 10,
@@ -35,7 +34,7 @@ const App = () => {
         onPress={() =>
           notify('error', {
             description: 'This is where the toast text goes',
-            title: 'Error',
+            // title: 'Error',
             // theme: 'regular',
             // titleColor: 'red',
             // borderColor: 'yellow',
