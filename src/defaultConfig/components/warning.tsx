@@ -1,32 +1,61 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
 import { themeBase } from './theme'
+import { NotificationBase } from './NotificationBase'
+import type { NotificationProps } from '../../types'
+import { useNotificationConfig } from '../../core/useNotificationConfig'
 
-interface Props {
-  title: string
-  message: string
-}
+export const WarningNotification = ({
+  title,
+  description,
+  theme,
+  titleSize,
+  titleColor,
+  descriptionColor,
+  descriptionSize,
+  bgColor,
+  borderRadius,
+  borderColor,
+  borderWidth,
+  icon,
+  multiline,
+}: NotificationProps) => {
+  const { defaultGlobalConfig, defaultWarningConfig } = useNotificationConfig()
 
-export const WarningNotification = (notificationConfig: Props) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.errorMsg}>{notificationConfig.title}</Text>
-    </View>
+    <NotificationBase
+      title={title ?? defaultWarningConfig?.title ?? defaultGlobalConfig?.title}
+      description={
+        description ?? defaultWarningConfig?.description ?? defaultGlobalConfig?.description
+      }
+      theme={theme ?? defaultWarningConfig?.theme ?? defaultGlobalConfig?.theme}
+      titleSize={titleSize ?? defaultWarningConfig?.titleSize ?? defaultGlobalConfig?.titleSize}
+      titleColor={titleColor ?? defaultWarningConfig?.titleColor ?? defaultGlobalConfig?.titleColor}
+      descriptionColor={
+        descriptionColor ??
+        defaultWarningConfig?.descriptionColor ??
+        defaultGlobalConfig?.descriptionColor
+      }
+      descriptionSize={
+        descriptionSize ??
+        defaultWarningConfig?.descriptionSize ??
+        defaultGlobalConfig?.descriptionSize
+      }
+      bgColor={bgColor ?? defaultWarningConfig?.bgColor ?? defaultGlobalConfig?.bgColor}
+      borderRadius={
+        borderRadius ??
+        defaultWarningConfig?.borderRadius ??
+        (defaultGlobalConfig?.borderRadius || themeBase.borderRadius.default)
+      }
+      borderColor={
+        borderColor ??
+        defaultWarningConfig?.borderColor ??
+        (defaultGlobalConfig?.borderColor || themeBase.color.success)
+      }
+      borderWidth={
+        borderWidth ?? defaultWarningConfig?.borderWidth ?? defaultGlobalConfig?.borderWidth
+      }
+      // icon={icon}
+      multiline={multiline ?? defaultWarningConfig?.multiline ?? defaultGlobalConfig?.multiline}
+    />
   )
 }
-
-const styles = StyleSheet.create({
-  searchIcon: {
-    marginLeft: themeBase.spacing.mplus,
-  },
-  errorMsg: {
-    color: 'white',
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: 'orange',
-    height: 50,
-  },
-})

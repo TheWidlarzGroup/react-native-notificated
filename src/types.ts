@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import type { defaultVariants } from './defaultConfig/defaultConfig'
+import type { Theme } from './defaultConfig/components/NotificationBase'
 
 type NotificationConfig = {
   duration: number
@@ -22,10 +23,32 @@ export type VariantsMap = Readonly<Record<string, Variant<unknown>>>
 
 export type DefaultVariants = typeof defaultVariants
 
+export type NotificationProps = {
+  title?: string
+  description?: string
+  theme?: Theme
+  titleSize?: number
+  titleColor?: string
+  descriptionSize?: number
+  descriptionColor?: string
+  bgColor?: string
+  borderRadius?: number
+  borderColor?: any
+  borderWidth?: number
+  icon?: any
+  multiline?: number
+}
+
 export type NotificationsConfig<Variants> = {
   defaultNotificationTime: number
   defaultNotificationTimeLong: number
   notificationMsgLengthTimerThreshold: number
+
+  defaultGlobalConfig?: NotificationProps
+  defaultSuccessConfig?: NotificationProps
+  defaultErrorConfig?: NotificationProps
+  defaultWarningConfig?: NotificationProps
+  undo?: NotificationProps
 
   variants: Variants
 }

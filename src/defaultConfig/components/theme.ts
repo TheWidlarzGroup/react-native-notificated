@@ -14,27 +14,26 @@ export const themeBase = {
     xxxl: 75,
   },
   fontSize: {
-    xxs: 10,
-    xs: 11,
-    s: 12,
-    splus: 13,
-    regular: 14,
-    m: 16,
-    l: 18,
-    xl: 20,
-    xxl: 22,
-    xxxl: 24,
+    messageFontSize: 14,
+    headerFontSize: 16,
   },
   borderRadius: {
-    s: 12,
-    m: 24,
+    default: 24,
   },
   bgColor: {
     regular: '#FFFFFF',
     dark: '#2D2D2D',
   },
-  color: {
+  fontColor: {
     regular: '#505050',
     dark: '#FAFAFA',
+  },
+  color: {
+    success: '#00EA33',
+    error: '#FC6060',
+    info: '#8CACFF',
+    warning: '#FFD37D',
+    darkGray: '#767676',
+    lightGray: '#CACACA',
   },
 }

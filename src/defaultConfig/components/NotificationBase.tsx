@@ -4,47 +4,75 @@ import { themeBase } from './theme'
 
 type F0<T = void> = () => T
 
-type Theme = 'regular' | 'dark'
+export type Theme = 'regular' | 'dark'
+//importowane do poszczególnych komponentów
 
 export interface NotificationBaseStyles extends ViewStyle {
-  rounded?: boolean
   theme?: Theme
-  accentColor?: string
+  borderRadius?: number
+  borderColor?: string
+  borderWidth?: number
+  titleColor?: string
+  titleSize?: number
+  descriptionColor?: string
+  descriptionSize?: number
+  bgColor?: string
 }
 
 export interface NotificationBaseProps extends NotificationBaseStyles {
-  text: string
-  icon?: any
   title?: string
+  description?: string
+  icon?: any
   multiline?: number
   onClose?: F0
 }
 
 const getContainerStyles = (styles: NotificationBaseStyles): Partial<ViewStyle> => ({
-  borderRadius: styles.rounded ? themeBase.borderRadius.m : themeBase.borderRadius.s,
-  backgroundColor: styles.theme ? themeBase.bgColor[styles.theme] : 'white',
-  borderColor: styles.accentColor,
+  borderRadius: styles.borderRadius ?? themeBase.borderRadius.default,
+  backgroundColor: styles.bgColor
+    ? styles.bgColor
+    : styles.theme
+    ? themeBase.bgColor[styles.theme]
+    : themeBase.bgColor.regular,
   ...styles,
 })
 
+const getTitleStyle = (styles: NotificationBaseStyles, theme: Theme): Partial<TextStyle> => ({
+  color: styles.titleColor ? styles.titleColor : themeBase.fontColor[theme],
+  fontSize: styles.titleSize ? styles.titleSize : themeBase.fontSize.headerFontSize,
+  lineHeight: 19,
+  paddingBottom: themeBase.spacing.s,
+})
+
+const getDescriptionStyle = (styles: NotificationBaseStyles, theme: Theme): Partial<TextStyle> => ({
+  color: styles.descriptionColor ? styles.descriptionColor : themeBase.fontColor[theme],
+  fontSize: styles.descriptionSize ? styles.descriptionSize : themeBase.fontSize.messageFontSize,
+  lineHeight: 16,
+})
+
 const getThemeStyles = (theme: Theme): Partial<ViewStyle | TextStyle> => ({
-  color: themeBase.color[theme],
+  color: themeBase.fontColor[theme],
   backgroundColor: themeBase.bgColor[theme],
 })
 
-export const NotificationBase = (p: NotificationBaseProps) => {
-  const containerStyles = getContainerStyles({ ...p })
-  const themeStyles = getThemeStyles(p.theme ?? 'regular')
+export const NotificationBase = (props: NotificationBaseProps) => {
+  const containerStyles = getContainerStyles({ ...props })
+  const titleStyle = getTitleStyle({ ...props }, props.theme ?? 'regular')
+  const descriptionStyle = getDescriptionStyle({ ...props }, props.theme ?? 'regular')
+  const themeStyles = getThemeStyles(props.theme ?? 'regular')
 
-  const renderIcon = () => !!p.icon && <View style={[styles.icon, themeStyles]}>{p.icon}</View>
-  const renderTitle = () => !!p.title && <Text style={[styles.title, themeStyles]}>{p.title}</Text>
-  const renderText = () => (
-    <Text style={[styles.text, themeStyles]} numberOfLines={p.multiline ?? 1}>
-      {p.text}
+  const renderLeftIcon = () =>
+    !!props.icon && <View style={[styles.icon, themeStyles]}>{props.icon}</View>
+
+  const renderTitle = () => !!props.title && <Text style={titleStyle}>{props.title}</Text>
+
+  const renderDescription = () => (
+    <Text style={descriptionStyle} numberOfLines={props.multiline ?? 1}>
+      {props.description}
     </Text>
   )
   const renderRightIcon = () =>
-    p.onClose && (
+    props.onClose && (
       <View style={styles.rightIcon}>
         <Text>Close</Text>
       </View>
@@ -52,10 +80,10 @@ export const NotificationBase = (p: NotificationBaseProps) => {
 
   return (
     <View style={[containerStyles, styles.container]}>
-      {renderIcon()}
+      {renderLeftIcon()}
       <View style={[styles.content]}>
         {renderTitle()}
-        {renderText()}
+        {renderDescription()}
       </View>
       {renderRightIcon()}
     </View>
