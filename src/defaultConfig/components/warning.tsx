@@ -9,8 +9,8 @@ export const WarningNotification = (props: NotificationProps) => {
   const { defaultGlobalConfig, defaultWarningConfig } = useNotificationConfig()
   const pickedProps = propsPicker(
     props,
-    defaultGlobalConfig!,
-    defaultWarningConfig!,
+    defaultGlobalConfig,
+    defaultWarningConfig,
     themeBase.color.warning
   )
 

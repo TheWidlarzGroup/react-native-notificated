@@ -3,8 +3,8 @@ import { themeBase } from './components/theme'
 
 export const propsPicker = (
   props: NotificationProps,
-  defaultGlobalConfig: NotificationProps,
-  defaultNotificationTypeConfig: NotificationProps,
+  defaultGlobalConfig: NotificationProps | undefined,
+  defaultNotificationTypeConfig: NotificationProps | undefined,
   baseColor: string
 ) => {
   return {

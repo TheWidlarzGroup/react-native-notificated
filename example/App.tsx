@@ -6,7 +6,7 @@ const { NotificationsProvider, notify } = createNotifications({
   defaultGlobalConfig: {
     titleSize: 4,
     title: 'KURŁA ZBYCHU!!! Ale numer',
-    theme: 'dark',
+    theme: 'regular',
   },
   defaultErrorConfig: {
     titleSize: 20,
@@ -26,7 +26,7 @@ const App = () => {
           notify('success', {
             description: 'This is where the toast text goes',
             title: 'Success',
-            // theme: '',
+            // theme: 'regular',
           })
         }>
         emit success
@@ -34,7 +34,7 @@ const App = () => {
       <Text
         onPress={() =>
           notify('error', {
-            description: 'This is where the toast text goes',
+            description: 'This is where the toast text goes. ',
             // title: 'Error',
             // theme: 'regular',
             // titleColor: 'red',
@@ -49,8 +49,8 @@ const App = () => {
           notify('warning', {
             description: 'This is where the toast text goes',
             title: 'Warning',
-            theme: 'dark',
-            bgColor: 'black',
+            // theme: 'dark',
+            // bgColor: 'black',
             titleSize: 20,
           })
         }>
@@ -65,7 +65,7 @@ const App = () => {
               notify('success', {
                 description: 'undo action success',
                 title: 'undo action success',
-                theme: 'dark',
+                // theme: 'dark',
               }),
           })
         }>

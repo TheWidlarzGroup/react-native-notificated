@@ -61,9 +61,7 @@ export const NotificationBase = (props: NotificationBaseProps) => {
 
   const renderLeftIcon = () =>
     !!props.icon && <View style={[styles.icon, themeStyles]}>{props.icon}</View>
-
   const renderTitle = () => !!props.title && <Text style={titleStyle}>{props.title}</Text>
-
   const renderDescription = () => (
     <Text style={descriptionStyle} numberOfLines={props.multiline ?? 1}>
       {props.description}

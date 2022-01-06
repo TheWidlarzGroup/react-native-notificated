@@ -9,8 +9,8 @@ export const SuccessNotification = (props: NotificationProps) => {
   const { defaultGlobalConfig, defaultSuccessConfig } = useNotificationConfig()
   const pickedProps = propsPicker(
     props,
-    defaultGlobalConfig!,
-    defaultSuccessConfig!,
+    defaultGlobalConfig,
+    defaultSuccessConfig,
     themeBase.color.success
   )
 

@@ -9,8 +9,8 @@ export const ErrorNotification = (props: NotificationProps) => {
   const { defaultGlobalConfig, defaultErrorConfig } = useNotificationConfig()
   const pickedProps = propsPicker(
     props,
-    defaultGlobalConfig!,
-    defaultErrorConfig!,
+    defaultGlobalConfig,
+    defaultErrorConfig,
     themeBase.color.error
   )
 
