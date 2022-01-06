@@ -5,14 +5,15 @@ import { createNotifications } from 'react-native-notification'
 const { NotificationsProvider, notify } = createNotifications({
   defaultGlobalConfig: {
     titleSize: 4,
-    title: 'KURŁA ZBYCHU!!!',
+    title: 'KURŁA ZBYCHU!!! Ale numer',
+    theme: 'dark',
   },
   defaultErrorConfig: {
     titleSize: 20,
     borderRadius: 30,
   },
   defaultSuccessConfig: {
-    titleSize: 10,
+    titleSize: 17,
   },
 })
 
@@ -25,7 +26,7 @@ const App = () => {
           notify('success', {
             description: 'This is where the toast text goes',
             title: 'Success',
-            // theme: 'dark',
+            // theme: '',
           })
         }>
         emit success

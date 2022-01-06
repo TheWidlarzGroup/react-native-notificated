@@ -1,11 +1,9 @@
 import React from 'react'
 import { StyleSheet, Text, TextStyle, View, ViewStyle } from 'react-native'
 import { themeBase } from './theme'
+import type { Theme } from '../../types'
 
 type F0<T = void> = () => T
-
-export type Theme = 'regular' | 'dark'
-//importowane do poszczególnych komponentów
 
 export interface NotificationBaseStyles extends ViewStyle {
   theme?: Theme
@@ -104,19 +102,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     paddingHorizontal: 24,
-  },
-  title: {
-    fontStyle: 'normal',
-    fontWeight: '500',
-    fontSize: 16,
-    lineHeight: 19,
-    paddingBottom: 8,
-  },
-  text: {
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: 14,
-    lineHeight: 16,
   },
   rightIcon: {},
 })

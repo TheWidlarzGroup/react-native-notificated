@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import type { defaultVariants } from './defaultConfig/defaultConfig'
-import type { Theme } from './defaultConfig/components/NotificationBase'
 
 type NotificationConfig = {
   duration: number
@@ -22,6 +21,8 @@ export type Variant<T> = {
 export type VariantsMap = Readonly<Record<string, Variant<unknown>>>
 
 export type DefaultVariants = typeof defaultVariants
+
+export type Theme = 'regular' | 'dark'
 
 export type NotificationProps = {
   title?: string
