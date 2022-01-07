@@ -5,7 +5,7 @@ import { createNotifications } from 'react-native-notification'
 const { NotificationsProvider, notify } = createNotifications({
   defaultStylesSettings: {
     globalConfig: {
-      titleSize: 4,
+      titleSize: 15,
     },
     errorConfig: {
       titleSize: 20,
@@ -33,7 +33,8 @@ const App = () => {
       <Text
         onPress={() =>
           notify('error', {
-            description: 'This is where the toast text goes. ',
+            description:
+              'This is where the toast text goes. This is where the toast text goes. This is where the toast text goes. This is where the toast text goes. This is where the toast text goes. This is where the toast text goes. ',
             // title: 'Error',
             // titleColor: 'red',
             // borderColor: 'yellow',

@@ -1,8 +1,8 @@
 import React from 'react'
+import { themeBase } from './theme'
 import { NotificationBase } from './NotificationBase'
 import { useNotificationConfig } from '../../core/useNotificationConfig'
 import { mergeProps } from '../propsPicker'
-import { themeBase } from './theme'
 import type { PropsConfig } from '../../types'
 
 export const ErrorNotification = (props: Partial<PropsConfig>) => {

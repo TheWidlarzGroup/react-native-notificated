@@ -39,7 +39,8 @@ export const mergeProps = (
     borderWidth:
       props.borderWidth ??
       defaultNotificationTypeConfig?.borderWidth ??
-      defaultGlobalConfig?.borderWidth,
+      defaultGlobalConfig?.borderWidth ??
+      1,
     multiline:
       props.multiline ?? defaultNotificationTypeConfig?.multiline ?? defaultGlobalConfig?.multiline,
   }
