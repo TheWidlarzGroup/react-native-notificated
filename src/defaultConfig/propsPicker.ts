@@ -8,6 +8,18 @@ export const mergeProps = (
   defaultGlobalConfig?: DefaultStylesConfig,
   defaultNotificationTypeConfig?: DefaultStylesConfig
 ): PropsConfig => {
+  const visualVariant = 'color'
+  const notificationType = 'error'
+  const chooseIcon = () => {
+    switch (notificationType) {
+      case 'error':
+        switch (visualVariant) {
+          case 'color':
+            return require('../assets/images/success.png')
+        }
+    }
+  }
+
   return {
     title: props.title ?? 'Title',
     description: props.description ?? 'Description',
@@ -43,5 +55,6 @@ export const mergeProps = (
       1,
     multiline:
       props.multiline ?? defaultNotificationTypeConfig?.multiline ?? defaultGlobalConfig?.multiline,
+    leftIconSource: chooseIcon(),
   }
 }

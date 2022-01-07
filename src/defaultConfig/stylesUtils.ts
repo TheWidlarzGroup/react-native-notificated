@@ -17,9 +17,12 @@ export const getDescriptionStyle = (styles: PropsConfig): Partial<TextStyle> => 
 })
 
 export const getContainerStyles = (styles: PropsConfig): Partial<ViewStyle> => ({
-  justifyContent: 'center',
-  alignItems: 'flex-start',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
   paddingVertical: 24,
+  paddingHorizontal: 16,
   borderRadius: styles.borderRadius ?? themeBase.borderRadius.default,
   backgroundColor: styles.bgColor
     ? styles.bgColor

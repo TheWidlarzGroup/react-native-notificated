@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import type { PropsConfig } from '../../types'
 import { getContainerStyles, getDescriptionStyle, getTitleStyle } from '../stylesUtils'
 
@@ -10,7 +10,7 @@ export const NotificationBase = (props: PropsConfig) => {
   const titleStyle = getTitleStyle({ ...props })
   const descriptionStyle = getDescriptionStyle({ ...props })
 
-  const renderLeftIcon = () => !!props.icon && <View>{props.icon}</View>
+  const renderLeftIcon = () => <Image source={props.leftIconSource} style={styles.leftIcon} />
   const renderTitle = () => !!props.title && <Text style={titleStyle}>{props.title}</Text>
   const renderDescription = () => (
     <Text style={descriptionStyle} numberOfLines={props.multiline ?? 1}>
@@ -27,7 +27,7 @@ export const NotificationBase = (props: PropsConfig) => {
   return (
     <View style={containerStyles}>
       {renderLeftIcon()}
-      <View style={[styles.content]}>
+      <View style={styles.content}>
         {renderTitle()}
         {renderDescription()}
       </View>
@@ -37,7 +37,12 @@ export const NotificationBase = (props: PropsConfig) => {
 }
 
 const styles = StyleSheet.create({
+  leftIcon: {
+    height: 35,
+    width: 25,
+  },
   content: {
-    paddingHorizontal: 24,
+    paddingLeft: 16,
+    paddingRight: 32,
   },
 })

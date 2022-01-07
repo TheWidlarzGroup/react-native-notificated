@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import type { defaultVariants } from './defaultConfig/defaultConfig'
+import type { ImageSourcePropType } from 'react-native'
 
 type NotificationConfig = {
   duration: number
@@ -39,6 +40,7 @@ export type PropsConfig = {
   borderWidth?: number
   icon?: any
   multiline?: number
+  leftIconSource: ImageSourcePropType
 }
 
 export type DefaultStylesConfig = Omit<PropsConfig, 'title' | 'description' | 'theme'>
