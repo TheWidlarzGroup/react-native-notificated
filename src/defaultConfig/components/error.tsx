@@ -1,17 +1,18 @@
 import React from 'react'
 import { NotificationBase } from './NotificationBase'
 import { useNotificationConfig } from '../../core/useNotificationConfig'
-import type { NotificationProps } from '../../types'
-import { propsPicker } from '../propsPicker'
+import { mergeProps } from '../propsPicker'
 import { themeBase } from './theme'
+import type { PropsConfig } from '../../types'
 
-export const ErrorNotification = (props: NotificationProps) => {
-  const { defaultGlobalConfig, defaultErrorConfig } = useNotificationConfig()
-  const pickedProps = propsPicker(
+export const ErrorNotification = (props: Partial<PropsConfig>) => {
+  const { defaultStylesSettings, darkMode } = useNotificationConfig()
+  const pickedProps = mergeProps(
     props,
-    defaultGlobalConfig,
-    defaultErrorConfig,
-    themeBase.color.error
+    themeBase.color.error,
+    darkMode,
+    defaultStylesSettings?.globalConfig,
+    defaultStylesSettings?.errorConfig
   )
 
   return <NotificationBase {...pickedProps} />

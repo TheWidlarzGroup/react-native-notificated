@@ -1,31 +1,11 @@
 import React from 'react'
 import { StyleSheet, Text, TextStyle, View, ViewStyle } from 'react-native'
 import { themeBase } from './theme'
-import type { Theme } from '../../types'
+import type { PropsConfig, Theme } from '../../types'
 
-type F0<T = void> = () => T
+// type F0<T = void> = () => T
 
-export interface NotificationBaseStyles extends ViewStyle {
-  theme?: Theme
-  borderRadius?: number
-  borderColor?: string
-  borderWidth?: number
-  titleColor?: string
-  titleSize?: number
-  descriptionColor?: string
-  descriptionSize?: number
-  bgColor?: string
-}
-
-export interface NotificationBaseProps extends NotificationBaseStyles {
-  title?: string
-  description?: string
-  icon?: any
-  multiline?: number
-  onClose?: F0
-}
-
-const getContainerStyles = (styles: NotificationBaseStyles): Partial<ViewStyle> => ({
+const getContainerStyles = (styles: PropsConfig): Partial<ViewStyle> => ({
   borderRadius: styles.borderRadius ?? themeBase.borderRadius.default,
   backgroundColor: styles.bgColor
     ? styles.bgColor
@@ -35,15 +15,15 @@ const getContainerStyles = (styles: NotificationBaseStyles): Partial<ViewStyle> 
   ...styles,
 })
 
-const getTitleStyle = (styles: NotificationBaseStyles, theme: Theme): Partial<TextStyle> => ({
-  color: styles.titleColor ? styles.titleColor : themeBase.fontColor[theme],
+const getTitleStyle = (styles: PropsConfig): Partial<TextStyle> => ({
+  color: styles.titleColor ? styles.titleColor : themeBase.fontColor[styles.theme],
   fontSize: styles.titleSize ? styles.titleSize : themeBase.fontSize.headerFontSize,
   lineHeight: 19,
   paddingBottom: themeBase.spacing.s,
 })
 
-const getDescriptionStyle = (styles: NotificationBaseStyles, theme: Theme): Partial<TextStyle> => ({
-  color: styles.descriptionColor ? styles.descriptionColor : themeBase.fontColor[theme],
+const getDescriptionStyle = (styles: PropsConfig): Partial<TextStyle> => ({
+  color: styles.descriptionColor ? styles.descriptionColor : themeBase.fontColor[styles.theme],
   fontSize: styles.descriptionSize ? styles.descriptionSize : themeBase.fontSize.messageFontSize,
   lineHeight: 16,
 })
@@ -53,11 +33,11 @@ const getThemeStyles = (theme: Theme): Partial<ViewStyle | TextStyle> => ({
   backgroundColor: themeBase.bgColor[theme],
 })
 
-export const NotificationBase = (props: NotificationBaseProps) => {
+export const NotificationBase = (props: PropsConfig) => {
   const containerStyles = getContainerStyles({ ...props })
-  const titleStyle = getTitleStyle({ ...props }, props.theme ?? 'regular')
-  const descriptionStyle = getDescriptionStyle({ ...props }, props.theme ?? 'regular')
-  const themeStyles = getThemeStyles(props.theme ?? 'regular')
+  const titleStyle = getTitleStyle({ ...props })
+  const descriptionStyle = getDescriptionStyle({ ...props })
+  const themeStyles = getThemeStyles(props.theme)
 
   const renderLeftIcon = () =>
     !!props.icon && <View style={[styles.icon, themeStyles]}>{props.icon}</View>
@@ -67,12 +47,12 @@ export const NotificationBase = (props: NotificationBaseProps) => {
       {props.description}
     </Text>
   )
-  const renderRightIcon = () =>
-    props.onClose && (
-      <View style={styles.rightIcon}>
-        <Text>Close</Text>
-      </View>
-    )
+  // const renderRightIcon = () =>
+  //   props.onClose && (
+  //     <View style={styles.rightIcon}>
+  //       <Text>Close</Text>
+  //     </View>
+  //   )
 
   return (
     <View style={[containerStyles, styles.container]}>
@@ -81,7 +61,7 @@ export const NotificationBase = (props: NotificationBaseProps) => {
         {renderTitle()}
         {renderDescription()}
       </View>
-      {renderRightIcon()}
+      {/*{renderRightIcon()}*/}
     </View>
   )
 }

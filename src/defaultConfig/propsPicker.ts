@@ -1,19 +1,17 @@
-import type { NotificationProps } from '../types'
 import { themeBase } from './components/theme'
+import type { PropsConfig, DefaultStylesConfig } from '../types'
 
-export const propsPicker = (
-  props: NotificationProps,
-  defaultGlobalConfig: NotificationProps | undefined,
-  defaultNotificationTypeConfig: NotificationProps | undefined,
-  baseColor: string
-) => {
+export const mergeProps = (
+  props: Partial<PropsConfig>,
+  baseColor: string,
+  darkMode: boolean,
+  defaultGlobalConfig?: DefaultStylesConfig,
+  defaultNotificationTypeConfig?: DefaultStylesConfig
+): PropsConfig => {
   return {
-    title: props.title ?? defaultNotificationTypeConfig?.title ?? defaultGlobalConfig?.title,
-    description:
-      props.description ??
-      defaultNotificationTypeConfig?.description ??
-      defaultGlobalConfig?.description,
-    theme: props.theme ?? defaultNotificationTypeConfig?.theme ?? defaultGlobalConfig?.theme,
+    title: props.title ?? 'Title',
+    description: props.description ?? 'Description',
+    theme: darkMode ? 'dark' : 'regular',
     titleSize:
       props.titleSize ?? defaultNotificationTypeConfig?.titleSize ?? defaultGlobalConfig?.titleSize,
     titleColor:

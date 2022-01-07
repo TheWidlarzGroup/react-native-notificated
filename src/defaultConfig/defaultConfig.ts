@@ -34,5 +34,6 @@ export const InAppNotificationsConfig: NotificationsConfig<_DefaultVariants> = {
   defaultNotificationTimeLong: 5000,
   notificationMsgLengthTimerThreshold: 100,
 
+  darkMode: false,
   variants: defaultVariants,
 } as const

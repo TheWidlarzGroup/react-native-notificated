@@ -18,16 +18,17 @@ export type Variant<T> = {
   defaultProps?: Partial<ComponentProps<T>>
   config?: Partial<NotificationConfig>
 }
+
 export type VariantsMap = Readonly<Record<string, Variant<unknown>>>
 
 export type DefaultVariants = typeof defaultVariants
 
 export type Theme = 'regular' | 'dark'
 
-export type NotificationProps = {
+export type PropsConfig = {
   title?: string
   description?: string
-  theme?: Theme
+  theme: Theme
   titleSize?: number
   titleColor?: string
   descriptionSize?: number
@@ -40,16 +41,21 @@ export type NotificationProps = {
   multiline?: number
 }
 
+export type DefaultStylesConfig = Omit<PropsConfig, 'title' | 'description' | 'theme'>
+
 export type NotificationsConfig<Variants> = {
   defaultNotificationTime: number
   defaultNotificationTimeLong: number
   notificationMsgLengthTimerThreshold: number
 
-  defaultGlobalConfig?: NotificationProps
-  defaultSuccessConfig?: NotificationProps
-  defaultErrorConfig?: NotificationProps
-  defaultWarningConfig?: NotificationProps
-  undo?: NotificationProps
+  darkMode: boolean
+  defaultStylesSettings?: {
+    globalConfig?: DefaultStylesConfig
+    successConfig?: DefaultStylesConfig
+    errorConfig?: DefaultStylesConfig
+    warningConfig?: DefaultStylesConfig
+    undoConfig?: DefaultStylesConfig
+  }
 
   variants: Variants
 }

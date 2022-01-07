@@ -3,17 +3,17 @@ import { SafeAreaView, StyleSheet, Text } from 'react-native'
 import { createNotifications } from 'react-native-notification'
 
 const { NotificationsProvider, notify } = createNotifications({
-  defaultGlobalConfig: {
-    titleSize: 4,
-    title: 'KURŁA ZBYCHU!!! Ale numer',
-    theme: 'regular',
-  },
-  defaultErrorConfig: {
-    titleSize: 20,
-    borderRadius: 30,
-  },
-  defaultSuccessConfig: {
-    titleSize: 17,
+  defaultStylesSettings: {
+    globalConfig: {
+      titleSize: 4,
+    },
+    errorConfig: {
+      titleSize: 20,
+      borderRadius: 30,
+    },
+    successConfig: {
+      titleSize: 17,
+    },
   },
 })
 
@@ -26,7 +26,6 @@ const App = () => {
           notify('success', {
             description: 'This is where the toast text goes',
             title: 'Success',
-            // theme: 'regular',
           })
         }>
         emit success
@@ -36,7 +35,6 @@ const App = () => {
           notify('error', {
             description: 'This is where the toast text goes. ',
             // title: 'Error',
-            // theme: 'regular',
             // titleColor: 'red',
             // borderColor: 'yellow',
             multiline: 5,
@@ -49,7 +47,6 @@ const App = () => {
           notify('warning', {
             description: 'This is where the toast text goes',
             title: 'Warning',
-            // theme: 'dark',
             // bgColor: 'black',
             titleSize: 20,
           })
@@ -65,7 +62,6 @@ const App = () => {
               notify('success', {
                 description: 'undo action success',
                 title: 'undo action success',
-                // theme: 'dark',
               }),
           })
         }>
