@@ -90,6 +90,40 @@ export const Notifications = () => {
     }
   }, [popNotification, swipeBack, swipeIn, handleNewNotification])
 
+  const handleModification = useCallback(
+    ({ id, modifiedType, modifiedParams }) => {
+      setNotificationsQueue(
+        notificationsQueue.map((notification) => {
+          if (notification.id !== id) return notification
+          // NASTY ANY TRICK -> FIX IN FUTURE
+          return {
+            ...notification,
+            notificationType: modifiedType ?? notification.notificationType,
+            params: { ...(notification.params as any), ...modifiedParams },
+          }
+        })
+      )
+    },
+    [notificationsQueue]
+  )
+
+  useEffect(() => {
+    const removeListener = emitter.addListener('modify_notification', handleModification)
+    return removeListener
+  }, [handleModification])
+
+  const handleRemoval = useCallback(
+    ({ id }) => {
+      setNotificationsQueue(notificationsQueue.filter((notification) => notification.id !== id))
+    },
+    [notificationsQueue]
+  )
+
+  useEffect(() => {
+    const removeListener = emitter.addListener('remove_notification', handleRemoval)
+    return removeListener
+  }, [handleRemoval])
+
   const animatedStyles = useAnimatedStyle(() => {
     return isAndroid
       ? {
