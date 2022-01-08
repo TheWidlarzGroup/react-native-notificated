@@ -1,27 +1,18 @@
 import { themeBase } from './components/theme'
 import type { PropsConfig, DefaultStylesConfig } from '../types'
+import { chooseDefaultIcon } from './choseDefaultIcon'
+import type { NotificationVariants } from '../types'
+import { chooseAccentColor } from './stylesUtils'
 
 export const mergeProps = (
   props: Partial<PropsConfig>,
-  baseColor: string,
+  notificationType: NotificationVariants,
   darkMode: boolean,
   defaultGlobalConfig?: DefaultStylesConfig,
   defaultNotificationTypeConfig?: DefaultStylesConfig
 ): PropsConfig => {
-  const visualVariant = 'color'
-  const notificationType = 'error'
-  const chooseIcon = () => {
-    switch (notificationType) {
-      case 'error':
-        switch (visualVariant) {
-          case 'color':
-            return require('../assets/images/success.png')
-        }
-    }
-  }
-
   return {
-    title: props.title ?? 'Title',
+    title: props.title ?? '',
     description: props.description ?? 'Description',
     theme: darkMode ? 'dark' : 'regular',
     titleSize:
@@ -47,7 +38,7 @@ export const mergeProps = (
     borderColor:
       props.borderColor ??
       defaultNotificationTypeConfig?.borderColor ??
-      (defaultGlobalConfig?.borderColor || baseColor),
+      (defaultGlobalConfig?.borderColor || chooseAccentColor(notificationType)),
     borderWidth:
       props.borderWidth ??
       defaultNotificationTypeConfig?.borderWidth ??
@@ -55,6 +46,16 @@ export const mergeProps = (
       1,
     multiline:
       props.multiline ?? defaultNotificationTypeConfig?.multiline ?? defaultGlobalConfig?.multiline,
-    leftIconSource: chooseIcon(),
+    defaultIconType:
+      props.defaultIconType ??
+      defaultNotificationTypeConfig?.defaultIconType ??
+      defaultGlobalConfig?.defaultIconType,
+    leftIconSource: chooseDefaultIcon(
+      notificationType,
+      darkMode,
+      props.defaultIconType ??
+        defaultNotificationTypeConfig?.defaultIconType ??
+        defaultGlobalConfig?.defaultIconType
+    ),
   }
 }

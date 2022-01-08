@@ -10,7 +10,7 @@ export const NotificationBase = (props: PropsConfig) => {
   const titleStyle = getTitleStyle({ ...props })
   const descriptionStyle = getDescriptionStyle({ ...props })
 
-  const renderLeftIcon = () => <Image source={props.leftIconSource} style={styles.leftIcon} />
+  const renderLeftIcon = () => <Image source={props.leftIconSource!} style={styles.leftIcon} />
   const renderTitle = () => !!props.title && <Text style={titleStyle}>{props.title}</Text>
   const renderDescription = () => (
     <Text style={descriptionStyle} numberOfLines={props.multiline ?? 1}>
@@ -26,7 +26,7 @@ export const NotificationBase = (props: PropsConfig) => {
 
   return (
     <View style={containerStyles}>
-      {renderLeftIcon()}
+      {props.defaultIconType !== 'no-icon' && renderLeftIcon()}
       <View style={styles.content}>
         {renderTitle()}
         {renderDescription()}
@@ -38,7 +38,7 @@ export const NotificationBase = (props: PropsConfig) => {
 
 const styles = StyleSheet.create({
   leftIcon: {
-    height: 35,
+    height: 25,
     width: 25,
   },
   content: {

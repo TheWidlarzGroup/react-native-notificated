@@ -23,6 +23,8 @@ export type Variant<T> = {
 export type VariantsMap = Readonly<Record<string, Variant<unknown>>>
 
 export type DefaultVariants = typeof defaultVariants
+export type NotificationVariants = 'success' | 'error' | 'warning' | 'undo'
+export type IconVisualStyle = 'color' | 'monochromatic' | 'no-icon'
 
 export type Theme = 'regular' | 'dark'
 
@@ -38,9 +40,10 @@ export type PropsConfig = {
   borderRadius?: number
   borderColor?: any
   borderWidth?: number
-  icon?: any
+  icon?: string
   multiline?: number
-  leftIconSource: ImageSourcePropType
+  defaultIconType?: IconVisualStyle
+  leftIconSource?: ImageSourcePropType
 }
 
 export type DefaultStylesConfig = Omit<PropsConfig, 'title' | 'description' | 'theme'>
