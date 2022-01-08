@@ -23,7 +23,7 @@ export const getContainerStyles = (styles: PropsConfig): Partial<ViewStyle> => (
   justifyContent: 'flex-start',
   alignItems: 'center',
   paddingVertical: 24,
-  paddingHorizontal: 16,
+  paddingHorizontal: 12,
   borderRadius: styles.borderRadius ?? themeBase.borderRadius.default,
   backgroundColor: styles.bgColor
     ? styles.bgColor

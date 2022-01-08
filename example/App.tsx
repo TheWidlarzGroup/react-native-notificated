@@ -6,7 +6,6 @@ const { NotificationsProvider, notify } = createNotifications({
   defaultStylesSettings: {
     globalConfig: {
       titleSize: 15,
-      defaultIconType: 'monochromatic',
     },
     errorConfig: {
       titleSize: 20,
@@ -40,7 +39,6 @@ const App = () => {
             // titleColor: 'red',
             // borderColor: 'yellow',
             multiline: 5,
-            defaultIconType: 'color',
           })
         }>
         emit error
