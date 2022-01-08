@@ -2,13 +2,12 @@ import type { PropsConfig } from '../types'
 import type { TextStyle, ViewStyle } from 'react-native'
 import { themeBase } from './components/theme'
 import type { NotificationVariants } from '../types'
-// import { Theme } from "../types";
 
 export const getTitleStyle = (styles: PropsConfig): Partial<TextStyle> => ({
   color: styles.titleColor ? styles.titleColor : themeBase.fontColor[styles.theme],
   fontSize: styles.titleSize ? styles.titleSize : themeBase.fontSize.headerFontSize,
-  lineHeight: 19,
   paddingBottom: themeBase.spacing.s,
+  flex: 1,
 })
 
 export const getDescriptionStyle = (styles: PropsConfig): Partial<TextStyle> => ({
@@ -23,7 +22,8 @@ export const getContainerStyles = (styles: PropsConfig): Partial<ViewStyle> => (
   justifyContent: 'flex-start',
   alignItems: 'center',
   paddingVertical: 24,
-  paddingHorizontal: 12,
+  paddingLeft: 6,
+  paddingRight: 18,
   borderRadius: styles.borderRadius ?? themeBase.borderRadius.default,
   backgroundColor: styles.bgColor
     ? styles.bgColor
@@ -32,11 +32,6 @@ export const getContainerStyles = (styles: PropsConfig): Partial<ViewStyle> => (
     : themeBase.bgColor.regular,
   ...styles,
 })
-
-// const getThemeStyles = (theme: Theme): Partial<ViewStyle | TextStyle> => ({
-//   color: themeBase.fontColor[theme],
-//   backgroundColor: themeBase.bgColor[theme],
-// })
 
 export const chooseAccentColor = (notificationType: NotificationVariants) => {
   switch (notificationType) {

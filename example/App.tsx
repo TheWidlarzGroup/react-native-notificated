@@ -35,10 +35,8 @@ const App = () => {
           notify('error', {
             description:
               'This is where the toast text goes. This is where the toast text goes. This is where the toast text goes. This is where the toast text goes. This is where the toast text goes. This is where the toast text goes. ',
-            // title: 'Error',
-            // titleColor: 'red',
-            // borderColor: 'yellow',
-            multiline: 5,
+            leftIconSource: require('./assets/icon.png'),
+            title: 'COMPLETELY NEUTRAL TITLE',
           })
         }>
         emit error
@@ -48,8 +46,11 @@ const App = () => {
           notify('warning', {
             description: 'This is where the toast text goes',
             title: 'Warning',
-            // bgColor: 'black',
+            titleColor: 'yellow',
+            descriptionColor: 'yellow',
+            bgColor: 'blue',
             titleSize: 20,
+            defaultIconType: 'color',
           })
         }>
         emit warning

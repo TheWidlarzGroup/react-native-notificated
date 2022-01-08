@@ -38,11 +38,12 @@ export const NotificationBase = (props: PropsConfig) => {
 
 const styles = StyleSheet.create({
   leftIcon: {
-    height: 40,
-    width: 40,
+    height: 35,
+    width: 35,
   },
   content: {
+    flex: 1,
     paddingLeft: 6,
-    paddingRight: 32,
+    paddingRight: 18,
   },
 })

@@ -11,6 +11,11 @@ export const mergeProps = (
   defaultGlobalConfig?: DefaultStylesConfig,
   defaultNotificationTypeConfig?: DefaultStylesConfig
 ): PropsConfig => {
+  const customIconSource =
+    props.leftIconSource ??
+    defaultNotificationTypeConfig?.leftIconSource ??
+    defaultGlobalConfig?.leftIconSource
+
   return {
     title: props.title ?? '',
     description: props.description ?? 'Description',
@@ -50,12 +55,14 @@ export const mergeProps = (
       props.defaultIconType ??
       defaultNotificationTypeConfig?.defaultIconType ??
       defaultGlobalConfig?.defaultIconType,
-    leftIconSource: chooseDefaultIcon(
-      notificationType,
-      darkMode,
-      props.defaultIconType ??
-        defaultNotificationTypeConfig?.defaultIconType ??
-        defaultGlobalConfig?.defaultIconType
-    ),
+    leftIconSource:
+      customIconSource ??
+      chooseDefaultIcon(
+        notificationType,
+        darkMode,
+        props.defaultIconType ??
+          defaultNotificationTypeConfig?.defaultIconType ??
+          defaultGlobalConfig?.defaultIconType
+      ),
   }
 }
