@@ -5,7 +5,7 @@ import { createNotifications } from 'react-native-notification'
 const { NotificationsProvider, notify } = createNotifications({
   defaultStylesSettings: {
     globalConfig: {
-      borderType: 'border',
+      borderType: 'accent',
     },
   },
 })

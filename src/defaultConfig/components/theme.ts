@@ -1,24 +1,17 @@
 export const themeBase = {
   spacing: {
-    xs: 4,
-    s: 8,
-    splus: 10,
-    xm: 12,
-    xmplus: 14,
+    s: 14,
     m: 16,
-    mplus: 20,
-    l: 24,
-    lplus: 30,
-    xl: 40,
-    xxl: 50,
-    xxxl: 75,
+    l: 18,
+    xl: 24,
   },
   fontSize: {
     messageFontSize: 14,
     headerFontSize: 16,
   },
   borderRadius: {
-    default: 16,
+    regular: 14,
+    rounded: 28,
   },
   bgColor: {
     regular: '#FFFFFF',
@@ -35,5 +28,6 @@ export const themeBase = {
     warning: '#FFD37D',
     darkGray: '#767676',
     lightGray: '#CACACA',
+    shadow: '#A1A1A140',
   },
 }

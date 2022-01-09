@@ -1,12 +1,14 @@
 import React from 'react'
 import type { PropsConfig } from '../../types'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, Text, View } from 'react-native'
 import {
+  constShadow,
   getContainerStyles,
   getDescriptionStyle,
   getLeftAccentStyle,
   getTitleStyle,
 } from '../stylesUtils'
+import { styles } from '../styles'
 
 export const NotificationBase = (props: PropsConfig) => {
   const containerStyles = getContainerStyles({ ...props })
@@ -28,38 +30,18 @@ export const NotificationBase = (props: PropsConfig) => {
   )
 
   return (
-    <View style={containerStyles}>
-      {props.borderType === 'accent' && <View style={accentStyle} />}
-      <View style={styles.content}>
-        {props.defaultIconType !== 'no-icon' && renderLeftIcon()}
-        <View style={styles.textWrapper}>
-          {renderTitle()}
-          {renderDescription()}
+    <View style={constShadow(props.theme, props.borderRadius)}>
+      <View style={containerStyles}>
+        {props.borderType === 'accent' && <View style={accentStyle} />}
+        <View style={styles.content}>
+          {props.defaultIconType !== 'no-icon' && renderLeftIcon()}
+          <View style={styles.textWrapper}>
+            {renderTitle()}
+            {renderDescription()}
+          </View>
+          {renderRightIcon()}
         </View>
-        {renderRightIcon()}
       </View>
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  icon: {
-    height: 35,
-    width: 35,
-  },
-  textWrapper: {
-    flex: 1,
-    paddingLeft: 14,
-    paddingRight: 18,
-  },
-  content: {
-    paddingVertical: 24,
-    paddingLeft: 14,
-    paddingRight: 18,
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    flex: 1,
-    flexDirection: 'row',
-  },
-})

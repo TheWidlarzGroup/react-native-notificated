@@ -39,7 +39,7 @@ export const mergeProps = (
     borderRadius:
       props.borderRadius ??
       defaultNotificationTypeConfig?.borderRadius ??
-      (defaultGlobalConfig?.borderRadius || themeBase.borderRadius.default),
+      (defaultGlobalConfig?.borderRadius || themeBase.borderRadius.regular),
     accentColor:
       props.accentColor ??
       defaultNotificationTypeConfig?.accentColor ??

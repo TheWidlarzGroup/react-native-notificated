@@ -1,7 +1,8 @@
-import type { PropsConfig } from '../types'
+import type { PropsConfig, Theme } from '../types'
 import type { TextStyle, ViewStyle } from 'react-native'
 import { themeBase } from './components/theme'
 import type { NotificationVariants } from '../types'
+import { Platform } from 'react-native'
 
 export const getTitleStyle = (styles: PropsConfig): Partial<TextStyle> => ({
   color: styles.titleColor ? styles.titleColor : themeBase.fontColor[styles.theme],
@@ -16,6 +17,23 @@ export const getDescriptionStyle = (styles: PropsConfig): Partial<TextStyle> => 
   lineHeight: 16,
 })
 
+export const constShadow = (theme: Theme, borderRadius?: number): Partial<ViewStyle> => {
+  return theme === 'regular'
+    ? Platform.OS === 'android'
+      ? {
+          elevation: 5,
+          borderBottomWidth: 0,
+          borderRadius: borderRadius,
+        }
+      : {
+          shadowColor: themeBase.color.shadow,
+          shadowOffset: { width: 1, height: 2 },
+          shadowOpacity: 1,
+          shadowRadius: 7,
+        }
+    : {}
+}
+
 export const getContainerStyles = (styles: PropsConfig): Partial<ViewStyle> => ({
   ...styles,
   display: 'flex',
@@ -23,7 +41,7 @@ export const getContainerStyles = (styles: PropsConfig): Partial<ViewStyle> => (
   justifyContent: 'flex-start',
   alignItems: 'center',
   overflow: 'hidden',
-  borderRadius: styles.borderRadius ?? themeBase.borderRadius.default,
+  borderRadius: styles.borderRadius ?? themeBase.borderRadius.regular,
   borderWidth: styles.borderType === 'border' ? styles.borderWidth : 0,
   borderColor: styles.accentColor,
   backgroundColor: styles.bgColor
@@ -35,7 +53,7 @@ export const getContainerStyles = (styles: PropsConfig): Partial<ViewStyle> => (
 
 export const getLeftAccentStyle = (accentColor: string) => {
   return {
-    flex: 0.04,
+    flex: 0.045,
     height: '100%',
     backgroundColor: accentColor,
   }
