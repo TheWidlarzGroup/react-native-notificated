@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { themeBase } from './components/theme'
 
 export const styles = StyleSheet.create({
   icon: {
@@ -7,17 +8,24 @@ export const styles = StyleSheet.create({
   },
   textWrapper: {
     flex: 1,
-    paddingLeft: 14,
-    paddingRight: 18,
+    paddingLeft: themeBase.spacing.s,
+    paddingRight: themeBase.spacing.l,
   },
   content: {
-    paddingVertical: 24,
-    paddingLeft: 14,
-    paddingRight: 18,
+    paddingVertical: themeBase.spacing.xl,
+    paddingLeft: themeBase.spacing.s,
+    paddingRight: themeBase.spacing.l,
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
     flex: 1,
     flexDirection: 'row',
+  },
+  undo: {
+    fontSize: themeBase.fontSize.messageFontSize,
+    fontWeight: 'bold',
+    color: themeBase.color.info,
+    textDecorationLine: 'underline',
+    paddingTop: themeBase.spacing.xs,
   },
 })

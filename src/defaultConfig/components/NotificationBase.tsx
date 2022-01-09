@@ -28,6 +28,11 @@ export const NotificationBase = (props: PropsConfig) => {
       {props.description}
     </Text>
   )
+  const renderUndoButton = () => (
+    <Text onPress={props.onPress} style={styles.undo}>
+      UNDO
+    </Text>
+  )
 
   return (
     <View style={constShadow(props.theme, props.borderRadius)}>
@@ -38,6 +43,7 @@ export const NotificationBase = (props: PropsConfig) => {
           <View style={styles.textWrapper}>
             {renderTitle()}
             {renderDescription()}
+            {props.onPress && renderUndoButton()}
           </View>
           {renderRightIcon()}
         </View>

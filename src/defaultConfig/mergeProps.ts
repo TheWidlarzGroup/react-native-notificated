@@ -69,5 +69,11 @@ export const mergeProps = (
       defaultNotificationTypeConfig?.borderType ??
       defaultGlobalConfig?.borderType ??
       'border',
+    notificationType: notificationType,
+    onPress:
+      props.onPress ??
+      defaultNotificationTypeConfig?.onPress ??
+      defaultGlobalConfig?.onPress ??
+      undefined,
   }
 }

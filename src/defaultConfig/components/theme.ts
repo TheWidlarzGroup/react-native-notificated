@@ -1,5 +1,6 @@
 export const themeBase = {
   spacing: {
+    xs: 8,
     s: 14,
     m: 16,
     l: 18,

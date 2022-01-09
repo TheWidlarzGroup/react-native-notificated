@@ -46,6 +46,8 @@ export type PropsConfig = {
   defaultIconType?: IconVisualStyle
   leftIconSource?: ImageSourcePropType
   borderType?: BorderType
+  notificationType?: NotificationVariants
+  onPress?: () => void | undefined
 }
 
 export type DefaultStylesConfig = Omit<PropsConfig, 'title' | 'description' | 'theme'>

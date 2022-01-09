@@ -7,14 +7,13 @@ import { Platform } from 'react-native'
 export const getTitleStyle = (styles: PropsConfig): Partial<TextStyle> => ({
   color: styles.titleColor ? styles.titleColor : themeBase.fontColor[styles.theme],
   fontSize: styles.titleSize ? styles.titleSize : themeBase.fontSize.headerFontSize,
-  paddingBottom: themeBase.spacing.s,
+  paddingBottom: themeBase.spacing.xs,
   flex: 1,
 })
 
 export const getDescriptionStyle = (styles: PropsConfig): Partial<TextStyle> => ({
   color: styles.descriptionColor ? styles.descriptionColor : themeBase.fontColor[styles.theme],
   fontSize: styles.descriptionSize ? styles.descriptionSize : themeBase.fontSize.messageFontSize,
-  lineHeight: 16,
 })
 
 export const constShadow = (theme: Theme, borderRadius?: number): Partial<ViewStyle> => {

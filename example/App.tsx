@@ -45,8 +45,8 @@ const App = () => {
       <Text
         onPress={() =>
           notify('undo', {
-            message: 'undo message',
-            title: 'undo',
+            description: 'undo message',
+            title: 'Undo note',
             onPress: () =>
               notify('success', {
                 description: 'undo action success',
