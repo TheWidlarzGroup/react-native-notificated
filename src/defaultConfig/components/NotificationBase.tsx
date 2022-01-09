@@ -1,49 +1,65 @@
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
 import type { PropsConfig } from '../../types'
-import { getContainerStyles, getDescriptionStyle, getTitleStyle } from '../stylesUtils'
-
-// type F0<T = void> = () => T
+import { Image, StyleSheet, Text, View } from 'react-native'
+import {
+  getContainerStyles,
+  getDescriptionStyle,
+  getLeftAccentStyle,
+  getTitleStyle,
+} from '../stylesUtils'
 
 export const NotificationBase = (props: PropsConfig) => {
   const containerStyles = getContainerStyles({ ...props })
   const titleStyle = getTitleStyle({ ...props })
   const descriptionStyle = getDescriptionStyle({ ...props })
+  const accentStyle = getLeftAccentStyle(props.accentColor)
+  const rightIconSource =
+    props.theme === 'regular'
+      ? require('../../assets/images/close-regularMode.png')
+      : require('../../assets/images/close-darkMode.png')
 
-  const renderLeftIcon = () => <Image source={props.leftIconSource!} style={styles.leftIcon} />
-  const renderTitle = () => !!props.title && <Text style={titleStyle}>{props.title}</Text>
+  const renderLeftIcon = () => <Image source={props.leftIconSource!} style={styles.icon} />
+  const renderRightIcon = () => <Image source={rightIconSource} style={styles.icon} />
+  const renderTitle = () => <Text style={titleStyle}>{props.title}</Text>
   const renderDescription = () => (
     <Text style={descriptionStyle} numberOfLines={props.multiline ?? 1}>
       {props.description}
     </Text>
   )
-  // const renderRightIcon = () =>
-  //   props.onClose && (
-  //     <View style={styles.rightIcon}>
-  //       <Text>Close</Text>
-  //     </View>
-  //   )
 
   return (
     <View style={containerStyles}>
-      {props.defaultIconType !== 'no-icon' && renderLeftIcon()}
+      {props.borderType === 'accent' && <View style={accentStyle} />}
       <View style={styles.content}>
-        {renderTitle()}
-        {renderDescription()}
+        {props.defaultIconType !== 'no-icon' && renderLeftIcon()}
+        <View style={styles.textWrapper}>
+          {renderTitle()}
+          {renderDescription()}
+        </View>
+        {renderRightIcon()}
       </View>
-      {/*{renderRightIcon()}*/}
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  leftIcon: {
+  icon: {
     height: 35,
     width: 35,
   },
-  content: {
+  textWrapper: {
     flex: 1,
-    paddingLeft: 6,
+    paddingLeft: 14,
     paddingRight: 18,
+  },
+  content: {
+    paddingVertical: 24,
+    paddingLeft: 14,
+    paddingRight: 18,
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'row',
   },
 })

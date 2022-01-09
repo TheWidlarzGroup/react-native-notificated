@@ -27,6 +27,7 @@ export type NotificationVariants = 'success' | 'error' | 'warning' | 'undo'
 export type IconVisualStyle = 'color' | 'monochromatic' | 'no-icon'
 
 export type Theme = 'regular' | 'dark'
+export type BorderType = 'border' | 'accent' | 'no-border'
 
 export type PropsConfig = {
   title?: string
@@ -38,12 +39,13 @@ export type PropsConfig = {
   descriptionColor?: string
   bgColor?: string
   borderRadius?: number
-  borderColor?: any
+  accentColor?: any
   borderWidth?: number
   icon?: string
   multiline?: number
   defaultIconType?: IconVisualStyle
   leftIconSource?: ImageSourcePropType
+  borderType?: BorderType
 }
 
 export type DefaultStylesConfig = Omit<PropsConfig, 'title' | 'description' | 'theme'>

@@ -5,14 +5,7 @@ import { createNotifications } from 'react-native-notification'
 const { NotificationsProvider, notify } = createNotifications({
   defaultStylesSettings: {
     globalConfig: {
-      titleSize: 15,
-    },
-    errorConfig: {
-      titleSize: 20,
-      borderRadius: 30,
-    },
-    successConfig: {
-      titleSize: 17,
+      borderType: 'border',
     },
   },
 })
@@ -35,8 +28,7 @@ const App = () => {
           notify('error', {
             description:
               'This is where the toast text goes. This is where the toast text goes. This is where the toast text goes. This is where the toast text goes. This is where the toast text goes. This is where the toast text goes. ',
-            leftIconSource: require('./assets/icon.png'),
-            title: 'COMPLETELY NEUTRAL TITLE',
+            title: 'Neutral title',
           })
         }>
         emit error
@@ -46,11 +38,6 @@ const App = () => {
           notify('warning', {
             description: 'This is where the toast text goes',
             title: 'Warning',
-            titleColor: 'yellow',
-            descriptionColor: 'yellow',
-            bgColor: 'blue',
-            titleSize: 20,
-            defaultIconType: 'color',
           })
         }>
         emit warning

@@ -17,23 +17,31 @@ export const getDescriptionStyle = (styles: PropsConfig): Partial<TextStyle> => 
 })
 
 export const getContainerStyles = (styles: PropsConfig): Partial<ViewStyle> => ({
+  ...styles,
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  paddingVertical: 24,
-  paddingLeft: 6,
-  paddingRight: 18,
+  overflow: 'hidden',
   borderRadius: styles.borderRadius ?? themeBase.borderRadius.default,
+  borderWidth: styles.borderType === 'border' ? styles.borderWidth : 0,
+  borderColor: styles.accentColor,
   backgroundColor: styles.bgColor
     ? styles.bgColor
     : styles.theme
     ? themeBase.bgColor[styles.theme]
     : themeBase.bgColor.regular,
-  ...styles,
 })
 
-export const chooseAccentColor = (notificationType: NotificationVariants) => {
+export const getLeftAccentStyle = (accentColor: string) => {
+  return {
+    flex: 0.04,
+    height: '100%',
+    backgroundColor: accentColor,
+  }
+}
+
+export const chooseDefaultAccentColor = (notificationType: NotificationVariants) => {
   switch (notificationType) {
     case 'success':
       return themeBase.color.success

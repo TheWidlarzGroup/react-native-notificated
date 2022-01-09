@@ -18,7 +18,7 @@ export const themeBase = {
     headerFontSize: 16,
   },
   borderRadius: {
-    default: 24,
+    default: 16,
   },
   bgColor: {
     regular: '#FFFFFF',

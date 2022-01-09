@@ -2,7 +2,7 @@ import { themeBase } from './components/theme'
 import type { PropsConfig, DefaultStylesConfig } from '../types'
 import { chooseDefaultIcon } from './choseDefaultIcon'
 import type { NotificationVariants } from '../types'
-import { chooseAccentColor } from './stylesUtils'
+import { chooseDefaultAccentColor } from './stylesUtils'
 
 export const mergeProps = (
   props: Partial<PropsConfig>,
@@ -40,10 +40,10 @@ export const mergeProps = (
       props.borderRadius ??
       defaultNotificationTypeConfig?.borderRadius ??
       (defaultGlobalConfig?.borderRadius || themeBase.borderRadius.default),
-    borderColor:
-      props.borderColor ??
-      defaultNotificationTypeConfig?.borderColor ??
-      (defaultGlobalConfig?.borderColor || chooseAccentColor(notificationType)),
+    accentColor:
+      props.accentColor ??
+      defaultNotificationTypeConfig?.accentColor ??
+      (defaultGlobalConfig?.accentColor || chooseDefaultAccentColor(notificationType)),
     borderWidth:
       props.borderWidth ??
       defaultNotificationTypeConfig?.borderWidth ??
@@ -64,5 +64,10 @@ export const mergeProps = (
           defaultNotificationTypeConfig?.defaultIconType ??
           defaultGlobalConfig?.defaultIconType
       ),
+    borderType:
+      props.borderType ??
+      defaultNotificationTypeConfig?.borderType ??
+      defaultGlobalConfig?.borderType ??
+      'border',
   }
 }

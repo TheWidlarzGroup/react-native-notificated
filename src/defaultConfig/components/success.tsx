@@ -1,7 +1,7 @@
 import React from 'react'
 import { NotificationBase } from './NotificationBase'
 import { useNotificationConfig } from '../../core/useNotificationConfig'
-import { mergeProps } from '../propsPicker'
+import { mergeProps } from '../mergeProps'
 import type { PropsConfig } from '../../types'
 
 export const SuccessNotification = (props: Partial<PropsConfig>) => {
