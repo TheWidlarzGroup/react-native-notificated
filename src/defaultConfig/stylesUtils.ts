@@ -1,8 +1,8 @@
-import type { MergedNotificationStyleConfig} from '../types'
+import type { MergedNotificationStyleConfig } from '../types'
 import type { TextStyle, ViewStyle } from 'react-native'
 import { Platform } from 'react-native'
 import { themeBase } from './components/theme'
-import type {NotificationVariants, Theme} from "./types";
+import type { NotificationVariants, Theme } from './types'
 
 export const getTitleStyle = (styles: MergedNotificationStyleConfig): Partial<TextStyle> => ({
   color: styles.titleColor ? styles.titleColor : themeBase.fontColor[styles.theme],

@@ -5,11 +5,11 @@ import { mergeProps } from '../mergeProps'
 import type { NotificationProps } from '../../types'
 
 export const ErrorNotification = (props: NotificationProps) => {
-  const { defaultStylesSettings, darkMode } = useNotificationConfig()
+  const { defaultStylesSettings } = useNotificationConfig()
   const pickedProps = mergeProps(
     props,
     'error',
-    darkMode,
+    Boolean(defaultStylesSettings?.darkMode),
     defaultStylesSettings?.globalConfig,
     defaultStylesSettings?.errorConfig
   )

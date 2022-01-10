@@ -19,19 +19,27 @@ export type VariantsMap = Readonly<Record<string, Variant<unknown>>>
 export type NotificationProps = NotificationOwnProps & Partial<NotificationStyleConfig>
 export type MergedNotificationStyleConfig = NotificationStyleConfig & { theme: Theme }
 
-export type NotificationsConfig<Variants> = {
+export type NotificationConfigBase = {
   defaultNotificationTime: number
   defaultNotificationTimeLong: number
   notificationMsgLengthTimerThreshold: number
+}
 
-  darkMode: boolean
+export type NotificationsConfig<Variants> = {
+  variants: Variants
+} & NotificationConfigBase
+
+export type DefaultLayoutConfig = {
+  variants: never
+
   defaultStylesSettings?: {
+    darkMode?: boolean
     globalConfig?: Partial<NotificationStyleConfig>
     successConfig?: Partial<NotificationStyleConfig>
     errorConfig?: Partial<NotificationStyleConfig>
     warningConfig?: Partial<NotificationStyleConfig>
     infoConfig?: Partial<NotificationStyleConfig>
   }
-
-  variants: Variants
 }
+
+export type DefaultVariantsConfig = NotificationConfigBase & DefaultLayoutConfig

@@ -1,13 +1,9 @@
-import type {
-  MergedNotificationStyleConfig,
-  NotificationProps,
-
-} from '../types'
+import type { MergedNotificationStyleConfig, NotificationProps } from '../types'
 import type { ImageSourcePropType } from 'react-native'
 import { themeBase } from './components/theme'
 import { chooseDefaultAccentColor } from './stylesUtils'
 import { chooseDefaultIcon } from './choseDefaultIcon'
-import type {NotificationStyleConfig, NotificationVariants} from "./types";
+import type { NotificationStyleConfig, NotificationVariants } from './types'
 
 export const mergeProps = (
   props: NotificationProps,

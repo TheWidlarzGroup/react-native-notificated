@@ -1,5 +1,5 @@
 import React from 'react'
-import type { MergedNotificationStyleConfig} from '../../types'
+import type { MergedNotificationStyleConfig } from '../../types'
 import { Image, Text, View } from 'react-native'
 import {
   constShadow,
@@ -9,7 +9,7 @@ import {
   getTitleStyle,
 } from '../stylesUtils'
 import { styles } from '../styles'
-import type {NotificationOwnProps} from "../types";
+import type { NotificationOwnProps } from '../types'
 
 export const NotificationBase = (props: NotificationOwnProps & MergedNotificationStyleConfig) => {
   const containerStyles = getContainerStyles({ ...props })
