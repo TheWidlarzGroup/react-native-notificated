@@ -4,7 +4,8 @@ import { Notifications } from './Notifications'
 import { emitter, NotificationContext } from './useNotificationConfig'
 import type { DefaultVariants, NotificationsConfig, RequiredProps, VariantsMap } from '../types'
 import { InAppNotificationsConfig } from '../defaultConfig/defaultConfig'
-import { generateNotificationId } from 'src/utils/uuid'
+import { generateNotificationId } from '../utils/uuid'
+import { useNotificationController } from '../hooks/useNotificationController'
 
 export type EmitParam<T> = {
   notificationType: unknown
@@ -19,11 +20,15 @@ export const createNotifications = <Variants extends VariantsMap = DefaultVarian
     notificationType: Variant,
     params: RequiredProps<Variants[Variant]>
   ) => {
+    const id = generateNotificationId(notificationType.toString())
     emitter.emit<EmitParam<typeof params>>('add_notification', {
       notificationType,
       params,
-      id: generateNotificationId(notificationType.toString()),
+      id,
     })
+    return {
+      id,
+    }
   }
 
   const NotificationsProvider = ({ children = null }: { children?: ReactNode }) => {
@@ -36,5 +41,5 @@ export const createNotifications = <Variants extends VariantsMap = DefaultVarian
   }
   const useNotification = () => ({ notify })
 
-  return { notify, useNotification, NotificationsProvider }
+  return { notify, useNotification, NotificationsProvider, useNotificationController }
 }
