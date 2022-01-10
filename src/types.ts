@@ -86,7 +86,7 @@ export type NotificationsConfig<Variants> = {
     successConfig?: DefaultStylesConfig
     errorConfig?: DefaultStylesConfig
     warningConfig?: DefaultStylesConfig
-    undoConfig?: DefaultStylesConfig
+    infoConfig?: DefaultStylesConfig
   }
 
   variants: Variants

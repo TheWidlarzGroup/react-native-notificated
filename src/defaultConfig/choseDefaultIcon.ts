@@ -1,12 +1,13 @@
 import type { NotificationVariants } from '../types'
 import type { IconVisualStyle } from '../types'
 import type { IconsLinksTypes } from '../types'
+import type { ImageSourcePropType } from 'react-native'
 
 export const chooseDefaultIcon = (
   notificationType: NotificationVariants,
   darkMode: boolean,
   defaultIconType?: IconVisualStyle
-) => {
+): ImageSourcePropType | undefined => {
   const iconLinks: IconsLinksTypes = {
     success: {
       color: require(`../assets/images/success-color.png`),
@@ -30,14 +31,14 @@ export const chooseDefaultIcon = (
     },
   }
 
-  const renderIcon = (type: NotificationVariants) => {
+  const renderIcon = (type: NotificationVariants): ImageSourcePropType | undefined => {
     switch (defaultIconType) {
       case 'color':
         return iconLinks[type].color
       case 'monochromatic':
         return darkMode ? iconLinks[type].white : iconLinks[type].black
       case 'no-icon':
-        return ''
+        return undefined
       default:
         return iconLinks[type].color
     }

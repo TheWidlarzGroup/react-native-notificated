@@ -1,8 +1,8 @@
+import type { DefaultStylesConfig, NotificationVariants, PropsConfig } from '../types'
+import type { ImageSourcePropType } from 'react-native'
 import { themeBase } from './components/theme'
-import type { PropsConfig, DefaultStylesConfig } from '../types'
-import { chooseDefaultIcon } from './choseDefaultIcon'
-import type { NotificationVariants } from '../types'
 import { chooseDefaultAccentColor } from './stylesUtils'
+import { chooseDefaultIcon } from './choseDefaultIcon'
 
 export const mergeProps = (
   props: Partial<PropsConfig>,
@@ -11,7 +11,7 @@ export const mergeProps = (
   defaultGlobalConfig?: DefaultStylesConfig,
   defaultNotificationTypeConfig?: DefaultStylesConfig
 ): PropsConfig => {
-  const customIconSource =
+  const customIconSource: ImageSourcePropType | undefined =
     props.leftIconSource ??
     defaultNotificationTypeConfig?.leftIconSource ??
     defaultGlobalConfig?.leftIconSource

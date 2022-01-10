@@ -4,11 +4,11 @@ import { mergeProps } from '../mergeProps'
 import { NotificationBase } from './NotificationBase'
 import type { PropsConfig } from '../../types'
 
-export const UndoNotification = (props: Partial<PropsConfig>) => {
+export const InfoNotification = (props: Partial<PropsConfig>) => {
   const { defaultStylesSettings, darkMode } = useNotificationConfig()
   const pickedProps = mergeProps(
     props,
-    'undo',
+    'info',
     darkMode,
     defaultStylesSettings?.globalConfig,
     defaultStylesSettings?.successConfig

@@ -1,14 +1,15 @@
 import { SuccessNotification } from './components/success'
 import { WarningNotification } from './components/warning'
 import { ErrorNotification } from './components/error'
-import { UndoNotification } from './components/undo'
+import { InfoNotification } from './components/info'
 import type { NotificationsConfig, Variant } from '../types'
 
 export type _DefaultVariants = {
   success: Variant<typeof SuccessNotification>
   error: Variant<typeof ErrorNotification>
   warning: Variant<typeof WarningNotification>
-  undo: Variant<typeof UndoNotification>
+  info: Variant<typeof InfoNotification>
+  undo: Variant<typeof InfoNotification>
 }
 
 export const defaultVariants: _DefaultVariants = {
@@ -21,8 +22,11 @@ export const defaultVariants: _DefaultVariants = {
   error: {
     component: ErrorNotification,
   },
+  info: {
+    component: InfoNotification,
+  },
   undo: {
-    component: UndoNotification,
+    component: InfoNotification,
     defaultProps: {
       onPress: console.log,
     },

@@ -66,7 +66,7 @@ export const chooseDefaultAccentColor = (notificationType: NotificationVariants)
       return themeBase.color.error
     case 'warning':
       return themeBase.color.warning
-    case 'undo':
+    case 'info':
       return themeBase.color.info
   }
 }

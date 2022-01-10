@@ -50,6 +50,15 @@ const App = () => {
       </Text>
       <Text
         onPress={() =>
+          notify('info', {
+            description: 'This is where the toast text goes',
+            title: 'Info',
+          })
+        }>
+        emit info
+      </Text>
+      <Text
+        onPress={() =>
           notify('undo', {
             description: 'undo message',
             title: 'Undo note',
