@@ -18,7 +18,7 @@ export const mergeProps = (
 
   return {
     title: props.title ?? '',
-    description: props.description ?? 'Description',
+    description: props.description ?? '',
     theme: darkMode ? 'dark' : 'regular',
     titleSize:
       props.titleSize ?? defaultNotificationTypeConfig?.titleSize ?? defaultGlobalConfig?.titleSize,

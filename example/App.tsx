@@ -3,9 +3,15 @@ import { SafeAreaView, StyleSheet, Text } from 'react-native'
 import { createNotifications } from 'react-native-notification'
 
 const { NotificationsProvider, notify } = createNotifications({
+  darkMode: true,
   defaultStylesSettings: {
     globalConfig: {
       borderType: 'accent',
+      defaultIconType: 'monochromatic',
+    },
+    errorConfig: {
+      titleColor: 'red',
+      borderType: 'border',
     },
   },
 })

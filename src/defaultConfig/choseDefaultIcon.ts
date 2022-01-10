@@ -1,63 +1,56 @@
 import type { NotificationVariants } from '../types'
 import type { IconVisualStyle } from '../types'
+import type { IconsLinksTypes } from '../types'
 
 export const chooseDefaultIcon = (
   notificationType: NotificationVariants,
   darkMode: boolean,
   defaultIconType?: IconVisualStyle
 ) => {
+  const iconLinks: IconsLinksTypes = {
+    success: {
+      color: require(`../assets/images/success-color.png`),
+      white: require(`../assets/images/success-white.png`),
+      black: require(`../assets/images/success-black.png`),
+    },
+    error: {
+      color: require(`../assets/images/error-color.png`),
+      white: require(`../assets/images/error-white.png`),
+      black: require(`../assets/images/error-black.png`),
+    },
+    warning: {
+      color: require(`../assets/images/warning-color.png`),
+      white: require(`../assets/images/warning-white.png`),
+      black: require(`../assets/images/warning-black.png`),
+    },
+    info: {
+      color: require(`../assets/images/info-color.png`),
+      white: require(`../assets/images/info-white.png`),
+      black: require(`../assets/images/info-black.png`),
+    },
+  }
+
+  const renderIcon = (type: NotificationVariants) => {
+    switch (defaultIconType) {
+      case 'color':
+        return iconLinks[type].color
+      case 'monochromatic':
+        return darkMode ? iconLinks[type].white : iconLinks[type].black
+      case 'no-icon':
+        return ''
+      default:
+        return iconLinks[type].color
+    }
+  }
+
   switch (notificationType) {
     case 'success':
-      switch (defaultIconType) {
-        case 'color':
-          return require('../assets/images/success-green.png')
-        case 'monochromatic':
-          return darkMode
-            ? require('../assets/images/success-white.png')
-            : require('../assets/images/success-black.png')
-        case 'no-icon':
-          return ''
-        default:
-          return require('../assets/images/success-green.png')
-      }
+      return renderIcon('success')
     case 'error':
-      switch (defaultIconType) {
-        case 'color':
-          return require('../assets/images/error-red.png')
-        case 'monochromatic':
-          return darkMode
-            ? require('../assets/images/error-white.png')
-            : require('../assets/images/error-black.png')
-        case 'no-icon':
-          return ''
-        default:
-          return require('../assets/images/error-red.png')
-      }
+      return renderIcon('error')
     case 'warning':
-      switch (defaultIconType) {
-        case 'color':
-          return require('../assets/images/warning-yellow.png')
-        case 'monochromatic':
-          return darkMode
-            ? require('../assets/images/warning-white.png')
-            : require('../assets/images/warning-black.png')
-        case 'no-icon':
-          return ''
-        default:
-          return require('../assets/images/warning-yellow.png')
-      }
-    case 'undo':
-      switch (defaultIconType) {
-        case 'color':
-          return require('../assets/images/info-blue.png')
-        case 'monochromatic':
-          return darkMode
-            ? require('../assets/images/info-white.png')
-            : require('../assets/images/info-black.png')
-        case 'no-icon':
-          return ''
-        default:
-          return require('../assets/images/info-blue.png')
-      }
+      return renderIcon('warning')
+    case 'info':
+      return renderIcon('info')
   }
 }

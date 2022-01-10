@@ -23,11 +23,34 @@ export type Variant<T> = {
 export type VariantsMap = Readonly<Record<string, Variant<unknown>>>
 
 export type DefaultVariants = typeof defaultVariants
-export type NotificationVariants = 'success' | 'error' | 'warning' | 'undo'
+export type NotificationVariants = 'success' | 'error' | 'warning' | 'info'
 export type IconVisualStyle = 'color' | 'monochromatic' | 'no-icon'
 
 export type Theme = 'regular' | 'dark'
 export type BorderType = 'border' | 'accent' | 'no-border'
+
+export type IconsLinksTypes = {
+  success: {
+    color: ImageSourcePropType
+    white: ImageSourcePropType
+    black: ImageSourcePropType
+  }
+  error: {
+    color: ImageSourcePropType
+    white: ImageSourcePropType
+    black: ImageSourcePropType
+  }
+  warning: {
+    color: ImageSourcePropType
+    white: ImageSourcePropType
+    black: ImageSourcePropType
+  }
+  info: {
+    color: ImageSourcePropType
+    white: ImageSourcePropType
+    black: ImageSourcePropType
+  }
+}
 
 export type PropsConfig = {
   title?: string
