@@ -1,7 +1,5 @@
-import type { NotificationVariants } from '../types'
-import type { IconVisualStyle } from '../types'
-import type { IconsLinksTypes } from '../types'
 import type { ImageSourcePropType } from 'react-native'
+import type {IconsLinksTypes, IconVisualStyle, NotificationVariants} from "./types";
 
 export const chooseDefaultIcon = (
   notificationType: NotificationVariants,

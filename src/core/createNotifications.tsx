@@ -2,8 +2,9 @@ import React, { ReactNode } from 'react'
 import { Notifications } from './Notifications'
 
 import { emitter, NotificationContext } from './useNotificationConfig'
-import type { DefaultVariants, NotificationsConfig, RequiredProps, VariantsMap } from '../types'
+import type { NotificationsConfig, RequiredProps, VariantsMap } from '../types'
 import { InAppNotificationsConfig } from '../defaultConfig/defaultConfig'
+import type {DefaultVariants} from "../defaultConfig/types";
 
 export type EmitParam<T> = {
   notificationType: unknown
