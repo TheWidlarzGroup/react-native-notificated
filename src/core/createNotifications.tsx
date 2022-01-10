@@ -4,7 +4,7 @@ import { Notifications } from './Notifications'
 import { emitter, NotificationContext } from './useNotificationConfig'
 import type { DefaultVariants, NotificationsConfig, RequiredProps, VariantsMap } from '../types'
 import { InAppNotificationsConfig } from '../defaultConfig/defaultConfig'
-import { uuid } from '../utils/uuid'
+import { generateNotificationId } from 'src/utils/uuid'
 
 export type EmitParam<T> = {
   notificationType: unknown
@@ -22,7 +22,7 @@ export const createNotifications = <Variants extends VariantsMap = DefaultVarian
     emitter.emit<EmitParam<typeof params>>('add_notification', {
       notificationType,
       params,
-      id: uuid(notificationType.toString()),
+      id: generateNotificationId(notificationType.toString()),
     })
   }
 
