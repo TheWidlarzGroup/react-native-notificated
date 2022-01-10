@@ -1,6 +1,7 @@
 import React from 'react'
 import type { EmitParam } from './createNotifications'
 import type { NotificationsConfig, Variant } from '../types'
+import { VariantsRendererProvider } from './VariantsRendererContex'
 
 type Props = {
   config: NotificationsConfig<any>
@@ -13,9 +14,9 @@ export const VariantsRenderer = (props: Props) => {
   const Component = variant.component
 
   return (
-    <>
+    <VariantsRendererProvider id={props.notificationConfig.id}>
       <Component {...{ ...variant.defaultProps, ...props.notificationConfig.params }} />
-    </>
+    </VariantsRendererProvider>
   )
 }
 
