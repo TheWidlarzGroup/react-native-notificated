@@ -2,9 +2,9 @@ import React from 'react'
 import { useNotificationConfig } from '../../core/useNotificationConfig'
 import { mergeProps } from '../mergeProps'
 import { NotificationBase } from './NotificationBase'
-import type { PropsConfig } from '../../types'
+import type { NotificationProps } from '../../types'
 
-export const InfoNotification = (props: Partial<PropsConfig>) => {
+export const InfoNotification = (props: NotificationProps) => {
   const { defaultStylesSettings, darkMode } = useNotificationConfig()
   const pickedProps = mergeProps(
     props,

@@ -27,9 +27,6 @@ export const defaultVariants: _DefaultVariants = {
   },
   undo: {
     component: InfoNotification,
-    defaultProps: {
-      onPress: console.log,
-    },
   },
 } as const
 

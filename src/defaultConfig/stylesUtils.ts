@@ -1,17 +1,16 @@
-import type { PropsConfig, Theme } from '../types'
+import type { MergedNotificationStyleConfig, NotificationVariants, Theme } from '../types'
 import type { TextStyle, ViewStyle } from 'react-native'
-import { themeBase } from './components/theme'
-import type { NotificationVariants } from '../types'
 import { Platform } from 'react-native'
+import { themeBase } from './components/theme'
 
-export const getTitleStyle = (styles: PropsConfig): Partial<TextStyle> => ({
+export const getTitleStyle = (styles: MergedNotificationStyleConfig): Partial<TextStyle> => ({
   color: styles.titleColor ? styles.titleColor : themeBase.fontColor[styles.theme],
   fontSize: styles.titleSize ? styles.titleSize : themeBase.fontSize.headerFontSize,
   paddingBottom: themeBase.spacing.xs,
   flex: 1,
 })
 
-export const getDescriptionStyle = (styles: PropsConfig): Partial<TextStyle> => ({
+export const getDescriptionStyle = (styles: MergedNotificationStyleConfig): Partial<TextStyle> => ({
   color: styles.descriptionColor ? styles.descriptionColor : themeBase.fontColor[styles.theme],
   fontSize: styles.descriptionSize ? styles.descriptionSize : themeBase.fontSize.messageFontSize,
 })
@@ -33,7 +32,7 @@ export const constShadow = (theme: Theme, borderRadius?: number): Partial<ViewSt
     : {}
 }
 
-export const getContainerStyles = (styles: PropsConfig): Partial<ViewStyle> => ({
+export const getContainerStyles = (styles: MergedNotificationStyleConfig): Partial<ViewStyle> => ({
   ...styles,
   display: 'flex',
   flexDirection: 'row',

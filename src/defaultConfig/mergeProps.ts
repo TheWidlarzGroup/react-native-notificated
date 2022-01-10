@@ -1,16 +1,21 @@
-import type { DefaultStylesConfig, NotificationVariants, PropsConfig } from '../types'
+import type {
+  MergedNotificationStyleConfig,
+  NotificationProps,
+  NotificationStyleConfig,
+  NotificationVariants,
+} from '../types'
 import type { ImageSourcePropType } from 'react-native'
 import { themeBase } from './components/theme'
 import { chooseDefaultAccentColor } from './stylesUtils'
 import { chooseDefaultIcon } from './choseDefaultIcon'
 
 export const mergeProps = (
-  props: Partial<PropsConfig>,
+  props: NotificationProps,
   notificationType: NotificationVariants,
   darkMode: boolean,
-  defaultGlobalConfig?: DefaultStylesConfig,
-  defaultNotificationTypeConfig?: DefaultStylesConfig
-): PropsConfig => {
+  defaultGlobalConfig?: NotificationStyleConfig,
+  defaultNotificationTypeConfig?: NotificationStyleConfig
+): NotificationProps & MergedNotificationStyleConfig => {
   const customIconSource: ImageSourcePropType | undefined =
     props.leftIconSource ??
     defaultNotificationTypeConfig?.leftIconSource ??
@@ -70,10 +75,6 @@ export const mergeProps = (
       defaultGlobalConfig?.borderType ??
       'border',
     notificationType: notificationType,
-    onPress:
-      props.onPress ??
-      defaultNotificationTypeConfig?.onPress ??
-      defaultGlobalConfig?.onPress ??
-      undefined,
+    onPress: props.onPress ?? undefined,
   }
 }

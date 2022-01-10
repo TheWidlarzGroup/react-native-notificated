@@ -8,16 +8,11 @@ type NotificationConfig = {
 
 export type ComponentProps<T> = T extends FC<infer Props> ? Props : never
 
-export type RequiredProps<T extends Variant<unknown>> = Omit<
-  ComponentProps<T['component']>,
-  keyof T['defaultProps']
-> &
-  Partial<ComponentProps<T['component']>>
+export type RequiredProps<T extends Variant<unknown>> = ComponentProps<T['component']>
 
 export type Variant<T> = {
   component: T
-  defaultProps?: Partial<ComponentProps<T>>
-  config?: Partial<NotificationConfig>
+  config?: NotificationConfig
 }
 
 export type VariantsMap = Readonly<Record<string, Variant<unknown>>>
@@ -52,28 +47,34 @@ export type IconsLinksTypes = {
   }
 }
 
-export type PropsConfig = {
-  title?: string
-  description?: string
-  theme: Theme
-  titleSize?: number
-  titleColor?: string
-  descriptionSize?: number
-  descriptionColor?: string
-  bgColor?: string
-  borderRadius?: number
-  accentColor?: any
-  borderWidth?: number
+export type NotificationOwnProps = {
+  title: string
+  description: string
   icon?: string
-  multiline?: number
-  defaultIconType?: IconVisualStyle
-  leftIconSource?: ImageSourcePropType
-  borderType?: BorderType
-  notificationType?: NotificationVariants
   onPress?: () => void | undefined
 }
 
-export type DefaultStylesConfig = Omit<PropsConfig, 'title' | 'description' | 'theme'>
+export type NotificationStyleConfig = Partial<{
+  icon?: string
+  theme: Theme
+  titleSize: number
+  titleColor: string
+  descriptionSize: number
+  descriptionColor: string
+  bgColor: string
+  borderRadius: number
+  accentColor: any
+  borderWidth: number
+  multiline: number
+  defaultIconType: IconVisualStyle
+  leftIconSource: ImageSourcePropType
+  borderType: BorderType
+  notificationType: NotificationVariants
+}>
+
+
+export type NotificationProps = NotificationOwnProps & Partial<NotificationStyleConfig>
+export type MergedNotificationStyleConfig = NotificationStyleConfig & { theme: Theme }
 
 export type NotificationsConfig<Variants> = {
   defaultNotificationTime: number
@@ -82,11 +83,11 @@ export type NotificationsConfig<Variants> = {
 
   darkMode: boolean
   defaultStylesSettings?: {
-    globalConfig?: DefaultStylesConfig
-    successConfig?: DefaultStylesConfig
-    errorConfig?: DefaultStylesConfig
-    warningConfig?: DefaultStylesConfig
-    infoConfig?: DefaultStylesConfig
+    globalConfig?: Partial<NotificationStyleConfig>
+    successConfig?: Partial<NotificationStyleConfig>
+    errorConfig?: Partial<NotificationStyleConfig>
+    warningConfig?: Partial<NotificationStyleConfig>
+    infoConfig?: Partial<NotificationStyleConfig>
   }
 
   variants: Variants
