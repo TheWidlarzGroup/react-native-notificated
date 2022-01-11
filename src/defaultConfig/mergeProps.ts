@@ -19,7 +19,7 @@ export const mergeProps = (
     defaultGlobalConfig?.leftIconSource
 
   const chooseProps = (property: PropsVariants): any | undefined => {
-    //fix above any type
+    //TODO: fix above any type
     return (
       props[property] ??
       defaultNotificationTypeConfig?.[property] ??
