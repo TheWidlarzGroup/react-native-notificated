@@ -1,3 +1,4 @@
 import { createNotifications } from './core/createNotifications'
+import { useNotificationController } from './hooks/useNotificationController'
 
-export { createNotifications }
+export { createNotifications, useNotificationController }
