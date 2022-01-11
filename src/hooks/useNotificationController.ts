@@ -1,27 +1,21 @@
 import { useCallback } from 'react'
+import NotificationEmitterApi from '../services/NotificationEmitterApi'
+import type { ModifiedEmitParam } from '../types'
 import { useVariantsRendererContext } from '../core/VariantsRendererContex'
-import type { EmitParam } from '../core/createNotifications'
-import { emitter } from '../core/useNotificationConfig'
-
-interface ModifiedEmitParam<T> {
-  id: string
-  modifiedParams?: Partial<EmitParam<T>['params']>
-}
-
-const emitRemove = (id: string) => emitter.emit('remove_notification', { id })
-const emitModify = <T>({ id, modifiedParams }: ModifiedEmitParam<T>) =>
-  emitter.emit('modify_notification', { id, modifiedParams })
 
 export const useNotificationController = () => {
   const context = useVariantsRendererContext()
 
   const modify = useCallback(
     // Would be cool to have some type inference here in future
-    <T>({ id, modifiedParams }: ModifiedEmitParam<T>) =>
-      emitModify({ id: id ?? context?.id ?? '', modifiedParams }),
+    <T>({ id, params }: Partial<ModifiedEmitParam<T>>) =>
+      NotificationEmitterApi.modify({ id: id ?? context?.id ?? '', params }),
     [context?.id]
   )
-  const remove = useCallback((id) => emitRemove(id ?? context?.id ?? ''), [context?.id])
+  const remove = useCallback(
+    (id?: string) => NotificationEmitterApi.remove(id ?? context?.id ?? ''),
+    [context?.id]
+  )
 
   return { remove, modify }
 }

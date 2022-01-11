@@ -91,14 +91,14 @@ export const Notifications = () => {
   }, [popNotification, swipeBack, swipeIn, handleNewNotification])
 
   const modifyNotification = useCallback(
-    ({ id, modifiedParams }) => {
+    ({ id, params }) => {
       setNotificationsQueue(
         notificationsQueue.map((notification) => {
           if (notification.id !== id) return notification
           // NASTY ANY TRICK -> FIX IN FUTURE
           return {
             ...notification,
-            params: { ...(notification.params as any), ...modifiedParams },
+            params: { ...(notification.params as any), ...params },
           }
         })
       )
@@ -115,7 +115,7 @@ export const Notifications = () => {
     ({ id }) => {
       const [firstNotification] = notificationsQueue
       // if notification is currently displayed animate it back
-      if (firstNotification.id === id) return swipeBack()
+      if (firstNotification?.id === id) return swipeBack()
       setNotificationsQueue(notificationsQueue.filter((notification) => notification.id !== id))
     },
     [notificationsQueue, swipeBack]
