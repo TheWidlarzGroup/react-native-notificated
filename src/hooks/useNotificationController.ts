@@ -17,7 +17,8 @@ export const useNotificationController = () => {
 
   const modify = useCallback(
     // Would be cool to have some type inference here in future
-    ({ id, modifiedParams }) => emitModify({ id: id ?? context?.id ?? '', modifiedParams }),
+    <T>({ id, modifiedParams }: ModifiedEmitParam<T>) =>
+      emitModify({ id: id ?? context?.id ?? '', modifiedParams }),
     [context?.id]
   )
   const remove = useCallback((id) => emitRemove(id ?? context?.id ?? ''), [context?.id])
