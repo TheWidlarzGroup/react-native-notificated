@@ -90,7 +90,7 @@ export const Notifications = () => {
     }
   }, [popNotification, swipeBack, swipeIn, handleNewNotification])
 
-  const handleModification = useCallback(
+  const modifyNotification = useCallback(
     ({ id, modifiedType, modifiedParams }) => {
       setNotificationsQueue(
         notificationsQueue.map((notification) => {
@@ -108,21 +108,26 @@ export const Notifications = () => {
   )
 
   useEffect(() => {
-    const removeListener = emitter.addListener('modify_notification', handleModification)
+    const removeListener = emitter.addListener('modify_notification', modifyNotification)
     return removeListener
-  }, [handleModification])
+  }, [modifyNotification])
 
-  const handleRemoval = useCallback(
+  const removeNotification = useCallback(
     ({ id }) => {
+      const notificationIndex = notificationsQueue.findIndex(
+        (notification) => notification.id === id
+      )
+      // if notification is currently displayed animate it back
+      if (notificationIndex === 0) return swipeBack()
       setNotificationsQueue(notificationsQueue.filter((notification) => notification.id !== id))
     },
-    [notificationsQueue]
+    [notificationsQueue, swipeBack]
   )
 
   useEffect(() => {
-    const removeListener = emitter.addListener('remove_notification', handleRemoval)
+    const removeListener = emitter.addListener('remove_notification', removeNotification)
     return removeListener
-  }, [handleRemoval])
+  }, [removeNotification])
 
   const animatedStyles = useAnimatedStyle(() => {
     return isAndroid
