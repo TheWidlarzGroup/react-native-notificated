@@ -9,7 +9,6 @@ export type _DefaultVariants = {
   error: Variant<typeof ErrorNotification>
   warning: Variant<typeof WarningNotification>
   info: Variant<typeof InfoNotification>
-  undo: Variant<typeof InfoNotification>
 }
 
 export const defaultVariants: _DefaultVariants = {
@@ -23,9 +22,6 @@ export const defaultVariants: _DefaultVariants = {
     component: ErrorNotification,
   },
   info: {
-    component: InfoNotification,
-  },
-  undo: {
     component: InfoNotification,
   },
 } as const

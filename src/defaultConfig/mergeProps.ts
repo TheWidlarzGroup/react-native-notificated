@@ -4,7 +4,6 @@ import { themeBase } from './components/theme'
 import { chooseDefaultAccentColor } from './stylesUtils'
 import { chooseDefaultIcon } from './choseDefaultIcon'
 import type { NotificationStyleConfig, NotificationVariants } from './types'
-import type { PropsVariants } from './types'
 
 export const mergeProps = (
   props: NotificationProps,
@@ -18,8 +17,9 @@ export const mergeProps = (
     defaultNotificationTypeConfig?.leftIconSource ??
     defaultGlobalConfig?.leftIconSource
 
-  const chooseProps = (property: PropsVariants): any | undefined => {
-    //TODO: fix above any type
+  const chooseProps = (
+    property: keyof NotificationStyleConfig
+  ): NotificationStyleConfig[typeof property] => {
     return (
       props[property] ??
       defaultNotificationTypeConfig?.[property] ??
@@ -37,6 +37,10 @@ export const mergeProps = (
     descriptionColor: chooseProps('descriptionColor'),
     descriptionSize: chooseProps('descriptionSize'),
     bgColor: chooseProps('bgColor'),
+    borderWidth: chooseProps('borderWidth') ?? 1,
+    multiline: chooseProps('multiline'),
+    defaultIconType: chooseProps('defaultIconType'),
+    borderType: chooseProps('borderType') ?? 'border',
     borderRadius:
       props.borderRadius ??
       defaultNotificationTypeConfig?.borderRadius ??
@@ -45,9 +49,6 @@ export const mergeProps = (
       props.accentColor ??
       defaultNotificationTypeConfig?.accentColor ??
       (defaultGlobalConfig?.accentColor || chooseDefaultAccentColor(notificationType)),
-    borderWidth: chooseProps('borderWidth') ?? 1,
-    multiline: chooseProps('multiline'),
-    defaultIconType: chooseProps('defaultIconType'),
     leftIconSource:
       customIconSource ??
       chooseDefaultIcon(
@@ -57,7 +58,6 @@ export const mergeProps = (
           defaultNotificationTypeConfig?.defaultIconType ??
           defaultGlobalConfig?.defaultIconType
       ),
-    borderType: chooseProps('borderType') ?? 'border',
     notificationType: notificationType,
     onPress: props.onPress ?? undefined,
   }

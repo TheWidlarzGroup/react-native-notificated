@@ -56,20 +56,6 @@ const App = () => {
         }>
         emit info
       </Text>
-      <Text
-        onPress={() =>
-          notify('undo', {
-            description: 'undo message',
-            title: 'Undo note',
-            onPress: () =>
-              notify('success', {
-                description: 'undo action success',
-                title: 'undo action success',
-              }),
-          })
-        }>
-        emit undo
-      </Text>
     </SafeAreaView>
   )
 }

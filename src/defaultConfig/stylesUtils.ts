@@ -16,7 +16,7 @@ export const getDescriptionStyle = (styles: MergedNotificationStyleConfig): Part
   fontSize: styles.descriptionSize ? styles.descriptionSize : themeBase.fontSize.messageFontSize,
 })
 
-export const constShadow = (theme: Theme, borderRadius: number): Partial<ViewStyle> => {
+export const constShadow = (theme: Theme, borderRadius?: number): Partial<ViewStyle> => {
   const crossPlatformStyle = Platform.select({
     ios: {
       shadowColor: themeBase.color.shadow,
