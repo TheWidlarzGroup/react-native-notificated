@@ -16,7 +16,7 @@ export const InAppNotification = ({ notificationConfig }: Props) => {
 }
 const styles = StyleSheet.create({
   searchIcon: {
-    marginLeft: themeBase.spacing.mplus,
+    marginLeft: themeBase.spacing.m,
   },
   errorMsg: {
     color: 'white',
