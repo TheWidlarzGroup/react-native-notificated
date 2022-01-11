@@ -3,6 +3,16 @@ import type { ImageSourcePropType } from 'react-native'
 
 export type DefaultVariants = typeof defaultVariants
 export type NotificationVariants = 'success' | 'error' | 'warning' | 'info'
+export type PropsVariants =
+  | 'titleSize'
+  | 'titleColor'
+  | 'descriptionColor'
+  | 'descriptionSize'
+  | 'bgColor'
+  | 'borderWidth'
+  | 'multiline'
+  | 'defaultIconType'
+  | 'borderType'
 export type IconVisualStyle = 'color' | 'monochromatic' | 'no-icon'
 export type Theme = 'regular' | 'dark'
 export type BorderType = 'border' | 'accent' | 'no-border'
