@@ -114,11 +114,9 @@ export const Notifications = () => {
 
   const removeNotification = useCallback(
     ({ id }) => {
-      const notificationIndex = notificationsQueue.findIndex(
-        (notification) => notification.id === id
-      )
+      const [firstNotification] = notificationsQueue
       // if notification is currently displayed animate it back
-      if (notificationIndex === 0) return swipeBack()
+      if (firstNotification.id === id) return swipeBack()
       setNotificationsQueue(notificationsQueue.filter((notification) => notification.id !== id))
     },
     [notificationsQueue, swipeBack]
