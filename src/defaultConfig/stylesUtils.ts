@@ -16,39 +16,42 @@ export const getDescriptionStyle = (styles: MergedNotificationStyleConfig): Part
   fontSize: styles.descriptionSize ? styles.descriptionSize : themeBase.fontSize.messageFontSize,
 })
 
-export const constShadow = (theme: Theme, borderRadius?: number): Partial<ViewStyle> => {
-  return theme === 'regular'
-    ? Platform.OS === 'android'
-      ? {
-          elevation: 5,
-          borderBottomWidth: 0,
-          borderRadius: borderRadius,
-        }
-      : {
-          shadowColor: themeBase.color.shadow,
-          shadowOffset: { width: 1, height: 2 },
-          shadowOpacity: 1,
-          shadowRadius: 7,
-        }
-    : {}
+export const constShadow = (theme: Theme, borderRadius: number): Partial<ViewStyle> => {
+  const crossPlatformStyle = Platform.select({
+    ios: {
+      shadowColor: themeBase.color.shadow,
+      shadowOffset: { width: 1, height: 2 },
+      shadowOpacity: 1,
+      shadowRadius: 7,
+    },
+    android: {
+      elevation: 5,
+      borderBottomWidth: 0,
+      borderRadius: borderRadius,
+    },
+  })
+
+  return theme === 'regular' && crossPlatformStyle ? crossPlatformStyle : {}
 }
 
-export const getContainerStyles = (styles: MergedNotificationStyleConfig): Partial<ViewStyle> => ({
-  ...styles,
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  overflow: 'hidden',
-  borderRadius: styles.borderRadius ?? themeBase.borderRadius.regular,
-  borderWidth: styles.borderType === 'border' ? styles.borderWidth : 0,
-  borderColor: styles.accentColor,
-  backgroundColor: styles.bgColor
-    ? styles.bgColor
-    : styles.theme
+export const getContainerStyles = (styles: MergedNotificationStyleConfig): Partial<ViewStyle> => {
+  const defaultBackgroundColor = styles.theme
     ? themeBase.bgColor[styles.theme]
-    : themeBase.bgColor.regular,
-})
+    : themeBase.bgColor.regular
+
+  return {
+    ...styles,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    overflow: 'hidden',
+    borderRadius: styles.borderRadius ?? themeBase.borderRadius.regular,
+    borderWidth: styles.borderType === 'border' ? styles.borderWidth : 0,
+    borderColor: styles.accentColor,
+    backgroundColor: styles.bgColor ?? defaultBackgroundColor,
+  }
+}
 
 export const getLeftAccentStyle = (accentColor: string) => {
   return {

@@ -4,7 +4,6 @@ import { createNotifications } from 'react-native-notification'
 
 const { NotificationsProvider, notify } = createNotifications({
   defaultStylesSettings: {
-    darkMode: true,
     globalConfig: {
       borderType: 'accent',
       defaultIconType: 'monochromatic',

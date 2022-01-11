@@ -11,7 +11,7 @@ export const InfoNotification = (props: NotificationProps) => {
     'info',
     Boolean(defaultStylesSettings?.darkMode),
     defaultStylesSettings?.globalConfig,
-    defaultStylesSettings?.successConfig
+    defaultStylesSettings?.infoConfig
   )
 
   return <NotificationBase {...pickedProps} />
