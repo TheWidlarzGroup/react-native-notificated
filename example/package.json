@@ -10,9 +10,11 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-native-masked-view/masked-view": "^0.2.6",
+    "@react-navigation/stack": "^6.0.11",
     "react": "17.0.2",
     "react-native": "0.66.3",
-    "react-native-gesture-handler": "^1.10.3",
+    "react-native-gesture-handler": "^2.1.1",
     "react-native-reanimated": "^2.2.4"
   },
   "devDependencies": {
