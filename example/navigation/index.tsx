@@ -1,7 +1,7 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { Home } from './Home'
-import type { Routes } from '../Routes'
+import { Home } from '../components/Home'
+import type { Routes } from './routes'
 
 const Stack = createStackNavigator<Routes>()
 
