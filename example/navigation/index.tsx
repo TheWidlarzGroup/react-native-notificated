@@ -5,7 +5,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer'
 const Drawer = createDrawerNavigator()
 
 export const AppNavigator = () => (
-  <Drawer.Navigator screenOptions={{ header: () => null}}>
+  <Drawer.Navigator screenOptions={{ header: () => null }}>
     <Drawer.Screen name="Home" component={Home} />
   </Drawer.Navigator>
 )
