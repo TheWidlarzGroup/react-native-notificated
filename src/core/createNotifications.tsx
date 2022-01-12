@@ -1,13 +1,13 @@
 import React, { ReactNode } from 'react'
-import { Notifications } from './Notifications'
-
-import { NotificationContext } from './useNotificationConfig'
-import type { DefaultVariants, NotificationsConfig, VariantsMap } from '../types'
 import { InAppNotificationsConfig } from '../defaultConfig/defaultConfig'
+import type { DefaultVariants } from '../defaultConfig/types'
 import NotificationEmitterApi from '../services/NotificationEmitterApi'
+import type { DefaultVariantsConfig, NotificationsConfig, VariantsMap } from '../types'
+import { Notifications } from './Notifications'
+import { NotificationContext } from './useNotificationConfig'
 
 export const createNotifications = <Variants extends VariantsMap = DefaultVariants>(
-  config: Partial<NotificationsConfig<Variants>> = {}
+  config: Partial<NotificationsConfig<Variants>> | Partial<DefaultVariantsConfig> = {}
 ) => {
   const NotificationsProvider = ({ children = null }: { children?: ReactNode }) => {
     return (

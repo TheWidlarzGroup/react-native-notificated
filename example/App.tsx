@@ -1,34 +1,68 @@
 import React from 'react'
+import { useState } from 'react'
 import { SafeAreaView, StyleSheet, Text } from 'react-native'
 import { createNotifications } from 'react-native-notification'
 
-const { NotificationsProvider, eventEmitter } = createNotifications()
-const { notify } = eventEmitter
+const { NotificationsProvider, eventEmitter } = createNotifications({
+  defaultStylesSettings: {
+    globalConfig: {
+      borderType: 'accent',
+      defaultIconType: 'monochromatic',
+    },
+    errorConfig: {
+      titleColor: 'red',
+      borderType: 'border',
+    },
+  },
+})
+const { notify, remove } = eventEmitter
 
 const App = () => {
+  const [id, setId] = useState('')
+
   return (
     <SafeAreaView style={styles.container}>
       <NotificationsProvider />
-      <Text onPress={() => notify('success', { message: 'success message', title: 'success' })}>
+      <Text
+        onPress={() =>
+          setId(
+            notify('success', {
+              description: 'This is where the toast text goes',
+              title: 'Success',
+            }).id
+          )
+        }>
         emit success
       </Text>
-      <Text onPress={() => notify('error', { message: 'error message', title: 'error' })}>
+      <Text
+        onPress={() =>
+          notify('error', {
+            description:
+              'This is where the toast text goes. This is where the toast text goes. This is where the toast text goes. This is where the toast text goes. This is where the toast text goes. This is where the toast text goes. ',
+            title: 'Neutral title',
+          })
+        }>
         emit error
       </Text>
-      <Text onPress={() => notify('warning', { message: 'warning message', title: 'warning' })}>
+      <Text
+        onPress={() =>
+          notify('warning', {
+            description: 'This is where the toast text goes',
+            title: 'Warning',
+          })
+        }>
         emit warning
       </Text>
       <Text
         onPress={() =>
-          notify('undo', {
-            message: 'undo message',
-            title: 'undo',
-            onPress: () =>
-              notify('success', { message: 'undo action success', title: 'undo action success' }),
+          notify('info', {
+            description: 'This is where the toast text goes',
+            title: 'Info',
           })
         }>
-        emit undo
+        emit info
       </Text>
+      <Text onPress={() => remove(id)}>Remove {id}</Text>
     </SafeAreaView>
   )
 }
