@@ -20,5 +20,5 @@ export const createNotifications = <Variants extends VariantsMap = DefaultVarian
 
   const useNotification = () => NotificationEmitterApi
 
-  return { useNotification, NotificationsProvider, eventEmitter: NotificationEmitterApi }
+  return { useNotification, NotificationsProvider, ...NotificationEmitterApi }
 }
