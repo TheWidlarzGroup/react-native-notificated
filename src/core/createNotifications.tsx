@@ -2,8 +2,14 @@ import React, { ReactNode } from 'react'
 import { Notifications } from './Notifications'
 
 import { emitter, NotificationContext } from './useNotificationConfig'
-import type { DefaultVariants, NotificationsConfig, RequiredProps, VariantsMap } from '../types'
+import type {
+  DefaultVariantsConfig,
+  NotificationsConfig,
+  RequiredProps,
+  VariantsMap,
+} from '../types'
 import { InAppNotificationsConfig } from '../defaultConfig/defaultConfig'
+import type { DefaultVariants } from '../defaultConfig/types'
 
 export type EmitParam<T> = {
   notificationType: unknown
@@ -11,7 +17,7 @@ export type EmitParam<T> = {
 }
 
 export const createNotifications = <Variants extends VariantsMap = DefaultVariants>(
-  config: Partial<NotificationsConfig<Variants>> = {}
+  config: Partial<NotificationsConfig<Variants>> | Partial<DefaultVariantsConfig> = {}
 ) => {
   const notify = <Variant extends keyof Variants>(
     notificationType: Variant,

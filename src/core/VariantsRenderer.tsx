@@ -14,7 +14,7 @@ export const VariantsRenderer = (props: Props) => {
 
   return (
     <>
-      <Component {...{ ...variant.defaultProps, ...props.notificationConfig.params }} />
+      <Component {...props.notificationConfig.params} />
     </>
   )
 }
