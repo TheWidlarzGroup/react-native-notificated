@@ -1,6 +1,5 @@
 import React from 'react'
-import type { EmitParam } from './createNotifications'
-import type { NotificationsConfig, Variant } from '../types'
+import type { EmitParam, NotificationsConfig, Variant } from '../types'
 import { VariantsRendererProvider } from './VariantsRendererContex'
 
 type Props = {

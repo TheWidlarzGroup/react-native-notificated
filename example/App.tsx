@@ -2,7 +2,8 @@ import React from 'react'
 import { SafeAreaView, StyleSheet, Text } from 'react-native'
 import { createNotifications } from 'react-native-notification'
 
-const { NotificationsProvider, notify } = createNotifications()
+const { NotificationsProvider, eventEmitter } = createNotifications()
+const { notify } = eventEmitter
 
 const App = () => {
   return (

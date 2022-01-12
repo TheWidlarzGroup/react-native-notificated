@@ -8,8 +8,8 @@ import { LongPressGestureHandler, PanGestureHandler } from 'react-native-gesture
 import { useTimer } from '../hooks/useTimer'
 import { themeBase } from '../defaultConfig/components/theme'
 import { emitter, useNotificationConfig } from './useNotificationConfig'
-import type { EmitParam } from './createNotifications'
 import { VariantsRenderer } from './VariantsRenderer'
+import type { EmitParam } from '../types'
 
 const { width } = Dimensions.get('window')
 const notificationWidth = width - themeBase.spacing.s * 2
