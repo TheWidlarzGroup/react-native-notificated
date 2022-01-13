@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { SafeAreaView, StyleSheet, Text } from 'react-native'
-import { createNotifications } from 'react-native-notification'
+import { createNotifications, useNotificationController } from 'react-native-notification'
 
 const { NotificationsProvider, useNotification, remove } = createNotifications({
   defaultStylesSettings: {
@@ -20,6 +20,7 @@ const App = () => {
   const [id, setId] = useState('')
 
   const { notify } = useNotification()
+  const { modify } = useNotificationController()
 
   return (
     <SafeAreaView style={styles.container}>
@@ -64,6 +65,7 @@ const App = () => {
         emit info
       </Text>
       <Text onPress={() => remove(id)}>Remove {id}</Text>
+      <Text onPress={() => modify({ id, params: { title: 'New title' } })}>Modify {id}</Text>
     </SafeAreaView>
   )
 }
