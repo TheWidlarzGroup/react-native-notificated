@@ -18,7 +18,7 @@ export const createNotifications = <Variants extends VariantsMap = DefaultVarian
     )
   }
 
-  const useNotification = () => NotificationEmitterApi
+  const useNotifications = () => NotificationEmitterApi
 
-  return { useNotification, NotificationsProvider, ...NotificationEmitterApi }
+  return { useNotifications, NotificationsProvider, ...NotificationEmitterApi }
 }

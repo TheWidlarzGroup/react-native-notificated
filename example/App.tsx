@@ -1,9 +1,8 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { SafeAreaView, StyleSheet, Text } from 'react-native'
-import { createNotifications, useNotificationController } from 'react-native-notification'
+import { createNotifications } from 'react-native-notification'
 
-const { NotificationsProvider, useNotification, remove } = createNotifications({
+const { NotificationsProvider, useNotifications, remove } = createNotifications({
   defaultStylesSettings: {
     globalConfig: {
       borderType: 'accent',
@@ -19,8 +18,7 @@ const { NotificationsProvider, useNotification, remove } = createNotifications({
 const App = () => {
   const [id, setId] = useState('')
 
-  const { notify } = useNotification()
-  const { modify } = useNotificationController()
+  const { notify, modify } = useNotifications()
 
   return (
     <SafeAreaView style={styles.container}>
