@@ -1,19 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { SafeAreaView, StyleSheet, Text } from 'react-native'
 import { createNotifications } from 'react-native-notification'
 
-const { NotificationsProvider, notify } = createNotifications()
+const { NotificationsProvider, useNotifications } = createNotifications()
 
 export const Home = () => {
+  const { notify, modify, remove } = useNotifications()
+  const [id, setId] = useState('')
+
   return (
     <SafeAreaView style={styles.container}>
       <NotificationsProvider />
       <Text
         onPress={() =>
-          notify('success', {
-            description: 'This is where the toast text goes',
-            title: 'Success',
-          })
+          setId(
+            notify('success', {
+              description: 'This is where the toast text goes',
+              title: 'Success',
+            }).id
+          )
         }>
         emit success
       </Text>
@@ -45,6 +50,8 @@ export const Home = () => {
         }>
         emit info
       </Text>
+      <Text onPress={() => remove(id)}>Remove {id}</Text>
+      <Text onPress={() => modify({ id, params: { title: 'New title' } })}>Modify {id}</Text>
     </SafeAreaView>
   )
 }

@@ -42,4 +42,11 @@ export type DefaultLayoutConfig = {
   }
 }
 
+export type EmitParam<T> = {
+  notificationType: unknown
+  params: T
+  id: string
+}
+
+export type ModifiedEmitParam<T> = Omit<EmitParam<T>, 'notificationType'>
 export type DefaultVariantsConfig = NotificationConfigBase & DefaultLayoutConfig
