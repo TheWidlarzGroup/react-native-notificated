@@ -115,7 +115,8 @@
   },
   "eslintIgnore": [
     "node_modules/",
-    "lib/"
+    "lib/",
+    "docs/"
   ],
   "prettier": "@twgdev/prettier-config",
   "react-native-builder-bob": {
