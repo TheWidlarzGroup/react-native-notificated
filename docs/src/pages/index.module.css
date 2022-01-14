@@ -1,0 +1,537 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroContainer {
+  flex: 1;
+  display: flex;
+}
+
+.heroContent {
+  width: 55%;
+  height: 100%;
+  padding-left: 80px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: 100px;
+}
+
+.heroTitle {
+  font-family: 'Michroma', sans-serif;;
+  font-size: 64px;
+}
+
+.heroDescription {
+  font-family: 'Michroma', sans-serif;;
+  font-size: 33px;
+  font-weight: 500;
+  margin-top: 25px;
+}
+
+.underline {
+  background-image: url('../../static/img/underline.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 25px;
+  width: 75%;
+  margin-bottom: 40px;
+}
+
+.heroButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 50%;
+  padding-top: 70px;
+}
+
+.heroButtonWhite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border: 2px solid white;
+  color: white;
+  margin: 20px 0;
+  width: 370px;
+  height: 80px;
+  border-radius: 60px;
+  font-family: 'Michroma', sans-serif;;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+.heroButtonWhite:hover {
+  border: 2px solid white;
+  color: white;
+}
+
+.heroButtonBlack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border: 2px solid black;
+  color: black;
+  margin: 20px 0;
+  width: 370px;
+  height: 80px;
+  border-radius: 60px;
+  font-family: 'Michroma', sans-serif;;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+.heroButtonBlack:hover {
+  border: 2px solid black;
+  color: black;
+}
+
+.githubIcon {
+  height: 45px;
+  width: 45px;
+  margin-right: 15px;
+}
+
+.heroLogo {
+  background-image: url('../../static/img/logo.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 920px;
+  height: 920px;
+  margin-top: 90px;
+  position: relative;
+}
+
+.whiteLightningLeft {
+  background-image: url('../../static/img/lightningWhiteLeft.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 280px;
+  width: 280px;
+  position: absolute;
+  left: -280px;
+  top: 290px;
+}
+
+.blackLightningLeft {
+  background-image: url('../../static/img/lightningBlackLeft.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 280px;
+  width: 280px;
+  position: absolute;
+  left: -280px;
+  top: 290px;
+}
+
+.whiteLineLeft {
+  background-image: url('../../static/img/whiteLineLeft.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  left: -165px;
+  bottom: 280px;
+}
+
+.blackLineLeft {
+  background-image: url('../../static/img/blackLineLeft.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  left: -165px;
+  bottom: 280px;
+}
+
+.blueLineLeft {
+  background-image: url('../../static/img/blueLineLeft.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100px;
+  width: 650px;
+  position: absolute;
+  left: -570px;
+  bottom: 220px;
+}
+
+.blueLineRight {
+  background-image: url('../../static/img/blueLineRight.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100px;
+  width: 300px;
+  position: absolute;
+  right: 5px;
+  bottom: 300px;
+}
+
+.whiteLineRight {
+  background-image: url('../../static/img/whiteLineRIght.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100px;
+  width: 250px;
+  position: absolute;
+  right: 35px;
+  bottom: 220px;
+}
+
+.blackLineRight {
+  background-image: url('../../static/img/blackLineRight.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100px;
+  width: 250px;
+  position: absolute;
+  right: 35px;
+  bottom: 220px;
+}
+
+.whiteLightningRight {
+  background-image: url('../../static/img/lightningWhiteRight.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 250px;
+  width: 250px;
+  position: absolute;
+  right: 45px;
+  bottom: 10px;
+}
+
+.blackLightningRight {
+  background-image: url('../../static/img/lightningBlackRight.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 250px;
+  width: 250px;
+  position: absolute;
+  right: 45px;
+  bottom: 10px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1900px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+
+  .heroTitle {
+    font-size: 50px;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .heroTitle {
+    font-size: 40px;
+  }
+
+  .whiteLightningLeft {
+    height: 480px;
+    width: 480px;
+    left: -130px;
+    top: unset;
+    bottom: -90px;
+  }
+
+  .blackLightningLeft {
+    height: 480px;
+    width: 480px;
+    left: -130px;
+    top: unset;
+    bottom: -90px;
+  }
+
+  .whiteLineLeft {
+    display: none;
+  }
+
+  .blackLineLeft {
+    display: none;
+  }
+
+  .blueLineLeft {
+    display: none;
+  }
+
+  .blueLineRight {
+    display: none;
+  }
+
+  .whiteLineRight {
+    display: none;
+  }
+
+  .blackLineRight {
+    display: none;
+  }
+
+  .whiteLightningRight {
+    bottom: -100px;
+  }
+
+  .blackLightningRight {
+    bottom: -100px;
+  }
+
+  .heroLogo {
+    margin-top: -50px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .whiteLightningLeft {
+    height: 380px;
+    width: 380px;
+    left: -80px;
+    bottom: -30px;
+  }
+
+  .blackLightningLeft {
+    height: 380px;
+    width: 380px;
+    left: -80px;
+    bottom: -30px;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .heroContainer {
+    flex-direction: column-reverse;
+  }
+
+  .heroContent {
+    width: 100%;
+    padding: 40px 40px 0 40px;
+    margin: 40px 0;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .heroText {
+    align-items: center;
+    margin-top: 0;
+  }
+
+  .heroButtons {
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 30px;
+  }
+
+  .heroButtonWhite {
+    margin: 0 20px;
+  }
+
+  .heroButtonBlack {
+    margin: 0 20px;
+  }
+
+  .whiteLightningLeft {
+    height: 200px;
+    width: 200px;
+    left: 190px;
+    bottom: unset;
+    top: 160px;
+  }
+
+  .blackLightningLeft {
+    height: 200px;
+    width: 200px;
+    left: 190px;
+    bottom: unset;
+    top: 160px;
+  }
+
+  .whiteLineLeft {
+    display: block;
+    height: 150px;
+    width: 150px;
+    left: 260px;
+    bottom: 190px;
+  }
+
+  .blackLineLeft {
+    display: block;
+    height: 150px;
+    width: 150px;
+    left: 260px;
+    bottom: 190px;
+  }
+
+  .blueLineLeft {
+    display: block;
+    height: 100px;
+    width: 350px;
+    left: 110px;
+    bottom: 130px;
+  }
+
+  .blueLineRight {
+    display: block;
+    height: 100px;
+    width: 200px;
+    left: 800px;
+    bottom: 170px;
+  }
+
+  .whiteLineRight {
+    display: block;
+    height: 100px;
+    width: 200px;
+    left: 820px;
+    bottom: 105px;
+  }
+
+  .blackLineRight {
+    display: block;
+    height: 100px;
+    width: 200px;
+    left: 820px;
+    bottom: 105px;
+  }
+
+  .whiteLightningRight {
+    height: 200px;
+    width: 200px;
+    left: 800px;
+    bottom: -50px;
+  }
+
+  .blackLightningRight {
+    height: 200px;
+    width: 200px;
+    left: 800px;
+    bottom: -50px;
+  }
+
+  .heroLogo {
+    background-position-x: 400px;
+    width: 100%;
+    height: 620px;
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .heroContent {
+    padding: 0 40px 0 40px;
+    margin: 0 0 40px 0;
+  }
+
+  .whiteLightningLeft {
+    display: none;
+  }
+
+  .blackLightningLeft {
+    display: none;
+  }
+
+  .whiteLineLeft {
+    display: none;
+  }
+
+  .blackLineLeft {
+    display: none;
+  }
+
+  .blueLineLeft {
+    display: none;
+  }
+
+  .blueLineRight {
+    display: none;
+  }
+
+  .whiteLineRight {
+    display: none;
+  }
+
+  .blackLineRight {
+    display: none;
+  }
+
+  .whiteLightningRight {
+    display: none;
+  }
+
+  .blackLightningRight {
+    display: none;
+  }
+
+  .heroLogo {
+    background-position: center;
+  }
+}
+
+
+@media screen and (max-width: 900px) {
+  .heroLogo {
+    height: 80vw;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .heroButtons {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+  }
+
+  .heroButtonWhite {
+    margin: 20px 0;
+  }
+
+  .heroButtonBlack {
+    margin: 20px 0;
+  }
+}
+
+@media screen and (max-width: 445px) {
+  .heroTitle {
+    font-size: 30px;
+  }
+
+  .heroButtonWhite {
+    width: 95%;
+  }
+
+  .heroButtonBlack {
+    width: 95%;
+  }
+}
