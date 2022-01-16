@@ -13,10 +13,15 @@ interface Props {
 const NOTIFICATION_HEIGHT = 50
 
 export const UndoNotification = (notificationConfig: Props) => {
-  const { defaultNotificationPosition } = useNotificationConfig()
+  const { defaultNotificationPosition, variants } = useNotificationConfig()
+
+  let positionStyles = defaultNotificationPosition
+  if (variants?.success?.config?.position) {
+    positionStyles = variants?.success?.config?.position
+  }
 
   return (
-    <View style={[styles.container, styles[defaultNotificationPosition]]}>
+    <View style={[styles.container, styles[positionStyles]]}>
       <Text onPress={notificationConfig.onPress} style={styles.errorMsg}>
         {notificationConfig.title}
       </Text>
