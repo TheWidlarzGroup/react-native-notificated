@@ -3,6 +3,7 @@ import { WarningNotification } from './components/warning'
 import { ErrorNotification } from './components/error'
 import { UndoNotification } from './components/undo'
 import type { NotificationsConfig, Variant } from '../types'
+import { SlideInLeftSlideOutRight } from './defaultAnimationConfig'
 
 export type _DefaultVariants = {
   success: Variant<typeof SuccessNotification>
@@ -33,6 +34,6 @@ export const InAppNotificationsConfig: NotificationsConfig<_DefaultVariants> = {
   defaultNotificationTime: 3000,
   defaultNotificationTimeLong: 5000,
   notificationMsgLengthTimerThreshold: 100,
-
   variants: defaultVariants,
+  animationConfig: SlideInLeftSlideOutRight
 } as const

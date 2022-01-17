@@ -4,10 +4,12 @@ import { Notifications } from './Notifications'
 import { emitter, NotificationContext } from './useNotificationConfig'
 import type { DefaultVariants, NotificationsConfig, RequiredProps, VariantsMap } from '../types'
 import { InAppNotificationsConfig } from '../defaultConfig/defaultConfig'
+import type { CustomAnimationConfig } from '../types/animations'
 
 export type EmitParam<T> = {
   notificationType: unknown
   params: T
+  animationConfig?: CustomAnimationConfig
 }
 
 export const createNotifications = <Variants extends VariantsMap = DefaultVariants>(
@@ -19,6 +21,7 @@ export const createNotifications = <Variants extends VariantsMap = DefaultVarian
   ) => {
     emitter.emit<EmitParam<typeof params>>('add_notification', {
       notificationType,
+      animationConfig: params?.notifyAnimationConfig,
       params,
     })
   }
