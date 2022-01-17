@@ -5,7 +5,6 @@ import {
   State,
 } from 'react-native-gesture-handler'
 import {
-  Easing,
   runOnJS,
   useAnimatedGestureHandler,
   withSpring,
@@ -75,7 +74,7 @@ export const useSwipe = ({
   onTransitionOutAnimationFinished,
   onTransitionInAnimationNotFinished,
   onTransitionOutAnimationNotFinished,
-  animationConfig
+  animationConfig,
 }: Props) => {
   const { direction, distanceThreshold, velocityThreshold } = config
   const animationInConfig = animationConfig.animationConfigIn
@@ -279,16 +278,3 @@ const getEventKeyWorklet = (direction: SwipeDirection, key: MappedEventKey) => {
 
 const getEventKey = (direction: SwipeDirection, key: MappedEventKey) =>
   directionsLookup[direction][key]
-
-const defaultValues = {
-  swipeIn: {
-    damping: 15,
-    stiffness: 120,
-  },
-  swipeBack: {
-    duration: 100,
-    easing: Easing.ease,
-  },
-}
-
-console.log(defaultValues)
