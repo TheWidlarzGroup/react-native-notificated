@@ -2,14 +2,16 @@
 
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Dimensions, Platform, StyleSheet, View } from 'react-native'
-import Animated, { Extrapolate, interpolate, useAnimatedStyle } from 'react-native-reanimated'
-import { SwipeConfig, useSwipe } from '../hooks/useSwipe'
+import Animated, { useAnimatedStyle } from 'react-native-reanimated'
 import { LongPressGestureHandler, PanGestureHandler } from 'react-native-gesture-handler'
 import { useTimer } from '../hooks/useTimer'
+import { SwipeConfig, useSwipe } from '../hooks/useSwipe'
 import { themeBase } from '../defaultConfig/components/theme'
 import { emitter, useNotificationConfig } from './useNotificationConfig'
-import type { EmitParam } from './createNotifications'
 import { VariantsRenderer } from './VariantsRenderer'
+
+import type { CustomAnimationConfig } from '../types/animations'
+import type { EmitParam } from './createNotifications'
 
 const { width } = Dimensions.get('window')
 const notificationWidth = width - themeBase.spacing.s * 2
@@ -23,33 +25,59 @@ const maxLongPressDragDistance = 300
 
 type Config = EmitParam<unknown>
 
+// TODO: move animationstyles to useSwipe hook
+// TODO: rename useSwipe hook to useAnimationControl
+
 export const Notifications = () => {
   const notificationsConfigs = useNotificationConfig()
   const panHandlerRef = useRef(null)
   const longPressHandlerRef = useRef(null)
   const { clearTimer, resetTimer } = useTimer()
-  const resetToCurrentTimer = () => resetTimer(swipeBack, getConfigTime(notificationConfig))
+  const resetToCurrentTimer = () => resetTimer(dismiss, getConfigTime(notificationConfig))
 
   const [notificationsQueue, setNotificationsQueue] = useState<Config[]>([])
   const notificationConfig = notificationsQueue[0]
+  // const notificationType = notificationConfig?.notificationType
 
-  const onSwipeBack = useCallback(() => {
+  const animationConfig: CustomAnimationConfig =
+    notificationConfig?.animationConfig ||
+    // notificationsConfigs?.variants[notificationType]?.animationConfig ||
+    // TODO get config per current variant!
+    notificationsConfigs?.animationConfig
+  // generatedTestConfig // TODO DANIEL:  default default move to place where provider is defined
+
+  const onTransitionInAnimationFinished = useCallback(() => {
+    const targetTime = getConfigTime(notificationConfig)
+    resetTimer(dismiss, targetTime)
+  }, [resetTimer, notificationConfig])
+
+  const onTransitionOutAnimationFinished = useCallback(() => {
     emitter.emit('pop_notification')
   }, [])
 
-  const { distance, drag, swipeIn, swipeBack, handleGestureEvent, handleStateChange } = useSwipe({
+  const {
+    progress,
+    present,
+    dismiss,
+    handleGestureEvent,
+    handleStateChange,
+    cancelTransitionAnimation,
+    currentTransitionType,
+    revokeTransitionAnimation,
+    dragStyles,
+  } = useSwipe({
+    animationConfig,
     config: isAndroid ? swipeConfigs.android : swipeConfigs.ios,
-    onSwipeBack,
+    onTransitionInAnimationFinished,
+    onTransitionOutAnimationFinished,
   })
 
   const handleNewNotification = useCallback(
-    (config: Config) => {
-      const targetTime = getConfigTime(config)
-      resetTimer(swipeBack, targetTime)
-
-      swipeIn()
+    (_config: Config) => {
+      // present()
+      setImmediate(present)
     },
-    [swipeIn, swipeBack, resetTimer]
+    [present, dismiss, resetTimer]
   )
 
   const popNotification = useCallback(() => {
@@ -88,25 +116,16 @@ export const Notifications = () => {
       emitter.removeEvent('add_notification')
       emitter.removeEvent('pop_notification')
     }
-  }, [popNotification, swipeBack, swipeIn, handleNewNotification])
+  }, [popNotification, dismiss, present, handleNewNotification])
 
   const animatedStyles = useAnimatedStyle(() => {
-    return isAndroid
-      ? {
-          transform: [{ translateX: distance.value + drag.value }],
-        }
-      : {
-          transform: [
-            {
-              translateY:
-                distance.value +
-                interpolate(drag.value, [-10, 100], [-10, 0.05], {
-                  extrapolateLeft: Extrapolate.IDENTITY,
-                  extrapolateRight: Extrapolate.EXTEND,
-                }),
-            },
-          ],
-        }
+    const { transitionInStyles, transitionOutStyles } = animationConfig
+
+    if (['out', 'idle_active'].includes(currentTransitionType.value) && transitionOutStyles) {
+      return transitionOutStyles(progress)
+    }
+
+    return transitionInStyles(progress)
   })
 
   return (
@@ -122,21 +141,37 @@ export const Notifications = () => {
           isAndroid ? styles.containerAndroid : styles.containerIos,
           animatedStyles,
         ]}>
-        {notificationConfig && (
-          <LongPressGestureHandler
-            maxDist={maxLongPressDragDistance}
-            ref={longPressHandlerRef}
-            simultaneousHandlers={panHandlerRef}
-            onActivated={clearTimer}
-            onEnded={resetToCurrentTimer}>
-            <View style={styles.boxWrapper}>
-              <VariantsRenderer {...{ config: notificationsConfigs, notificationConfig }} />
-              {/*<Pressable onPress={onNotificationPress(notificationConfig.onPress)}>*/}
-              {/*<InAppNotification {...{ notificationConfig }} />*/}
-              {/*</Pressable>*/}
-            </View>
-          </LongPressGestureHandler>
-        )}
+        <Animated.View style={[dragStyles]}>
+          {notificationConfig && (
+            <LongPressGestureHandler
+              minDurationMs={0}
+              maxDist={maxLongPressDragDistance}
+              ref={longPressHandlerRef}
+              simultaneousHandlers={panHandlerRef}
+              onActivated={() => {
+                cancelTransitionAnimation()
+                clearTimer()
+              }}
+              onEnded={() => {
+                revokeTransitionAnimation()
+
+                if (currentTransitionType.value === 'in') {
+                  resetToCurrentTimer()
+                }
+
+                if (currentTransitionType.value === 'idle_active') {
+                  resetToCurrentTimer()
+                }
+              }}>
+              <View style={styles.boxWrapper}>
+                <VariantsRenderer {...{ config: notificationsConfigs, notificationConfig }} />
+                {/*<Pressable onPress={onNotificationPress(notificationConfig.onPress)}>*/}
+                {/*<InAppNotification {...{ notificationConfig }} />*/}
+                {/*</Pressable>*/}
+              </View>
+            </LongPressGestureHandler>
+          )}
+        </Animated.View>
       </Animated.View>
     </PanGestureHandler>
   )
