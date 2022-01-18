@@ -177,7 +177,7 @@ export const useSwipe = ({
 
   const cancelTransitionAnimation = useCallback(() => {
     cancelAnimation(progress)
-  }, [])
+  }, [progress])
 
   // Used to revoke transition (progress) value after canceling it with e.g. LongPressGestureHandler
   const revokeTransitionAnimation = useCallback(() => {
