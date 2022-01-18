@@ -1,13 +1,66 @@
 import React from 'react'
 import { SafeAreaView, StyleSheet, Text } from 'react-native'
-import { createNotifications } from 'react-native-notification'
+import {
+  createNotifications,
+  ZoomInDownZoomOutUp,
+  SlideInLeftSlideOutRight,
+  ZoomInDownZoomOutDown,
+  RotateInRotateOut,
+  RotateZIn,
+} from 'react-native-notification'
 
-const { NotificationsProvider, notify } = createNotifications()
+const { NotificationsProvider, notify } = createNotifications({
+  animationConfig: SlideInLeftSlideOutRight,
+})
 
 const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <NotificationsProvider />
+      <Text
+        onPress={() =>
+          notify('success', {
+            message: 'success message',
+            title: 'success',
+            notifyAnimationConfig: ZoomInDownZoomOutUp,
+          })
+        }>
+        ZoomInDown ZoomOutUp
+      </Text>
+
+      <Text
+        onPress={() =>
+          notify('success', {
+            message: 'success message',
+            title: 'success',
+            notifyAnimationConfig: ZoomInDownZoomOutDown,
+          })
+        }>
+        ZoomInDown ZoomOutDown
+      </Text>
+
+      <Text
+        onPress={() =>
+          notify('success', {
+            message: 'success message',
+            title: 'success',
+            notifyAnimationConfig: RotateInRotateOut,
+          })
+        }>
+        Rotate
+      </Text>
+
+      <Text
+        onPress={() =>
+          notify('success', {
+            message: 'success message',
+            title: 'success',
+            notifyAnimationConfig: RotateZIn,
+          })
+        }>
+        Rotate Z
+      </Text>
+
       <Text onPress={() => notify('success', { message: 'success message', title: 'success' })}>
         emit success
       </Text>
