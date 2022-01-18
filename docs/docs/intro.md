@@ -2,34 +2,40 @@
 sidebar_position: 1
 ---
 
-# Get Started
+# Getting Started
 
-Let's discover **Docusaurus in less than 5 minutes**.
+## 🏹 Requirements
 
-## Getting Started
+- `react-native` >= 0.62.0
+- `reanimated` >= 2
+- `react-native-gesture-handler` >= 1.10.3
+- `typescript` >= 4.1.0 (if you use TypeScript)
+- `expo` >= 41 (if you use Expo)
 
-Get started by **creating a new site**.
-
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**:
+## 🚀 Installation
 
 ```shell
-npm init docusaurus@latest my-website classic
+yarn add react-native-notificaitons
 ```
 
-## Start your site
+### 🛸 Dependencies[](https://gorhom.github.io/react-native-bottom-sheet/#dependencies)
 
-Run the development server:
+This library needs these dependencies to be installed in your project before you can use it:
 
 ```shell
-cd my-website
-
-npx docusaurus start
+yarn add react-native-reanimated react-native-gesture-handler
 ```
 
-Your site starts at `http://localhost:3000`.
+:::info
+**react-native-reanimated** requires additional installations steps: [guide here](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation) 👈
+:::
 
-Open `docs/intro.md` and edit some lines: the site **reloads automatically** and displays your changes.
+:::info
+**react-native-gesture-handler** requires additional installations steps: [guide here](https://docs.swmansion.com/react-native-gesture-handler/docs/) 👈
+:::
+
+## ❤️ Built With[](https://gorhom.github.io/react-native-bottom-sheet/#built-with-%EF%B8%8F)
+
+- [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated)
+- [react-native-gesture-handler](https://github.com/software-mansion/react-native-gesture-handler)
+- [react-native-builder-bob](https://github.com/callstack/react-native-builder-bob)
