@@ -27,6 +27,7 @@ type Config = EmitParam<unknown>
 
 // TODO: move animationstyles to useSwipe hook
 // TODO: rename useSwipe hook to useAnimationControl
+// TODO: add fetching animation config from variants to the chain
 
 export const Notifications = () => {
   const notificationsConfigs = useNotificationConfig()
@@ -37,15 +38,9 @@ export const Notifications = () => {
 
   const [notificationsQueue, setNotificationsQueue] = useState<Config[]>([])
   const notificationConfig = notificationsQueue[0]
-  // const notificationType = notificationConfig?.notificationType
 
   const animationConfig: CustomAnimationConfig =
-    notificationConfig?.animationConfig ||
-    // notificationsConfigs?.variants[notificationType]?.animationConfig ||
-    // TODO get config per current variant!
-    notificationsConfigs?.animationConfig
-  // generatedTestConfig // TODO DANIEL:  default default move to place where provider is defined
-  //
+    notificationConfig?.animationConfig || notificationsConfigs?.animationConfig
 
   const onTransitionInAnimationFinished = useCallback(() => {
     const targetTime = getConfigTime(notificationConfig)
