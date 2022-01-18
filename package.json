@@ -28,8 +28,9 @@
     "prepare": "bob build",
     "release": "release-it",
     "example": "yarn --cwd example",
+    "docs": "yarn --cwd docs",
     "pods": "cd example && pod-install --quiet",
-    "bootstrap": "yarn example && yarn && yarn pods"
+    "bootstrap": "yarn example && yarn docs && yarn && yarn pods"
   },
   "keywords": [
     "react-native",
@@ -115,7 +116,8 @@
   },
   "eslintIgnore": [
     "node_modules/",
-    "lib/"
+    "lib/",
+    "docs/"
   ],
   "prettier": "@twgdev/prettier-config",
   "react-native-builder-bob": {

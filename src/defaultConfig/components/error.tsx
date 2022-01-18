@@ -1,32 +1,18 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { themeBase } from './theme'
+import { NotificationBase } from './NotificationBase'
+import { useNotificationConfig } from '../../core/useNotificationConfig'
+import { mergeProps } from '../mergeProps'
+import type { NotificationProps } from '../../types'
 
-interface Props {
-  title: string
-  message: string
-}
-
-export const ErrorNotification = (notificationConfig: Props) => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.errorMsg}>{notificationConfig.title}</Text>
-    </View>
+export const ErrorNotification = (props: NotificationProps) => {
+  const { defaultStylesSettings } = useNotificationConfig()
+  const pickedProps = mergeProps(
+    props,
+    'error',
+    Boolean(defaultStylesSettings?.darkMode),
+    defaultStylesSettings?.globalConfig,
+    defaultStylesSettings?.errorConfig
   )
-}
 
-const styles = StyleSheet.create({
-  searchIcon: {
-    marginLeft: themeBase.spacing.mplus,
-  },
-  errorMsg: {
-    color: 'white',
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: 'red',
-    height: 50,
-  },
-})
+  return <NotificationBase {...pickedProps} />
+}

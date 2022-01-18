@@ -1,9 +1,22 @@
 import { createNotifications } from './core/createNotifications'
-import { ZoomInDownZoomOutUp, SlideInLeftSlideOutRight, ZoomInDownZoomOutDown, RotateInRotateOut, RotateZIn } from './defaultConfig/defaultAnimationConfig'
+import {
+  ZoomInDownZoomOutUp,
+  SlideInLeftSlideOutRight,
+  ZoomInDownZoomOutDown,
+  RotateInRotateOut,
+  RotateZIn,
+} from './defaultConfig/defaultAnimationConfig'
 import { defaultVariants } from './defaultConfig/defaultConfig'
-
-export { createNotifications }
+import { useNotificationController } from './hooks/useNotificationController'
 
 export { defaultVariants }
 
-export { ZoomInDownZoomOutUp, SlideInLeftSlideOutRight, ZoomInDownZoomOutDown, RotateInRotateOut, RotateZIn }
+export {
+  ZoomInDownZoomOutUp,
+  SlideInLeftSlideOutRight,
+  ZoomInDownZoomOutDown,
+  RotateInRotateOut,
+  RotateZIn,
+}
+
+export { createNotifications, useNotificationController }
