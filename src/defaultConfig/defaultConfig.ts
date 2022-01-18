@@ -28,9 +28,5 @@ export const defaultVariants: _DefaultVariants = {
 
 export const InAppNotificationsConfig: NotificationsConfig<_DefaultVariants> &
   Omit<DefaultLayoutConfig, 'variants'> = {
-  defaultNotificationTime: 3000,
-  defaultNotificationTimeLong: 5000,
-  notificationMsgLengthTimerThreshold: 100,
-
   variants: defaultVariants,
 } as const

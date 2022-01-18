@@ -167,9 +167,6 @@ export const Notifications = () => {
             onEnded={resetToCurrentTimer}>
             <View style={styles.boxWrapper}>
               <VariantsRenderer {...{ config: notificationsConfigs, notificationConfig }} />
-              {/*<Pressable onPress={onNotificationPress(notificationConfig.onPress)}>*/}
-              {/*<InAppNotification {...{ notificationConfig }} />*/}
-              {/*</Pressable>*/}
             </View>
           </LongPressGestureHandler>
         )}
