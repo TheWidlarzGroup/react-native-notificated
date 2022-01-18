@@ -92,13 +92,13 @@ export const useSwipe = ({
     currentTransitionType.value = 'idle_active'
 
     onTransitionInAnimationFinished?.()
-  }, [onTransitionInAnimationFinished])
+  }, [onTransitionInAnimationFinished, currentTransitionType])
 
   const onTransitionOutAnimationFinishedWrapper = useCallback(() => {
     currentTransitionType.value = 'in'
 
     onTransitionOutAnimationFinished?.()
-  }, [onTransitionOutAnimationFinished])
+  }, [onTransitionOutAnimationFinished, currentTransitionType])
 
   const onTransitionInAnimationNotFinishedWrapper = useCallback(() => {
     onTransitionInAnimationNotFinished?.()
@@ -136,6 +136,8 @@ export const useSwipe = ({
     onTransitionInAnimationFinishedWrapper,
     animationInConfig,
     onTransitionInAnimationNotFinishedWrapper,
+    currentTransitionType,
+    progress,
   ])
 
   const dismiss = useCallback(() => {
@@ -169,6 +171,8 @@ export const useSwipe = ({
     animationInConfig,
     animationOutConfig,
     onTransitionOutAnimationNotFinishedWrapper,
+    currentTransitionType,
+    progress,
   ])
 
   const cancelTransitionAnimation = useCallback(() => {
@@ -182,7 +186,7 @@ export const useSwipe = ({
     } else {
       present()
     }
-  }, [dismiss, present])
+  }, [dismiss, present, currentTransitionType])
 
   const swipeSuccess = useCallback(() => {
     dismiss()

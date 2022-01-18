@@ -45,6 +45,7 @@ export const Notifications = () => {
   const onTransitionInAnimationFinished = useCallback(() => {
     const targetTime = getConfigTime(notificationConfig)
     resetTimer(dismiss, targetTime)
+    // eslint-disable-next-line
   }, [resetTimer, notificationConfig])
 
   const onTransitionOutAnimationFinished = useCallback(() => {
@@ -72,14 +73,14 @@ export const Notifications = () => {
     (_config: Config) => {
       present()
     },
-    [present, dismiss, resetTimer, animationConfig]
+    [present]
   )
 
   useEffect(() => {
     if (notificationConfig) {
       handleNewNotification(notificationConfig)
     }
-  }, [notificationConfig])
+  }, [notificationConfig, handleNewNotification])
 
   const popNotification = useCallback(() => {
     setNotificationsQueue((prev) => {
@@ -87,7 +88,7 @@ export const Notifications = () => {
 
       return updatedNotificationsQueue
     })
-  }, [handleNewNotification])
+  }, [])
 
   useEffect(() => {
     emitter.addListener('add_notification', (config: Config) => {

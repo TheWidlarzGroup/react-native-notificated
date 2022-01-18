@@ -27,7 +27,7 @@ export const ZoomInDownZoomOutDown = generateAnimationConfig({
     type: 'spring',
     config: {
       damping: 4,
-      mass: 0.8
+      mass: 0.8,
     },
   },
   transitionInStyles: (progress) => {
@@ -59,31 +59,30 @@ export const RotateInRotateOut = generateAnimationConfig({
     type: 'timing',
     config: {
       duration: 700,
-      easing: Easing.out(Easing.exp)
-    }
+      easing: Easing.out(Easing.exp),
+    },
   },
-  transitionInStyles: progress => {
+  transitionInStyles: (progress) => {
     'worklet'
 
     const rotate = interpolate(progress.value, [0, 1], [-360, 0])
 
     return {
-      transform: [{rotate: `${rotate}deg`}, {scale: progress.value}],
-      opacity: progress.value
+      transform: [{ rotate: `${rotate}deg` }, { scale: progress.value }],
+      opacity: progress.value,
     }
-  }
+  },
 })
-
 
 export const RotateZIn = generateAnimationConfig({
   animationConfigIn: {
     type: 'timing',
     config: {
       duration: 2000,
-      easing: Easing.out(Easing.exp)
-    }
+      easing: Easing.out(Easing.exp),
+    },
   },
-  transitionInStyles: progress => {
+  transitionInStyles: (progress) => {
     'worklet'
 
     const rotateZ = interpolate(progress.value, [0, 1], [-140, 0])
@@ -91,10 +90,16 @@ export const RotateZIn = generateAnimationConfig({
     const rotateY = interpolate(progress.value, [0, 1], [-40, 5])
 
     return {
-      transform: [{rotateZ: `${rotateZ}deg`},{rotateX: `${rotateX}deg`}, {rotateY: `${rotateY}deg`}, {scale: progress.value}, {perspective: 1500}],
-      opacity: progress.value
+      transform: [
+        { rotateZ: `${rotateZ}deg` },
+        { rotateX: `${rotateX}deg` },
+        { rotateY: `${rotateY}deg` },
+        { scale: progress.value },
+        { perspective: 1500 },
+      ],
+      opacity: progress.value,
     }
-  }
+  },
 })
 
 export const SlideInLeftSlideOutRight = generateAnimationConfig({
