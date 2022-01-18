@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
   },
   containerIos: {
     left: notificationSideMargin,
-    top: 100,
+    top: 0,
   },
   containerAndroid: {
     left: notificationSideMargin - (notificationWidth + 2 * notificationSideMargin),
