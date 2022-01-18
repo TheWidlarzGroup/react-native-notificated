@@ -1,8 +1,9 @@
 import type { FC } from 'react'
 import type { NotificationOwnProps, NotificationStyleConfig, Theme } from './defaultConfig/types'
 
-type NotificationConfig = {
+export type NotificationConfigBase = {
   duration: number
+  position: 'top' | 'bottom'
 }
 
 export type ComponentProps<T> = T extends FC<infer Props> ? Props : never
@@ -11,15 +12,13 @@ export type RequiredProps<T extends Variant<unknown>> = ComponentProps<T['compon
 
 export type Variant<T> = {
   component: T
-  config?: NotificationConfig
+  config?: Partial<NotificationConfigBase>
 }
 
 export type VariantsMap = Readonly<Record<string, Variant<unknown>>>
 
 export type NotificationProps = NotificationOwnProps & Partial<NotificationStyleConfig>
 export type MergedNotificationStyleConfig = NotificationStyleConfig & { theme: Theme }
-
-export type NotificationConfigBase = {}
 
 export type NotificationsConfig<Variants> = {
   variants: Variants
@@ -42,6 +41,7 @@ export type EmitParam<T> = {
   notificationType: unknown
   params: T
   id: string
+  config?: Partial<NotificationConfigBase>
 }
 
 export type ModifiedEmitParam<T> = Omit<EmitParam<T>, 'notificationType'>

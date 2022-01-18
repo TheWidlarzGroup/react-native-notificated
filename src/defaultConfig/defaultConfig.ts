@@ -29,4 +29,5 @@ export const defaultVariants: _DefaultVariants = {
 export const InAppNotificationsConfig: NotificationsConfig<_DefaultVariants> &
   Omit<DefaultLayoutConfig, 'variants'> = {
   variants: defaultVariants,
+  duration: 3000,
 } as const
