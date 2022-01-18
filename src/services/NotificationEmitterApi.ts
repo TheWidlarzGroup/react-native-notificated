@@ -18,6 +18,7 @@ export const notify = <
   emitter.emit<EmitParam<typeof params>>('add_notification', {
     notificationType,
     params,
+    animationConfig: params?.notifyAnimationConfig,
     id,
   })
   return {

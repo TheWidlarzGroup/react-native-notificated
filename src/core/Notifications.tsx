@@ -12,7 +12,6 @@ import { VariantsRenderer } from './VariantsRenderer'
 import type { EmitParam } from '../types'
 
 import type { CustomAnimationConfig } from '../types/animations'
-import type { EmitParam } from './createNotifications'
 
 const { width } = Dimensions.get('window')
 const notificationWidth = width - themeBase.spacing.s * 2
@@ -135,10 +134,10 @@ export const Notifications = () => {
     ({ id }) => {
       const [firstNotification] = notificationsQueue
       // if notification is currently displayed animate it back
-      if (firstNotification?.id === id) return swipeBack()
+      if (firstNotification?.id === id) return dismiss()
       setNotificationsQueue(notificationsQueue.filter((notification) => notification.id !== id))
     },
-    [notificationsQueue, swipeBack]
+    [notificationsQueue, dismiss]
   )
 
   useEffect(() => {

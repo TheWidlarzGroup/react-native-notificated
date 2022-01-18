@@ -52,6 +52,7 @@ export type EmitParam<T> = {
   notificationType: unknown
   params: T
   id: string
+  animationConfig?: CustomAnimationConfig
 }
 
 export type ModifiedEmitParam<T> = Omit<EmitParam<T>, 'notificationType'>
