@@ -1,6 +1,13 @@
 import React, { useState } from 'react'
-import { SafeAreaView, StyleSheet, Text } from 'react-native'
-import { createNotifications } from 'react-native-notification'
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import {
+  createNotifications,
+  RotateZIn,
+  ZoomInDownZoomOutUp,
+  ZoomInDownZoomOutDown,
+  RotateInRotateOut,
+  SlideInLeftSlideOutRight,
+} from 'react-native-notification'
 
 const { NotificationsProvider, useNotifications } = createNotifications()
 
@@ -11,6 +18,55 @@ export const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <NotificationsProvider />
+
+      <Text style={styles.title}>Animations showcase:</Text>
+      <Text
+        onPress={() =>
+          notify('success', {
+            ...baseNotifyConfig,
+            notifyAnimationConfig: SlideInLeftSlideOutRight,
+          })
+        }>
+        Slide In
+      </Text>
+      <Text
+        onPress={() =>
+          notify('success', {
+            ...baseNotifyConfig,
+            notifyAnimationConfig: ZoomInDownZoomOutUp,
+          })
+        }>
+        Zoom In (opposite directions)
+      </Text>
+      <Text
+        onPress={() =>
+          notify('success', {
+            ...baseNotifyConfig,
+            notifyAnimationConfig: ZoomInDownZoomOutDown,
+          })
+        }>
+        Zoom In
+      </Text>
+      <Text
+        onPress={() =>
+          notify('success', {
+            ...baseNotifyConfig,
+            notifyAnimationConfig: RotateInRotateOut,
+          })
+        }>
+        Rotate In
+      </Text>
+      <Text
+        onPress={() =>
+          notify('success', {
+            ...baseNotifyConfig,
+            notifyAnimationConfig: RotateZIn,
+          })
+        }>
+        Rotate with 3D
+      </Text>
+
+      <View style={styles.divider} />
       <Text
         onPress={() =>
           setId(
@@ -56,11 +112,28 @@ export const Home = () => {
   )
 }
 
+const baseNotifyConfig = {
+  description: 'Placeholder text',
+  title: 'Showcase them animations!',
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    flexDirection: 'column-reverse',
+    justifyContent: 'flex-end',
+    flexDirection: 'column',
     marginBottom: 40,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: '700',
+  },
+  divider: {
+    marginTop: 8,
+    marginBottom: 8,
+    width: '70%',
+    borderBottomWidth: 2,
+    borderBottomColor: '#fefefe',
   },
 })
