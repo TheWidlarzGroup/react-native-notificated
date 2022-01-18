@@ -45,6 +45,7 @@ export const Notifications = () => {
     // TODO get config per current variant!
     notificationsConfigs?.animationConfig
   // generatedTestConfig // TODO DANIEL:  default default move to place where provider is defined
+  //
 
   const onTransitionInAnimationFinished = useCallback(() => {
     const targetTime = getConfigTime(notificationConfig)
@@ -74,21 +75,20 @@ export const Notifications = () => {
 
   const handleNewNotification = useCallback(
     (_config: Config) => {
-      // present()
-      setImmediate(present)
+      present()
     },
-    [present, dismiss, resetTimer]
+    [present, dismiss, resetTimer, animationConfig]
   )
+
+  useEffect(() => {
+    if (notificationConfig) {
+      handleNewNotification(notificationConfig)
+    }
+  }, [notificationConfig])
 
   const popNotification = useCallback(() => {
     setNotificationsQueue((prev) => {
       const updatedNotificationsQueue = prev.filter((_, index: number) => index !== 0)
-
-      if (updatedNotificationsQueue.length > 0) {
-        const currentNotification = updatedNotificationsQueue[0]
-
-        handleNewNotification(currentNotification)
-      }
 
       return updatedNotificationsQueue
     })
@@ -101,10 +101,6 @@ export const Notifications = () => {
         // if (config?.id && prev.filter((notification) => notification?.id === config?.id)?.length) {
         //   return prev
         // }
-
-        if (prev.length === 0) {
-          handleNewNotification(config)
-        }
         return [...prev, config]
       })
     })
@@ -190,7 +186,7 @@ const styles = StyleSheet.create({
   },
   containerIos: {
     left: notificationSideMargin,
-    top: 0,
+    top: 100,
   },
   containerAndroid: {
     left: notificationSideMargin - (notificationWidth + 2 * notificationSideMargin),
