@@ -3,15 +3,12 @@ import { SafeAreaView, StyleSheet, Text } from 'react-native'
 import {
   createNotifications,
   ZoomInDownZoomOutUp,
-  SlideInLeftSlideOutRight,
   ZoomInDownZoomOutDown,
   RotateInRotateOut,
   RotateZIn,
 } from 'react-native-notification'
 
-const { NotificationsProvider, notify } = createNotifications({
-  animationConfig: SlideInLeftSlideOutRight,
-})
+const { NotificationsProvider, notify } = createNotifications()
 
 const App = () => {
   return (
