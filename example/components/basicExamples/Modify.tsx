@@ -18,7 +18,7 @@ export const Modify: VFC<Props> = ({ id }) => {
       onPress={() =>
         modify({ id, params: { title: 'Modified title', description: 'Modified description' } })
       }>
-      Modify
+      Modify success
     </Text>
   )
 }

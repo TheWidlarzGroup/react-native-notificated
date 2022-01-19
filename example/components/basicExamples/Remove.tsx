@@ -14,7 +14,7 @@ export const Remove: VFC<Props> = ({ id }) => {
 
   return (
     <Text style={styles.text} onPress={() => remove(id)}>
-      Remove
+      Remove success
     </Text>
   )
 }
