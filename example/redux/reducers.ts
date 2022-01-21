@@ -38,7 +38,6 @@ export const formSlice = createSlice({
   },
 })
 
-// Action creators are generated for each case reducer function
 export const { updateLogin, updatePassword, submit } = formSlice.actions
 
 export default formSlice.reducer
