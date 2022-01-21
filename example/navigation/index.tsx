@@ -6,6 +6,7 @@ import { GlobalConfigExamples } from '../screens/GlobalConfigExamples'
 import { GlobalTypesConfigExamples } from '../screens/GlobalTypesConfigExamples'
 import { DarkModeExamples } from '../screens/DarkModeExamples'
 import { SingleCustomCases } from '../screens/SingleCustomCases'
+import { ReduxExample } from '../screens/ReduxExample'
 
 const Drawer = createDrawerNavigator<Routes>()
 
@@ -16,5 +17,6 @@ export const AppNavigator = () => (
     <Drawer.Screen name="Global Config Examples" component={GlobalConfigExamples} />
     <Drawer.Screen name="Global Types Config Examples" component={GlobalTypesConfigExamples} />
     <Drawer.Screen name="Single Custom Cases" component={SingleCustomCases} />
+    <Drawer.Screen name="Redux Example" component={ReduxExample} />
   </Drawer.Navigator>
 )
