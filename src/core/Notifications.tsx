@@ -191,11 +191,11 @@ const styles = StyleSheet.create({
   },
   containerIos: {
     left: notificationSideMargin,
-    top: 30,
+    top: 0,
   },
   containerAndroid: {
     left: notificationSideMargin - (notificationWidth + 2 * notificationSideMargin),
-    top: true ? 30 : 0,
+    top: true ? 10 : 0,
   },
   boxWrapper: {
     width: '100%',
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
 })
 
 const getConfigTime = (_: any) => {
-  return 10000
+  return 3000
 }
 
 type ConfigTypeKey = 'ios' | 'android'
