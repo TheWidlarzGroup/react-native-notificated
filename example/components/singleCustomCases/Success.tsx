@@ -15,12 +15,7 @@ export const Success = () => {
         notify('success', {
           description: 'Task has been completed without any error ',
           title: 'Action completed',
-          titleSize: 20,
-          descriptionSize: 14,
-          accentColor: '#7CFC00',
-          borderType: 'accent',
-          defaultIconType: 'monochromatic',
-          multiline: 2,
+          defaultIconType: 'no-icon',
         })
       }>
       Emit success

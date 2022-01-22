@@ -1,36 +1,43 @@
 import React from 'react'
-import { SafeAreaView } from 'react-native'
+import { SafeAreaView, Text } from 'react-native'
 import { createNotifications } from 'react-native-notification'
-import { Success } from '../components/basicExamples/Success'
-import { Error } from '../components/basicExamples/Error'
-import { Warning } from '../components/basicExamples/Warning'
-import { Info } from '../components/basicExamples/Info'
 import { styles } from './styles'
 
-const { NotificationsProvider } = createNotifications({
+const { useNotifications, NotificationsProvider } = createNotifications({
   defaultStylesSettings: {
-    globalConfig: {
-      titleSize: 20,
-      titleColor: '#4B0082',
-      descriptionSize: 12,
-      descriptionColor: '#4B0082',
-      bgColor: '#FFFFF0',
-      borderRadius: 25,
-      accentColor: '#B0E0E6',
-      borderWidth: 3,
-      multiline: 5,
-    },
+    darkMode: true,
+    globalConfig: {},
+    successConfig: {},
+    errorConfig: {},
+    warningConfig: {},
+    infoConfig: {},
   },
 })
 
 export const GlobalConfigExamples = () => {
+  const { notify } = useNotifications()
+
   return (
     <SafeAreaView style={styles.container}>
       <NotificationsProvider />
-      <Success />
-      <Error />
-      <Warning />
-      <Info />
+      <Text
+        onPress={() =>
+          notify('error', {
+            description: 'This is where the toast text goes. ',
+            title: 'Error',
+          })
+        }>
+        Emit error
+      </Text>
+      <Text
+        onPress={() =>
+          notify('success', {
+            description: 'This is where the toast text goes. ',
+            title: 'Success',
+          })
+        }>
+        Emit success
+      </Text>
     </SafeAreaView>
   )
 }
