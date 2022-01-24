@@ -26,13 +26,17 @@ export const formSlice = createSlice({
         notify('error', {
           title: 'Incorrect login',
           description: 'The login must contain at least 4 characters. ',
-          multiline: 2,
+          style: {
+            multiline: 2,
+          },
         })
       }
       notify('success', {
         title: 'Welcome again',
         description: 'You have successfully signed in. ',
-        multiline: 2,
+        style: {
+          multiline: 2,
+        },
       })
     },
   },
