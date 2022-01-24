@@ -20,12 +20,14 @@ export const SingleCustomCases = () => {
           notify('success', {
             description: 'Task has been completed without any error ',
             title: 'Action completed',
-            titleSize: 20,
-            descriptionSize: 14,
-            accentColor: '#7CFC00',
-            borderType: 'accent',
-            defaultIconType: 'monochromatic',
-            multiline: 2,
+            style: {
+              titleSize: 20,
+              descriptionSize: 14,
+              accentColor: '#7CFC00',
+              borderType: 'accent',
+              defaultIconType: 'monochromatic',
+              multiline: 2,
+            },
           })
         }
       />
@@ -34,12 +36,14 @@ export const SingleCustomCases = () => {
           notify('error', {
             description: 'This error may damage your system. ',
             title: 'Integration error',
-            titleSize: 25,
-            titleColor: '#FF0000',
-            descriptionSize: 12,
-            accentColor: '#FF0000',
-            borderType: 'accent',
-            defaultIconType: 'no-icon',
+            style: {
+              titleSize: 25,
+              titleColor: '#FF0000',
+              descriptionSize: 12,
+              accentColor: '#FF0000',
+              borderType: 'accent',
+              defaultIconType: 'no-icon',
+            },
           })
         }
       />
@@ -49,9 +53,11 @@ export const SingleCustomCases = () => {
             description:
               'All the css styles are now inactive. You can fix that by setting new values in your example',
             title: 'Warning',
-            defaultIconType: 'no-icon',
-            borderType: 'no-border',
-            multiline: 3,
+            style: {
+              defaultIconType: 'no-icon',
+              borderType: 'no-border',
+              multiline: 3,
+            },
           })
         }
       />
@@ -61,12 +67,14 @@ export const SingleCustomCases = () => {
             description:
               'This is where the toast text goes. This text have more than one line. If the multiline is set by default, only one line is visible. Depends on the number of lines, another text parts are visible. We can set even 100 lines. If the text takes only 1 line, then size of the notification will fit',
             title: 'Info',
-            titleSize: 22,
-            titleColor: '#C71585',
-            leftIconSource: require('../assets/custom-info-icon-2.png'),
-            multiline: 8,
-            accentColor: '#C71585',
-            borderWidth: 2,
+            style: {
+              titleSize: 22,
+              titleColor: '#C71585',
+              leftIconSource: require('../assets/custom-info-icon-2.png'),
+              multiline: 8,
+              accentColor: '#C71585',
+              borderWidth: 2,
+            },
           })
         }
       />
