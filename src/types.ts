@@ -3,7 +3,8 @@ import type { NotificationOwnProps, NotificationStyleConfig, Theme } from './def
 import type { NotificationPosition } from './types/config'
 
 type NotificationConfig = {
-  duration: number
+  duration?: number
+  notificationPosition?: NotificationPosition
 }
 
 export type ComponentProps<T> = T extends FC<infer Props> ? Props : never
