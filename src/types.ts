@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import type { NotificationOwnProps, NotificationStyleConfig, Theme } from './defaultConfig/types'
+import type { DefaultKeys } from './defaultConfig/defaultConfig'
 
 type NotificationConfig = {
   duration: number
@@ -29,17 +30,15 @@ export type NotificationsConfig<Variants> = {
   variants: Variants
 } & NotificationConfigBase
 
+type DefaultStyleKeys = `${DefaultKeys}Config`
+
 export type DefaultLayoutConfig = {
   variants: never
 
   defaultStylesSettings?: {
     darkMode?: boolean
     globalConfig?: Partial<NotificationStyleConfig>
-    successConfig?: Partial<NotificationStyleConfig>
-    errorConfig?: Partial<NotificationStyleConfig>
-    warningConfig?: Partial<NotificationStyleConfig>
-    infoConfig?: Partial<NotificationStyleConfig>
-  }
+  } & { [key in DefaultStyleKeys]?: Partial<NotificationStyleConfig> }
 }
 
 export type EmitParam<T> = {

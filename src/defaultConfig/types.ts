@@ -1,4 +1,4 @@
-import type { defaultVariants } from './defaultConfig'
+import type { DefaultKeys, defaultVariants } from './defaultConfig'
 import type { ImageSourcePropType } from 'react-native'
 
 export type DefaultVariants = typeof defaultVariants
@@ -8,22 +8,7 @@ export type Theme = 'regular' | 'dark'
 export type BorderType = 'border' | 'accent' | 'no-border'
 
 export type IconsLinksTypes = {
-  success: {
-    color: ImageSourcePropType
-    white: ImageSourcePropType
-    black: ImageSourcePropType
-  }
-  error: {
-    color: ImageSourcePropType
-    white: ImageSourcePropType
-    black: ImageSourcePropType
-  }
-  warning: {
-    color: ImageSourcePropType
-    white: ImageSourcePropType
-    black: ImageSourcePropType
-  }
-  info: {
+  [key in DefaultKeys]: {
     color: ImageSourcePropType
     white: ImageSourcePropType
     black: ImageSourcePropType
