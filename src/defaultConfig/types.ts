@@ -37,7 +37,6 @@ export type NotificationOwnProps = {
 }
 
 export type NotificationStyleConfig = Partial<{
-  theme: Theme
   titleSize: number
   titleColor: string
   descriptionSize: number

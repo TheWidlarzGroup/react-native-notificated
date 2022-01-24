@@ -58,7 +58,6 @@ export const mergeProps = (
           defaultNotificationTypeConfig?.defaultIconType ??
           defaultGlobalConfig?.defaultIconType
       ),
-    notificationType: notificationType,
     onPress: props.onPress ?? undefined,
   }
 }
