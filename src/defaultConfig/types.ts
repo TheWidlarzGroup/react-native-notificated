@@ -1,4 +1,5 @@
 import type { defaultVariants } from './defaultConfig'
+import type { NotificationPosition } from '../types/config'
 import type { ImageSourcePropType } from 'react-native'
 
 export type DefaultVariants = typeof defaultVariants
@@ -53,4 +54,5 @@ export type NotificationStyleConfig = Partial<{
   leftIconSource: ImageSourcePropType
   borderType: BorderType
   notificationType: NotificationVariants
+  notificationPosition: NotificationPosition
 }>

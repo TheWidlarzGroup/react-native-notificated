@@ -3,6 +3,7 @@ import type { TextStyle, ViewStyle } from 'react-native'
 import { Platform } from 'react-native'
 import { themeBase } from './components/theme'
 import type { NotificationVariants, Theme } from './types'
+import { DEVICE_HEIGHT } from '../utils/deviceInfo'
 
 export const getTitleStyle = (styles: MergedNotificationStyleConfig): Partial<TextStyle> => ({
   color: styles.titleColor ? styles.titleColor : themeBase.fontColor[styles.theme],
@@ -39,6 +40,17 @@ export const getContainerStyles = (styles: MergedNotificationStyleConfig): Parti
     ? themeBase.bgColor[styles.theme]
     : themeBase.bgColor.regular
 
+  const getTopOffset = () => {
+    switch (styles.notificationPosition) {
+      case 'center':
+        return DEVICE_HEIGHT / 2 - 75
+      case 'bottom':
+        return DEVICE_HEIGHT - 150
+      default:
+        return 0
+    }
+  }
+
   return {
     ...styles,
     display: 'flex',
@@ -50,6 +62,7 @@ export const getContainerStyles = (styles: MergedNotificationStyleConfig): Parti
     borderWidth: styles.borderType === 'border' ? styles.borderWidth : 0,
     borderColor: styles.accentColor,
     backgroundColor: styles.bgColor ?? defaultBackgroundColor,
+    top: getTopOffset(),
   }
 }
 

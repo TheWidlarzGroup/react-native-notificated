@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import type { NotificationOwnProps, NotificationStyleConfig, Theme } from './defaultConfig/types'
+import type { NotificationPosition } from './types/config'
 
 type NotificationConfig = {
   duration: number
@@ -22,6 +23,7 @@ export type MergedNotificationStyleConfig = NotificationStyleConfig & { theme: T
 export type NotificationConfigBase = {
   defaultNotificationTime: number
   defaultNotificationTimeLong: number
+  defaultNotificationPosition: NotificationPosition
   notificationMsgLengthTimerThreshold: number
 }
 
