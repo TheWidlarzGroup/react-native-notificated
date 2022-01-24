@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { SafeAreaView, StyleSheet, Text } from 'react-native'
 import { createNotifications } from 'react-native-notification'
 
-const { NotificationsProvider, useNotifications } = createNotifications({})
+const { NotificationsProvider, useNotifications } = createNotifications()
 
 export const Home = () => {
   const { notify, modify, remove } = useNotifications()
