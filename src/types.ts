@@ -30,15 +30,13 @@ export type NotificationsConfig<Variants> = {
   variants: Variants
 } & NotificationConfigBase
 
-type DefaultStyleKeys = `${DefaultKeys}Config`
-
 export type DefaultLayoutConfig = {
   variants: never
 
   defaultStylesSettings?: {
     darkMode?: boolean
     globalConfig?: Partial<NotificationStyleConfig>
-  } & { [key in DefaultStyleKeys]?: Partial<NotificationStyleConfig> }
+  } & { [key in `${DefaultKeys}Config`]?: Partial<NotificationStyleConfig> }
 }
 
 export type EmitParam<T> = {
