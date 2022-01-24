@@ -7,7 +7,7 @@ import { Warning } from '../components/basicExamples/Warning'
 import { Info } from '../components/basicExamples/Info'
 import { styles } from './styles'
 
-const { NotificationsProvider } = createNotifications({
+export const { useNotifications, NotificationsProvider } = createNotifications({
   defaultStylesSettings: {
     globalConfig: {
       titleSize: 20,

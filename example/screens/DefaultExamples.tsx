@@ -9,7 +9,11 @@ import { Modify } from '../components/basicExamples/Modify'
 import { Remove } from '../components/basicExamples/Remove'
 import { styles } from './styles'
 
-const { NotificationsProvider } = createNotifications()
+const { NotificationsProvider } = createNotifications({
+  defaultStylesSettings: {
+    darkMode: true,
+  },
+})
 
 export const DefaultExamples = () => {
   const [id, setId] = useState('')
