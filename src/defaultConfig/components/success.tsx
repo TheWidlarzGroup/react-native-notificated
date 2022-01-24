@@ -6,7 +6,6 @@ import type { NotificationProps } from '../../types'
 
 export const SuccessNotification = (props: NotificationProps) => {
   const { defaultStylesSettings, defaultNotificationPosition } = useNotificationConfig()
-  console.log(defaultNotificationPosition)
   const pickedProps = mergeProps(
     props,
     'success',

@@ -5,13 +5,14 @@ import { mergeProps } from '../mergeProps'
 import type { NotificationProps } from '../../types'
 
 export const WarningNotification = (props: NotificationProps) => {
-  const { defaultStylesSettings } = useNotificationConfig()
+  const { defaultStylesSettings, defaultNotificationPosition } = useNotificationConfig()
   const pickedProps = mergeProps(
     props,
     'warning',
     Boolean(defaultStylesSettings?.darkMode),
     defaultStylesSettings?.globalConfig,
-    defaultStylesSettings?.warningConfig
+    defaultStylesSettings?.warningConfig,
+    defaultNotificationPosition
   )
 
   return <NotificationBase {...pickedProps} />
