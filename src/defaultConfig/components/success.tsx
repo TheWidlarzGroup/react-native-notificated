@@ -12,7 +12,7 @@ export const SuccessNotification = (props: NotificationProps) => {
     Boolean(defaultStylesSettings?.darkMode),
     defaultStylesSettings?.globalConfig,
     defaultStylesSettings?.successConfig,
-    defaultNotificationPosition
+    props?.notificationPosition || defaultNotificationPosition
   )
 
   return <NotificationBase {...pickedProps} />

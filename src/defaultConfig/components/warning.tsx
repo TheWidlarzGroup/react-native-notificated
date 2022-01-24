@@ -12,7 +12,7 @@ export const WarningNotification = (props: NotificationProps) => {
     Boolean(defaultStylesSettings?.darkMode),
     defaultStylesSettings?.globalConfig,
     defaultStylesSettings?.warningConfig,
-    defaultNotificationPosition
+    props?.notificationPosition || defaultNotificationPosition
   )
 
   return <NotificationBase {...pickedProps} />
