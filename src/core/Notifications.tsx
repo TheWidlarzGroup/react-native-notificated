@@ -8,8 +8,8 @@ import { LongPressGestureHandler, PanGestureHandler } from 'react-native-gesture
 import { useTimer } from '../hooks/useTimer'
 import { themeBase } from '../defaultConfig/components/theme'
 import { emitter, useNotificationConfig } from './useNotificationConfig'
-import type { EmitParam } from './createNotifications'
 import { VariantsRenderer } from './VariantsRenderer'
+import type { EmitParam } from '../types'
 
 const { width } = Dimensions.get('window')
 const notificationWidth = width - themeBase.spacing.s * 2
@@ -89,6 +89,42 @@ export const Notifications = () => {
       emitter.removeEvent('pop_notification')
     }
   }, [popNotification, swipeBack, swipeIn, handleNewNotification])
+
+  const modifyNotification = useCallback(
+    ({ id, params }) => {
+      setNotificationsQueue(
+        notificationsQueue.map((notification) => {
+          if (notification.id !== id) return notification
+          // NASTY ANY TRICK -> FIX IN FUTURE
+          return {
+            ...notification,
+            params: { ...(notification.params as any), ...params },
+          }
+        })
+      )
+    },
+    [notificationsQueue]
+  )
+
+  useEffect(() => {
+    const removeListener = emitter.addListener('modify_notification', modifyNotification)
+    return removeListener
+  }, [modifyNotification])
+
+  const removeNotification = useCallback(
+    ({ id }) => {
+      const [firstNotification] = notificationsQueue
+      // if notification is currently displayed animate it back
+      if (firstNotification?.id === id) return swipeBack()
+      setNotificationsQueue(notificationsQueue.filter((notification) => notification.id !== id))
+    },
+    [notificationsQueue, swipeBack]
+  )
+
+  useEffect(() => {
+    const removeListener = emitter.addListener('remove_notification', removeNotification)
+    return removeListener
+  }, [removeNotification])
 
   const animatedStyles = useAnimatedStyle(() => {
     return isAndroid

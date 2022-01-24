@@ -12,5 +12,9 @@ export interface NotificationConfig {
   onPress?: () => void
 }
 
-export type EventType = 'add_notification' | 'pop_notification' | 'remove_notification'
+export type EventType =
+  | 'add_notification'
+  | 'pop_notification'
+  | 'remove_notification'
+  | 'modify_notification'
 export type EventCallback = (payload?: any) => void
