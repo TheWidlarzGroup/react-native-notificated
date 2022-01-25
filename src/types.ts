@@ -17,7 +17,8 @@ export type Variant<T> = {
 
 export type VariantsMap = Readonly<Record<string, Variant<unknown>>>
 
-export type NotificationProps = NotificationOwnProps & Partial<NotificationStyleConfig>
+export type StyleProps = { style?: Partial<NotificationStyleConfig> }
+export type NotificationProps = NotificationOwnProps & StyleProps
 export type MergedNotificationStyleConfig = NotificationStyleConfig & { theme: Theme }
 
 export type NotificationConfigBase = {

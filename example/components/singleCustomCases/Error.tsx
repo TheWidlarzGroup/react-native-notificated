@@ -15,12 +15,14 @@ export const Error = () => {
         notify('error', {
           description: 'This error may damage your system. ',
           title: 'Integration error',
-          titleSize: 25,
-          titleColor: '#FF0000',
-          descriptionSize: 12,
-          accentColor: '#FF0000',
-          borderType: 'accent',
-          defaultIconType: 'no-icon',
+          style: {
+            titleSize: 25,
+            titleColor: '#FF0000',
+            descriptionSize: 12,
+            accentColor: '#FF0000',
+            borderType: 'accent',
+            defaultIconType: 'no-icon',
+          },
         })
       }>
       Emit error

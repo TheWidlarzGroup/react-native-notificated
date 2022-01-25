@@ -16,9 +16,11 @@ export const Warning = () => {
           description:
             'All the css styles are now inactive. You can fix that by setting new values in your example',
           title: 'Warning',
-          defaultIconType: 'no-icon',
-          borderType: 'no-border',
-          multiline: 3,
+          style: {
+            defaultIconType: 'no-icon',
+            borderType: 'no-border',
+            multiline: 3,
+          },
         })
       }>
       Emit warning

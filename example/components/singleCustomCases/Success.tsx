@@ -15,7 +15,9 @@ export const Success = () => {
         notify('success', {
           description: 'Task has been completed without any error ',
           title: 'Action completed',
-          defaultIconType: 'no-icon',
+          style: {
+            defaultIconType: 'no-icon',
+          },
         })
       }>
       Emit success
