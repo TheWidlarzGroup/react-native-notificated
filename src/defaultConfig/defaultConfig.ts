@@ -34,3 +34,5 @@ export const InAppNotificationsConfig: NotificationsConfig<_DefaultVariants> &
 
   variants: defaultVariants,
 } as const
+
+export type DefaultKeys = keyof typeof defaultVariants
