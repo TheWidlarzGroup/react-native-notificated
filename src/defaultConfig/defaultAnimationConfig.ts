@@ -162,3 +162,34 @@ export const CrazyAnimationConfig = generateAnimationConfig({
     }
   },
 })
+
+export const VeryCustomTransition = generateAnimationConfig({
+  animationConfigIn: {
+    type: 'spring',
+    config: { damping: 10, velocity: 20, stiffness: 80, mass: 1.2 },
+  },
+  animationConfigOut: {
+    type: 'timing',
+    config: { duration: 200 },
+  },
+  transitionInStyles: (progress) => {
+    'worklet'
+
+    const translateY = interpolate(progress.value, [0, 1], [0, 100])
+
+    return {
+      transform: [{ translateY }],
+      opacity: progress.value,
+    }
+  },
+  transitionOutStyles: (progress) => {
+    'worklet'
+
+    const translateY = interpolate(progress.value, [0, 1], [500, 100])
+
+    return {
+      transform: [{ translateY }],
+      opacity: progress.value,
+    }
+  },
+})
