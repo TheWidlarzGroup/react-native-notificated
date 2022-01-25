@@ -21,8 +21,6 @@ export const Success: VFC<Props> = ({ setId }) => {
               notify('success', {
                 description: 'This is where the toast text goes',
                 title: 'Success',
-                borderType: 'border',
-                defaultIconType: 'no-icon',
               }).id
             )
           : notify('success', {
