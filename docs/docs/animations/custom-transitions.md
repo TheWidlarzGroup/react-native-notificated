@@ -15,28 +15,27 @@ Our animation system is designed in such a way, that is recognizes two kinds of 
 1. **transition in**
 2. **transition out**
 
-and one **animated value** which represents these transitions.
+and is based on one animated value, that represents these transitions and animates from `0` to `1`.
 
-When notification shows up, the value is animated from `0` to `1`. When the notification is about to dissapear, it goes from `1` to `0`.
+Its range should be self-explanatory, `0` represents the beginning of the **transition in** animation, whereas `1` stands for the starting point for **transition out** kind of animation.
 
-When there is a new notification in the notification queue, the library renders the component. 
+When notification is about to show up, the value is animated from `0` to `1`. When the notification is about to dissapear, it goes from `1` to `0`.
 
-It is wrapped with `Animated.View`s which are responsible for handling drag gestures and animations.
+Every time a notification is about to be shown, the library renders the UI part wrapped with an `<Animated.View />` and applies **animated styles** to it so it knows how it should animate.
 
-To ha ve a full controll over the transitions, you have to take care of two things:
+The source of these styles comes from the **animation config** that is generated wih `generateAnimationConfig` function and is used internally by the library to generate the animations. You can also use it yourself to cretae whatever transition you desiere.
 
-1. Add appropriate **animatedStyles** for transitioning in and out
-2. Declare configs for transition animation (whether it should be a `spring` or `timing` animation)
-
-So to allow developers to easily control this, we exposed a `generateAnimationConfig` function with which you can easily declare your own custom animation.
-
-Return type of this function is `CustomAnimationConfig` which you can then use when changing animation types in e.g. `createNotification` or `notify` call.
-
-It takes in a config object, which takes controll over the animations.
-
-Properties:
+Summarizing, there are *4 properties* that can controll the transtion. They all are handled by `generateAnimationConfig` and go as follows:
 
 - `animationConfigIn` - spring / timing configuration for trannsition in. **REQUIRED**
 - `animationConfigOut` - spring / timing configuration for transition out. **Not required**, fallbacks to `animationConfigIn` when not provided
-- `transitionInStyles` - a *worklet* function that takes in the animated **progress** value. It has to return the animated styles. For transitionIn
+- `transitionInStyles` - a _worklet_ function that takes in the animated **progress** value. It has to return the animated styles. For transitionIn
 - `transitionOutStyles` - same as above but for transition out. Not required, fallbacks to ^
+
+Return type of this function (`generateAnimationConfig`) is `CustomAnimationConfig` which you can then use when changing animation types in e.g. `createNotification` or `notify` call.
+
+### Generating transition config with `generateAnimationConfig`
+
+<!-- BELOW IS WIP -->
+
+The `generateAnimationConfig` takes in a config object as a property
