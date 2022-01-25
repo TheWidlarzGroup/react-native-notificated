@@ -33,13 +33,10 @@ export type IconsLinksTypes = {
 export type NotificationOwnProps = {
   title: string
   description: string
-  icon?: string
   onPress?: () => void | undefined
 }
 
 export type NotificationStyleConfig = Partial<{
-  icon?: string
-  theme: Theme
   titleSize: number
   titleColor: string
   descriptionSize: number
@@ -52,5 +49,4 @@ export type NotificationStyleConfig = Partial<{
   defaultIconType: IconVisualStyle
   leftIconSource: ImageSourcePropType
   borderType: BorderType
-  notificationType: NotificationVariants
 }>
