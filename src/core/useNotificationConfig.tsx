@@ -1,10 +1,10 @@
 import { createContext, useContext } from 'react'
-import { NotificationsEmitter } from '../services/NotificationEmitter'
+import { createNotificationsEmitter } from '../services/NotificationEmitter'
 import type { DefaultVariantsConfig, NotificationsConfig, VariantsMap } from '../types'
 
 export const NotificationContext = createContext<NotificationsConfig<VariantsMap> | null>(null)
 
-export const emitter = NotificationsEmitter
+export const emitter = createNotificationsEmitter()
 
 export const useNotificationConfig = () => {
   const config = useContext(NotificationContext) as DefaultVariantsConfig
