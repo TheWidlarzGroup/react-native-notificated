@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { createContext, PropsWithChildren, useContext } from 'react'
 import type { EmitParam, NotificationsConfig, Variant } from '../types'
-import { VariantsRendererProvider } from './VariantsRendererContex'
 
 type Props = {
   config: NotificationsConfig<any>
@@ -27,4 +26,26 @@ const pickVariant = (config: NotificationsConfig<any>, variantKey: string): Vari
   }
 
   throw Error(`${variantKey} doesn't exists`)
+}
+
+interface VariantsRendererContextProps {
+  id: string
+}
+
+const VariantsRendererContext = createContext<VariantsRendererContextProps | undefined>(undefined)
+
+const VariantsRendererProvider = ({
+  children,
+  id,
+}: PropsWithChildren<VariantsRendererContextProps>) => {
+  const value = {
+    id,
+  }
+  return (
+    <VariantsRendererContext.Provider value={value}>{children}</VariantsRendererContext.Provider>
+  )
+}
+
+export const useVariantsRendererContext = () => {
+  return useContext(VariantsRendererContext)
 }

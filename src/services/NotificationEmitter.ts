@@ -39,3 +39,5 @@ export const createNotificationsEmitter = () => {
     emit,
   }
 }
+
+export const emitter = createNotificationsEmitter()
