@@ -10,7 +10,7 @@ You can change the position of the notifications displayed on the screen. There 
 
 Depending on whether you want to change notification position for the whole app or only change it for a certain notification, you can either:
 
-1. Change the animation **defaultNotificationPosition** in the config object of `createNotification`:
+1. Change the **defaultNotificationPosition** in the config object of `createNotification`:
 
 ```typescript
 import { createNotifications } from 'react-native-notification'
@@ -33,7 +33,7 @@ notify('success', {
 })
 ```
 
-3. Change the animation **type** in the config object of a certain `variant` in the config object of `createNotification`:
+3. Change the **notificationPosition** in the config object of a certain `variant` in `createNotification`:
 
 ```typescript
 import { createNotifications } from 'react-native-notification'
@@ -56,6 +56,6 @@ const { NotificationsProvider, useNotifications } = createNotifications({
 For each subsequent notification, the library looks for a notification position in the following order:
 
 1. First, it looks for a config defined in `notify` payload
-2. Secondly, it checks for an animation config for a given `variant` which can be defined in `createNotification`
+2. Secondly, it checks for a position config for a given `variant` which can be defined in `createNotification`
 3. Next, it looks for a global config from `createNotification`
 4. At last, when no config is found, it uses the default behaviour, which is `top`
