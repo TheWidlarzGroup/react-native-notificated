@@ -10,8 +10,40 @@ import {
 } from 'react-native-notification'
 import { styles } from './styles'
 import { AnimationButton } from '../components/basicExamples/AnimationButton'
+import { generateAnimationConfig } from '../../src/core/generateAnimationConfig'
+import { Easing } from 'react-native-reanimated'
 
 const { useNotifications, NotificationsProvider } = createNotifications()
+
+const customFadeInFadeOut = generateAnimationConfig({
+  animationConfigIn: {
+    type: 'timing',
+    config: {
+      duration: 700,
+      easing: Easing.inOut(Easing.sin),
+    },
+  },
+  transitionInStyles: (progress) => {
+    'worklet'
+
+    const translateX = 0
+
+    return {
+      opacity: progress.value,
+      transform: [{ translateX }],
+    }
+  },
+  transitionOutStyles: (progress) => {
+    'worklet'
+
+    const translateX = 0
+
+    return {
+      opacity: progress.value,
+      transform: [{ translateX }],
+    }
+  },
+})
 
 export const AnimationsExamples = () => {
   const { notify } = useNotifications()
@@ -19,6 +51,15 @@ export const AnimationsExamples = () => {
   return (
     <SafeAreaView style={styles.container}>
       <NotificationsProvider />
+      <AnimationButton
+        onPress={() =>
+          notify('success', {
+            ...baseNotifyConfig,
+            notifyAnimationConfig: customFadeInFadeOut,
+          })
+        }
+        buttonText="Fade In"
+      />
       <AnimationButton
         onPress={() =>
           notify('success', {
