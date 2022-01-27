@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler'
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import { AppNavigator } from './navigation'
+import { AppNavigator } from './src/navigation'
 
 const App = () => {
   return (
