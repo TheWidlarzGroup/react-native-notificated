@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`get proper props for component 1`] = `
+Object {
+  "accentColor": "#FC6060",
+  "bgColor": undefined,
+  "borderRadius": 5,
+  "borderType": "border",
+  "borderWidth": 1,
+  "defaultIconType": undefined,
+  "description": "test description props",
+  "descriptionColor": "rgb(0, 0, 0)",
+  "descriptionSize": 10,
+  "leftIconSource": Object {
+    "testUri": "../../../src/assets/images/error-color.png",
+  },
+  "multiline": undefined,
+  "onPress": undefined,
+  "theme": "dark",
+  "title": "",
+  "titleColor": "#fff",
+  "titleSize": 23,
+}
+`;

@@ -24,22 +24,5 @@ test('get proper props for component', () => {
     borderRadius: 5,
   }
 
-  expect(mergeProps(props, 'error', true, globalConfig, notificationTypeConfig)).toStrictEqual({
-    title: '',
-    description: 'test description props',
-    theme: 'dark',
-    titleSize: 23,
-    titleColor: '#fff',
-    descriptionColor: 'rgb(0, 0, 0)',
-    descriptionSize: 10,
-    bgColor: undefined,
-    borderWidth: 1,
-    multiline: undefined,
-    defaultIconType: undefined,
-    borderType: 'border',
-    borderRadius: 5,
-    accentColor: '#FC6060',
-    leftIconSource: require('../../src/assets/images/error-color.png'),
-    onPress: undefined,
-  })
+  expect(mergeProps(props, 'error', true, globalConfig, notificationTypeConfig)).toMatchSnapshot()
 })
