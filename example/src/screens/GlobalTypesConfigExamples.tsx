@@ -10,7 +10,7 @@ import { styles } from './styles'
 const { useNotifications, NotificationsProvider } = createNotifications({
   defaultStylesSettings: {
     successConfig: {
-      leftIconSource: require('../assets/custom-success-icon.png'),
+      leftIconSource: require('../../assets/custom-success-icon.png'),
       titleSize: 15,
       titleColor: '#006400',
       descriptionSize: 12,
@@ -21,7 +21,7 @@ const { useNotifications, NotificationsProvider } = createNotifications({
       borderWidth: 2,
     },
     errorConfig: {
-      leftIconSource: require('../assets/custom-error-icon.png'),
+      leftIconSource: require('../../assets/custom-error-icon.png'),
       titleSize: 18,
       titleColor: '#8B0000',
       descriptionSize: 12,
@@ -30,7 +30,7 @@ const { useNotifications, NotificationsProvider } = createNotifications({
       accentColor: '#8B0000',
     },
     warningConfig: {
-      leftIconSource: require('../assets/custom-warning-icon.png'),
+      leftIconSource: require('../../assets/custom-warning-icon.png'),
       titleSize: 20,
       titleColor: '#fff',
       descriptionSize: 14,
@@ -42,7 +42,7 @@ const { useNotifications, NotificationsProvider } = createNotifications({
       multiline: 3,
     },
     infoConfig: {
-      leftIconSource: require('../assets/custom-info-icon.png'),
+      leftIconSource: require('../../assets/custom-info-icon.png'),
       titleSize: 20,
       titleColor: '#1E90FF',
       descriptionSize: 14,
