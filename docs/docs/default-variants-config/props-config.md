@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 🗒️ Single Notification Config
+# 📬 Single Notification Config
 
 Besides global settings, you can also pass props to the notification instance.<br/>
 PROPS `description` IS REQUIRED. <br/>
