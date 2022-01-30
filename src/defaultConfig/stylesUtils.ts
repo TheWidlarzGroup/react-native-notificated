@@ -35,7 +35,10 @@ export const constShadow = (theme: Theme, borderRadius?: number): Partial<ViewSt
   return theme === 'regular' && crossPlatformStyle ? crossPlatformStyle : {}
 }
 
-export const getContainerStyles = (styles: MergedNotificationStyleConfig): Partial<ViewStyle> => {
+export const getContainerStyles = (
+  styles: MergedNotificationStyleConfig,
+  height?: number
+): Partial<ViewStyle> => {
   const defaultBackgroundColor = styles.theme
     ? themeBase.bgColor[styles.theme]
     : themeBase.bgColor.regular
@@ -43,9 +46,9 @@ export const getContainerStyles = (styles: MergedNotificationStyleConfig): Parti
   const getTopOffset = () => {
     switch (styles.notificationPosition) {
       case 'center':
-        return DEVICE_HEIGHT / 2 - 75
+        return DEVICE_HEIGHT / 2 - (height || 75)
       case 'bottom':
-        return DEVICE_HEIGHT - 150
+        return DEVICE_HEIGHT - (height ? height * 2 : 150)
       default:
         return 0
     }
