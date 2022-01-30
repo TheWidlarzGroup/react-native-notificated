@@ -9,16 +9,7 @@ import { ModifyButton } from '../components/basicExamples/ModifyButton'
 import { RemoveButton } from '../components/basicExamples/RemoveButton'
 import { styles } from './styles'
 
-const { useNotifications, NotificationsProvider } = createNotifications({
-  variants: {
-    success: {
-      component: SuccessButton,
-      config: {
-        notificationPosition: 'center',
-      },
-    },
-  },
-})
+const { useNotifications, NotificationsProvider } = createNotifications()
 
 export const DefaultExamples = () => {
   const [id, setId] = useState('')

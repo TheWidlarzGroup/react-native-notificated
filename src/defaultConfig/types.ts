@@ -19,6 +19,7 @@ export type IconsLinksTypes = {
 export type NotificationOwnProps = {
   title?: string
   description: string
+  notificationPosition?: NotificationPosition
   onPress?: () => void | undefined
 }
 
