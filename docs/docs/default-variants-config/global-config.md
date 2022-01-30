@@ -2,21 +2,22 @@
 sidebar_position: 1
 ---
 
-# Global Styles Settings
+# 🌍 Global Styles Settings
+<br/>
 
-## Default styles settings
+## 🎨 Default styles settings
 
-In default styles settings we can pass the config that affects all the notifications we use in the app ([EXAMPLES OF GLOBAL STYLES SETTINGS](#global-styles-setting-examples)).
+In default styles settings, we can pass the config that affects all the notifications we use in the app ([EXAMPLES OF GLOBAL STYLES SETTINGS](#global-styles-setting-examples)).
 We divide them into:
 
 | Name             | Type             | Default  | Description                                                                                                                                                            |
 | ---------------- |----------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| darkMode         | Boolean          | false    | If set for `true` enables the dark mode for the notifications layout
-| globalConfig     | Object           | -        | Inside this object you can pass the configuration for all notifications used in the app (or part wrapped by the `NotificationProvider`)
-| successConfig    | Object           | -        | Inside this object you can pass the configuration for all success type notifications used in the app (or part wrapped by the `NotificationProvider`). All params set for the success notifications here overwrites the same params set in `globalConfig`
-| errorConfig      | Object           | -        | Inside this object you can pass the configuration for all error type notifications used in the app (or part wrapped by the `NotificationProvider`). All params set for the error notifications here overwrites the same params set in `globalConfig`
-| warningConfig    | Object           | -        | Inside this object you can pass the configuration for all warning type notifications used in the app (or part wrapped by the `NotificationProvider`). All params set for the warning notifications here overwrites the same params set in `globalConfig`
-| infoConfig       | Object           | -        | Inside this object you can pass the configuration for all info type notifications used in the app (or part wrapped by the `NotificationProvider`). All params set for the info notifications here overwrites the same params set in `globalConfig`
+| darkMode         | Boolean          | false    | If set for `true` enables the dark mode for the layout of the notification
+| globalConfig     | Object           | -        | Inside this object, you can pass the configuration for all notifications used in the app (or part wrapped by the `NotificationProvider`)
+| successConfig    | Object           | -        | Inside this object, you can pass the configuration for all success type notifications used in the app (or part wrapped by the `NotificationProvider`). All params set for the success notifications here overwrites the same params set in `globalConfig`
+| errorConfig      | Object           | -        | Inside this object, you can pass the configuration for all error type notifications used in the app (or part wrapped by the `NotificationProvider`). All params set for the error notifications here overwrites the same params set in `globalConfig`
+| warningConfig    | Object           | -        | Inside this object, you can pass the configuration for all warning type notifications used in the app (or part wrapped by the `NotificationProvider`). All params set for the warning notifications here overwrites the same params set in `globalConfig`
+| infoConfig       | Object           | -        | Inside this object, you can pass the configuration for all info type notifications used in the app (or part wrapped by the `NotificationProvider`). All params set for the info notifications here overwrites the same params set in `globalConfig`
 
 #
 
@@ -38,8 +39,9 @@ const { useNotifications, NotificationsProvider } = createNotifications({
 Like we said above - in the config descriptions, `globalConfig` even if is set can be overwritten by the config of the different notifications types (`successConfig` / `errorConfig` / `warningConfig` / `infoConfig`).
 You can find examples explaining it below, but let's first find out, what exactly can we set in config objects.
 #
+<br/>
 
-## Style config object
+## ⚙️ Style config object
 
 
 All five configs:
@@ -70,7 +72,7 @@ We can set there:
 | leftIconSource   | ImageSourcePropType                         | -                                                                                                            | Set custom left icon for the notification (in png). For example. `require(../assets/icon.png)`
 
 ##
-### Border types examples
+### 🔳 Border types examples
 
 - `'border'`
 #
@@ -85,7 +87,7 @@ We can set there:
   ![No-border](../../assets/no-border.png)
 
 ##
-### Default icon type examples
+### 🏵️ Default icon type examples
 
 - `'color'`
 #
@@ -105,12 +107,12 @@ We can set there:
 
 
 ##
-## Global styles setting examples
+## 🏞️ Global styles setting examples
 
 Let's start with the basic notification settings with some global style.
-##
+<br/>
 
-### `globalConfig`
+### 🌐 `globalConfig`
 
 ```jsx
 import React from 'react'
@@ -164,9 +166,9 @@ The effect is visible below:
 
 In `globalConfig` above we have overwritten all the default values.
 #
-That means, that doesn't really matter now if we use `error`, or `info` notification. All of them will now look the same.
+That means that doesn't matter now if we use `error`, or `info` notification. All of them will now look the same.
 That is what `globalConfig` do. It overwrites properties for all the notifications.
-If we set there only `borderRadius` property for some value, then only `borderRadius` would be set global. Default values of all others properties would stay untouched:
+If we set there only `borderRadius` property for some value, then only `borderRadius` would be set global. Default values of all other properties would stay untouched:
 
 #
 
@@ -219,16 +221,16 @@ export const GlobalConfigExamples = () => {
 
 #
 
-Both notifications - error and success - have their default settings, only `borderRadius` has been changed for both of them, because we did it in `globalConfig`.
+Both notifications - error, and success - have their default settings, only `borderRadius` has been changed for both of them because we did it in `globalConfig`.
 
 ##
-### `successConfig` / `errorConfig` / `warningConfig` / `infoConfig`
+### ℹ️ `successConfig` / `errorConfig` / `warningConfig` / `infoConfig`
 
-Those settings work exactly the same as `globalConfig` but for different notification types. <br/>
-In other words we can set configuration for ALL errors, ALL info etc.
+Those settings work the same as `globalConfig` but for different notification types. <br/>
+In other words, we can set configuration for ALL errors, ALL info, etc.
 
 In addition `successConfig` / `errorConfig` / `warningConfig` / `infoConfig` are overwriting properties set in `globalConfig`.<br/>
-So if we set `borderRadius` in `globalConfig` for `50` like we did in the example above, and we will overwrite it in the `successConfig` for `10`, then `borderRadius` for ALL the SUCCESS notifications will be set for `10`, but for ALL OTHER notifications it still will be `50`.
+So if we set `borderRadius` in `globalConfig` for `50` as we did in the example above, and we will overwrite it in the `successConfig` for `10`, then `borderRadius` for ALL the SUCCESS notifications will be set for `10`, but for ALL OTHER notifications it still will be `50`.
 
 ```jsx
 import React from 'react'

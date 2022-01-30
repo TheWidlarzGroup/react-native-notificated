@@ -2,23 +2,23 @@
 sidebar_position: 1
 ---
 
-# Single Notification Config
+# 🗒️ Single Notification Config
 
 Besides global settings, you can also pass props to the notification instance.<br/>
 PROPS `description` IS REQUIRED. <br/>
-There are few main props you can pass to the notification:
+There are a few main props you can pass to the notification:
 
 | Name             | Type             | Default  | Description                                                                                                                                                            |
 | ---------------- |----------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| title            | String           | ''       | Props where you can pass the notification title. Most of the notifications have the title, but this is not required.
-| description      | String           | ''       | Props where you can pass the notification description. This props is required!
+| title            | String           | ''       | Props you can use to pass the notification title. Most of the notifications have the title, but this is not required.
+| description      | String           | ''       | Props you can use to pass the notification description. This props is required!
 | onPress          | Function         | -        | The onPress props gives you possibility to pass extra function, which will be invoked when you use 'X' to close the notification
 | style            | Object           | -        | Object with the style properties. You can pass here style settings which will be applied only to this notification instance. Style properties passed here overwrites style settings from `defaultStylesSettings`.
 
-## Style props
+## ✨ Style props
 
-Like we said above, in style props we can pass style settings for the notification instance. <br/>
-In fact they have the same properties as the `globalConfig`, `successConfig`, `errorConfig`, `warningConfig`, `infoConfig`.
+Like we said above, in the style props we can pass style settings for the notification instance. <br/>
+In fact `style` props have the same properties as the `globalConfig`, `successConfig`, `errorConfig`, `warningConfig`, `infoConfig`.
 Check the [GLOBAL STYLES SETTINGS](./global-config.md)
 
 
@@ -37,10 +37,10 @@ Check the [GLOBAL STYLES SETTINGS](./global-config.md)
 | defaultIconType  | `'color'` / `'monochromatic'` / `'no-icon'` | `'color'`                                                                                                    | This props works only with default icons. If you set your own icon it has no effect. ([EXAMPLES](#default-icon-type-examples))
 | leftIconSource   | ImageSourcePropType                         | -                                                                                                            | Set custom left icon for the notification (in png). For example. `require(../assets/icon.png)`
 
-What is really important here is that the `style` props overwrites the styles passed in `defaultStylesSettings`. <br/>
+What is really important here is that the `style` props overwrite the styles passed in `defaultStylesSettings`. <br/>
 To understand it perfectly, let's take a look at the few examples below.
 
-## Style overwriting example
+## 🖌️ Style overwriting example
 
 
 ```jsx
@@ -97,7 +97,7 @@ export const GlobalConfigExamples = () => {
 
 ```
 
-At the beginning in the `globalConfig` we have overwritten default settings:
+In the beginning, in the `globalConfig`, we have overwritten default settings:
 - titleSize
 - titleColor
 - descriptionSize
@@ -150,8 +150,8 @@ And the final effect:
 <br/>
 
 So in conclusion -
-`style` object overwrites `successConfig` / `errorConfig` / `warningConfig` / `infoConfig`(depends on which notification type are you using and styling),  `globalConfig`, and DEFAULT SETTINGS
+`style` object overwrite `successConfig` / `errorConfig` / `warningConfig` / `infoConfig`(depends on which notification type are you using and styling),  `globalConfig`, and DEFAULT SETTINGS
 <br/>
-`successConfig` / `errorConfig` / `warningConfig` / `infoConfig` overwrites `globalConfig`, and DEFAULT SETTINGS
+`successConfig` / `errorConfig` / `warningConfig` / `infoConfig` overwrite `globalConfig`, and DEFAULT SETTINGS
 <br/>
 `globalConfig` overwrites DEFAULT SETTINGS
