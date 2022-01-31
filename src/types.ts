@@ -1,9 +1,11 @@
 import type { FC } from 'react'
 import type { NotificationOwnProps, NotificationStyleConfig, Theme } from './defaultConfig/types'
+import type { NotificationPosition } from './types/config'
 import type { DefaultKeys } from './defaultConfig/defaultConfig'
 
 type NotificationConfig = {
-  duration: number
+  duration?: number
+  notificationPosition?: NotificationPosition
 }
 
 export type ComponentProps<T> = T extends FC<infer Props> ? Props : never
@@ -24,6 +26,7 @@ export type MergedNotificationStyleConfig = NotificationStyleConfig & { theme: T
 export type NotificationConfigBase = {
   defaultNotificationTime: number
   defaultNotificationTimeLong: number
+  defaultNotificationPosition: NotificationPosition
   notificationMsgLengthTimerThreshold: number
 }
 

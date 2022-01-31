@@ -1,3 +1,4 @@
+import type { NotificationPosition } from '../types/config'
 import type { DefaultKeys, defaultVariants } from './defaultConfig'
 import type { ImageSourcePropType } from 'react-native'
 
@@ -18,6 +19,7 @@ export type IconsLinksTypes = {
 export type NotificationOwnProps = {
   title?: string
   description: string
+  notificationPosition?: NotificationPosition
   onPress?: () => void | undefined
 }
 
@@ -34,4 +36,5 @@ export type NotificationStyleConfig = Partial<{
   defaultIconType: IconVisualStyle
   leftIconSource: ImageSourcePropType
   borderType: BorderType
+  notificationPosition: NotificationPosition
 }>
