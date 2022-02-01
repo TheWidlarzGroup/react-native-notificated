@@ -57,6 +57,7 @@ export const DefaultExamples = () => {
         onPress={() =>
           modify(id, {
             params: { id: id, title: 'Modified title', description: 'Modified description' },
+            config: { duration: 100 },
           })
         }
       />
