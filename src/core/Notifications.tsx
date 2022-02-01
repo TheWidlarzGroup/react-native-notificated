@@ -9,7 +9,7 @@ import { useTimer } from '../hooks/useTimer'
 import { themeBase } from '../defaultConfig/components/theme'
 import { emitter, useNotificationConfig } from './useNotificationConfig'
 import { VariantsRenderer } from './VariantsRenderer'
-import type { EmitParam } from '../types'
+import type { EmitParam, NotificationConfig } from '../types'
 
 const { width } = Dimensions.get('window')
 const notificationWidth = width - themeBase.spacing.s * 2
@@ -28,7 +28,6 @@ export const Notifications = () => {
   const panHandlerRef = useRef(null)
   const longPressHandlerRef = useRef(null)
   const { clearTimer, resetTimer } = useTimer()
-  const resetToCurrentTimer = () => resetTimer(swipeBack, getConfigTime(notificationConfig))
 
   const [notificationsQueue, setNotificationsQueue] = useState<Config[]>([])
   const notificationConfig = notificationsQueue[0]
@@ -42,8 +41,12 @@ export const Notifications = () => {
     onSwipeBack,
   })
 
+  const resetToCurrentTimer = useCallback(() => {
+    resetTimer(swipeBack, getConfigTime(notificationConfig.config))
+  }, [notificationConfig, resetTimer, swipeBack])
+
   const handleNewNotification = useCallback(
-    (config: Config) => {
+    ({ config }: Config) => {
       const targetTime = getConfigTime(config)
       resetTimer(swipeBack, targetTime)
 
@@ -91,19 +94,20 @@ export const Notifications = () => {
   }, [popNotification, swipeBack, swipeIn, handleNewNotification])
 
   const modifyNotification = useCallback(
-    ({ id, params }) => {
-      setNotificationsQueue(
-        notificationsQueue.map((notification) => {
-          if (notification.id !== id) return notification
-          // NASTY ANY TRICK -> FIX IN FUTURE
-          return {
-            ...notification,
-            params: { ...(notification.params as any), ...params },
-          }
-        })
-      )
+    ({ id, params, config }) => {
+      const modifiedQueue = notificationsQueue.map((notification) => {
+        if (notification.id !== id) return notification
+        // NASTY ANY TRICK -> FIX IN FUTURE
+        return {
+          ...notification,
+          params: { ...(notification.params as any), ...params },
+          config: { ...(notification.config as any), ...config },
+        }
+      })
+      setNotificationsQueue(modifiedQueue)
+      if (id === modifiedQueue[0]?.id) resetTimer(swipeBack, getConfigTime(config))
     },
-    [notificationsQueue]
+    [notificationsQueue, resetTimer, swipeBack]
   )
 
   useEffect(() => {
@@ -202,8 +206,8 @@ const styles = StyleSheet.create({
   },
 })
 
-const getConfigTime = (_: any) => {
-  return 10000
+const getConfigTime = (config?: NotificationConfig) => {
+  return config?.duration ?? 10000
 }
 
 type ConfigTypeKey = 'ios' | 'android'
