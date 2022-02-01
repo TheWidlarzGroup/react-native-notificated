@@ -4,16 +4,18 @@ import { themeBase } from './components/theme'
 import { chooseDefaultAccentColor } from './stylesUtils'
 import { chooseDefaultIcon } from './choseDefaultIcon'
 import type { NotificationStyleConfig, NotificationVariants } from './types'
+import type { NotificationPosition } from '../types/config'
 
 export const mergeProps = (
   props: NotificationProps,
   notificationType: NotificationVariants,
   darkMode: boolean,
   defaultGlobalConfig?: NotificationStyleConfig,
-  defaultNotificationTypeConfig?: NotificationStyleConfig
+  defaultNotificationTypeConfig?: NotificationStyleConfig,
+  notificationPosition?: NotificationPosition
 ): NotificationProps & MergedNotificationStyleConfig => {
   const customIconSource: ImageSourcePropType | undefined =
-    props.leftIconSource ??
+    props.style?.leftIconSource ??
     defaultNotificationTypeConfig?.leftIconSource ??
     defaultGlobalConfig?.leftIconSource
 
@@ -21,7 +23,7 @@ export const mergeProps = (
     property: keyof NotificationStyleConfig
   ): NotificationStyleConfig[typeof property] => {
     return (
-      props[property] ??
+      props.style?.[property] ??
       defaultNotificationTypeConfig?.[property] ??
       defaultGlobalConfig?.[property] ??
       undefined
@@ -42,11 +44,11 @@ export const mergeProps = (
     defaultIconType: chooseProps('defaultIconType'),
     borderType: chooseProps('borderType') ?? 'border',
     borderRadius:
-      props.borderRadius ??
+      props.style?.borderRadius ??
       defaultNotificationTypeConfig?.borderRadius ??
       (defaultGlobalConfig?.borderRadius || themeBase.borderRadius.regular),
     accentColor:
-      props.accentColor ??
+      props.style?.accentColor ??
       defaultNotificationTypeConfig?.accentColor ??
       (defaultGlobalConfig?.accentColor || chooseDefaultAccentColor(notificationType)),
     leftIconSource:
@@ -54,11 +56,11 @@ export const mergeProps = (
       chooseDefaultIcon(
         notificationType,
         darkMode,
-        props.defaultIconType ??
+        props.style?.defaultIconType ??
           defaultNotificationTypeConfig?.defaultIconType ??
           defaultGlobalConfig?.defaultIconType
       ),
-    notificationType: notificationType,
+    notificationPosition: notificationPosition,
     onPress: props.onPress ?? undefined,
   }
 }

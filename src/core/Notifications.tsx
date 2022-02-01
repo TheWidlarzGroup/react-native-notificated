@@ -190,11 +190,11 @@ const styles = StyleSheet.create({
   },
   containerIos: {
     left: notificationSideMargin,
-    top: 0,
+    top: 50,
   },
   containerAndroid: {
     left: notificationSideMargin - (notificationWidth + 2 * notificationSideMargin),
-    top: true ? 10 : 0,
+    top: true ? 50 : 0,
   },
   boxWrapper: {
     width: '100%',
@@ -206,9 +206,10 @@ const getConfigTime = (
   globalConfig: NotificationsConfig<VariantsMap>
 ) => {
   return (
-    notificationConfig.config?.duration ??
-    globalConfig?.variants[notificationConfig.notificationType as string]?.config?.duration ??
-    globalConfig.duration
+    notificationConfig.config?.defaultNotificationTime ??
+    globalConfig?.variants[notificationConfig.notificationType as string]?.config
+      ?.defaultNotificationTime ??
+    globalConfig.defaultNotificationTime
   )
 }
 

@@ -1,3 +1,8 @@
 export type Routes = {
-  Home: undefined
+  'Default Examples': undefined
+  'Dark Mode Examples': undefined
+  'Global Config Examples': undefined
+  'Global Types Config Examples': undefined
+  'Single Custom Cases': undefined
+  'Redux Example': undefined
 }

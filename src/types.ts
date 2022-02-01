@@ -1,10 +1,12 @@
 import type { FC } from 'react'
 import type { NotificationOwnProps, NotificationStyleConfig, Theme } from './defaultConfig/types'
+import type { NotificationPosition } from './types/config'
+import type { DefaultKeys } from './defaultConfig/defaultConfig'
 
-export type NotificationConfigBase = {
-  duration: number
-  position: 'top' | 'bottom'
-}
+// type NotificationConfig = {
+//   duration?: number
+//   notificationPosition?: NotificationPosition
+// }
 
 export type ComponentProps<T> = T extends FC<infer Props> ? Props : never
 
@@ -17,8 +19,16 @@ export type Variant<T> = {
 
 export type VariantsMap = Readonly<Record<string, Variant<unknown>>>
 
-export type NotificationProps = NotificationOwnProps & Partial<NotificationStyleConfig>
+export type StyleProps = { style?: Partial<NotificationStyleConfig> }
+export type NotificationProps = NotificationOwnProps & StyleProps
 export type MergedNotificationStyleConfig = NotificationStyleConfig & { theme: Theme }
+
+export type NotificationConfigBase = {
+  defaultNotificationTime: number
+  defaultNotificationTimeLong: number
+  notificationPosition: NotificationPosition
+  notificationMsgLengthTimerThreshold: number
+}
 
 export type NotificationsConfig<Variants> = {
   variants: Variants
@@ -30,11 +40,7 @@ export type DefaultLayoutConfig = {
   defaultStylesSettings?: {
     darkMode?: boolean
     globalConfig?: Partial<NotificationStyleConfig>
-    successConfig?: Partial<NotificationStyleConfig>
-    errorConfig?: Partial<NotificationStyleConfig>
-    warningConfig?: Partial<NotificationStyleConfig>
-    infoConfig?: Partial<NotificationStyleConfig>
-  }
+  } & { [key in `${DefaultKeys}Config`]?: Partial<NotificationStyleConfig> }
 }
 
 export type EmitParam<T> = {

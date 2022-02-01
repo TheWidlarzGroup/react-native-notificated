@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import type { MergedNotificationStyleConfig } from '../../types'
-import { Image, Text, View } from 'react-native'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
 import {
   constShadow,
   getContainerStyles,
@@ -10,9 +10,11 @@ import {
 } from '../stylesUtils'
 import { styles } from '../styles'
 import type { NotificationOwnProps } from '../types'
+import { useNotificationController } from '../../hooks/useNotificationController'
 
 export const NotificationBase = (props: NotificationOwnProps & MergedNotificationStyleConfig) => {
-  const containerStyles = getContainerStyles({ ...props })
+  const [notificationHeight, setNotificationHeight] = useState<number>()
+  const containerStyles = getContainerStyles({ ...props }, notificationHeight)
   const titleStyle = getTitleStyle({ ...props })
   const descriptionStyle = getDescriptionStyle({ ...props })
   const accentStyle = getLeftAccentStyle(props.accentColor)
@@ -20,9 +22,18 @@ export const NotificationBase = (props: NotificationOwnProps & MergedNotificatio
     props.theme === 'regular'
       ? require('../../assets/images/close-regularMode.png')
       : require('../../assets/images/close-darkMode.png')
+  const { remove } = useNotificationController()
 
   const renderLeftIcon = () => <Image source={props.leftIconSource!} style={styles.icon} />
-  const renderRightIcon = () => <Image source={rightIconSource} style={styles.icon} />
+  const renderRightIcon = () => (
+    <TouchableOpacity
+      onPress={() => {
+        remove()
+        props.onPress?.()
+      }}>
+      <Image source={rightIconSource} style={styles.icon} />
+    </TouchableOpacity>
+  )
   const renderTitle = () => <Text style={titleStyle}>{props.title}</Text>
   const renderDescription = () => (
     <Text style={descriptionStyle} numberOfLines={props.multiline ?? 1}>
@@ -37,7 +48,9 @@ export const NotificationBase = (props: NotificationOwnProps & MergedNotificatio
 
   return (
     <View style={constShadow(props.theme, props.borderRadius)}>
-      <View style={containerStyles}>
+      <View
+        style={containerStyles}
+        onLayout={(e) => setNotificationHeight(e.nativeEvent.layout.height)}>
         {props.borderType === 'accent' && <View style={accentStyle} />}
         <View style={styles.content}>
           {props.defaultIconType !== 'no-icon' && renderLeftIcon()}
