@@ -13,8 +13,10 @@ export const Warning = () => {
       style={[styles.text, styles.warning]}
       onPress={() =>
         notify('warning', {
-          description: 'This is where the toast text goes',
-          title: 'Warning',
+          params: {
+            description: 'This is where the toast text goes',
+            title: 'Warning',
+          },
         })
       }>
       Emit warning

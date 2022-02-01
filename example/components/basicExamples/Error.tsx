@@ -13,8 +13,10 @@ export const Error = () => {
       style={[styles.text, styles.error]}
       onPress={() =>
         notify('error', {
-          description: 'This is where the toast text goes. ',
-          title: 'Error',
+          params: {
+            description: 'This is where the toast text goes. ',
+            title: 'Error',
+          },
         })
       }>
       Emit error

@@ -3,10 +3,10 @@ import type { NotificationOwnProps, NotificationStyleConfig, Theme } from './def
 import type { NotificationPosition } from './types/config'
 import type { DefaultKeys } from './defaultConfig/defaultConfig'
 
-type NotificationConfig = {
-  duration?: number
-  notificationPosition?: NotificationPosition
-}
+// type NotificationConfig = {
+//   duration?: number
+//   notificationPosition?: NotificationPosition
+// }
 
 export type ComponentProps<T> = T extends FC<infer Props> ? Props : never
 
@@ -14,7 +14,7 @@ export type RequiredProps<T extends Variant<unknown>> = ComponentProps<T['compon
 
 export type Variant<T> = {
   component: T
-  config?: NotificationConfig
+  config?: Partial<NotificationConfigBase>
 }
 
 export type VariantsMap = Readonly<Record<string, Variant<unknown>>>
@@ -26,7 +26,7 @@ export type MergedNotificationStyleConfig = NotificationStyleConfig & { theme: T
 export type NotificationConfigBase = {
   defaultNotificationTime: number
   defaultNotificationTimeLong: number
-  defaultNotificationPosition: NotificationPosition
+  notificationPosition: NotificationPosition
   notificationMsgLengthTimerThreshold: number
 }
 
@@ -47,6 +47,7 @@ export type EmitParam<T> = {
   notificationType: unknown
   params: T
   id: string
+  config?: Partial<NotificationConfigBase>
 }
 
 export type ModifiedEmitParam<T> = Omit<EmitParam<T>, 'notificationType'>

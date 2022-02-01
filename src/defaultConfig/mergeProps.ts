@@ -12,7 +12,7 @@ export const mergeProps = (
   darkMode: boolean,
   defaultGlobalConfig?: NotificationStyleConfig,
   defaultNotificationTypeConfig?: NotificationStyleConfig,
-  defaultNotificationPosition?: NotificationPosition
+  notificationPosition?: NotificationPosition
 ): NotificationProps & MergedNotificationStyleConfig => {
   const customIconSource: ImageSourcePropType | undefined =
     props.style?.leftIconSource ??
@@ -60,7 +60,7 @@ export const mergeProps = (
           defaultNotificationTypeConfig?.defaultIconType ??
           defaultGlobalConfig?.defaultIconType
       ),
-    notificationPosition: defaultNotificationPosition,
+    notificationPosition: notificationPosition,
     onPress: props.onPress ?? undefined,
   }
 }
