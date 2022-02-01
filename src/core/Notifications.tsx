@@ -10,6 +10,7 @@ import { themeBase } from '../defaultConfig/components/theme'
 import { emitter, useNotificationConfig } from './useNotificationConfig'
 import { VariantsRenderer } from './VariantsRenderer'
 import type { EmitParam } from '../types'
+import { DEVICE_HEIGHT } from '../utils/deviceInfo'
 
 const { width } = Dimensions.get('window')
 const notificationWidth = width - themeBase.spacing.s * 2
@@ -29,9 +30,23 @@ export const Notifications = () => {
   const longPressHandlerRef = useRef(null)
   const { clearTimer, resetTimer } = useTimer()
   const resetToCurrentTimer = () => resetTimer(swipeBack, getConfigTime(notificationConfig))
+  const { defaultNotificationPosition } = useNotificationConfig()
 
   const [notificationsQueue, setNotificationsQueue] = useState<Config[]>([])
   const notificationConfig = notificationsQueue[0]
+
+  const [notificationHeight, setNotificationHeight] = useState<number>()
+
+  const getTopOffset = () => {
+    switch (defaultNotificationPosition) {
+      case 'center':
+        return DEVICE_HEIGHT / 2 - (notificationHeight || 75)
+      case 'bottom':
+        return DEVICE_HEIGHT - (notificationHeight ? notificationHeight * 2 : 150)
+      default:
+        return 0
+    }
+  }
 
   const onSwipeBack = useCallback(() => {
     emitter.emit('pop_notification')
@@ -152,11 +167,13 @@ export const Notifications = () => {
       onGestureEvent={handleGestureEvent}
       onHandlerStateChange={handleStateChange}>
       <Animated.View
+        onLayout={(e) => setNotificationHeight(e.nativeEvent.layout.height)}
         testID="notificationsContainer"
         style={[
           styles.container,
           isAndroid ? styles.containerAndroid : styles.containerIos,
           animatedStyles,
+          { top: getTopOffset() },
         ]}>
         {notificationConfig && (
           <LongPressGestureHandler
@@ -166,7 +183,13 @@ export const Notifications = () => {
             onActivated={clearTimer}
             onEnded={resetToCurrentTimer}>
             <View style={styles.boxWrapper}>
-              <VariantsRenderer {...{ config: notificationsConfigs, notificationConfig }} />
+              <VariantsRenderer
+                {...{
+                  config: notificationsConfigs,
+                  notificationConfig,
+                  defaultNotificationPosition,
+                }}
+              />
               {/*<Pressable onPress={onNotificationPress(notificationConfig.onPress)}>*/}
               {/*<InAppNotification {...{ notificationConfig }} />*/}
               {/*</Pressable>*/}
