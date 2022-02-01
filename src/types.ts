@@ -3,7 +3,7 @@ import type { NotificationOwnProps, NotificationStyleConfig, Theme } from './def
 import type { NotificationPosition } from './types/config'
 import type { DefaultKeys } from './defaultConfig/defaultConfig'
 
-type NotificationConfig = {
+export type NotificationConfig = {
   duration?: number
   notificationPosition?: NotificationPosition
 }
@@ -44,9 +44,10 @@ export type DefaultLayoutConfig = {
 }
 
 export type EmitParam<T> = {
-  notificationType: unknown
-  params: T
   id: string
+  notificationType: unknown
+  params?: T
+  config?: NotificationConfig
 }
 
 export type ModifiedEmitParam<T> = Omit<EmitParam<T>, 'notificationType'>

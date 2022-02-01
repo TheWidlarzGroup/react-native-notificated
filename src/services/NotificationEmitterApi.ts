@@ -4,8 +4,8 @@ import type { EmitParam, ModifiedEmitParam, RequiredProps, VariantsMap } from '.
 import type { DefaultVariants } from '../defaultConfig/types'
 
 export const remove = (id: string) => emitter.emit('remove_notification', { id })
-export const modify = <T>({ id, params }: ModifiedEmitParam<T>) =>
-  emitter.emit('modify_notification', { id, params })
+export const modify = <T>({ id, params, config }: ModifiedEmitParam<T>) =>
+  emitter.emit('modify_notification', { id, params, config })
 
 export const notify = <
   Variant extends keyof Variants,
@@ -19,6 +19,7 @@ export const notify = <
     notificationType,
     params,
     id,
+    // TODO: config here as well
   })
   return {
     id,

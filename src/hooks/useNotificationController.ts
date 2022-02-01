@@ -8,8 +8,8 @@ export const useNotificationController = () => {
 
   const modify = useCallback(
     // Would be cool to have some type inference here in future
-    <T>(id: string, { params }: Partial<Omit<ModifiedEmitParam<T>, 'id'>>) =>
-      NotificationEmitterApi.modify({ id: id ?? context?.id ?? '', params }),
+    <T>(id: string, { params, config }: Partial<Omit<ModifiedEmitParam<T>, 'id'>>) =>
+      NotificationEmitterApi.modify({ id: id ?? context?.id ?? '', params, config }),
     [context?.id]
   )
   const remove = useCallback(
