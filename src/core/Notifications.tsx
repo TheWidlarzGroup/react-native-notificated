@@ -30,7 +30,7 @@ export const Notifications = () => {
   const longPressHandlerRef = useRef(null)
   const { clearTimer, resetTimer } = useTimer()
   const resetToCurrentTimer = () => resetTimer(swipeBack, getConfigTime(notificationConfig))
-  const { defaultNotificationPosition } = useNotificationConfig()
+  const { defaultStylesSettings } = useNotificationConfig()
 
   const [notificationsQueue, setNotificationsQueue] = useState<Config[]>([])
   const notificationConfig = notificationsQueue[0]
@@ -38,7 +38,9 @@ export const Notifications = () => {
   const [notificationHeight, setNotificationHeight] = useState<number>()
 
   const getTopOffset = () => {
-    switch (defaultNotificationPosition) {
+    switch (defaultStylesSettings?.notificationPosition) {
+      case 'top':
+        return 0
       case 'center':
         return DEVICE_HEIGHT / 2 - (notificationHeight || 75)
       case 'bottom':
@@ -187,7 +189,6 @@ export const Notifications = () => {
                 {...{
                   config: notificationsConfigs,
                   notificationConfig,
-                  defaultNotificationPosition,
                 }}
               />
               {/*<Pressable onPress={onNotificationPress(notificationConfig.onPress)}>*/}
@@ -226,7 +227,7 @@ const styles = StyleSheet.create({
 })
 
 const getConfigTime = (_: any) => {
-  return 10000
+  return 3000
 }
 
 type ConfigTypeKey = 'ios' | 'android'
