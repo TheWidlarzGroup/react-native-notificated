@@ -56,7 +56,7 @@ export const Notifications = () => {
     progress,
     present,
     dismiss,
-    handleGestureEvent,
+    dragGestureHandler,
     handleStateChange,
     cancelTransitionAnimation,
     currentTransitionType,
@@ -160,7 +160,7 @@ export const Notifications = () => {
     <PanGestureHandler
       ref={panHandlerRef}
       simultaneousHandlers={longPressHandlerRef}
-      onGestureEvent={handleGestureEvent}
+      onGestureEvent={dragGestureHandler}
       onHandlerStateChange={handleStateChange}>
       <Animated.View
         testID="notificationsContainer"

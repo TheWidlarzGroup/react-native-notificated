@@ -6,20 +6,17 @@ import {
 } from 'react-native-gesture-handler'
 import {
   runOnJS,
-  useAnimatedGestureHandler,
   withSpring,
   useSharedValue,
   cancelAnimation,
   withTiming,
   AnimationCallback,
-  useAnimatedStyle,
 } from 'react-native-reanimated'
-import type { CustomAnimationConfig } from '../types/animations'
-
-export type SwipeDirection = 'y' | 'x'
+import type { CustomAnimationConfig, DragDirection } from '../types/animations'
+import { useDrag } from './useDrag'
 
 export interface SwipeConfig {
-  direction: SwipeDirection
+  direction: DragDirection
   initialOffset: number
   targetOffset: number
   distanceThreshold: number
@@ -80,13 +77,10 @@ export const useSwipe = ({
   const animationInConfig = animationConfig.animationConfigIn
   const animationOutConfig = animationConfig?.animationConfigOut
 
-  const drag = useSharedValue(0)
+  const dragConfig = useDrag(config.direction)
+  const { resetDrag } = dragConfig
   const progress = useSharedValue(0)
   const currentTransitionType = useSharedValue<'in' | 'out' | 'idle_active'>('in')
-
-  const resetDrag = useCallback(() => {
-    drag.value = withSpring(0, { mass: 0.2 })
-  }, [drag])
 
   const onTransitionInAnimationFinishedWrapper = useCallback(() => {
     currentTransitionType.value = 'idle_active'
@@ -166,13 +160,13 @@ export const useSwipe = ({
       )
     }
   }, [
-    onTransitionOutAnimationFinishedWrapper,
-    resetDrag,
-    animationInConfig,
-    animationOutConfig,
-    onTransitionOutAnimationNotFinishedWrapper,
     currentTransitionType,
+    resetDrag,
+    animationOutConfig,
+    animationInConfig,
     progress,
+    onTransitionOutAnimationFinishedWrapper,
+    onTransitionOutAnimationNotFinishedWrapper,
   ])
 
   const cancelTransitionAnimation = useCallback(() => {
@@ -216,50 +210,20 @@ export const useSwipe = ({
     [direction, distanceThreshold, swipeFail, swipeSuccess, velocityThreshold]
   )
 
-  const handleGestureEvent = useAnimatedGestureHandler<
-    PanGestureHandlerGestureEvent,
-    { drag: number }
-  >({
-    onStart: (_, ctx) => {
-      ctx.drag = drag.value
-    },
-    onActive: (event, ctx) => {
-      const translation = getEventKeyWorklet(direction, 'translation')
-      drag.value = ctx.drag + event[translation]
-    },
-    onEnd: () => {
-      runOnJS(resetDrag)()
-    },
-  })
-
-  const dragStyles = useAnimatedStyle(() => {
-    if (direction === 'x') {
-      return {
-        transform: [{ translateX: drag.value }],
-      }
-    }
-
-    return {
-      transform: [{ translateY: drag.value }],
-    }
-  })
-
   return {
-    drag,
+    ...dragConfig,
     present,
     dismiss,
     handleStateChange,
-    handleGestureEvent,
     progress,
     currentTransitionType,
     cancelTransitionAnimation,
     revokeTransitionAnimation,
-    dragStyles,
   }
 }
 
 // This has to be cleaned up - it looks terrible
-type DirectionLookup<T> = Record<SwipeDirection, T>
+type DirectionLookup<T> = Record<DragDirection, T>
 type EventKey = keyof PanGestureHandlerEventPayload
 type MappedEventKey = 'translation' | 'velocity'
 type EventKeyLookup = DirectionLookup<Record<string, EventKey>>
