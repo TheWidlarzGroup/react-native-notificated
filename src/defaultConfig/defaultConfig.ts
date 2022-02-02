@@ -15,6 +15,7 @@ export type _DefaultVariants = {
 export const defaultVariants: _DefaultVariants = {
   success: {
     component: SuccessNotification,
+    config: { notificationPosition: 'top' },
   },
   warning: {
     component: WarningNotification,
@@ -31,7 +32,10 @@ export const InAppNotificationsConfig: NotificationsConfig<_DefaultVariants> &
   Omit<DefaultLayoutConfig, 'variants'> = {
   defaultNotificationTime: 3000,
   defaultNotificationTimeLong: 5000,
+  notificationPosition: 'top',
   notificationMsgLengthTimerThreshold: 100,
   variants: defaultVariants,
   animationConfig: SlideInLeftSlideOutRight,
 } as const
+
+export type DefaultKeys = keyof typeof defaultVariants

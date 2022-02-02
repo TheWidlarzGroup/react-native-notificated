@@ -24,18 +24,22 @@ export const formSlice = createSlice({
     submit: (state) => {
       if (state.login.length < 4) {
         notify('error', {
-          title: 'Incorrect login',
-          description: 'The login must contain at least 4 characters. ',
-          style: {
-            multiline: 2,
+          params: {
+            title: 'Incorrect login',
+            description: 'The login must contain at least 4 characters. ',
+            style: {
+              multiline: 2,
+            },
           },
         })
       }
       notify('success', {
-        title: 'Welcome again',
-        description: 'You have successfully signed in. ',
-        style: {
-          multiline: 2,
+        params: {
+          title: 'Welcome again',
+          description: 'You have successfully signed in. ',
+          style: {
+            multiline: 2,
+          },
         },
       })
     },

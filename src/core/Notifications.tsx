@@ -9,7 +9,7 @@ import { SwipeConfig, useSwipe } from '../hooks/useSwipe'
 import { themeBase } from '../defaultConfig/components/theme'
 import { emitter, useNotificationConfig } from './useNotificationConfig'
 import { VariantsRenderer } from './VariantsRenderer'
-import type { EmitParam } from '../types'
+import type { EmitParam, NotificationsConfig, VariantsMap } from '../types'
 
 import type { CustomAnimationConfig } from '../types/animations'
 
@@ -34,16 +34,18 @@ export const Notifications = () => {
   const panHandlerRef = useRef(null)
   const longPressHandlerRef = useRef(null)
   const { clearTimer, resetTimer } = useTimer()
-  const resetToCurrentTimer = () => resetTimer(dismiss, getConfigTime(notificationConfig))
 
   const [notificationsQueue, setNotificationsQueue] = useState<Config[]>([])
   const notificationConfig = notificationsQueue[0]
 
+  const resetToCurrentTimer = () =>
+    resetTimer(dismiss, getConfigTime(notificationConfig, notificationsConfigs))
+
   const animationConfig: CustomAnimationConfig =
-    notificationConfig?.animationConfig || notificationsConfigs?.animationConfig
+    notificationConfig?.config?.animationConfig || notificationsConfigs?.animationConfig
 
   const onTransitionInAnimationFinished = useCallback(() => {
-    const targetTime = getConfigTime(notificationConfig)
+    const targetTime = getConfigTime(notificationConfig, notificationsConfigs)
     resetTimer(dismiss, targetTime)
     // eslint-disable-next-line
   }, [resetTimer, notificationConfig])
@@ -193,9 +195,6 @@ export const Notifications = () => {
               }}>
               <View style={styles.boxWrapper}>
                 <VariantsRenderer {...{ config: notificationsConfigs, notificationConfig }} />
-                {/*<Pressable onPress={onNotificationPress(notificationConfig.onPress)}>*/}
-                {/*<InAppNotification {...{ notificationConfig }} />*/}
-                {/*</Pressable>*/}
               </View>
             </LongPressGestureHandler>
           )}
@@ -229,8 +228,16 @@ const styles = StyleSheet.create({
   },
 })
 
-const getConfigTime = (_: any) => {
-  return 3000
+const getConfigTime = (
+  notificationConfig: Config,
+  globalConfig: NotificationsConfig<VariantsMap>
+) => {
+  return (
+    notificationConfig.config?.defaultNotificationTime ??
+    globalConfig?.variants[notificationConfig.notificationType as string]?.config
+      ?.defaultNotificationTime ??
+    globalConfig.defaultNotificationTime
+  )
 }
 
 type ConfigTypeKey = 'ios' | 'android'

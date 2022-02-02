@@ -23,8 +23,10 @@ export const DefaultExamples = () => {
         onPress={() =>
           setId(
             notify('success', {
-              description: 'This is where the toast text goes',
-              title: 'Success',
+              params: {
+                description: 'This is where the toast text goes',
+                title: 'Success',
+              },
             }).id
           )
         }
@@ -32,31 +34,39 @@ export const DefaultExamples = () => {
       <ErrorButton
         onPress={() =>
           notify('error', {
-            description: 'This is where the toast text goes. ',
-            title: 'Error',
+            params: {
+              description: 'This is where the toast text goes. ',
+              title: 'Error',
+            },
           })
         }
       />
       <WarningButton
         onPress={() =>
           notify('warning', {
-            description: 'This is where the toast text goes',
-            title: 'Warning',
+            params: {
+              description: 'This is where the toast text goes',
+              title: 'Warning',
+            },
           })
         }
       />
       <InfoButton
         onPress={() =>
           notify('info', {
-            description: 'This is where the toast text goes.',
-            title: 'Info',
+            params: {
+              description: 'This is where the toast text goes.',
+              title: 'Info',
+            },
           })
         }
       />
       <ModifyButton
         onPress={() =>
           modify(id, {
-            params: { id: id, title: 'Modified title', description: 'Modified description' },
+            params: {
+              params: { id: id, title: 'Modified title', description: 'Modified description' },
+            },
           })
         }
       />

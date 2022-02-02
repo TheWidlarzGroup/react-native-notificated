@@ -4,13 +4,15 @@ import { themeBase } from './components/theme'
 import { chooseDefaultAccentColor } from './stylesUtils'
 import { chooseDefaultIcon } from './choseDefaultIcon'
 import type { NotificationStyleConfig, NotificationVariants } from './types'
+import type { NotificationPosition } from '../types/config'
 
 export const mergeProps = (
   props: NotificationProps,
   notificationType: NotificationVariants,
   darkMode: boolean,
   defaultGlobalConfig?: NotificationStyleConfig,
-  defaultNotificationTypeConfig?: NotificationStyleConfig
+  defaultNotificationTypeConfig?: NotificationStyleConfig,
+  notificationPosition?: NotificationPosition
 ): NotificationProps & MergedNotificationStyleConfig => {
   const customIconSource: ImageSourcePropType | undefined =
     props.style?.leftIconSource ??
@@ -58,6 +60,7 @@ export const mergeProps = (
           defaultNotificationTypeConfig?.defaultIconType ??
           defaultGlobalConfig?.defaultIconType
       ),
+    notificationPosition: notificationPosition,
     onPress: props.onPress ?? undefined,
   }
 }

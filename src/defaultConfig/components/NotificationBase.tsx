@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import type { MergedNotificationStyleConfig } from '../../types'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 import {
@@ -13,7 +13,8 @@ import type { NotificationOwnProps } from '../types'
 import { useNotificationController } from '../../hooks/useNotificationController'
 
 export const NotificationBase = (props: NotificationOwnProps & MergedNotificationStyleConfig) => {
-  const containerStyles = getContainerStyles({ ...props })
+  const [notificationHeight, setNotificationHeight] = useState<number>()
+  const containerStyles = getContainerStyles({ ...props }, notificationHeight)
   const titleStyle = getTitleStyle({ ...props })
   const descriptionStyle = getDescriptionStyle({ ...props })
   const accentStyle = getLeftAccentStyle(props.accentColor)
@@ -47,7 +48,9 @@ export const NotificationBase = (props: NotificationOwnProps & MergedNotificatio
 
   return (
     <View style={constShadow(props.theme, props.borderRadius)}>
-      <View style={containerStyles}>
+      <View
+        style={containerStyles}
+        onLayout={(e) => setNotificationHeight(e.nativeEvent.layout.height)}>
         {props.borderType === 'accent' && <View style={accentStyle} />}
         <View style={styles.content}>
           {props.defaultIconType !== 'no-icon' && renderLeftIcon()}

@@ -1,4 +1,5 @@
-import type { defaultVariants } from './defaultConfig'
+import type { NotificationPosition } from '../types/config'
+import type { DefaultKeys, defaultVariants } from './defaultConfig'
 import type { ImageSourcePropType } from 'react-native'
 
 export type DefaultVariants = typeof defaultVariants
@@ -8,22 +9,7 @@ export type Theme = 'regular' | 'dark'
 export type BorderType = 'border' | 'accent' | 'no-border'
 
 export type IconsLinksTypes = {
-  success: {
-    color: ImageSourcePropType
-    white: ImageSourcePropType
-    black: ImageSourcePropType
-  }
-  error: {
-    color: ImageSourcePropType
-    white: ImageSourcePropType
-    black: ImageSourcePropType
-  }
-  warning: {
-    color: ImageSourcePropType
-    white: ImageSourcePropType
-    black: ImageSourcePropType
-  }
-  info: {
+  [key in DefaultKeys]: {
     color: ImageSourcePropType
     white: ImageSourcePropType
     black: ImageSourcePropType
@@ -31,8 +17,9 @@ export type IconsLinksTypes = {
 }
 
 export type NotificationOwnProps = {
-  title: string
+  title?: string
   description: string
+  notificationPosition?: NotificationPosition
   onPress?: () => void | undefined
 }
 
@@ -49,4 +36,5 @@ export type NotificationStyleConfig = Partial<{
   defaultIconType: IconVisualStyle
   leftIconSource: ImageSourcePropType
   borderType: BorderType
+  notificationPosition: NotificationPosition
 }>
