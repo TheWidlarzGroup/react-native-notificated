@@ -1,16 +1,19 @@
 import type { FC } from 'react'
+import type { CustomAnimationConfig } from './types/animations'
 import type { NotificationOwnProps, NotificationStyleConfig, Theme } from './defaultConfig/types'
 import type { NotificationPosition } from './types/config'
 import type { DefaultKeys } from './defaultConfig/defaultConfig'
 
 // type NotificationConfig = {
-//   duration?: number
-//   notificationPosition?: NotificationPosition
+//   duration: number
+//   animationConfig?: CustomAnimationConfig
 // }
 
 export type ComponentProps<T> = T extends FC<infer Props> ? Props : never
 
-export type RequiredProps<T extends Variant<unknown>> = ComponentProps<T['component']>
+export type RequiredProps<T extends Variant<unknown>> = ComponentProps<T['component']> & {
+  notifyAnimationConfig?: CustomAnimationConfig
+}
 
 export type Variant<T> = {
   component: T
@@ -28,6 +31,7 @@ export type NotificationConfigBase = {
   defaultNotificationTimeLong: number
   notificationPosition: NotificationPosition
   notificationMsgLengthTimerThreshold: number
+  animationConfig: CustomAnimationConfig
 }
 
 export type NotificationsConfig<Variants> = {
