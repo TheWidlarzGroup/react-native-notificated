@@ -50,6 +50,7 @@ export const getContainerStyles = (styles: MergedNotificationStyleConfig): Parti
     borderWidth: styles.borderType === 'border' ? styles.borderWidth : 0,
     borderColor: styles.accentColor,
     backgroundColor: styles.bgColor ?? defaultBackgroundColor,
+    top: 200,
   }
 }
 

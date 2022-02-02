@@ -26,6 +26,7 @@ export type MergedNotificationStyleConfig = NotificationStyleConfig & { theme: T
 export type NotificationConfigBase = {
   defaultNotificationTime: number
   defaultNotificationTimeLong: number
+  defaultNotificationPosition: NotificationPosition
   notificationMsgLengthTimerThreshold: number
 }
 
@@ -35,10 +36,10 @@ export type NotificationsConfig<Variants> = {
 
 export type DefaultLayoutConfig = {
   variants: never
+  notificationPosition?: NotificationPosition
 
   defaultStylesSettings?: {
     darkMode?: boolean
-    notificationPosition?: NotificationPosition
     globalConfig?: Partial<NotificationStyleConfig>
   } & { [key in `${DefaultKeys}Config`]?: Partial<NotificationStyleConfig> }
 }

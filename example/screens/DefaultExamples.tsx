@@ -9,7 +9,9 @@ import { ModifyButton } from '../components/basicExamples/ModifyButton'
 import { RemoveButton } from '../components/basicExamples/RemoveButton'
 import { styles } from './styles'
 
-const { useNotifications, NotificationsProvider } = createNotifications()
+const { useNotifications, NotificationsProvider } = createNotifications({
+  notificationPosition: 'center',
+})
 
 export const DefaultExamples = () => {
   const [id, setId] = useState('')

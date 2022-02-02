@@ -19,6 +19,7 @@ const initialOffsetX = -(notificationWidth + 2 * notificationSideMargin)
 const initialOffsetY = -300
 const targetOffsetX = width
 const targetOffsetY = true ? 40 : 10
+
 const isAndroid = Platform.OS === 'android'
 const maxLongPressDragDistance = 300
 
@@ -30,7 +31,6 @@ export const Notifications = () => {
   const longPressHandlerRef = useRef(null)
   const { clearTimer, resetTimer } = useTimer()
   const resetToCurrentTimer = () => resetTimer(swipeBack, getConfigTime(notificationConfig))
-  const { defaultStylesSettings } = useNotificationConfig()
 
   const [notificationsQueue, setNotificationsQueue] = useState<Config[]>([])
   const notificationConfig = notificationsQueue[0]
@@ -38,7 +38,7 @@ export const Notifications = () => {
   const [notificationHeight, setNotificationHeight] = useState<number>()
 
   const getTopOffset = () => {
-    switch (defaultStylesSettings?.notificationPosition) {
+    switch (notificationsConfigs?.notificationPosition) {
       case 'top':
         return 0
       case 'center':
