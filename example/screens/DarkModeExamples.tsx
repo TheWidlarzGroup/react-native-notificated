@@ -25,10 +25,6 @@ export const DarkModeExamples = () => {
             params: {
               description: 'This is where the toast text goes',
               title: 'Success',
-              notificationPosition: 'center',
-            },
-            config: {
-              notificationPosition: 'center',
             },
           })
         }

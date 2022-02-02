@@ -40,7 +40,6 @@ export const DefaultExamples = () => {
             params: {
               description: 'This is where the toast text goes. ',
               title: 'Error',
-              notificationPosition: 'center',
             },
           })
         }
