@@ -13,15 +13,17 @@ export const Error = () => {
       style={[styles.text, styles.error]}
       onPress={() =>
         notify('error', {
-          description: 'This error may damage your system. ',
-          title: 'Integration error',
-          style: {
-            titleSize: 25,
-            titleColor: '#FF0000',
-            descriptionSize: 12,
-            accentColor: '#FF0000',
-            borderType: 'accent',
-            defaultIconType: 'no-icon',
+          params: {
+            description: 'This error may damage your system. ',
+            title: 'Integration error',
+            style: {
+              titleSize: 25,
+              titleColor: '#FF0000',
+              descriptionSize: 12,
+              accentColor: '#FF0000',
+              borderType: 'accent',
+              defaultIconType: 'no-icon',
+            },
           },
         })
       }>

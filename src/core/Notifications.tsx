@@ -9,8 +9,8 @@ import { useTimer } from '../hooks/useTimer'
 import { themeBase } from '../defaultConfig/components/theme'
 import { emitter, useNotificationConfig } from './useNotificationConfig'
 import { VariantsRenderer } from './VariantsRenderer'
-import type { EmitParam } from '../types'
 import { DEVICE_HEIGHT } from '../utils/deviceInfo'
+import type { EmitParam, NotificationsConfig, VariantsMap } from '../types'
 
 const { width } = Dimensions.get('window')
 const notificationWidth = width - themeBase.spacing.s * 2
@@ -30,15 +30,17 @@ export const Notifications = () => {
   const panHandlerRef = useRef(null)
   const longPressHandlerRef = useRef(null)
   const { clearTimer, resetTimer } = useTimer()
-  const resetToCurrentTimer = () => resetTimer(swipeBack, getConfigTime(notificationConfig))
 
   const [notificationsQueue, setNotificationsQueue] = useState<Config[]>([])
   const notificationConfig = notificationsQueue[0]
 
   const [notificationHeight, setNotificationHeight] = useState<number>()
 
+  const notificationFinalPosition =
+    notificationConfig?.config?.notificationPosition ?? notificationsConfigs?.notificationPosition
+
   const getTopOffset = () => {
-    switch (notificationsConfigs?.notificationPosition) {
+    switch (notificationFinalPosition) {
       case 'top':
         return 0
       case 'center':
@@ -49,6 +51,8 @@ export const Notifications = () => {
         return 0
     }
   }
+  const resetToCurrentTimer = () =>
+    resetTimer(swipeBack, getConfigTime(notificationConfig, notificationsConfigs))
 
   const onSwipeBack = useCallback(() => {
     emitter.emit('pop_notification')
@@ -61,12 +65,12 @@ export const Notifications = () => {
 
   const handleNewNotification = useCallback(
     (config: Config) => {
-      const targetTime = getConfigTime(config)
+      const targetTime = getConfigTime(config, notificationsConfigs)
       resetTimer(swipeBack, targetTime)
 
       swipeIn()
     },
-    [swipeIn, swipeBack, resetTimer]
+    [swipeIn, swipeBack, resetTimer, notificationsConfigs]
   )
 
   const popNotification = useCallback(() => {
@@ -185,15 +189,7 @@ export const Notifications = () => {
             onActivated={clearTimer}
             onEnded={resetToCurrentTimer}>
             <View style={styles.boxWrapper}>
-              <VariantsRenderer
-                {...{
-                  config: notificationsConfigs,
-                  notificationConfig,
-                }}
-              />
-              {/*<Pressable onPress={onNotificationPress(notificationConfig.onPress)}>*/}
-              {/*<InAppNotification {...{ notificationConfig }} />*/}
-              {/*</Pressable>*/}
+              <VariantsRenderer {...{ config: notificationsConfigs, notificationConfig }} />
             </View>
           </LongPressGestureHandler>
         )}
@@ -226,8 +222,16 @@ const styles = StyleSheet.create({
   },
 })
 
-const getConfigTime = (_: any) => {
-  return 3000
+const getConfigTime = (
+  notificationConfig: Config,
+  globalConfig: NotificationsConfig<VariantsMap>
+) => {
+  return (
+    notificationConfig.config?.defaultNotificationTime ??
+    globalConfig?.variants[notificationConfig.notificationType as string]?.config
+      ?.defaultNotificationTime ??
+    globalConfig.defaultNotificationTime
+  )
 }
 
 type ConfigTypeKey = 'ios' | 'android'

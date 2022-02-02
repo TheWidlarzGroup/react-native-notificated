@@ -13,10 +13,12 @@ export const Success = () => {
       style={[styles.text, styles.success]}
       onPress={() =>
         notify('success', {
-          description: 'Task has been completed without any error ',
-          title: 'Action completed',
-          style: {
-            defaultIconType: 'no-icon',
+          params: {
+            description: 'Task has been completed without any error ',
+            title: 'Action completed',
+            style: {
+              defaultIconType: 'no-icon',
+            },
           },
         })
       }>

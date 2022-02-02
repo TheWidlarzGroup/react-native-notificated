@@ -13,13 +13,15 @@ export const Warning = () => {
       style={[styles.text, styles.warning]}
       onPress={() =>
         notify('warning', {
-          description:
-            'All the css styles are now inactive. You can fix that by setting new values in your example',
-          title: 'Warning',
-          style: {
-            defaultIconType: 'no-icon',
-            borderType: 'no-border',
-            multiline: 3,
+          params: {
+            description:
+              'All the css styles are now inactive. You can fix that by setting new values in your example',
+            title: 'Warning',
+            style: {
+              defaultIconType: 'no-icon',
+              borderType: 'no-border',
+              multiline: 3,
+            },
           },
         })
       }>

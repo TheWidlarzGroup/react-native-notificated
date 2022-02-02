@@ -19,13 +19,17 @@ export const Success: VFC<Props> = ({ setId }) => {
         setId
           ? setId(
               notify('success', {
-                description: 'This is where the toast text goes',
-                title: 'Success',
+                params: {
+                  description: 'This is where the toast text goes',
+                  title: 'Success',
+                },
               }).id
             )
           : notify('success', {
-              description: 'This is where the toast text goes',
-              title: 'Success',
+              params: {
+                description: 'This is where the toast text goes',
+                title: 'Success',
+              },
             }).id
       }>
       Emit success
