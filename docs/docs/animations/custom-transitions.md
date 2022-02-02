@@ -38,4 +38,90 @@ Return type of this function (`generateAnimationConfig`) is `CustomAnimationConf
 
 <!-- BELOW IS WIP -->
 
-The `generateAnimationConfig` takes in a config object as a property
+The `generateAnimationConfig` takes in a config object as a property with which you can define the animation.
+
+Below code snippets should give an idea how it works:
+
+**Example 1**
+```typescript
+export const Example1 = generateAnimationConfig({
+  animationConfigIn: {
+    type: 'timing',
+    config: {
+      duration: 400,
+      easing: Easing.inOut(Easing.sin),
+    },
+  },
+  transitionInStyles: (progress) => {
+    'worklet'
+
+    const scale = interpolate(progress.value, [0, 1], [0.8, 1])
+    const translateY = interpolate(progress.value, [0, 1], [-100, 0])
+
+    return {
+      opacity: progress.value,
+      transform: [{ scale }, { translateY }],
+    }
+  },
+})
+```
+
+**Example 2**
+```typescript
+export const Example2 = generateAnimationConfig({
+  animationConfigIn: {
+    type: 'timing',
+    config: {
+      duration: 300
+    },
+  },
+  animationConfigOut: {
+    type: 'spring',
+    config: {
+      damping: 4,
+      mass: 0.8,
+    },
+  },
+  transitionInStyles: (progress) => {
+    'worklet'
+
+    const scale = interpolate(progress.value, [0, 1], [0.8, 1])
+    const translateY = interpolate(progress.value, [0, 1], [-100, 0])
+
+    return {
+      opacity: progress.value,
+      transform: [{ scale }, { translateY }],
+    }
+  },
+  transitionOutStyles: (progress) => {
+    'worklet'
+
+    const scale = interpolate(progress.value, [0, 1], [0.8, 1])
+    const translateY = interpolate(progress.value, [0, 1], [100, 0])
+
+    return {
+      opacity: progress.value,
+      transform: [{ scale }, { translateY }],
+    }
+  },
+})
+```
+
+As you can see in the above examples, you have full controll over styles and animation configs for both kind of transitions - **in** and **out** one.
+
+### `animationConfigIn` and `animationConfigOut`
+
+The type of `animationConfigIn` and `animationConfigOut` is `X`:
+
+```typescript
+type: "this" | "that"
+
+```
+
+### `transitionInStyles` and `transitionOutStyles`
+
+The type of `X` and `X` is `X`:
+
+```typescript
+
+```
