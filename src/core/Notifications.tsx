@@ -218,11 +218,11 @@ const styles = StyleSheet.create({
   },
   containerIos: {
     left: notificationSideMargin,
-    top: 0,
+    top: 50,
   },
   containerAndroid: {
     left: notificationSideMargin - (notificationWidth + 2 * notificationSideMargin),
-    top: true ? 10 : 0,
+    top: 50,
   },
   boxWrapper: {
     width: '100%',
