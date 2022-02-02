@@ -15,7 +15,7 @@ import { Easing } from 'react-native-reanimated'
 
 const { useNotifications, NotificationsProvider } = createNotifications()
 
-const customFadeInFadeOut = generateAnimationConfig({
+const CustomFadeInFadeOut = generateAnimationConfig({
   animationConfigIn: {
     type: 'timing',
     config: {
@@ -54,8 +54,12 @@ export const AnimationsExamples = () => {
       <AnimationButton
         onPress={() =>
           notify('success', {
-            ...baseNotifyConfig,
-            notifyAnimationConfig: customFadeInFadeOut,
+            params: {
+              ...baseNotifyConfig,
+            },
+            config: {
+              animationConfig: CustomFadeInFadeOut,
+            },
           })
         }
         buttonText="Fade In"
@@ -63,8 +67,10 @@ export const AnimationsExamples = () => {
       <AnimationButton
         onPress={() =>
           notify('success', {
-            ...baseNotifyConfig,
-            notifyAnimationConfig: SlideInLeftSlideOutRight,
+            params: {
+              ...baseNotifyConfig,
+            },
+            config: { animationConfig: SlideInLeftSlideOutRight },
           })
         }
         buttonText="Slide In"
@@ -72,8 +78,10 @@ export const AnimationsExamples = () => {
       <AnimationButton
         onPress={() =>
           notify('success', {
-            ...baseNotifyConfig,
-            notifyAnimationConfig: ZoomInDownZoomOutUp,
+            params: {
+              ...baseNotifyConfig,
+            },
+            config: { animationConfig: ZoomInDownZoomOutUp },
           })
         }
         buttonText="Zoom In"
@@ -81,8 +89,10 @@ export const AnimationsExamples = () => {
       <AnimationButton
         onPress={() =>
           notify('success', {
-            ...baseNotifyConfig,
-            notifyAnimationConfig: ZoomInDownZoomOutDown,
+            params: {
+              ...baseNotifyConfig,
+            },
+            config: { animationConfig: ZoomInDownZoomOutDown },
           })
         }
         buttonText="Zoom In Bounce"
@@ -90,8 +100,10 @@ export const AnimationsExamples = () => {
       <AnimationButton
         onPress={() =>
           notify('success', {
-            ...baseNotifyConfig,
-            notifyAnimationConfig: RotateInRotateOut,
+            params: {
+              ...baseNotifyConfig,
+            },
+            config: { animationConfig: RotateInRotateOut },
           })
         }
         buttonText="Rotate In"
@@ -99,8 +111,10 @@ export const AnimationsExamples = () => {
       <AnimationButton
         onPress={() =>
           notify('success', {
-            ...baseNotifyConfig,
-            notifyAnimationConfig: RotateZIn,
+            params: {
+              ...baseNotifyConfig,
+            },
+            config: { animationConfig: RotateZIn },
           })
         }
         buttonText="Rotate with 3D"
