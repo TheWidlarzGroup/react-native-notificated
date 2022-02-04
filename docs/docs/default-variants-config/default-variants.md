@@ -2,10 +2,10 @@
 sidebar_position: 1
 ---
 
-# Default Variants
+# 🖼️ Default Variants
 
 At the start, you receive from us default styling, for all 4 types of notifications (`success` / `error` / `warning` / `info`). <br/>
-If you just trigger the notification, like in the example below (we trigger the `error` here, but of course it can be any other notification):
+If you just trigger the notification, like in the example below (we trigger the `error` here, but of course, it can be any other notification):
 #
 ```jsx
 import React from 'react'

@@ -1,5 +1,11 @@
 import { generateNotificationId } from '../utils/uuid'
-import type { EmitParam, ModifiedEmitParam, RequiredProps, VariantsMap } from '../types'
+import type {
+  EmitParam,
+  ModifiedEmitParam,
+  NotificationConfigBase,
+  RequiredProps,
+  VariantsMap,
+} from '../types'
 import type { DefaultVariants } from '../defaultConfig/types'
 import { emitter } from './NotificationEmitter'
 
@@ -12,13 +18,13 @@ export const notify = <
   Variants extends VariantsMap = DefaultVariants
 >(
   notificationType: Variant,
-  params: RequiredProps<Variants[Variant]>
+  setup: { params: RequiredProps<Variants[Variant]>; config?: Partial<NotificationConfigBase> }
 ) => {
   const id = generateNotificationId(notificationType.toString())
-  emitter.emit<EmitParam<typeof params>>('add_notification', {
+  emitter.emit<EmitParam<typeof setup['params']>>('add_notification', {
     notificationType,
-    params,
     id,
+    ...setup,
   })
   return {
     id,

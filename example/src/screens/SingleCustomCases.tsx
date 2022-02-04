@@ -18,15 +18,17 @@ export const SingleCustomCases = () => {
       <SuccessButton
         onPress={() =>
           notify('success', {
-            description: 'Task has been completed without any error ',
-            title: 'Action completed',
-            style: {
-              titleSize: 20,
-              descriptionSize: 14,
-              accentColor: '#7CFC00',
-              borderType: 'accent',
-              defaultIconType: 'monochromatic',
-              multiline: 2,
+            params: {
+              description: 'Task has been completed without any error ',
+              title: 'Action completed',
+              style: {
+                titleSize: 20,
+                descriptionSize: 14,
+                accentColor: '#7CFC00',
+                borderType: 'accent',
+                defaultIconType: 'monochromatic',
+                multiline: 2,
+              },
             },
           })
         }
@@ -34,15 +36,17 @@ export const SingleCustomCases = () => {
       <ErrorButton
         onPress={() =>
           notify('error', {
-            description: 'This error may damage your system. ',
-            title: 'Integration error',
-            style: {
-              titleSize: 25,
-              titleColor: '#FF0000',
-              descriptionSize: 12,
-              accentColor: '#FF0000',
-              borderType: 'accent',
-              defaultIconType: 'no-icon',
+            params: {
+              description: 'This error may damage your system. ',
+              title: 'Integration error',
+              style: {
+                titleSize: 25,
+                titleColor: '#FF0000',
+                descriptionSize: 12,
+                accentColor: '#FF0000',
+                borderType: 'accent',
+                defaultIconType: 'no-icon',
+              },
             },
           })
         }
@@ -50,13 +54,15 @@ export const SingleCustomCases = () => {
       <WarningButton
         onPress={() =>
           notify('warning', {
-            description:
-              'All the css styles are now inactive. You can fix that by setting new values in your example',
-            title: 'Warning',
-            style: {
-              defaultIconType: 'no-icon',
-              borderType: 'no-border',
-              multiline: 3,
+            params: {
+              description:
+                'All the css styles are now inactive. You can fix that by setting new values in your example',
+              title: 'Warning',
+              style: {
+                defaultIconType: 'no-icon',
+                borderType: 'no-border',
+                multiline: 3,
+              },
             },
           })
         }
@@ -64,16 +70,18 @@ export const SingleCustomCases = () => {
       <InfoButton
         onPress={() =>
           notify('info', {
-            description:
-              'This is where the toast text goes. This text have more than one line. If the multiline is set by default, only one line is visible. Depends on the number of lines, another text parts are visible. We can set even 100 lines. If the text takes only 1 line, then size of the notification will fit',
-            title: 'Info',
-            style: {
-              titleSize: 22,
-              titleColor: '#C71585',
-              leftIconSource: require('../../assets/custom-info-icon-2.png'),
-              multiline: 8,
-              accentColor: '#C71585',
-              borderWidth: 2,
+            params: {
+              description:
+                'This is where the toast text goes. This text have more than one line. If the multiline is set by default, only one line is visible. Depends on the number of lines, another text parts are visible. We can set even 100 lines. If the text takes only 1 line, then size of the notification will fit',
+              title: 'Info',
+              style: {
+                titleSize: 22,
+                titleColor: '#C71585',
+                leftIconSource: require('../assets/custom-info-icon-2.png'),
+                multiline: 8,
+                accentColor: '#C71585',
+                borderWidth: 2,
+              },
             },
           })
         }

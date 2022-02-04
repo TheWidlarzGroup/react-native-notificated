@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
 import { InAppNotificationsConfig } from '../defaultConfig/defaultConfig'
+
 import type { DefaultVariants } from '../defaultConfig/types'
 import NotificationEmitterApi from '../services/NotificationEmitterApi'
 import type { DefaultVariantsConfig, NotificationsConfig, VariantsMap } from '../types'

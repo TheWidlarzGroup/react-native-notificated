@@ -1,4 +1,5 @@
 export type NotificationsType = 'default' | 'success' | 'warning' | 'error'
+export type NotificationPosition = 'top' | 'center' | 'bottom'
 
 export interface NotificationConfig {
   type: NotificationsType
@@ -7,6 +8,7 @@ export interface NotificationConfig {
   msg?: string
   title: string
   id?: string
+  position?: NotificationPosition
   onPress?: () => void
 }
 

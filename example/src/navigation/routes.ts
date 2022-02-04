@@ -5,4 +5,5 @@ export type Routes = {
   'Global Types Config Examples': undefined
   'Single Custom Cases': undefined
   'Redux Example': undefined
+  'Animations Examples': undefined
 }
