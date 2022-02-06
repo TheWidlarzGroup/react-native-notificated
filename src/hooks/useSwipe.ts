@@ -242,10 +242,5 @@ const directionsLookup: EventKeyLookup = {
   },
 } as const
 
-const getEventKeyWorklet = (direction: SwipeDirection, key: MappedEventKey) => {
-  'worklet'
-  return directionsLookup[direction][key]
-}
-
 const getEventKey = (direction: SwipeDirection, key: MappedEventKey) =>
   directionsLookup[direction][key]
