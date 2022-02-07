@@ -1,10 +1,5 @@
 import { useCallback } from 'react'
 import {
-  PanGestureHandlerEventPayload,
-  PanGestureHandlerGestureEvent,
-  State,
-} from 'react-native-gesture-handler'
-import {
   runOnJS,
   withSpring,
   useSharedValue,
@@ -12,17 +7,13 @@ import {
   withTiming,
   AnimationCallback,
 } from 'react-native-reanimated'
+import type { GestureConfig } from '../types/gestures'
 import type { CustomAnimationConfig } from '../types/animations'
 import { useDrag } from './useDrag'
 
-export type SwipeDirection = 'y' | 'x'
-
-export interface SwipeConfig {
-  direction: SwipeDirection
+export type SwipeConfig = GestureConfig & {
   initialOffset: number
   targetOffset: number
-  distanceThreshold: number
-  velocityThreshold: number
 }
 
 interface Props {
@@ -75,13 +66,11 @@ export const useSwipe = ({
   onTransitionOutAnimationNotFinished,
   animationConfig,
 }: Props) => {
-  const { direction, distanceThreshold, velocityThreshold } = config
   const animationInConfig = animationConfig.animationConfigIn
   const animationOutConfig = animationConfig?.animationConfigOut
 
   // const drag = useSharedValue(0)
-  const dragConfig = useDrag(config.direction)
-  const { resetDrag } = dragConfig
+  const { dragStateHandler, resetDrag, ...dragConfig } = useDrag(config)
   const progress = useSharedValue(0)
   const currentTransitionType = useSharedValue<'in' | 'out' | 'idle_active'>('in')
 
@@ -195,52 +184,17 @@ export const useSwipe = ({
     onSwipeFail?.()
   }, [onSwipeFail, resetDrag])
 
-  const handleStateChange = useCallback(
-    ({ nativeEvent }: PanGestureHandlerGestureEvent) => {
-      if (nativeEvent.state !== State.END) {
-        return
-      }
-
-      const swipedEnough =
-        Math.abs(nativeEvent[getEventKey(direction, 'translation')]) > distanceThreshold
-      const enoughForce =
-        Math.abs(nativeEvent[getEventKey(direction, 'velocity')]) > velocityThreshold
-
-      const shouldSwipe = swipedEnough || enoughForce
-
-      return shouldSwipe ? swipeSuccess() : swipeFail()
-    },
-    [direction, distanceThreshold, swipeFail, swipeSuccess, velocityThreshold]
-  )
+  const handleDragStateChange = dragStateHandler(swipeSuccess, swipeFail)
 
   return {
     ...dragConfig,
+    handleDragStateChange,
+    resetDrag,
     present,
     dismiss,
-    handleStateChange,
     progress,
     currentTransitionType,
     cancelTransitionAnimation,
     revokeTransitionAnimation,
   }
 }
-
-// This has to be cleaned up - it looks terrible
-type DirectionLookup<T> = Record<SwipeDirection, T>
-type EventKey = keyof PanGestureHandlerEventPayload
-type MappedEventKey = 'translation' | 'velocity'
-type EventKeyLookup = DirectionLookup<Record<string, EventKey>>
-
-const directionsLookup: EventKeyLookup = {
-  x: {
-    translation: 'translationX',
-    velocity: 'velocityX',
-  },
-  y: {
-    translation: 'translationY',
-    velocity: 'velocityY',
-  },
-} as const
-
-const getEventKey = (direction: SwipeDirection, key: MappedEventKey) =>
-  directionsLookup[direction][key]

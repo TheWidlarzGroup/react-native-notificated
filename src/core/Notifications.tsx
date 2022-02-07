@@ -12,6 +12,7 @@ import { VariantsRenderer } from './VariantsRenderer'
 import type { EmitParam, NotificationsConfig, VariantsMap } from '../types'
 
 import type { CustomAnimationConfig } from '../types/animations'
+import { AndroidGestureConfig, IosGestureConfig } from '../defaultConfig/defaultGestureConfig'
 
 const { width } = Dimensions.get('window')
 const notificationWidth = width - themeBase.spacing.s * 2
@@ -59,7 +60,7 @@ export const Notifications = () => {
     present,
     dismiss,
     dragGestureHandler,
-    handleStateChange,
+    handleDragStateChange,
     cancelTransitionAnimation,
     currentTransitionType,
     revokeTransitionAnimation,
@@ -163,7 +164,7 @@ export const Notifications = () => {
       ref={panHandlerRef}
       simultaneousHandlers={longPressHandlerRef}
       onGestureEvent={dragGestureHandler}
-      onHandlerStateChange={handleStateChange}>
+      onHandlerStateChange={handleDragStateChange}>
       <Animated.View
         testID="notificationsContainer"
         style={[
@@ -244,18 +245,14 @@ type ConfigTypeKey = 'ios' | 'android'
 
 const swipeConfigs: { [key in ConfigTypeKey]: SwipeConfig } = {
   ios: {
-    direction: 'y',
+    ...IosGestureConfig,
     initialOffset: initialOffsetY,
     targetOffset: targetOffsetY,
-    distanceThreshold: 50,
-    velocityThreshold: 300,
   },
   android: {
-    direction: 'x',
+    ...AndroidGestureConfig,
     initialOffset: initialOffsetX,
     targetOffset: targetOffsetX,
-    distanceThreshold: width * 0.4,
-    velocityThreshold: 2000,
   },
 }
 

@@ -1,17 +1,18 @@
 import { useCallback } from 'react'
-import type { PanGestureHandlerGestureEvent } from 'react-native-gesture-handler'
+import { PanGestureHandlerGestureEvent, State } from 'react-native-gesture-handler'
 import {
   useAnimatedGestureHandler,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated'
-import type { DragDirection } from '../types/gestures'
+import { shouldTriggerGesture } from '../core/gestures/shouldTriggerGesture'
+import type { DragDirection, GestureConfig } from '../types/gestures'
 
-export const useDrag = (direction: DragDirection) => {
+export const useDrag = (config: GestureConfig) => {
   const x = useSharedValue(0)
   const y = useSharedValue(0)
-  const directions = getDragDirections(direction)
+  const directions = getDragDirections(config.direction)
 
   const resetDrag = useCallback(() => {
     x.value = withSpring(0, { mass: 0.2 })
@@ -36,11 +37,30 @@ export const useDrag = (direction: DragDirection) => {
     },
   })
 
+  const dragStateHandler = useCallback(
+    (onDragSuccess: () => void, onDragFail: () => void) =>
+      (event: PanGestureHandlerGestureEvent) => {
+        const { nativeEvent } = event
+        if (nativeEvent.state !== State.END) return event
+
+        const dragTriggered = shouldTriggerGesture(config, {
+          distance: [nativeEvent.translationX, nativeEvent.translationY],
+          velocity: [nativeEvent.velocityX, nativeEvent.velocityY],
+        })
+
+        if (dragTriggered) onDragSuccess()
+        else onDragFail()
+
+        return event
+      },
+    [config]
+  )
+
   const dragStyles = useAnimatedStyle(() => ({
     transform: [{ translateX: x.value }, { translateY: y.value }],
   }))
 
-  return { x, y, dragGestureHandler, dragStyles, resetDrag }
+  return { x, y, dragGestureHandler, dragStateHandler, dragStyles, resetDrag }
 }
 
 const getDragDirections = (direction: DragDirection) => {
