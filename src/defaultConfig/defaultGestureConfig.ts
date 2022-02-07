@@ -2,13 +2,13 @@ import { DEVICE_WIDTH } from '../utils/deviceInfo'
 import type { GestureConfig } from '../types/gestures'
 
 export const AndroidGestureConfig: GestureConfig = {
-  direction: 'y',
+  direction: 'x',
   activationDistances: DEVICE_WIDTH * 0.4,
   activationVelocities: 2000,
 }
 
 export const IosGestureConfig: GestureConfig = {
-  direction: 'x',
+  direction: 'y',
   activationDistances: 50,
   activationVelocities: 300,
 }
