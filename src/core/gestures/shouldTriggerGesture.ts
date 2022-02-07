@@ -13,13 +13,13 @@ export const shouldTriggerGesture = (config: GestureConfig, gesture: GestureProp
     }
     case 'x':
       return (
-        !isValueInRange(gesture.distance[1], config.activationDistances) ||
-        !isValueInRange(gesture.velocity[1], config.activationVelocities)
+        !isValueInRange(gesture.distance[0], config.activationDistances) ||
+        !isValueInRange(gesture.velocity[0], config.activationVelocities)
       )
     case 'y':
       return (
-        !isValueInRange(gesture.distance[0], config.activationDistances) ||
-        !isValueInRange(gesture.velocity[0], config.activationVelocities)
+        !isValueInRange(gesture.distance[1], config.activationDistances) ||
+        !isValueInRange(gesture.velocity[1], config.activationVelocities)
       )
     case 'none':
     default:
