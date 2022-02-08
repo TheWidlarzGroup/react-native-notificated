@@ -32,6 +32,7 @@ export type NotificationConfigBase = {
   notificationPosition: NotificationPosition
   notificationMsgLengthTimerThreshold: number
   animationConfig: CustomAnimationConfig
+  isNotch?: boolean
 }
 
 export type NotificationsConfig<Variants> = {

@@ -20,7 +20,8 @@ const notificationWidth = width - notificationSideMargin * 2
 const initialOffsetX = -(notificationWidth + 2 * notificationSideMargin)
 const initialOffsetY = -300
 const targetOffsetX = width
-const targetOffsetY = true ? 40 : 10
+const targetOffsetY = true ? 50 : 10
+const extraSpace = 50
 
 const isAndroid = Platform.OS === 'android'
 const maxLongPressDragDistance = 300
@@ -46,15 +47,18 @@ export const Notifications = () => {
     notificationConfig?.config?.notificationPosition ?? notificationsConfigs?.notificationPosition
 
   const getTopOffset = () => {
+    const isNotch = notificationsConfigs.isNotch
+    const topPosition = isNotch ? extraSpace : 10
+
     switch (notificationFinalPosition) {
       case 'top':
-        return 0
+        return topPosition
       case 'center':
-        return DEVICE_HEIGHT / 2 - (notificationHeight || 75)
+        return DEVICE_HEIGHT / 2 - (notificationHeight ? notificationHeight - extraSpace : 75)
       case 'bottom':
-        return DEVICE_HEIGHT - (notificationHeight ? notificationHeight * 2 : 150)
+        return DEVICE_HEIGHT - (notificationHeight ? notificationHeight + extraSpace : 150)
       default:
-        return 0
+        return topPosition
     }
   }
   const resetToCurrentTimer = () =>
