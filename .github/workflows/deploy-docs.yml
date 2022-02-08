@@ -1,0 +1,27 @@
+name: 'Deploy Docs'
+
+on: 
+  push:
+    paths:
+      - 'docs/**'
+
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: Install node modules
+        run: cd docs/ && yarn
+      - name: Deploy
+        run: cd docs/ && yarn deploy
+
+      - name: Push to gh-pages branch
+        uses: ad-m/github-push-action@v0.5.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          force: true
+          directory: ./docs/
