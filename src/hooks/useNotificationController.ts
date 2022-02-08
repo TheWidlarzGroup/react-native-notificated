@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import NotificationEmitterApi from '../services/NotificationEmitterApi'
 import type { ModifiedEmitParam } from '../types'
-import { useVariantsRendererContext } from '../core/VariantsRendererContex'
+import { useVariantsRendererContext } from '../core/VariantsRenderer'
 
 export const useNotificationController = () => {
   const context = useVariantsRendererContext()

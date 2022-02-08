@@ -7,11 +7,12 @@ import { LongPressGestureHandler, PanGestureHandler } from 'react-native-gesture
 import { useTimer } from '../hooks/useTimer'
 import { SwipeConfig, useSwipe } from '../hooks/useSwipe'
 import { themeBase } from '../defaultConfig/components/theme'
-import { emitter, useNotificationConfig } from './useNotificationConfig'
+import { useNotificationConfig } from './useNotificationConfig'
 import { VariantsRenderer } from './VariantsRenderer'
 import type { EmitParam, NotificationsConfig, VariantsMap } from '../types'
 
 import type { CustomAnimationConfig } from '../types/animations'
+import { emitter } from '../services/NotificationEmitter'
 
 const { width } = Dimensions.get('window')
 const notificationSideMargin = themeBase.spacing.s
