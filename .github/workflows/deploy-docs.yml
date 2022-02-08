@@ -1,9 +1,7 @@
 name: 'Deploy Docs'
 
 on: 
-  push:
-    paths:
-      - 'docs/**'
+  deployment
 
 jobs:
   deploy-docs:
