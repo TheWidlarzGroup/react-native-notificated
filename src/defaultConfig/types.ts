@@ -36,5 +36,4 @@ export type NotificationStyleConfig = Partial<{
   defaultIconType: IconVisualStyle
   leftIconSource: ImageSourcePropType
   borderType: BorderType
-  notificationPosition: NotificationPosition
 }>

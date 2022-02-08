@@ -6,6 +6,5 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    marginBottom: 40,
   },
 })

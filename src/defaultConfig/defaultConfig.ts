@@ -15,7 +15,6 @@ export type _DefaultVariants = {
 export const defaultVariants: _DefaultVariants = {
   success: {
     component: SuccessNotification,
-    config: { notificationPosition: 'top' },
   },
   warning: {
     component: WarningNotification,

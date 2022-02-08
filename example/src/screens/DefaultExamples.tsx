@@ -9,7 +9,9 @@ import { ModifyButton } from '../components/basicExamples/ModifyButton'
 import { RemoveButton } from '../components/basicExamples/RemoveButton'
 import { styles } from './styles'
 
-const { useNotifications, NotificationsProvider } = createNotifications()
+const { useNotifications, NotificationsProvider } = createNotifications({
+  isNotch: false,
+})
 
 export const DefaultExamples = () => {
   const [id, setId] = useState('')
@@ -26,6 +28,9 @@ export const DefaultExamples = () => {
               params: {
                 description: 'This is where the toast text goes',
                 title: 'Success',
+              },
+              config: {
+                notificationPosition: 'center',
               },
             }).id
           )
