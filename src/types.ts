@@ -4,11 +4,6 @@ import type { NotificationOwnProps, NotificationStyleConfig, Theme } from './def
 import type { NotificationPosition } from './types/config'
 import type { DefaultKeys } from './defaultConfig/defaultConfig'
 
-// type NotificationConfig = {
-//   duration: number
-//   animationConfig?: CustomAnimationConfig
-// }
-
 export type ComponentProps<T> = T extends FC<infer Props> ? Props : never
 
 export type RequiredProps<T extends Variant<unknown>> = ComponentProps<T['component']> & {
