@@ -63,9 +63,6 @@ export const DefaultExamples = () => {
               description: 'This is where the toast text goes.',
               title: 'Info',
             },
-            config: {
-              notificationPosition: 'bottom',
-            }
           })
         }
       />
