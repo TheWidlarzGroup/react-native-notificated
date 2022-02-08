@@ -1,5 +1,4 @@
 import { generateNotificationId } from '../utils/uuid'
-import { emitter } from '../core/useNotificationConfig'
 import type {
   EmitParam,
   ModifiedEmitParam,
@@ -8,6 +7,7 @@ import type {
   VariantsMap,
 } from '../types'
 import type { DefaultVariants } from '../defaultConfig/types'
+import { emitter } from './NotificationEmitter'
 
 export const remove = (id: string) => emitter.emit('remove_notification', { id })
 export const modify = <T>({ id, params }: ModifiedEmitParam<T>) =>

@@ -107,21 +107,24 @@ export const Example2 = generateAnimationConfig({
 })
 ```
 
-As you can see in the above examples, you have full controll over styles and animation configs for both kind of transitions - **in** and **out** one.
+As you can see in the above examples, you have a full control over styles and animation configs for both kind of transitions - **in** and **out** ones.
 
 ### `animationConfigIn` and `animationConfigOut`
 
-The type of `animationConfigIn` and `animationConfigOut` is `X`:
+The type of `animationConfigIn` and `animationConfigOut`:
 
 ```typescript
-type: "this" | "that"
-
+{
+  type: "timing" | "spring",
+  config: WithSpringConfig | WithTimingConfig // -> Reanimated type declarations
+}
 ```
 
 ### `transitionInStyles` and `transitionOutStyles`
 
-The type of `X` and `X` is `X`:
+The type of `transitionInStyles` and `transitionOutStyles` is the
+following function (must be a `worklet`):
 
 ```typescript
-
+type TransistionStylesConfigFunction = (progress: SharedValue<number>) => AnimatedStylesType
 ```

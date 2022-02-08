@@ -6,15 +6,14 @@ import {
 } from 'react-native-gesture-handler'
 import {
   runOnJS,
-  useAnimatedGestureHandler,
   withSpring,
   useSharedValue,
   cancelAnimation,
   withTiming,
   AnimationCallback,
-  useAnimatedStyle,
 } from 'react-native-reanimated'
 import type { CustomAnimationConfig } from '../types/animations'
+import { useDrag } from './useDrag'
 
 export type SwipeDirection = 'y' | 'x'
 
@@ -80,13 +79,11 @@ export const useSwipe = ({
   const animationInConfig = animationConfig.animationConfigIn
   const animationOutConfig = animationConfig?.animationConfigOut
 
-  const drag = useSharedValue(0)
+  // const drag = useSharedValue(0)
+  const dragConfig = useDrag(config.direction)
+  const { resetDrag } = dragConfig
   const progress = useSharedValue(0)
   const currentTransitionType = useSharedValue<'in' | 'out' | 'idle_active'>('in')
-
-  const resetDrag = useCallback(() => {
-    drag.value = withSpring(0, { mass: 0.2 })
-  }, [drag])
 
   const onTransitionInAnimationFinishedWrapper = useCallback(() => {
     currentTransitionType.value = 'idle_active'
@@ -216,45 +213,15 @@ export const useSwipe = ({
     [direction, distanceThreshold, swipeFail, swipeSuccess, velocityThreshold]
   )
 
-  const handleGestureEvent = useAnimatedGestureHandler<
-    PanGestureHandlerGestureEvent,
-    { drag: number }
-  >({
-    onStart: (_, ctx) => {
-      ctx.drag = drag.value
-    },
-    onActive: (event, ctx) => {
-      const translation = getEventKeyWorklet(direction, 'translation')
-      drag.value = ctx.drag + event[translation]
-    },
-    onEnd: () => {
-      runOnJS(resetDrag)()
-    },
-  })
-
-  const dragStyles = useAnimatedStyle(() => {
-    if (direction === 'x') {
-      return {
-        transform: [{ translateX: drag.value }],
-      }
-    }
-
-    return {
-      transform: [{ translateY: drag.value }],
-    }
-  })
-
   return {
-    drag,
+    ...dragConfig,
     present,
     dismiss,
     handleStateChange,
-    handleGestureEvent,
     progress,
     currentTransitionType,
     cancelTransitionAnimation,
     revokeTransitionAnimation,
-    dragStyles,
   }
 }
 
@@ -274,11 +241,6 @@ const directionsLookup: EventKeyLookup = {
     velocity: 'velocityY',
   },
 } as const
-
-const getEventKeyWorklet = (direction: SwipeDirection, key: MappedEventKey) => {
-  'worklet'
-  return directionsLookup[direction][key]
-}
 
 const getEventKey = (direction: SwipeDirection, key: MappedEventKey) =>
   directionsLookup[direction][key]

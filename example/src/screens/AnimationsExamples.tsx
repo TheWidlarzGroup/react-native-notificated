@@ -10,8 +10,8 @@ import {
 } from 'react-native-notification'
 import { styles } from './styles'
 import { AnimationButton } from '../components/basicExamples/AnimationButton'
-import { generateAnimationConfig } from '../../src/core/generateAnimationConfig'
 import { Easing } from 'react-native-reanimated'
+import { generateAnimationConfig } from '../../../src/core/generateAnimationConfig'
 
 const { useNotifications, NotificationsProvider } = createNotifications()
 

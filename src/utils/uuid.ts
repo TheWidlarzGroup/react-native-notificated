@@ -1,6 +1,6 @@
 // Thanks to https://stackoverflow.com/a/13403498
 
-// TODO: Narrow down  notificationType and UUID types
+// TODO: Narrow down notificationType and UUID types
 
 export type UUID = string
 

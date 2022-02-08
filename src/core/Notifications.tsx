@@ -7,12 +7,13 @@ import { LongPressGestureHandler, PanGestureHandler } from 'react-native-gesture
 import { useTimer } from '../hooks/useTimer'
 import { SwipeConfig, useSwipe } from '../hooks/useSwipe'
 import { themeBase } from '../defaultConfig/components/theme'
-import { emitter, useNotificationConfig } from './useNotificationConfig'
+import { useNotificationConfig } from './useNotificationConfig'
 import { VariantsRenderer } from './VariantsRenderer'
 import { DEVICE_HEIGHT } from '../utils/deviceInfo'
 import type { EmitParam, NotificationsConfig, VariantsMap } from '../types'
 
 import type { CustomAnimationConfig } from '../types/animations'
+import { emitter } from '../services/NotificationEmitter'
 
 const { width } = Dimensions.get('window')
 const notificationSideMargin = themeBase.spacing.s
@@ -81,7 +82,7 @@ export const Notifications = () => {
     progress,
     present,
     dismiss,
-    handleGestureEvent,
+    dragGestureHandler,
     handleStateChange,
     cancelTransitionAnimation,
     currentTransitionType,
@@ -185,7 +186,7 @@ export const Notifications = () => {
     <PanGestureHandler
       ref={panHandlerRef}
       simultaneousHandlers={longPressHandlerRef}
-      onGestureEvent={handleGestureEvent}
+      onGestureEvent={dragGestureHandler}
       onHandlerStateChange={handleStateChange}>
       <Animated.View
         onLayout={(e) => setNotificationHeight(e.nativeEvent.layout.height)}

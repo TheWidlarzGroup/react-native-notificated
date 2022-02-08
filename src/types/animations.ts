@@ -27,3 +27,5 @@ export type CustomAnimationConfig = {
   animationConfigIn: AnimationTypeConfig
   animationConfigOut?: AnimationTypeConfig
 }
+
+export type DragDirection = 'y' | 'x' | 'full' | 'none'
