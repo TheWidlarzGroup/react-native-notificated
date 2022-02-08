@@ -37,3 +37,14 @@ export type NotificationStyleConfig = Partial<{
   leftIconSource: ImageSourcePropType
   borderType: BorderType
 }>
+
+export type StyleProps = { style?: Partial<NotificationStyleConfig> }
+export type NotificationProps = NotificationOwnProps & StyleProps
+export type MergedNotificationStyleConfig = NotificationStyleConfig & { theme: Theme }
+
+export type DefaultLayoutConfig = {
+  defaultStylesSettings?: {
+    darkMode?: boolean
+    globalConfig?: Partial<NotificationStyleConfig>
+  } & { [key in `${DefaultKeys}Config`]?: Partial<NotificationStyleConfig> }
+}

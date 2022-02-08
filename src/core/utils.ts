@@ -1,12 +1,11 @@
-import type { DefaultVariantsConfig, NotificationsConfig } from '../types'
+import type { NotificationsConfig, VariantsMap } from '../types'
 import type { _DefaultVariants } from '../defaultConfig/defaultConfig'
 import { DEVICE_HEIGHT } from '../utils/deviceInfo'
-import type { Config } from './Notifications'
+import type { EmitParam } from '../types'
 
 export const getTopOffset = (
-  notificationsConfigs: Omit<DefaultVariantsConfig, 'variants'> &
-    NotificationsConfig<_DefaultVariants>,
-  notificationConfig: Config,
+  notificationsConfigs: NotificationsConfig<_DefaultVariants>,
+  notificationConfig: EmitParam,
   notificationHeight: number
 ) => {
   const isNotch = notificationsConfigs.isNotch
@@ -25,4 +24,15 @@ export const getTopOffset = (
     default:
       return topPosition
   }
+}
+export const getConfigTime = (
+  notificationConfig: EmitParam,
+  globalConfig: NotificationsConfig<VariantsMap>
+) => {
+  return (
+    notificationConfig.config?.defaultNotificationTime ??
+    globalConfig?.variants[notificationConfig.notificationType as string]?.config
+      ?.defaultNotificationTime ??
+    globalConfig.defaultNotificationTime
+  )
 }

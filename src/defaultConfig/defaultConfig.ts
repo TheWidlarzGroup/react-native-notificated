@@ -3,7 +3,7 @@ import { WarningNotification } from './components/warning'
 import { ErrorNotification } from './components/error'
 import { SlideInLeftSlideOutRight } from './defaultAnimationConfig'
 import { InfoNotification } from './components/info'
-import type { DefaultLayoutConfig, NotificationsConfig, Variant } from '../types'
+import type { NotificationsConfig, Variant } from '../types'
 
 export type _DefaultVariants = {
   success: Variant<typeof SuccessNotification>
@@ -27,8 +27,7 @@ export const defaultVariants: _DefaultVariants = {
   },
 } as const
 
-export const InAppNotificationsConfig: NotificationsConfig<_DefaultVariants> &
-  Omit<DefaultLayoutConfig, 'variants'> = {
+export const InAppNotificationsConfig: NotificationsConfig<_DefaultVariants> = {
   defaultNotificationTime: 3000,
   defaultNotificationTimeLong: 5000,
   notificationPosition: 'top',

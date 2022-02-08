@@ -1,12 +1,13 @@
 import type { FC } from 'react'
 import type { CustomAnimationConfig } from './types/animations'
-import type { NotificationOwnProps, NotificationStyleConfig, Theme } from './defaultConfig/types'
+import type { DefaultLayoutConfig } from './defaultConfig/types'
 import type { NotificationPosition } from './types/config'
-import type { DefaultKeys } from './defaultConfig/defaultConfig'
 
+// todo: extend this type
 export type ComponentProps<T> = T extends FC<infer Props> ? Props : never
 
 export type RequiredProps<T extends Variant<unknown>> = ComponentProps<T['component']> & {
+  // todo: remove this
   notifyAnimationConfig?: CustomAnimationConfig
 }
 
@@ -16,10 +17,6 @@ export type Variant<T> = {
 }
 
 export type VariantsMap = Readonly<Record<string, Variant<unknown>>>
-
-export type StyleProps = { style?: Partial<NotificationStyleConfig> }
-export type NotificationProps = NotificationOwnProps & StyleProps
-export type MergedNotificationStyleConfig = NotificationStyleConfig & { theme: Theme }
 
 export type NotificationConfigBase = {
   defaultNotificationTime: number
@@ -32,24 +29,17 @@ export type NotificationConfigBase = {
 
 export type NotificationsConfig<Variants> = {
   variants: Variants
-} & NotificationConfigBase
+} & NotificationConfigBase &
+  DefaultLayoutConfig
 
-export type DefaultLayoutConfig = {
-  variants: never
-  notificationPosition?: NotificationPosition
-
-  defaultStylesSettings?: {
-    darkMode?: boolean
-    globalConfig?: Partial<NotificationStyleConfig>
-  } & { [key in `${DefaultKeys}Config`]?: Partial<NotificationStyleConfig> }
-}
-
-export type EmitParam<T> = {
+// todo: move to adequate place
+export type EmitParam<T = unknown> = {
   notificationType: unknown
   params: T
   id: string
   config?: Partial<NotificationConfigBase>
 }
 
+// todo: move to adequate place
 export type ModifiedEmitParam<T> = Omit<EmitParam<T>, 'notificationType'>
-export type DefaultVariantsConfig = NotificationConfigBase & DefaultLayoutConfig
+export type RemoveEmitParam<T> = Pick<EmitParam<T>, 'id'>

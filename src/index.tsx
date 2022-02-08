@@ -9,8 +9,10 @@ import {
 import { defaultVariants } from './defaultConfig/defaultConfig'
 import { useNotificationController } from './hooks/useNotificationController'
 
+// default
 export { defaultVariants }
 
+// animations
 export {
   ZoomInDownZoomOutUp,
   SlideInLeftSlideOutRight,
@@ -19,4 +21,8 @@ export {
   RotateZIn,
 }
 
-export { createNotifications, useNotificationController }
+// core api, root level
+export { createNotifications }
+
+// toolbelt
+export { useNotificationController }

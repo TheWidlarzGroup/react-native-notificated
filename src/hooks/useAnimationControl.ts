@@ -5,12 +5,13 @@ import {
   State,
 } from 'react-native-gesture-handler'
 import {
-  runOnJS,
-  withSpring,
-  useSharedValue,
-  cancelAnimation,
-  withTiming,
   AnimationCallback,
+  cancelAnimation,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
 } from 'react-native-reanimated'
 import type { CustomAnimationConfig } from '../types/animations'
 import { useDrag } from './useDrag'
@@ -26,6 +27,7 @@ export interface SwipeConfig {
 }
 
 interface Props {
+  duration: number
   config: SwipeConfig
   onTransitionInAnimationFinished?: () => void
   onTransitionOutAnimationFinished?: () => void
@@ -62,11 +64,12 @@ const withAnimationCallbackJSThread = (
  * onSwipe(Success|Fail) - triggered when swipe is executed
  * onSwipeFail - triggered when swipe gesture invoked on a notification box DID NOT exceed set of defined thresholds
  * onSwipeSuccess - triggered when swipe gesture invoked on a notification box DID exceed set of defined thresholds
- * dismiss - used to trigger the transitionOut animation on a nitofication box. Resets DRAG. Sets transition type to `out`
+ * dismiss - used to trigger the transitionOut animation on a notification box. Resets DRAG. Sets transition type to `out`
  * preset - used to trigger the transitionIn animation on a notification box. Sets transition type to `in`
  */
-export const useSwipe = ({
+export const useAnimationControl = ({
   config,
+  // duration,
   onSwipeFail,
   onSwipeSuccess,
   onTransitionInAnimationFinished,
@@ -75,11 +78,11 @@ export const useSwipe = ({
   onTransitionOutAnimationNotFinished,
   animationConfig,
 }: Props) => {
+  // const { resetTimer } = useTimer()
   const { direction, distanceThreshold, velocityThreshold } = config
   const animationInConfig = animationConfig.animationConfigIn
   const animationOutConfig = animationConfig?.animationConfigOut
 
-  // const drag = useSharedValue(0)
   const dragConfig = useDrag(config.direction)
   const { resetDrag } = dragConfig
   const progress = useSharedValue(0)
@@ -141,12 +144,12 @@ export const useSwipe = ({
     currentTransitionType.value = 'out'
     resetDrag()
 
-    const config = animationOutConfig || animationInConfig
+    const dismissConfig = animationOutConfig || animationInConfig
 
-    if (config.type === 'spring') {
+    if (dismissConfig.type === 'spring') {
       progress.value = withSpring(
         0,
-        config.config,
+        dismissConfig.config,
         withAnimationCallbackJSThread(
           onTransitionOutAnimationFinishedWrapper,
           onTransitionOutAnimationNotFinishedWrapper
@@ -155,7 +158,7 @@ export const useSwipe = ({
     } else {
       progress.value = withTiming(
         0,
-        config.config,
+        dismissConfig.config,
         withAnimationCallbackJSThread(
           onTransitionOutAnimationFinishedWrapper,
           onTransitionOutAnimationNotFinishedWrapper
@@ -213,19 +216,31 @@ export const useSwipe = ({
     [direction, distanceThreshold, swipeFail, swipeSuccess, velocityThreshold]
   )
 
+  const animatedStyles = useAnimatedStyle(() => {
+    const { transitionInStyles, transitionOutStyles } = animationConfig
+
+    if (['out', 'idle_active'].includes(currentTransitionType.value) && transitionOutStyles) {
+      return transitionOutStyles(progress)
+    }
+
+    return transitionInStyles(progress)
+  })
+
   return {
     ...dragConfig,
     present,
     dismiss,
     handleStateChange,
     progress,
+    animatedStyles,
     currentTransitionType,
     cancelTransitionAnimation,
     revokeTransitionAnimation,
   }
 }
 
-// This has to be cleaned up - it looks terrible
+export type AnimationAPI = ReturnType<typeof useAnimationControl>
+
 type DirectionLookup<T> = Record<SwipeDirection, T>
 type EventKey = keyof PanGestureHandlerEventPayload
 type MappedEventKey = 'translation' | 'velocity'
