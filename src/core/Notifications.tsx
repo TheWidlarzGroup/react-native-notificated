@@ -9,11 +9,11 @@ import { SwipeConfig, useSwipe } from '../hooks/useSwipe'
 import { themeBase } from '../defaultConfig/components/theme'
 import { useNotificationConfig } from './useNotificationConfig'
 import { VariantsRenderer } from './VariantsRenderer'
-import { DEVICE_HEIGHT } from '../utils/deviceInfo'
 import type { EmitParam, NotificationsConfig, VariantsMap } from '../types'
 
 import type { CustomAnimationConfig } from '../types/animations'
 import { emitter } from '../services/NotificationEmitter'
+import { getTopOffset } from './utils'
 
 const { width } = Dimensions.get('window')
 const notificationSideMargin = themeBase.spacing.s
@@ -22,12 +22,11 @@ const initialOffsetX = -(notificationWidth + 2 * notificationSideMargin)
 const initialOffsetY = -300
 const targetOffsetX = width
 const targetOffsetY = true ? 50 : 10
-const extraSpace = 50
 
 const isAndroid = Platform.OS === 'android'
 const maxLongPressDragDistance = 300
 
-type Config = EmitParam<unknown>
+export type Config = EmitParam<unknown>
 
 // TODO: move animationstyles to useSwipe hook
 // TODO: rename useSwipe hook to useAnimationControl
@@ -42,26 +41,9 @@ export const Notifications = () => {
   const [notificationsQueue, setNotificationsQueue] = useState<Config[]>([])
   const notificationConfig = notificationsQueue[0]
 
-  const [notificationHeight, setNotificationHeight] = useState<number>()
+  const [notificationHeight, setNotificationHeight] = useState<number>(0)
+  const topOffset = getTopOffset(notificationsConfigs, notificationConfig, notificationHeight)
 
-  const notificationFinalPosition =
-    notificationConfig?.config?.notificationPosition ?? notificationsConfigs?.notificationPosition
-
-  const getTopOffset = () => {
-    const isNotch = notificationsConfigs.isNotch
-    const topPosition = isNotch ? extraSpace : 10
-
-    switch (notificationFinalPosition) {
-      case 'top':
-        return topPosition
-      case 'center':
-        return DEVICE_HEIGHT / 2 - (notificationHeight ? notificationHeight - extraSpace : 75)
-      case 'bottom':
-        return DEVICE_HEIGHT - (notificationHeight ? notificationHeight + extraSpace : 150)
-      default:
-        return topPosition
-    }
-  }
   const resetToCurrentTimer = () =>
     resetTimer(dismiss, getConfigTime(notificationConfig, notificationsConfigs))
 
@@ -102,6 +84,7 @@ export const Notifications = () => {
     [present]
   )
 
+  //custom hook emitNotification
   useEffect(() => {
     if (notificationConfig) {
       handleNewNotification(notificationConfig)
@@ -136,6 +119,7 @@ export const Notifications = () => {
     }
   }, [popNotification, dismiss, present, handleNewNotification])
 
+  //custom hook modifyNotification
   const modifyNotification = useCallback(
     ({ id, params }) => {
       setNotificationsQueue(
@@ -152,6 +136,7 @@ export const Notifications = () => {
     [notificationsQueue]
   )
 
+  //custom hook removeNotification
   useEffect(() => {
     const removeListener = emitter.addListener('modify_notification', modifyNotification)
     return removeListener
@@ -195,7 +180,7 @@ export const Notifications = () => {
           styles.container,
           isAndroid ? styles.containerAndroid : styles.containerIos,
           animatedStyles,
-          { top: getTopOffset() },
+          { top: topOffset },
         ]}>
         <Animated.View style={[dragStyles]}>
           {notificationConfig && (
@@ -254,6 +239,7 @@ const styles = StyleSheet.create({
   },
 })
 
+//do utilsów
 const getConfigTime = (
   notificationConfig: Config,
   globalConfig: NotificationsConfig<VariantsMap>
@@ -268,6 +254,7 @@ const getConfigTime = (
 
 type ConfigTypeKey = 'ios' | 'android'
 
+//do wyrzucenia
 const swipeConfigs: { [key in ConfigTypeKey]: SwipeConfig } = {
   ios: {
     direction: 'y',
