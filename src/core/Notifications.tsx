@@ -15,8 +15,8 @@ import type { EmitParam, NotificationsConfig, VariantsMap } from '../types'
 import type { CustomAnimationConfig } from '../types/animations'
 
 const { width } = Dimensions.get('window')
-const notificationWidth = width - themeBase.spacing.s * 2
 const notificationSideMargin = themeBase.spacing.s
+const notificationWidth = width - notificationSideMargin * 2
 const initialOffsetX = -(notificationWidth + 2 * notificationSideMargin)
 const initialOffsetY = -300
 const targetOffsetX = width
@@ -241,8 +241,8 @@ const styles = StyleSheet.create({
     top: 50,
   },
   containerAndroid: {
-    left: notificationSideMargin - (notificationWidth + 2 * notificationSideMargin),
-    top: 50,
+    left: notificationSideMargin,
+    top: 30,
   },
   boxWrapper: {
     width: '100%',
