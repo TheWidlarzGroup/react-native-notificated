@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from 'react'
 import Animated from 'react-native-reanimated'
 import type { NotificationState } from '../hooks/useNotificationsStates'
-import type { AnimationAPI } from '../hooks/useAnimationControl'
+import type { AnimationAPI } from '../hooks/useAnimationControl/useAnimationControl'
 import { getTopOffset } from '../utils/pickers'
 import { styles } from '../utils/styles'
 import { Constants } from '../config'

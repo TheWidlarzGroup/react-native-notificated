@@ -1,9 +1,5 @@
 import { useCallback } from 'react'
-import {
-  PanGestureHandlerEventPayload,
-  PanGestureHandlerGestureEvent,
-  State,
-} from 'react-native-gesture-handler'
+import { PanGestureHandlerGestureEvent, State } from 'react-native-gesture-handler'
 import {
   AnimationCallback,
   cancelAnimation,
@@ -13,18 +9,9 @@ import {
   withSpring,
   withTiming,
 } from 'react-native-reanimated'
-import type { CustomAnimationConfig } from '../../types/animations'
-import { useDrag } from './useDrag'
-
-export type SwipeDirection = 'y' | 'x'
-
-export type SwipeConfig = {
-  direction: SwipeDirection
-  initialOffset: number
-  targetOffset: number
-  distanceThreshold: number
-  velocityThreshold: number
-}
+import type { CustomAnimationConfig } from '../../../types/animations'
+import { useDrag } from '../useDrag'
+import type { EventKeyLookup, MappedEventKey, SwipeConfig, SwipeDirection } from './types'
 
 type Props = {
   duration: number
@@ -113,25 +100,16 @@ export const useAnimationControl = ({
   const present = useCallback(() => {
     currentTransitionType.value = 'in'
 
-    if (animationInConfig.type === 'spring') {
-      progress.value = withSpring(
-        1,
-        animationInConfig.config,
-        withAnimationCallbackJSThread(
-          onTransitionInAnimationFinishedWrapper,
-          onTransitionInAnimationNotFinishedWrapper
-        )
+    const pickedWith = animationInConfig.type === 'spring' ? withSpring : withTiming
+
+    progress.value = pickedWith(
+      1,
+      animationInConfig.config,
+      withAnimationCallbackJSThread(
+        onTransitionInAnimationFinishedWrapper,
+        onTransitionInAnimationNotFinishedWrapper
       )
-    } else {
-      progress.value = withTiming(
-        1,
-        animationInConfig.config,
-        withAnimationCallbackJSThread(
-          onTransitionInAnimationFinishedWrapper,
-          onTransitionInAnimationNotFinishedWrapper
-        )
-      )
-    }
+    )
   }, [
     onTransitionInAnimationFinishedWrapper,
     animationInConfig,
@@ -146,25 +124,16 @@ export const useAnimationControl = ({
 
     const dismissConfig = animationOutConfig || animationInConfig
 
-    if (dismissConfig.type === 'spring') {
-      progress.value = withSpring(
-        0,
-        dismissConfig.config,
-        withAnimationCallbackJSThread(
-          onTransitionOutAnimationFinishedWrapper,
-          onTransitionOutAnimationNotFinishedWrapper
-        )
+    const pickedWith = dismissConfig.type === 'spring' ? withSpring : withTiming
+
+    progress.value = pickedWith(
+      0,
+      dismissConfig.config,
+      withAnimationCallbackJSThread(
+        onTransitionOutAnimationFinishedWrapper,
+        onTransitionOutAnimationNotFinishedWrapper
       )
-    } else {
-      progress.value = withTiming(
-        0,
-        dismissConfig.config,
-        withAnimationCallbackJSThread(
-          onTransitionOutAnimationFinishedWrapper,
-          onTransitionOutAnimationNotFinishedWrapper
-        )
-      )
-    }
+    )
   }, [
     onTransitionOutAnimationFinishedWrapper,
     resetDrag,
@@ -240,11 +209,6 @@ export const useAnimationControl = ({
 }
 
 export type AnimationAPI = ReturnType<typeof useAnimationControl>
-
-type DirectionLookup<T> = Record<SwipeDirection, T>
-type EventKey = keyof PanGestureHandlerEventPayload
-type MappedEventKey = 'translation' | 'velocity'
-type EventKeyLookup = DirectionLookup<Record<string, EventKey>>
 
 const directionsLookup: EventKeyLookup = {
   x: {

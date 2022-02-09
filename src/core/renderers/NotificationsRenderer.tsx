@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAnimationControl } from '../hooks/useAnimationControl'
+import { useAnimationControl } from '../hooks/useAnimationControl/useAnimationControl'
 import { useNotificationEventHandler } from '../hooks/useNotificationEventHandler'
 import { useNotificationsStates } from '../hooks/useNotificationsStates'
 import { Constants, swipeConfigs } from '../config'

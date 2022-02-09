@@ -1,6 +1,6 @@
 //do wyrzucenia
 import { Dimensions, Platform } from 'react-native'
-import type { SwipeConfig } from './hooks/useAnimationControl'
+import type { SwipeConfig } from './hooks/useAnimationControl/types'
 
 const isAndroid = Platform.OS === 'android'
 const maxLongPressDragDistance = 300
