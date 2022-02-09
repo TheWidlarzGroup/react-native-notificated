@@ -8,12 +8,13 @@ import type {
 
 type AnimatedStylesType = AnimatedStyleProp<ViewStyle | TextStyle | ImageStyle>
 
-type TransistionStylesConfigFunction = (progress: SharedValue<number>) => AnimatedStylesType
+type TransitionStylesConfigFunction = (progress: SharedValue<number>) => AnimatedStylesType
 
 type SpringAnimationConfig = {
   type: 'spring'
   config: WithSpringConfig
 }
+
 type TimingAnimationConfig = {
   type: 'timing'
   config: WithTimingConfig
@@ -22,8 +23,8 @@ type TimingAnimationConfig = {
 export type AnimationTypeConfig = SpringAnimationConfig | TimingAnimationConfig
 
 export type CustomAnimationConfig = {
-  transitionInStyles: TransistionStylesConfigFunction
-  transitionOutStyles?: TransistionStylesConfigFunction
+  transitionInStyles: TransitionStylesConfigFunction
+  transitionOutStyles?: TransitionStylesConfigFunction
   animationConfigIn: AnimationTypeConfig
   animationConfigOut?: AnimationTypeConfig
 }

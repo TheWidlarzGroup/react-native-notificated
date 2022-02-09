@@ -4,7 +4,7 @@ import type { SwipeConfig } from './hooks/useAnimationControl'
 
 const isAndroid = Platform.OS === 'android'
 const maxLongPressDragDistance = 300
-const { width } = Dimensions.get('window')
+const { width, height } = Dimensions.get('window')
 const notificationSideMargin = 14
 const notificationWidth = width - notificationSideMargin * 2
 const initialOffsetX = -(notificationWidth + 2 * notificationSideMargin)
@@ -21,6 +21,7 @@ export const Constants = {
   targetOffsetX,
   targetOffsetY,
   isAndroid,
+  height,
   width,
 }
 

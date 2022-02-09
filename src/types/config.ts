@@ -17,4 +17,5 @@ export type EventType =
   | 'pop_notification'
   | 'remove_notification'
   | 'modify_notification'
+
 export type EventCallback = (payload?: any) => void

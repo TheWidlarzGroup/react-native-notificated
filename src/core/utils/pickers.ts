@@ -1,6 +1,7 @@
-import type { EmitParam, NotificationsConfig, Variant, VariantsMap } from '../../types'
+import type { NotificationsConfig, Variant, VariantsMap } from '../../types'
 import type { _DefaultVariants } from '../../defaultConfig/defaultConfig'
-import { DEVICE_HEIGHT } from './deviceInfo'
+import { Constants } from '../config'
+import type { EmitParam } from '../services/types'
 
 export const getTopOffset = (
   notificationsConfigs: NotificationsConfig<_DefaultVariants>,
@@ -17,9 +18,9 @@ export const getTopOffset = (
     case 'top':
       return topPosition
     case 'center':
-      return DEVICE_HEIGHT / 2 - (notificationHeight ? notificationHeight - extraSpace : 75)
+      return Constants.height / 2 - (notificationHeight ? notificationHeight - extraSpace : 75)
     case 'bottom':
-      return DEVICE_HEIGHT - (notificationHeight ? notificationHeight + extraSpace : 150)
+      return Constants.height - (notificationHeight ? notificationHeight + extraSpace : 150)
     default:
       return topPosition
   }
