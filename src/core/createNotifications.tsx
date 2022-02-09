@@ -4,7 +4,7 @@ import { _DefaultVariants, InAppNotificationsConfig } from '../defaultConfig/def
 import type { DefaultVariants } from '../defaultConfig/types'
 import NotificationEmitterApi from './services/NotificationEmitterApi'
 import type { NotificationsConfig, VariantsMap } from '../types'
-import { Notifications } from './Notifications'
+import { NotificationsRenderer } from './renderers/NotificationsRenderer'
 import { NotificationContext } from './hooks/useNotificationConfig'
 
 export const createNotifications = <Variants extends VariantsMap = DefaultVariants>(
@@ -16,7 +16,7 @@ export const createNotifications = <Variants extends VariantsMap = DefaultVarian
     return (
       <NotificationContext.Provider value={{ ...InAppNotificationsConfig, ...config }}>
         {children}
-        <Notifications />
+        <NotificationsRenderer />
       </NotificationContext.Provider>
     )
   }

@@ -22,15 +22,15 @@ We divide them into:
 #
 
 ```jsx
-const { useNotifications, NotificationsProvider } = createNotifications({
-  defaultStylesSettings: {
-    darkMode: true,
-    globalConfig: {},
-    successConfig: {},
-    errorConfig: {},
-    warningConfig: {},
-    infoConfig: {},
-  },
+const {useNotifications, NotificationsProvider} = index({
+    defaultStylesSettings: {
+        darkMode: true,
+        globalConfig: {},
+        successConfig: {},
+        errorConfig: {},
+        warningConfig: {},
+        infoConfig: {},
+    },
 })
 ```
 

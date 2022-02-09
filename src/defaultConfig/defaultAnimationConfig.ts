@@ -1,5 +1,5 @@
 import { Easing, interpolate } from 'react-native-reanimated'
-import { generateAnimationConfig } from '../core/generateAnimationConfig'
+import { generateAnimationConfig } from '../core/utils/generateAnimationConfig'
 
 export const ZoomInDownZoomOutUp = generateAnimationConfig({
   animationConfigIn: {

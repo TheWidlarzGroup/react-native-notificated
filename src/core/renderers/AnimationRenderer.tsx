@@ -2,11 +2,11 @@ import React, { ReactNode } from 'react'
 import Animated from 'react-native-reanimated'
 import { LongPressGestureHandler } from 'react-native-gesture-handler'
 import { View } from 'react-native'
-import type { NotificationState } from './hooks/useNotificationsStates'
-import type { AnimationAPI } from './hooks/useAnimationControl'
-import { useTimer } from './hooks/useTimer'
-import { styles } from './utils/styles'
-import { Constants } from './config'
+import type { NotificationState } from '../hooks/useNotificationsStates'
+import type { AnimationAPI } from '../hooks/useAnimationControl'
+import { useTimer } from '../hooks/useTimer'
+import { styles } from '../utils/styles'
+import { Constants } from '../config'
 
 type Props = {
   children: ReactNode
