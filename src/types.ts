@@ -31,15 +31,3 @@ export type NotificationsConfig<Variants> = {
   variants: Variants
 } & NotificationConfigBase &
   DefaultLayoutConfig
-
-// todo: move to adequate place
-export type EmitParam<T = unknown> = {
-  notificationType: unknown
-  params: T
-  id: string
-  config?: Partial<NotificationConfigBase>
-}
-
-// todo: move to adequate place
-export type ModifiedEmitParam<T> = Omit<EmitParam<T>, 'notificationType'>
-export type RemoveEmitParam<T> = Pick<EmitParam<T>, 'id'>
