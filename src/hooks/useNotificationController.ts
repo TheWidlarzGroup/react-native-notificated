@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import NotificationEmitterApi from '../services/NotificationEmitterApi'
+import NotificationEmitterApi from '../core/services/NotificationEmitterApi'
 import type { ModifiedEmitParam } from '../types'
 import { useVariantsRendererContext } from '../core/VariantsRenderer'
 

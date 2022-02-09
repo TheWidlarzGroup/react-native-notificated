@@ -1,34 +1,13 @@
 import React, { createContext, PropsWithChildren, useContext } from 'react'
-import type { EmitParam, NotificationsConfig, Variant } from '../types'
+import type { EmitParam, NotificationsConfig, VariantsMap } from '../types'
+import { pickVariant } from './utils/pickers'
 
 type Props = {
-  config: NotificationsConfig<any>
-  notificationConfig: EmitParam<any>
+  config: NotificationsConfig<VariantsMap>
+  notificationConfig: EmitParam
 }
 
-export const VariantsRenderer = (props: Props) => {
-  const variant = pickVariant(props.config, props.notificationConfig.notificationType as string)
-
-  const Component = variant.component
-
-  return (
-    <VariantsRendererProvider id={props.notificationConfig.id}>
-      <Component {...props.notificationConfig.params} />
-    </VariantsRendererProvider>
-  )
-}
-
-const pickVariant = (config: NotificationsConfig<any>, variantKey: string): Variant<any> => {
-  const variant = config.variants[variantKey]
-
-  if (variant) {
-    return variant
-  }
-
-  throw Error(`${variantKey} doesn't exists`)
-}
-
-interface VariantsRendererContextProps {
+type VariantsRendererContextProps = {
   id: string
 }
 
@@ -48,4 +27,16 @@ const VariantsRendererProvider = ({
 
 export const useVariantsRendererContext = () => {
   return useContext(VariantsRendererContext)
+}
+
+export const VariantsRenderer = (props: Props) => {
+  const variant = pickVariant(props.config, props.notificationConfig.notificationType as string)
+
+  const Component = variant.component
+
+  return (
+    <VariantsRendererProvider id={props.notificationConfig.id}>
+      <Component {...props.notificationConfig.params} />
+    </VariantsRendererProvider>
+  )
 }

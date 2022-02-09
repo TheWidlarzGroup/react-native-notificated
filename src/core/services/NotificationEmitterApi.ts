@@ -5,8 +5,8 @@ import type {
   NotificationConfigBase,
   RequiredProps,
   VariantsMap,
-} from '../types'
-import type { DefaultVariants } from '../defaultConfig/types'
+} from '../../types'
+import type { DefaultVariants } from '../../defaultConfig/types'
 import { emitter } from './NotificationEmitter'
 
 export const remove = (id: string) => emitter.emit('remove_notification', { id })

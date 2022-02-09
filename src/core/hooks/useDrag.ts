@@ -6,7 +6,7 @@ import {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated'
-import type { DragDirection } from '../types/animations'
+import type { DragDirection } from '../../types/animations'
 
 export const useDrag = (direction: DragDirection) => {
   const x = useSharedValue(0)

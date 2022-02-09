@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
-import type { NotificationsConfig, VariantsMap } from '../types'
-import type { _DefaultVariants } from '../defaultConfig/defaultConfig'
+import type { NotificationsConfig, VariantsMap } from '../../types'
+import type { _DefaultVariants } from '../../defaultConfig/defaultConfig'
 
 export const NotificationContext = createContext<NotificationsConfig<VariantsMap> | null>(null)
 

@@ -13,7 +13,7 @@ import {
   withSpring,
   withTiming,
 } from 'react-native-reanimated'
-import type { CustomAnimationConfig } from '../types/animations'
+import type { CustomAnimationConfig } from '../../types/animations'
 import { useDrag } from './useDrag'
 
 export type SwipeDirection = 'y' | 'x'

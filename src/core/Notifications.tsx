@@ -1,16 +1,12 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import Animated from 'react-native-reanimated'
-import { LongPressGestureHandler, PanGestureHandler } from 'react-native-gesture-handler'
-import { useTimer } from '../hooks/useTimer'
-import { useAnimationControl } from '../hooks/useAnimationControl'
+import { useAnimationControl } from './hooks/useAnimationControl'
+import { useNotificationEventHandler } from './hooks/useNotificationEventHandler'
+import { useNotificationsStates } from './hooks/useNotificationsStates'
+import { Constants, swipeConfigs } from './config'
+import { GestureHandler } from './GestureHandler'
+import { Container } from './Container'
+import { AnimationWrapper } from './AnimationWrapper'
 import { VariantsRenderer } from './VariantsRenderer'
-import { useNotificationEventHandler } from './useNotificationEventHandler'
-import { useNotificationsStates } from './useNotificationsStates'
-import Constants from './constants'
-import { swipeConfigs } from './config'
-
-// TODO: add fetching animation config from variants to the chain
 
 export const Notifications = () => {
   const state = useNotificationsStates()
@@ -20,7 +16,6 @@ export const Notifications = () => {
     animationConfig: state.animationConfig,
     config: Constants.isAndroid ? swipeConfigs.android : swipeConfigs.ios,
   })
-  const { clearTimer, resetTimer } = useTimer()
 
   useNotificationEventHandler({
     present: animationAPI.present,
@@ -31,76 +26,15 @@ export const Notifications = () => {
   })
 
   return (
-    <PanGestureHandler
-      ref={state.panHandlerRef}
-      simultaneousHandlers={state.longPressHandlerRef}
-      onGestureEvent={animationAPI.dragGestureHandler}
-      onHandlerStateChange={animationAPI.handleStateChange}>
-      <Animated.View
-        onLayout={(e) => state.setNotificationHeight(e.nativeEvent.layout.height)}
-        testID="notificationsContainer"
-        style={[
-          animationAPI.animatedStyles,
-          styles.container,
-          { top: state.topOffset },
-          Constants.isAndroid ? styles.containerAndroid : styles.containerIos,
-        ]}>
-        <Animated.View style={[animationAPI.dragStyles]}>
-          {state.notificationConfig && (
-            <LongPressGestureHandler
-              minDurationMs={0}
-              maxDist={Constants.maxLongPressDragDistance}
-              ref={state.longPressHandlerRef}
-              simultaneousHandlers={state.panHandlerRef}
-              onActivated={() => {
-                animationAPI.cancelTransitionAnimation()
-                clearTimer()
-              }}
-              onEnded={() => {
-                animationAPI.revokeTransitionAnimation()
-
-                if (animationAPI.currentTransitionType.value === 'in') {
-                  resetTimer(animationAPI.dismiss, state.duration)
-                }
-
-                if (animationAPI.currentTransitionType.value === 'idle_active') {
-                  resetTimer(animationAPI.dismiss, state.duration)
-                }
-              }}>
-              <View style={styles.boxWrapper}>
-                <VariantsRenderer
-                  config={state.notificationsConfigs}
-                  notificationConfig={state.notificationConfig}
-                />
-              </View>
-            </LongPressGestureHandler>
-          )}
-        </Animated.View>
-      </Animated.View>
-    </PanGestureHandler>
+    <GestureHandler state={state} animationAPI={animationAPI}>
+      <Container state={state} animationAPI={animationAPI}>
+        <AnimationWrapper state={state} animationAPI={animationAPI}>
+          <VariantsRenderer
+            config={state.globalConfig}
+            notificationConfig={state.notificationConfig}
+          />
+        </AnimationWrapper>
+      </Container>
+    </GestureHandler>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    width: Constants.notificationWidth,
-    minHeight: 30,
-    left: 0,
-    backgroundColor: 'transparent',
-    top: 0,
-    zIndex: 200,
-    justifyContent: 'flex-start',
-  },
-  containerIos: {
-    left: Constants.notificationSideMargin,
-    top: 50,
-  },
-  containerAndroid: {
-    left: Constants.notificationSideMargin,
-    top: 30,
-  },
-  boxWrapper: {
-    width: '100%',
-  },
-})

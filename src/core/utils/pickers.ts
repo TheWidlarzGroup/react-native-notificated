@@ -1,7 +1,6 @@
-import type { NotificationsConfig, VariantsMap } from '../types'
-import type { _DefaultVariants } from '../defaultConfig/defaultConfig'
-import { DEVICE_HEIGHT } from '../utils/deviceInfo'
-import type { EmitParam } from '../types'
+import type { EmitParam, NotificationsConfig, Variant, VariantsMap } from '../../types'
+import type { _DefaultVariants } from '../../defaultConfig/defaultConfig'
+import { DEVICE_HEIGHT } from './deviceInfo'
 
 export const getTopOffset = (
   notificationsConfigs: NotificationsConfig<_DefaultVariants>,
@@ -35,4 +34,17 @@ export const getConfigTime = (
       ?.defaultNotificationTime ??
     globalConfig.defaultNotificationTime
   )
+}
+
+export const pickVariant = (
+  config: NotificationsConfig<VariantsMap>,
+  variantKey: string
+): Variant<any> => {
+  const variant = config.variants[variantKey]
+
+  if (variant) {
+    return variant
+  }
+
+  throw Error(`${variantKey} doesn't exists`)
 }
