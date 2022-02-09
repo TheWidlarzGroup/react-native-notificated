@@ -2,7 +2,7 @@ import React, { VFC } from 'react'
 import { Text } from 'react-native'
 import { styles } from '../styles'
 
-interface Props {
+type Props = {
   onPress: () => void
   buttonText: string
 }

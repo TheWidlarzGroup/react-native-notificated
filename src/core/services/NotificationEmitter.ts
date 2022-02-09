@@ -1,6 +1,6 @@
 import type { EventCallback, EventType } from '../../types/config'
 
-interface NotificationListener {
+type NotificationListener = {
   eventType: EventType
   callback: EventCallback
 }

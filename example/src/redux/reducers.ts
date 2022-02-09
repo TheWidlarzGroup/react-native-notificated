@@ -1,7 +1,7 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
 import { notify } from '../components/loginForm/LoginForm'
 
-interface FormState {
+type FormState = {
   login: string
   password: string
 }

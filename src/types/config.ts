@@ -1,7 +1,7 @@
 export type NotificationsType = 'default' | 'success' | 'warning' | 'error'
 export type NotificationPosition = 'top' | 'center' | 'bottom'
 
-export interface NotificationConfig {
+export type NotificationConfig = {
   type: NotificationsType
   withButton?: boolean
   time?: number

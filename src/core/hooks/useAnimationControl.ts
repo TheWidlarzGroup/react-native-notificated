@@ -18,7 +18,7 @@ import { useDrag } from './useDrag'
 
 export type SwipeDirection = 'y' | 'x'
 
-export interface SwipeConfig {
+export type SwipeConfig = {
   direction: SwipeDirection
   initialOffset: number
   targetOffset: number
@@ -26,7 +26,7 @@ export interface SwipeConfig {
   velocityThreshold: number
 }
 
-interface Props {
+type Props = {
   duration: number
   config: SwipeConfig
   onTransitionInAnimationFinished?: () => void
