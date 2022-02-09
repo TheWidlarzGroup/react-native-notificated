@@ -12,7 +12,7 @@ type Props = {
   animationAPI: Pick<AnimationAPI, 'animatedStyles'>
 }
 
-export const Container = ({ children, state, animationAPI }: Props) => {
+export const PositionRenderer = ({ children, state, animationAPI }: Props) => {
   const [notificationHeight, setNotificationHeight] = useState(0)
   const topOffset = getTopOffset(state.globalConfig, state.notificationConfig, notificationHeight)
 

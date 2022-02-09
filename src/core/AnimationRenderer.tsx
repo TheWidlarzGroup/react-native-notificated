@@ -24,7 +24,7 @@ type Props = {
   >
 }
 
-export const AnimationWrapper = ({ children, animationAPI, state }: Props) => {
+export const AnimationRenderer = ({ children, animationAPI, state }: Props) => {
   const { clearTimer, resetTimer } = useTimer()
 
   return (

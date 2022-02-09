@@ -4,8 +4,8 @@ import { useNotificationEventHandler } from './hooks/useNotificationEventHandler
 import { useNotificationsStates } from './hooks/useNotificationsStates'
 import { Constants, swipeConfigs } from './config'
 import { GestureHandler } from './GestureHandler'
-import { Container } from './Container'
-import { AnimationWrapper } from './AnimationWrapper'
+import { PositionRenderer } from './PositionRenderer'
+import { AnimationRenderer } from './AnimationRenderer'
 import { VariantsRenderer } from './VariantsRenderer'
 
 export const Notifications = () => {
@@ -27,14 +27,14 @@ export const Notifications = () => {
 
   return (
     <GestureHandler state={state} animationAPI={animationAPI}>
-      <Container state={state} animationAPI={animationAPI}>
-        <AnimationWrapper state={state} animationAPI={animationAPI}>
+      <PositionRenderer state={state} animationAPI={animationAPI}>
+        <AnimationRenderer state={state} animationAPI={animationAPI}>
           <VariantsRenderer
             config={state.globalConfig}
             notificationConfig={state.notificationConfig}
           />
-        </AnimationWrapper>
-      </Container>
+        </AnimationRenderer>
+      </PositionRenderer>
     </GestureHandler>
   )
 }
