@@ -2,7 +2,7 @@ import { useNotificationConfig } from './useNotificationConfig'
 import { useRef, useState } from 'react'
 import { getConfigTime } from '../utils/pickers'
 import type { CustomAnimationConfig } from '../../types/animations'
-import type { EmitParam } from '../../types'
+import type { EmitParam } from '../services/types'
 
 export const useNotificationsStates = () => {
   const panHandlerRef = useRef(null)

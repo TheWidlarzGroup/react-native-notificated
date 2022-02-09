@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNotificationConfig } from '../../core/hooks/useNotificationConfig'
 import { mergeProps } from '../mergeProps'
-import { NotificationBase } from './NotificationBase'
+import { NotificationBase } from './notificationBase'
 import type { NotificationProps } from '../types'
 
 export const InfoNotification = (props: NotificationProps) => {

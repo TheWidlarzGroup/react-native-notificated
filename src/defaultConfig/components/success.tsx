@@ -1,5 +1,5 @@
 import React from 'react'
-import { NotificationBase } from './NotificationBase'
+import { NotificationBase } from './notificationBase'
 import { useNotificationConfig } from '../../core/hooks/useNotificationConfig'
 import { mergeProps } from '../mergeProps'
 import type { NotificationProps } from '../types'

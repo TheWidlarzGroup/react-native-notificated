@@ -1,6 +1,7 @@
 import React, { createContext, PropsWithChildren, useContext } from 'react'
-import type { EmitParam, NotificationsConfig, VariantsMap } from '../../types'
+import type { NotificationsConfig, VariantsMap } from '../../types'
 import { pickVariant } from '../utils/pickers'
+import type { EmitParam } from '../services/types'
 
 type Props = {
   config: NotificationsConfig<VariantsMap>

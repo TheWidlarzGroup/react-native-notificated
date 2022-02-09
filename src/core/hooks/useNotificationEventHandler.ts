@@ -1,9 +1,8 @@
 import { useEffect } from 'react'
 import { emitter } from '../services/NotificationEmitter'
-import type { ModifiedEmitParam, RemoveEmitParam } from '../../types'
 import type { NotificationState } from './useNotificationsStates'
-import type { EmitParam } from '../../types'
 import type { AnimationAPI } from './useAnimationControl'
+import type { EmitParam, ModifiedEmitParam, RemoveEmitParam } from '../services/types'
 
 type Props = Pick<AnimationAPI, 'dismiss' | 'present'> &
   Pick<NotificationState, 'setNotificationsQueue' | 'notificationsQueue' | 'notificationConfig'>
