@@ -1,7 +1,8 @@
 import type { NotificationConfigBase } from '../../types'
+import type { KeyType } from '../../types/misc'
 
 export type EmitParam<T = unknown> = {
-  notificationType: unknown
+  notificationType: KeyType
   params: T
   id: string
   config?: Partial<NotificationConfigBase>

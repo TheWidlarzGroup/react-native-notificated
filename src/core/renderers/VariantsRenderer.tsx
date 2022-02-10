@@ -31,11 +31,7 @@ export const useVariantsRendererContext = () => {
 }
 
 export const VariantsRenderer = (props: Props) => {
-  const variant = pickVariant(
-    props.config,
-    props.notificationEvent.notificationType as string,
-    true
-  )
+  const variant = pickVariant(props.config, props.notificationEvent.notificationType, true)
 
   const Component = variant.component
 

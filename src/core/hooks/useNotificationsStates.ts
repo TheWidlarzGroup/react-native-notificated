@@ -1,8 +1,7 @@
 import { useNotificationConfig } from './useNotificationConfig'
 import { useRef, useState } from 'react'
-import { getTopOffset, pickVariant } from '../utils/pickers'
+import { getTopOffset, mergeConfigs } from '../utils/pickers'
 import type { EmitParam } from '../services/types'
-import type { NotificationsConfig, VariantsMap } from '../../types'
 
 export const useNotificationsStates = () => {
   const panHandlerRef = useRef(null)
@@ -26,18 +25,6 @@ export const useNotificationsStates = () => {
     setNotificationsQueue,
     setNotificationHeight,
   }
-}
-
-const mergeConfigs = (
-  globalConfig: NotificationsConfig<VariantsMap>,
-  notificationConfig: EmitParam | undefined
-): NotificationsConfig<VariantsMap> => {
-  const variantConfig = pickVariant(
-    globalConfig,
-    notificationConfig?.notificationType as string
-  )?.config
-
-  return { ...globalConfig, ...variantConfig, ...notificationConfig }
 }
 
 export type NotificationState = ReturnType<typeof useNotificationsStates>

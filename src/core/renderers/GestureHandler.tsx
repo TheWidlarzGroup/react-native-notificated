@@ -2,11 +2,20 @@ import React, { ReactNode } from 'react'
 import { PanGestureHandler } from 'react-native-gesture-handler'
 import type { AnimationAPI } from '../hooks/useAnimationControl/useAnimationControl'
 import type { NotificationState } from '../hooks/useNotificationsStates'
+import Animated from 'react-native-reanimated'
+import { styles } from '../utils/styles'
+import { Constants } from '../config'
 
 type Props = {
   children: ReactNode
-  state: Pick<NotificationState, 'longPressHandlerRef' | 'panHandlerRef'>
-  animationAPI: Pick<AnimationAPI, 'dragGestureHandler' | 'handleDragStateChange'>
+  state: Pick<
+    NotificationState,
+    'longPressHandlerRef' | 'panHandlerRef' | 'setNotificationHeight' | 'topOffset'
+  >
+  animationAPI: Pick<
+    AnimationAPI,
+    'dragGestureHandler' | 'handleDragStateChange' | 'animatedStyles'
+  >
 }
 
 export const GestureHandler = ({ children, state, animationAPI }: Props) => {
@@ -16,7 +25,16 @@ export const GestureHandler = ({ children, state, animationAPI }: Props) => {
       simultaneousHandlers={state.longPressHandlerRef}
       onGestureEvent={animationAPI.dragGestureHandler}
       onHandlerStateChange={animationAPI.handleDragStateChange}>
-      {children}
+      <Animated.View
+        onLayout={(e) => state.setNotificationHeight(e.nativeEvent.layout.height)}
+        style={[
+          animationAPI.animatedStyles,
+          styles.container,
+          { top: state.topOffset },
+          Constants.isAndroid ? styles.containerAndroid : styles.containerIos,
+        ]}>
+        {children}
+      </Animated.View>
     </PanGestureHandler>
   )
 }

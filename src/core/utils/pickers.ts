@@ -2,6 +2,7 @@ import { Constants } from '../config'
 import type { NotificationsConfig, Variant, VariantsMap } from '../../types'
 import type { _DefaultVariants } from '../../defaultConfig/defaultConfig'
 import type { EmitParam } from '../services/types'
+import type { KeyType } from '../../types/misc'
 
 export const getTopOffset = (
   notificationsConfigs: NotificationsConfig<_DefaultVariants>,
@@ -28,14 +29,24 @@ export const getTopOffset = (
 
 export const pickVariant = (
   config: NotificationsConfig<VariantsMap>,
-  variantKey: string | undefined,
+  variantKey: KeyType | undefined,
   strict = false
 ): Variant<any> => {
-  const variant = config.variants[variantKey || '']
+  const convertedVariantKey = String(variantKey)
+  const variant = config.variants[convertedVariantKey]
 
   if (!variant && strict) {
-    throw Error(`${variantKey} doesn't exists`)
+    throw Error(`${convertedVariantKey} doesn't exists`)
   }
 
   return variant
+}
+
+export const mergeConfigs = (
+  globalConfig: NotificationsConfig<VariantsMap>,
+  notificationConfig: EmitParam | undefined
+): NotificationsConfig<VariantsMap> => {
+  const variantConfig = pickVariant(globalConfig, notificationConfig?.notificationType)?.config
+
+  return { ...globalConfig, ...variantConfig, ...notificationConfig }
 }
