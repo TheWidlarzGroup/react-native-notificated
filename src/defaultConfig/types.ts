@@ -30,7 +30,7 @@ export type NotificationStyleConfig = Partial<{
   descriptionColor: string
   bgColor: string
   borderRadius: number
-  accentColor: any
+  accentColor: string
   borderWidth: number
   multiline: number
   defaultIconType: IconVisualStyle

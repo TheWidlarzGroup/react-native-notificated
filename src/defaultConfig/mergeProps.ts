@@ -21,9 +21,9 @@ export const mergeProps = (
     defaultNotificationTypeConfig?.leftIconSource ??
     defaultGlobalConfig?.leftIconSource
 
-  const chooseProps = (
-    property: keyof NotificationStyleConfig
-  ): NotificationStyleConfig[typeof property] => {
+  const chooseProps = <Property extends keyof NotificationStyleConfig>(
+    property: Property
+  ): NotificationStyleConfig[Property] => {
     return (
       props.style?.[property] ??
       defaultNotificationTypeConfig?.[property] ??
