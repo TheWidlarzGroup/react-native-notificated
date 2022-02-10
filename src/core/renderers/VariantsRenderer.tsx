@@ -5,7 +5,7 @@ import type { EmitParam } from '../services/types'
 
 type Props = {
   config: NotificationsConfig<VariantsMap>
-  notificationConfig: EmitParam
+  notificationEvent: EmitParam
 }
 
 type VariantsRendererContextProps = {
@@ -31,13 +31,17 @@ export const useVariantsRendererContext = () => {
 }
 
 export const VariantsRenderer = (props: Props) => {
-  const variant = pickVariant(props.config, props.notificationConfig.notificationType as string)
+  const variant = pickVariant(
+    props.config,
+    props.notificationEvent.notificationType as string,
+    true
+  )
 
   const Component = variant.component
 
   return (
-    <VariantsRendererProvider id={props.notificationConfig.id}>
-      <Component {...props.notificationConfig.params} />
+    <VariantsRendererProvider id={props.notificationEvent.id}>
+      <Component {...props.notificationEvent.params} />
     </VariantsRendererProvider>
   )
 }

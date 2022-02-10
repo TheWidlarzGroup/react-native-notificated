@@ -20,8 +20,8 @@ export type Variant<T> = {
 export type VariantsMap = Readonly<Record<string, Variant<unknown>>>
 
 export type NotificationConfigBase = {
-  defaultNotificationTime: number
-  defaultNotificationTimeLong: number
+  duration: number
+  durationLong: number
   notificationPosition: NotificationPosition
   notificationMsgLengthTimerThreshold: number
   animationConfig: CustomAnimationConfig

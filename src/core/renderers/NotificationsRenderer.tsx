@@ -15,7 +15,7 @@ export const NotificationsRenderer = () => {
   useNotificationEventHandler({
     present: animationAPI.present,
     dismiss: animationAPI.dismiss,
-    notificationConfig: state.notificationConfig,
+    notificationEvent: state.notificationEvent,
     notificationsQueue: state.notificationsQueue,
     setNotificationsQueue: state.setNotificationsQueue,
   })
@@ -24,10 +24,7 @@ export const NotificationsRenderer = () => {
     <GestureHandler state={state} animationAPI={animationAPI}>
       <PositionRenderer state={state} animationAPI={animationAPI}>
         <AnimationRenderer state={state} animationAPI={animationAPI}>
-          <VariantsRenderer
-            config={state.globalConfig}
-            notificationConfig={state.notificationConfig}
-          />
+          <VariantsRenderer config={state.config} notificationEvent={state.notificationEvent} />
         </AnimationRenderer>
       </PositionRenderer>
     </GestureHandler>

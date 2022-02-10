@@ -5,20 +5,20 @@ import type { AnimationAPI } from './useAnimationControl/useAnimationControl'
 import type { EmitParam, ModifiedEmitParam, RemoveEmitParam } from '../services/types'
 
 type Props = Pick<AnimationAPI, 'dismiss' | 'present'> &
-  Pick<NotificationState, 'setNotificationsQueue' | 'notificationsQueue' | 'notificationConfig'>
+  Pick<NotificationState, 'setNotificationsQueue' | 'notificationsQueue' | 'notificationEvent'>
 
 export const useNotificationEventHandler = ({
   dismiss,
-  notificationConfig,
+  notificationEvent,
   notificationsQueue,
   present,
   setNotificationsQueue,
 }: Props) => {
   useEffect(() => {
-    if (notificationConfig) {
+    if (notificationEvent) {
       present()
     }
-  }, [notificationConfig, present])
+  }, [notificationEvent, present])
 
   useEffect(() => {
     const removeListener = emitter.addListener('add_notification', (config: EmitParam<unknown>) => {

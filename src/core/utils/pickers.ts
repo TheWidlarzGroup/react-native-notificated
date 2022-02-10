@@ -1,6 +1,6 @@
+import { Constants } from '../config'
 import type { NotificationsConfig, Variant, VariantsMap } from '../../types'
 import type { _DefaultVariants } from '../../defaultConfig/defaultConfig'
-import { Constants } from '../config'
 import type { EmitParam } from '../services/types'
 
 export const getTopOffset = (
@@ -25,27 +25,17 @@ export const getTopOffset = (
       return topPosition
   }
 }
-export const getConfigTime = (
-  notificationConfig: EmitParam,
-  globalConfig: NotificationsConfig<VariantsMap>
-) => {
-  return (
-    notificationConfig.config?.defaultNotificationTime ??
-    globalConfig?.variants[notificationConfig.notificationType as string]?.config
-      ?.defaultNotificationTime ??
-    globalConfig.defaultNotificationTime
-  )
-}
 
 export const pickVariant = (
   config: NotificationsConfig<VariantsMap>,
-  variantKey: string
+  variantKey: string | undefined,
+  strict = false
 ): Variant<any> => {
-  const variant = config.variants[variantKey]
+  const variant = config.variants[variantKey || '']
 
-  if (variant) {
-    return variant
+  if (!variant && strict) {
+    throw Error(`${variantKey} doesn't exists`)
   }
 
-  throw Error(`${variantKey} doesn't exists`)
+  return variant
 }

@@ -1,10 +1,8 @@
 import { useNotificationConfig } from './useNotificationConfig'
 import { useRef, useState } from 'react'
-import { getConfigTime, getTopOffset, pickVariant } from '../utils/pickers'
-import type { CustomAnimationConfig } from '../../types/animations'
+import { getTopOffset, pickVariant } from '../utils/pickers'
 import type { EmitParam } from '../services/types'
-import type { GestureConfig } from '../../types/gestures'
-import { InAppNotificationsConfig } from '../../defaultConfig/defaultConfig'
+import type { NotificationsConfig, VariantsMap } from '../../types'
 
 export const useNotificationsStates = () => {
   const panHandlerRef = useRef(null)
@@ -13,40 +11,33 @@ export const useNotificationsStates = () => {
   const [notificationsQueue, setNotificationsQueue] = useState<EmitParam[]>([])
   const [notificationHeight, setNotificationHeight] = useState(0)
 
-  const notificationConfig = notificationsQueue[0]
+  const notificationEvent = notificationsQueue[0]
+  const config = mergeConfigs(globalConfig, notificationEvent)
 
-  const variantConfig = pickVariant(
-    InAppNotificationsConfig,
-    notificationConfig.notificationType as string
-  ).config
-
-  const duration = getConfigTime(notificationConfig, globalConfig)
-
-  const animationConfig: CustomAnimationConfig =
-    notificationConfig?.config?.animationConfig ??
-    variantConfig?.animationConfig ??
-    globalConfig?.animationConfig
-
-  const gestureConfig: GestureConfig =
-    notificationConfig?.config?.gestureConfig ??
-    variantConfig?.gestureConfig ??
-    globalConfig?.gestureConfig
-
-  const topOffset = getTopOffset(globalConfig, notificationConfig, notificationHeight)
+  const topOffset = getTopOffset(globalConfig, notificationEvent, notificationHeight)
 
   return {
-    duration,
+    config,
     topOffset,
-    globalConfig,
-    gestureConfig,
     panHandlerRef,
-    animationConfig,
+    notificationEvent,
     notificationsQueue,
-    notificationConfig,
     longPressHandlerRef,
     setNotificationsQueue,
     setNotificationHeight,
   }
+}
+
+const mergeConfigs = (
+  globalConfig: NotificationsConfig<VariantsMap>,
+  notificationConfig: EmitParam | undefined
+): NotificationsConfig<VariantsMap> => {
+  const variantConfig = pickVariant(
+    globalConfig,
+    notificationConfig?.notificationType as string
+  )?.config
+
+  return { ...globalConfig, ...variantConfig, ...notificationConfig }
 }
 
 export type NotificationState = ReturnType<typeof useNotificationsStates>

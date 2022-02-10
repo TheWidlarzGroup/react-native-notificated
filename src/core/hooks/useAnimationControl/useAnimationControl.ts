@@ -7,20 +7,17 @@ import {
   withSpring,
   withTiming,
 } from 'react-native-reanimated'
-import type { GestureConfig } from '../../../types/gestures'
-import type { CustomAnimationConfig } from '../../../types/animations'
 import { useDrag } from '../useDrag'
+import type { NotificationState } from '../useNotificationsStates'
 
 type Props = {
-  duration: number
-  gestureConfig: GestureConfig
+  config: NotificationState['config']
   onTransitionInAnimationFinished?: () => void
   onTransitionOutAnimationFinished?: () => void
   onTransitionInAnimationNotFinished?: () => void
   onTransitionOutAnimationNotFinished?: () => void
   onSwipeSuccess?: () => void
   onSwipeFail?: () => void
-  animationConfig: CustomAnimationConfig
 }
 
 const withAnimationCallbackJSThread = (
@@ -53,15 +50,13 @@ const withAnimationCallbackJSThread = (
  * preset - used to trigger the transitionIn animation on a notification box. Sets transition type to `in`
  */
 export const useAnimationControl = ({
-  gestureConfig,
-  // duration,
+  config: { gestureConfig, animationConfig },
   onSwipeFail,
   onSwipeSuccess,
   onTransitionInAnimationFinished,
   onTransitionOutAnimationFinished,
   onTransitionInAnimationNotFinished,
   onTransitionOutAnimationNotFinished,
-  animationConfig,
 }: Props) => {
   // const { resetTimer } = useTimer()
   const animationInConfig = animationConfig.animationConfigIn

@@ -12,7 +12,7 @@ type Props = {
   children: ReactNode
   state: Pick<
     NotificationState,
-    'notificationConfig' | 'panHandlerRef' | 'longPressHandlerRef' | 'duration'
+    'notificationEvent' | 'panHandlerRef' | 'longPressHandlerRef' | 'config'
   >
   animationAPI: Pick<
     AnimationAPI,
@@ -29,7 +29,7 @@ export const AnimationRenderer = ({ children, animationAPI, state }: Props) => {
 
   return (
     <Animated.View style={[animationAPI.animatedStyles]}>
-      {state.notificationConfig && (
+      {state.notificationEvent && (
         <LongPressGestureHandler
           minDurationMs={0}
           maxDist={Constants.maxLongPressDragDistance}
@@ -43,11 +43,11 @@ export const AnimationRenderer = ({ children, animationAPI, state }: Props) => {
             animationAPI.revokeTransitionAnimation()
 
             if (animationAPI.currentTransitionType.value === 'in') {
-              resetTimer(animationAPI.dismiss, state.duration)
+              resetTimer(animationAPI.dismiss, state.config.duration)
             }
 
             if (animationAPI.currentTransitionType.value === 'idle_active') {
-              resetTimer(animationAPI.dismiss, state.duration)
+              resetTimer(animationAPI.dismiss, state.config.duration)
             }
           }}>
           <View style={styles.boxWrapper}>{children}</View>
