@@ -6,14 +6,14 @@ import type { KeyType } from '../../types/misc'
 
 export const getTopOffset = (
   notificationsConfigs: NotificationsConfig<_DefaultVariants>,
-  notificationConfig: EmitParam,
+  notificationEvent: EmitParam,
   notificationHeight: number
 ) => {
   const isNotch = notificationsConfigs.isNotch
   const extraSpace = 50
   const topPosition = isNotch ? extraSpace : 10
   const notificationFinalPosition =
-    notificationConfig?.config?.notificationPosition ?? notificationsConfigs?.notificationPosition
+    notificationEvent?.config?.notificationPosition ?? notificationsConfigs?.notificationPosition
 
   switch (notificationFinalPosition) {
     case 'top':
@@ -44,9 +44,9 @@ export const pickVariant = (
 
 export const mergeConfigs = (
   globalConfig: NotificationsConfig<VariantsMap>,
-  notificationConfig: EmitParam | undefined
+  notificationEvent: EmitParam | undefined
 ): NotificationsConfig<VariantsMap> => {
-  const variantConfig = pickVariant(globalConfig, notificationConfig?.notificationType)?.config
+  const variantConfig = pickVariant(globalConfig, notificationEvent?.notificationType)?.config
 
-  return { ...globalConfig, ...variantConfig, ...notificationConfig }
+  return { ...globalConfig, ...variantConfig, ...notificationEvent }
 }
