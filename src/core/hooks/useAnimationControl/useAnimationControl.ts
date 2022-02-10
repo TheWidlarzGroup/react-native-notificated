@@ -1,21 +1,18 @@
 import { useCallback } from 'react'
-import { PanGestureHandlerGestureEvent, State } from 'react-native-gesture-handler'
 import {
   AnimationCallback,
   cancelAnimation,
   runOnJS,
-  useAnimatedStyle,
   useSharedValue,
   withSpring,
   withTiming,
 } from 'react-native-reanimated'
 import type { CustomAnimationConfig } from '../../../types/animations'
 import { useDrag } from '../useDrag'
-import type { EventKeyLookup, MappedEventKey, SwipeConfig, SwipeDirection } from './types'
 
 type Props = {
   duration: number
-  config: SwipeConfig
+  config: DragConfig
   onTransitionInAnimationFinished?: () => void
   onTransitionOutAnimationFinished?: () => void
   onTransitionInAnimationNotFinished?: () => void
@@ -70,8 +67,8 @@ export const useAnimationControl = ({
   const animationInConfig = animationConfig.animationConfigIn
   const animationOutConfig = animationConfig?.animationConfigOut
 
-  const dragConfig = useDrag(config.direction)
-  const { resetDrag } = dragConfig
+  // const drag = useSharedValue(0)
+  const { dragStateHandler, resetDrag, ...dragConfig } = useDrag(config)
   const progress = useSharedValue(0)
   const currentTransitionType = useSharedValue<'in' | 'out' | 'idle_active'>('in')
 
@@ -167,59 +164,17 @@ export const useAnimationControl = ({
     onSwipeFail?.()
   }, [onSwipeFail, resetDrag])
 
-  const handleStateChange = useCallback(
-    ({ nativeEvent }: PanGestureHandlerGestureEvent) => {
-      if (nativeEvent.state !== State.END) {
-        return
-      }
-
-      const swipedEnough =
-        Math.abs(nativeEvent[getEventKey(direction, 'translation')]) > distanceThreshold
-      const enoughForce =
-        Math.abs(nativeEvent[getEventKey(direction, 'velocity')]) > velocityThreshold
-
-      const shouldSwipe = swipedEnough || enoughForce
-
-      return shouldSwipe ? swipeSuccess() : swipeFail()
-    },
-    [direction, distanceThreshold, swipeFail, swipeSuccess, velocityThreshold]
-  )
-
-  const animatedStyles = useAnimatedStyle(() => {
-    const { transitionInStyles, transitionOutStyles } = animationConfig
-
-    if (['out', 'idle_active'].includes(currentTransitionType.value) && transitionOutStyles) {
-      return transitionOutStyles(progress)
-    }
-
-    return transitionInStyles(progress)
-  })
+  const handleDragStateChange = dragStateHandler(swipeSuccess, swipeFail)
 
   return {
     ...dragConfig,
+    handleDragStateChange,
+    resetDrag,
     present,
     dismiss,
-    handleStateChange,
     progress,
-    animatedStyles,
     currentTransitionType,
     cancelTransitionAnimation,
     revokeTransitionAnimation,
   }
 }
-
-export type AnimationAPI = ReturnType<typeof useAnimationControl>
-
-const directionsLookup: EventKeyLookup = {
-  x: {
-    translation: 'translationX',
-    velocity: 'velocityX',
-  },
-  y: {
-    translation: 'translationY',
-    velocity: 'velocityY',
-  },
-} as const
-
-const getEventKey = (direction: SwipeDirection, key: MappedEventKey) =>
-  directionsLookup[direction][key]
