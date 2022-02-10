@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native'
-import { createNotifications, useNotificationController } from 'react-native-notification'
+import {
+  createNotifications,
+  SlideInLeftSlideOutRight,
+  useNotificationController,
+} from 'react-native-notification'
 import { SuccessButton } from '../components/basicExamples/SuccessButton'
 import { ErrorButton } from '../components/basicExamples/ErrorButton'
 import { WarningButton } from '../components/basicExamples/WarningButton'
@@ -10,7 +14,85 @@ import { RemoveButton } from '../components/basicExamples/RemoveButton'
 import { styles } from './styles'
 
 const { useNotifications, NotificationsProvider } = createNotifications({
-  isNotch: false,
+  defaultNotificationTime: 3000,
+  defaultNotificationTimeLong: 5000,
+  notificationPosition: 'top',
+  notificationMsgLengthTimerThreshold: 100,
+  animationConfig: SlideInLeftSlideOutRight,
+  isNotch: true,
+  defaultStylesSettings: {
+    darkMode: false,
+    globalConfig: {
+      titleSize: 20,
+      titleColor: '#4B0082',
+      descriptionSize: 12,
+      descriptionColor: '#4B0082',
+      bgColor: '#FFFFF0',
+      borderType: 'accent',
+      borderRadius: 25,
+      accentColor: '#B0E0E6',
+      borderWidth: 3,
+      multiline: 5,
+      defaultIconType: 'color',
+      leftIconSource: require('../../assets/custom-icon.png'),
+    },
+    successConfig: {
+      titleSize: 18,
+      titleColor: '#4B0082',
+      descriptionSize: 11,
+      descriptionColor: '#4B0082',
+      bgColor: '#FFFFF0',
+      borderType: 'accent',
+      borderRadius: 25,
+      accentColor: '#B0E0E6',
+      borderWidth: 3,
+      multiline: 5,
+      defaultIconType: 'color',
+      leftIconSource: require('../../assets/custom-icon.png'),
+    },
+    errorConfig: {
+      titleSize: 16,
+      titleColor: '#4B0082',
+      descriptionSize: 10,
+      descriptionColor: '#4B0082',
+      bgColor: '#FFFFF0',
+      borderType: 'accent',
+      borderRadius: 25,
+      accentColor: '#B0E0E6',
+      borderWidth: 3,
+      multiline: 5,
+      defaultIconType: 'color',
+      leftIconSource: require('../../assets/custom-icon.png'),
+    },
+    warningConfig: {
+      titleSize: 14,
+      titleColor: '#4B0082',
+      descriptionSize: 9,
+      descriptionColor: '#4B0082',
+      bgColor: '#FFFFF0',
+      borderType: 'accent',
+      borderRadius: 25,
+      accentColor: '#B0E0E6',
+      borderWidth: 3,
+      multiline: 5,
+      defaultIconType: 'color',
+      leftIconSource: require('../../assets/custom-icon.png'),
+    },
+    infoConfig: {
+      titleSize: 22,
+      titleColor: '#4B0082',
+      descriptionSize: 16,
+      descriptionColor: '#4B0082',
+      bgColor: '#FFFFF0',
+      borderType: 'accent',
+      borderRadius: 25,
+      accentColor: '#B0E0E6',
+      borderWidth: 3,
+      multiline: 5,
+      defaultIconType: 'color',
+      leftIconSource: require('../../assets/custom-icon.png'),
+    },
+  },
 })
 
 export const DefaultExamples = () => {

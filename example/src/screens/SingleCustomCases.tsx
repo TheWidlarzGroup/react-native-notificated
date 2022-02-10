@@ -7,7 +7,9 @@ import { ErrorButton } from '../components/basicExamples/ErrorButton'
 import { WarningButton } from '../components/basicExamples/WarningButton'
 import { InfoButton } from '../components/basicExamples/InfoButton'
 
-const { useNotifications, NotificationsProvider } = createNotifications()
+const { useNotifications, NotificationsProvider } = createNotifications({
+  isNotch: true,
+})
 
 export const SingleCustomCases = () => {
   const { notify } = useNotifications()
@@ -77,7 +79,7 @@ export const SingleCustomCases = () => {
               style: {
                 titleSize: 22,
                 titleColor: '#C71585',
-                leftIconSource: require('../assets/custom-info-icon-2.png'),
+                leftIconSource: require('../../assets/custom-info-icon-2.png'),
                 multiline: 8,
                 accentColor: '#C71585',
                 borderWidth: 2,

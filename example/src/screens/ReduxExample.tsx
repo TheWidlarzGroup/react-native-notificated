@@ -4,7 +4,9 @@ import { Provider } from 'react-redux'
 import { LoginForm } from '../components/loginForm/LoginForm'
 import { createNotifications } from 'react-native-notification'
 
-const { NotificationsProvider } = createNotifications()
+const { NotificationsProvider } = createNotifications({
+  isNotch: true,
+})
 
 export const ReduxExample = () => {
   return (
