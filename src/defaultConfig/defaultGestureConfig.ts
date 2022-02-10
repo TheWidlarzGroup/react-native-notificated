@@ -1,9 +1,9 @@
-import { DEVICE_WIDTH } from '../utils/deviceInfo'
+import { Constants } from '../core/config'
 import type { GestureConfig } from '../types/gestures'
 
 export const AndroidGestureConfig: GestureConfig = {
   direction: 'x',
-  activationDistances: DEVICE_WIDTH * 0.4,
+  activationDistances: Constants.width * 0.4,
   activationVelocities: 2000,
 }
 

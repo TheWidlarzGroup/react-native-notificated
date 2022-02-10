@@ -17,7 +17,7 @@ type Props = {
   animationAPI: Pick<
     AnimationAPI,
     | 'dismiss'
-    | 'dragStyles'
+    | 'animatedStyles'
     | 'cancelTransitionAnimation'
     | 'revokeTransitionAnimation'
     | 'currentTransitionType'
@@ -28,7 +28,7 @@ export const AnimationRenderer = ({ children, animationAPI, state }: Props) => {
   const { clearTimer, resetTimer } = useTimer()
 
   return (
-    <Animated.View style={[animationAPI.dragStyles]}>
+    <Animated.View style={[animationAPI.animatedStyles]}>
       {state.notificationConfig && (
         <LongPressGestureHandler
           minDurationMs={0}

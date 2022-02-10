@@ -2,7 +2,6 @@ import React from 'react'
 import { useAnimationControl } from '../hooks/useAnimationControl/useAnimationControl'
 import { useNotificationEventHandler } from '../hooks/useNotificationEventHandler'
 import { useNotificationsStates } from '../hooks/useNotificationsStates'
-import { Constants, swipeConfigs } from '../config'
 import { GestureHandler } from './GestureHandler'
 import { PositionRenderer } from './PositionRenderer'
 import { AnimationRenderer } from './AnimationRenderer'
@@ -11,11 +10,7 @@ import { VariantsRenderer } from './VariantsRenderer'
 export const NotificationsRenderer = () => {
   const state = useNotificationsStates()
 
-  const animationAPI = useAnimationControl({
-    duration: state.duration,
-    animationConfig: state.animationConfig,
-    config: Constants.isAndroid ? swipeConfigs.android : swipeConfigs.ios,
-  })
+  const animationAPI = useAnimationControl({ ...state })
 
   useNotificationEventHandler({
     present: animationAPI.present,

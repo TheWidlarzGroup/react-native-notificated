@@ -7,12 +7,13 @@ import {
   withSpring,
   withTiming,
 } from 'react-native-reanimated'
+import type { GestureConfig } from '../../../types/gestures'
 import type { CustomAnimationConfig } from '../../../types/animations'
 import { useDrag } from '../useDrag'
 
 type Props = {
   duration: number
-  config: DragConfig
+  gestureConfig: GestureConfig
   onTransitionInAnimationFinished?: () => void
   onTransitionOutAnimationFinished?: () => void
   onTransitionInAnimationNotFinished?: () => void
@@ -52,7 +53,7 @@ const withAnimationCallbackJSThread = (
  * preset - used to trigger the transitionIn animation on a notification box. Sets transition type to `in`
  */
 export const useAnimationControl = ({
-  config,
+  gestureConfig,
   // duration,
   onSwipeFail,
   onSwipeSuccess,
@@ -63,12 +64,11 @@ export const useAnimationControl = ({
   animationConfig,
 }: Props) => {
   // const { resetTimer } = useTimer()
-  const { direction, distanceThreshold, velocityThreshold } = config
   const animationInConfig = animationConfig.animationConfigIn
   const animationOutConfig = animationConfig?.animationConfigOut
 
   // const drag = useSharedValue(0)
-  const { dragStateHandler, resetDrag, ...dragConfig } = useDrag(config)
+  const { dragStateHandler, resetDrag, dragStyles, ...dragConfig } = useDrag(gestureConfig)
   const progress = useSharedValue(0)
   const currentTransitionType = useSharedValue<'in' | 'out' | 'idle_active'>('in')
 
@@ -168,6 +168,7 @@ export const useAnimationControl = ({
 
   return {
     ...dragConfig,
+    animatedStyles: dragStyles,
     handleDragStateChange,
     resetDrag,
     present,
@@ -178,3 +179,5 @@ export const useAnimationControl = ({
     revokeTransitionAnimation,
   }
 }
+
+export type AnimationAPI = ReturnType<typeof useAnimationControl>

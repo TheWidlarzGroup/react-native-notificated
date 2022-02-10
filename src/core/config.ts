@@ -1,6 +1,5 @@
 //do wyrzucenia
 import { Dimensions, Platform } from 'react-native'
-import type { SwipeConfig } from './hooks/useAnimationControl/types'
 
 const isAndroid = Platform.OS === 'android'
 const maxLongPressDragDistance = 300
@@ -23,21 +22,4 @@ export const Constants = {
   isAndroid,
   height,
   width,
-}
-
-export const swipeConfigs: { [key in 'ios' | 'android']: SwipeConfig } = {
-  ios: {
-    direction: 'y',
-    initialOffset: Constants.initialOffsetY,
-    targetOffset: Constants.targetOffsetY,
-    distanceThreshold: 50,
-    velocityThreshold: 300,
-  },
-  android: {
-    direction: 'x',
-    initialOffset: Constants.initialOffsetX,
-    targetOffset: Constants.targetOffsetX,
-    distanceThreshold: Constants.width * 0.4,
-    velocityThreshold: 2000,
-  },
 }
