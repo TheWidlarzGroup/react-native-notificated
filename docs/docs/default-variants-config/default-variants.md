@@ -3,6 +3,7 @@ sidebar_position: 1
 ---
 
 # 🖼️ Default Variants
+<br/>
 
 At the start, you receive from us default styling, for all 4 types of notifications (`success` / `error` / `warning` / `info`). <br/>
 If you just trigger the notification, like in the example below (we trigger the `error` here, but of course, it can be any other notification):
@@ -24,8 +25,10 @@ export const GlobalConfigExamples = () => {
       <Text
         onPress={() =>
           notify('error', {
-            description: 'This is where the toast text goes. ',
-            title: 'Error',
+            params: {
+              description: 'This is where the toast text goes. ',
+              title: 'Error',
+            },
           })
         }>
         Emit error

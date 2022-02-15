@@ -3,7 +3,7 @@ sidebar_position: 1
 ---
 
 # 🌍 Global Styles Settings
-<br/>
+####
 
 ## 🎨 Default styles settings
 
@@ -22,7 +22,7 @@ We divide them into:
 #
 
 ```jsx
-const {useNotifications, NotificationsProvider} = index({
+const {useNotifications, NotificationsProvider} = createNotifications({
     defaultStylesSettings: {
         darkMode: true,
         globalConfig: {},
@@ -147,8 +147,10 @@ export const GlobalConfigExamples = () => {
       <Text
         onPress={() =>
           notify('error', {
-            description: 'This is where the toast text goes. ',
-            title: 'Error',
+            params: {
+              description: 'This is where the toast text goes. ',
+              title: 'Error',
+            },
           })
         }>
         Emit error
@@ -195,8 +197,10 @@ export const GlobalConfigExamples = () => {
       <Text
         onPress={() =>
           notify('error', {
-            description: 'This is where the toast text goes. ',
-            title: 'Error',
+            params: {
+              description: 'This is where the toast text goes. ',
+              title: 'Error',
+            },
           })
         }>
         Emit error
@@ -204,8 +208,10 @@ export const GlobalConfigExamples = () => {
       <Text
         onPress={() =>
           notify('success', {
-            description: 'This is where the toast text goes. ',
-            title: 'Success',
+            params: {
+              description: 'This is where the toast text goes. ',
+              title: 'Success',
+            },
           })
         }>
         Emit success
@@ -258,8 +264,10 @@ export const GlobalConfigExamples = () => {
       <Text
         onPress={() =>
           notify('error', {
-            description: 'This is where the toast text goes. ',
-            title: 'Error',
+            params: {
+              description: 'This is where the toast text goes. ',
+              title: 'Error',
+            },
           })
         }>
         Emit error
@@ -267,8 +275,10 @@ export const GlobalConfigExamples = () => {
       <Text
         onPress={() =>
           notify('success', {
-            description: 'This is where the toast text goes. ',
-            title: 'Success',
+            params: {
+              description: 'This is where the toast text goes. ',
+              title: 'Success',
+            },
           })
         }>
         Emit success

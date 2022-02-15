@@ -3,6 +3,7 @@ sidebar_position: 1
 ---
 
 # 📬 Single Notification Config
+<br/>
 
 Besides global settings, you can also pass props to the notification instance.<br/>
 PROPS `description` IS REQUIRED. <br/>
@@ -14,6 +15,9 @@ There are a few main props you can pass to the notification:
 | description      | String           | ''       | Props you can use to pass the notification description. This props is required!
 | onPress          | Function         | -        | The onPress props gives you possibility to pass extra function, which will be invoked when you use 'X' to close the notification
 | style            | Object           | -        | Object with the style properties. You can pass here style settings which will be applied only to this notification instance. Style properties passed here overwrites style settings from `defaultStylesSettings`.
+
+<br/>
+<br/>
 
 ## ✨ Style props
 
@@ -39,6 +43,9 @@ Check the [GLOBAL STYLES SETTINGS](./global-config.md)
 
 What is really important here is that the `style` props overwrite the styles passed in `defaultStylesSettings`. <br/>
 To understand it perfectly, let's take a look at the few examples below.
+
+<br/>
+<br/>
 
 ## 🖌️ Style overwriting example
 

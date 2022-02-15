@@ -3,6 +3,7 @@ sidebar_position: 2
 ---
 
 # ✏️ Order of settings overwriting
+<br/>
 
 In the React Native Notifications library, we can pass some settings on a different levels. <br/>
 When we go deeper and the rage of the settings is narrower, the importance of the setting is higher. <br/>
