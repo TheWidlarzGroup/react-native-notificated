@@ -30,8 +30,8 @@ export const GestureHandler = ({ children, state, animationAPI }: Props) => {
         style={[
           animationAPI.animatedStyles,
           styles.container,
-          { top: state.topOffset },
           Constants.isAndroid ? styles.containerAndroid : styles.containerIos,
+          { top: state.topOffset },
         ]}>
         {children}
       </Animated.View>
