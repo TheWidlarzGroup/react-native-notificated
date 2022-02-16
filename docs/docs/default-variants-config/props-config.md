@@ -7,7 +7,23 @@ sidebar_position: 1
 
 Besides global settings, you can also pass props to the notification instance.<br/>
 PROPS `description` IS REQUIRED. <br/>
-There are a few main props you can pass to the notification:
+There are two main props you can pass to the notification:
+
+- params
+- config
+
+```typescript jsx
+    <Text
+        onPress={() =>
+          notify('error', {
+            params: {},
+            config: {},
+          },
+        )}
+    >
+```
+
+Let's take a look at the `params` object properties:
 
 | Name             | Type             | Default  | Description                                                                                                                                                            |
 | ---------------- |----------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -16,12 +32,54 @@ There are a few main props you can pass to the notification:
 | onPress          | Function         | -        | The onPress props gives you possibility to pass extra function, which will be invoked when you use 'X' to close the notification
 | style            | Object           | -        | Object with the style properties. You can pass here style settings which will be applied only to this notification instance. Style properties passed here overwrites style settings from `defaultStylesSettings`.
 
+```typescript jsx
+    <Text
+        onPress={() =>
+          notify('error', {
+            params: {
+              title: '',
+              description: '',
+              onPress: () => {},
+              style: {},
+            },
+            config: {},
+          },
+        )}
+    >
+```
+
+And at the `config` object:
+
+
+| Name                  | Type                        | Default                  | Description                                                                                                                                                            |
+| --------------------- |---------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| duration              | Number                      | 3000                     | Use this property to set how long the notifications should be displayed on the screen. Value expressed in milliseconds
+| notificationPosition  | 'top' / 'center' / 'bottom' | 'top'                    | Set where the notifications should appear on the screen. You can choose one of three default options: top / center / bottom. To read more about the notification position please go to the [NOTIFICATION POSITION](../default-variants-config/position) section.
+| animationConfig       | Object                      | SlideInLeftSlideOutRight | Property responsible for the notification animation. You can set one of the animations prepared by us, or make your own config. To read more about the animation settings please go to the [ANIMATIONS SETTINGS](../animations/changing-transitions) section.
+
+
+```typescript jsx
+    <Text
+        onPress={() =>
+          notify('error', {
+            params: {},
+            config: {
+              duration: 100,
+              notificationPosition: 'top',
+              animationConfig: {},
+            },
+          },
+        )}
+    >
+```
+
+
 <br/>
 <br/>
 
 ## ✨ Style props
 
-Like we said above, in the style props we can pass style settings for the notification instance. <br/>
+As we said above, in the `style` we can pass style settings for the notification instance. <br/>
 In fact `style` props have the same properties as the `globalConfig`, `successConfig`, `errorConfig`, `warningConfig`, `infoConfig`.
 Check the [GLOBAL STYLES SETTINGS](./global-config.md)
 
@@ -41,7 +99,7 @@ Check the [GLOBAL STYLES SETTINGS](./global-config.md)
 | defaultIconType  | `'color'` / `'monochromatic'` / `'no-icon'` | `'color'`                                                                                                    | This props works only with default icons. If you set your own icon it has no effect. ([EXAMPLES](#default-icon-type-examples))
 | leftIconSource   | ImageSourcePropType                         | -                                                                                                            | Set custom left icon for the notification (in png). For example. `require(../assets/icon.png)`
 
-What is really important here is that the `style` props overwrite the styles passed in `defaultStylesSettings`. <br/>
+What is important here is that the `style` props overwrite the styles passed in `defaultStylesSettings`. <br/>
 To understand it perfectly, let's take a look at the few examples below.
 
 <br/>
@@ -88,12 +146,14 @@ export const GlobalConfigExamples = () => {
       <Text
         onPress={() =>
           notify('error', {
-            description: 'This is where the toast text goes. ',
-            title: 'Error',
-            style: {
-              borderRadius: 15,
-              borderWidth: 1,
-            }
+              params: {
+                description: 'This is where the toast text goes. ',
+                title: 'Error',
+                style: {
+                  borderRadius: 15,
+                  borderWidth: 1,
+                }
+              }
           })
         }>
         Emit error
@@ -129,7 +189,7 @@ And in `style` we have overwritten:
 - accentColor
 - borderWidth
 
-So the final style setting for this error notification is:
+So the final style setting for this `error` notification is:
 
 ```jsx
 {
@@ -156,9 +216,7 @@ And the final effect:
 <br/>
 <br/>
 
-So in conclusion -
-`style` object overwrite `successConfig` / `errorConfig` / `warningConfig` / `infoConfig`(depends on which notification type are you using and styling),  `globalConfig`, and DEFAULT SETTINGS
-<br/>
-`successConfig` / `errorConfig` / `warningConfig` / `infoConfig` overwrite `globalConfig`, and DEFAULT SETTINGS
-<br/>
-`globalConfig` overwrites DEFAULT SETTINGS
+So in conclusion -<br/>
+- `style` object overwrites `successConfig` / `errorConfig` / `warningConfig` / `infoConfig`(depends on which notification type are you using and styling),  `globalConfig`, and DEFAULT SETTINGS<br/>
+- `successConfig` / `errorConfig` / `warningConfig` / `infoConfig` overwrites `globalConfig`, and DEFAULT SETTINGS<br/>
+- `globalConfig` overwrites DEFAULT SETTINGS

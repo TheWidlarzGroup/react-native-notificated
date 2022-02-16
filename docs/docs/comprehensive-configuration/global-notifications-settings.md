@@ -5,9 +5,10 @@ sidebar_position: 1
 # ⚙️ Global notifications settings
 <br/>
 
-React Native Notifications library gives you a lot of possibilities to change default configuration. <br/>
-At the beginning you can set configuration for all the notifications used in the app. <br/>
-Let's take a look what exactly can we set globally:
+React Native Notifications library gives you a lot of possibilities to change the default configuration. <br/>
+In the beginning, you can set the configuration for all the notifications used in the app. <br/>
+Let's take a look at what exactly can we set globally:
+
 
 | Name                                | Type                        | Default                  | Description                                                                                                                                                            |
 | ----------------------------------- | :-------------------------: | :----------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -8,13 +8,13 @@ sidebar_position: 2
 ## 🎛 Changing position
 
 You can change the position of the notifications displayed on the screen. <br/>
-There are three possible options to choose:
+There are three possible options to choose from:
 
 - `top` - at the top of the screen
 - `center` - at the middle of the screen (y-axis)
 - `bottom`- at the bottom of the screen
 
-Default setting for the `notificationPosition` is `top` value.
+Default setting for the `notificationPosition` is the `top` value.
 
 Depending on whether you want to change notification position for the whole app or only change it for a certain notification, you can either:
 
@@ -55,7 +55,7 @@ export const ExampleNotification = () => {
 
 ```
 
-Now all the notifications in the app will be displayed at the middle of the screen (y-axis), because we have set `notificationPosition` value for the `center`.
+Now all the notifications in the app will be displayed at the middle of the screen (y-axis) because we have set the `notificationPosition` value for the `center`.
 
 <br/>
 <br/>
@@ -98,9 +98,9 @@ export const ExampleNotification = () => {
 }
 ```
 
-Now, all the notifications in the app (instead of this one `error` notification in example above) will be displayed in the middle of the screen (y-axis).<br />
-But `error` notification from the example above will be displayed at the bottom of the screen, because local config overwrites global config.<br/>
-Of course we can just set it locally, there is no need to set it globally if we don't need to. <br/>
+Now, all the notifications in the app (instead of this one `error` notification in the example above) will be displayed in the middle of the screen (y-axis).<br />
+But `error` notification from the example above will be displayed at the bottom of the screen because the local config overwrites the global config.<br/>
+Of course, we can just set it locally, there is no need to set it globally if we don't need to. <br/>
 (You can read more about props overwriting in the [ORDER OF SETTINGS OVERWRITING](../../docs/comprehensive-configuration/order-of-settings-overwriting) section)
 
 <br/>
@@ -112,6 +112,6 @@ For each subsequent notification, the library looks for a notification position 
 
 1. First, it looks for a config defined in `notify` payload
 2. Secondly, it looks for a global config from `createNotification`
-3. At last, when no config is found, it uses the default behaviour, which is `top`
+3. At last, when no config is found, it uses the default behavior, which is `top`
 
 <br/>

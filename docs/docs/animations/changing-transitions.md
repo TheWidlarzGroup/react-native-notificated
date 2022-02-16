@@ -32,7 +32,7 @@ import {
 } from 'react-native-notification'
 
 const { useNotifications } = createNotifications()
- 
+
 const { notify } = useNotifications()
 
 notify('success', {
@@ -53,9 +53,8 @@ notify('success', {
 For each subsequent notification, the library looks for an animation config in the following order:
 
 1. First, it looks for a config defined in `notify` payload
-2. Secondly, it checks for an animation config for a given `variant` which can be defined in `createNotification`
-3. Next, it looks for a global config from `createNotification`
-4. At last, when no config is found, it uses the default behaviour, which is platform dependend (`AnimationInSomethingToBeUpdated` for **iOS** and `SomeANimation` for **Android**)
+2Next, it looks for a global config from `createNotification`
+3At last, when no config is found, it uses the default behaviour, which is platform dependend (`AnimationInSomethingToBeUpdated` for **iOS** and `SomeANimation` for **Android**)
 
 ### 📦 Pre-made configs:
 

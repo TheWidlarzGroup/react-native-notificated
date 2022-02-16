@@ -7,7 +7,7 @@ sidebar_position: 1
 
 ## 🎨 Default styles settings
 
-In default styles settings, we can pass the config that affects all the notifications we use in the app ([EXAMPLES OF GLOBAL STYLES SETTINGS](#global-styles-setting-examples)).
+In default styles settings, we can pass the config that affects all the notifications udes in the app ([EXAMPLES OF GLOBAL STYLES SETTINGS](#global-styles-setting-examples)).
 We divide them into:
 
 | Name             | Type             | Default  | Description                                                                                                                                                            |
@@ -37,7 +37,7 @@ const {useNotifications, NotificationsProvider} = createNotifications({
 #
 
 Like we said above - in the config descriptions, `globalConfig` even if is set can be overwritten by the config of the different notifications types (`successConfig` / `errorConfig` / `warningConfig` / `infoConfig`).
-You can find examples explaining it below, but let's first find out, what exactly can we set in config objects.
+You can find examples explaining it below, but first, let's find out what exactly, can we set in config objects.
 #
 <br/>
 
@@ -166,12 +166,11 @@ The effect is visible below:
 ![No-border](../../assets/global-example.png)
 
 
-In `globalConfig` above we have overwritten all the default values.
+In `globalConfig` above, we have overwritten all the default values.
 #
-That means that doesn't matter now if we use `error`, or `info` notification. All of them will now look the same.
-That is what `globalConfig` do. It overwrites properties for all the notifications.
+That means that doesn't matter now if we use `error` or `info` notification. All will now look the same.
+That is what `globalConfig` does. It overwrites properties for all the notifications.
 If we set there only `borderRadius` property for some value, then only `borderRadius` would be set global. Default values of all other properties would stay untouched:
-
 #
 
 ```jsx
@@ -227,7 +226,7 @@ export const GlobalConfigExamples = () => {
 
 #
 
-Both notifications - error, and success - have their default settings, only `borderRadius` has been changed for both of them because we did it in `globalConfig`.
+Both notifications - error and success - have their default settings. Only `borderRadius` has been changed for both of them because we did it in `globalConfig`.
 
 ##
 ### ℹ️ `successConfig` / `errorConfig` / `warningConfig` / `infoConfig`
@@ -236,7 +235,7 @@ Those settings work the same as `globalConfig` but for different notification ty
 In other words, we can set configuration for ALL errors, ALL info, etc.
 
 In addition `successConfig` / `errorConfig` / `warningConfig` / `infoConfig` are overwriting properties set in `globalConfig`.<br/>
-So if we set `borderRadius` in `globalConfig` for `50` as we did in the example above, and we will overwrite it in the `successConfig` for `10`, then `borderRadius` for ALL the SUCCESS notifications will be set for `10`, but for ALL OTHER notifications it still will be `50`.
+So if we set `borderRadius` in `globalConfig` for `50` as we did in the example above, and we will overwrite it in the `successConfig` for `10`, then `borderRadius` for ALL the SUCCESS notifications will be set for `10`, but for ALL OTHER it still will be `50`.
 
 ```jsx
 import React from 'react'

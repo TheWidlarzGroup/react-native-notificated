@@ -7,7 +7,7 @@ sidebar_position: 5
 
 Code has been already described step by step in the [DEFAULT EXAMPLES](./default-examples.md) section.<br/>
 So I think there is no use to do it here again.<br/>
-Here we have only few differences I need to mention, and they are minimal:
+Here we have only a few differences I need to mention, and they are minimal:
 
 - we use `modify()` and `remove()` only if the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove notification, or modify it. So, we will not use them here and in the other examples. Because of the same reason we will not use `useState` and `useNotificationController` here.
 - we filled the `style` object in every notification. To read more about the single notification properties please go to the [SINGLE NOTIFICATION CONFIG](../default-variants-config/props-config.md) section.

@@ -7,15 +7,14 @@ sidebar_position: 4
 
 Code has been already described step by step in the [DEFAULT EXAMPLES](./default-examples.md) section.<br/>
 So I think there is no use to do it here again.<br/>
-Here we have only few differences I need to mention, and they are minimal:
+Here we have only a few differences I need to mention, and they are minimal:
 
-- we use `modify()` and `remove()` only if the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove notification, or modify it. So, we will not use them here and in the other examples. Because of the same reason we will not use `useState` and `useNotificationController` here.
+- we use `modify()` and `remove()` only if the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove the notification, or modify it. So, we will not use them here and in the other examples. Because of the same reason, we will not use `useState` and `useNotificationController` here.
 - we filled the `successConfig`, `errorConfig`, `warningConfig` and the `infoConfig` objects in the `defaultStylesSettings`. Those objects are responsible for setting properties for all notifications in the given type. To read more please go back to the [GLOBAL CONFIG](../default-variants-config/global-config.md) section.
   <br/>
 
-In fact that's the only differences between Default Examples and Global Types Config Examples.<br/>
-Let's take a look at the code and the visualisations then:
-
+That's the only difference between Default Examples and Global Types Config Examples.<br/>
+Let's take a look at the code and the visualizations then:
 
 ## Code
 
@@ -158,6 +157,6 @@ Let's see the notifications we declared above:
 
 ## Conclusion
 
-All the notifications in the same type, will have the same style properties.<br/>
-What is important, the `successConfig`, `errorConfig`, `warningConfig` and the `infoConfig` overwrites the `globalConfig` setting, but only for their own types.<br/>
+All the notifications in the same type will have the same style properties.<br/>
+What is important, is the `successConfig`, `errorConfig`, `warningConfig` and the `infoConfig` overwrites the `globalConfig` setting, but only for their types.<br/>
 To read more please go back to the [GLOBAL CONFIG](../default-variants-config/global-config.md)<br/> and the [ORDER OF SETTINGS OVERWRITING](../comprehensive-configuration/order-of-settings-overwriting.md) sections.

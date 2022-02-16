@@ -5,8 +5,8 @@ sidebar_position: 2
 # ✏️ Order of settings overwriting
 <br/>
 
-In the React Native Notifications library, we can pass some settings on a different levels. <br/>
-When we go deeper and the rage of the settings is narrower, the importance of the setting is higher. <br/>
+In the React Native Notifications library, we can pass some settings on different levels. <br/>
+When we go deeper and the range of the settings is narrower, the importance of the setting is higher. <br/>
 For example, we can set the `titleColor` of the notification in the: <br/>
 
 - global range (for all notifications)
@@ -104,7 +104,7 @@ export const Example = () => {
 
 ```
 
-We can divide them as above for the 3 depth levels. Let's take a look what properties can we pass at a different levels:
+We can divide them as above for the three depth levels. Let's take a look at what properties can we pass at different levels:
 
 ## Global range (for all notifications):
 
@@ -145,12 +145,12 @@ All those properties:
 - darkMode
 - globalConfig (with all the styles properties)
 
-Can be set up for the all notifications in the app. Some of them can be set up only here:
+Can be set up for all notifications in the app. Some of them can be set up only here:
 
 - isNotch
 - darkMode
 
-The rest of them can be overwritten at deeper levels - notification type range (for example for all errors) and instance range (for the single notification).
+The rest can be overwritten at lower levels - notification type range (for example, for all errors) and instance range (for the single notification).
 
 ## Notification type range (for example for all errors):
 
@@ -189,8 +189,8 @@ On the second level we can set only style properties for the different notificat
 
 Properties set in these `configs` will affect all notifications of a given type. All of them have the same properties inside.<br/>
 This level overwrites only style properties previously set at the global range. You cannot overwrite here other global properties. <br/>
-Please notice that if you set `globalConfig` styles (for all notifications), and then you set `successConfig`, then all `success` type notifications will take style config from the `successConfig`, but other notification types will take it from the `globalConfig`(unless you set them their notification type style config).<br/>
-As you can see Notification type range, have a smaller range than global, but they are more important for their scopes.
+Please notice that, if you set `globalConfig` styles (for all notifications), and then you set `successConfig`, then all `success` type notifications will take style config from the `successConfig`, but other notification types will take it from the `globalConfig`(unless you set them their notification type style config).<br/>
+As you can see Notification types have a smaller range than global, but they are more important overall.
 
 
 ## Instance range (for the single notification):
@@ -239,21 +239,23 @@ All those properties:
 - animationConfig
 - duration
 
-Can be set up for one single notification, when we initiate it. Some of them can be set up only here:
+Can be set up for one single notification when we initiate it. Some of them can be set only here:
 
 - description
 - title
 
-What make sens, because every notification should have it own reason. <br/>
-If we set some property here it has the highest level of importance (overwrites the same property in the Global range and Notification type range), but only for this single notification.
+What makes sense, because every notification should have its reason. <br/>
+If we set some property here, it has the highest level of importance (overwrites the same property in the Global range and Notification type range), but only for this single notification.
+
 
 
 ## Conclusion
 
-**In other words if president says something it affects all the people in the country.** <br/>
-But seriously, we can listen to him, but president of our town can easily challenge his opinion, and probably his words will be more valuable for us. <br/>
-**If the president of our city will say something, that will affect all the people in the city (smaller range, higher attention).** <br/>
-But if our mother will challenge his opinion, he's just lost, same as president :) <br/>
-**Our mother probably can affect only us, but no one have higher attention in our opinion (ladies and gents, I HOPE SO!)**.
+**In other words if the President says something it affects all the people in the country.** <br/>
+But seriously, we can listen to him, but the president of our town can easily challenge his opinion, and probably his words will be more valuable for us. <br/>
+**If the president of our city will say something, that will affect all the people in the city (smaller range, stronger attention).** <br/>
+But if our mother will challenge his opinion, he's just lost, same as the President :) <br/>
+**Our mother probably can affect only us, but no one has stronger attention in our opinion (ladies and gents, I HOPE SO!)**.
+
 
 

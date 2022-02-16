@@ -32,6 +32,7 @@ export const SingleCustomCases = () => {
                 multiline: 2,
               },
             },
+            config: {},
           })
         }
       />
