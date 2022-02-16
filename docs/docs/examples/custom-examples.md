@@ -1,3 +1,25 @@
+---
+sidebar_position: 5
+---
+
+# 🪶 Custom examples
+<br/>
+
+Code has been already described step by step in the [DEFAULT EXAMPLES](./default-examples.md) section.<br/>
+So I think there is no use to do it here again.<br/>
+Here we have only few differences I need to mention, and they are minimal:
+
+- we use `modify()` and `remove()` only if the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove notification, or modify it. So, we will not use them here and in the other examples. Because of the same reason we will not use `useState` and `useNotificationController` here.
+- we filled the `style` object in every notification. To read more about the single notification properties please go to the [SINGLE NOTIFICATION CONFIG](../default-variants-config/props-config.md) section.
+  <br/>
+
+In fact that's the only differences between Default Examples and Custom Examples.<br/>
+Let's take a look at the code and the visualisations then:
+
+
+## Code
+
+```jsx
 import React from 'react'
 import { SafeAreaView } from 'react-native'
 import { styles } from './styles'
@@ -91,3 +113,45 @@ export const SingleCustomCases = () => {
     </SafeAreaView>
   )
 }
+
+```
+
+<br/>
+
+## Visualization of examples
+
+Let's see the notifications we declared above:
+
+<br/>
+
+### Success notification
+
+![Success](../../assets/success-custom.png)
+
+### Error notification
+
+![Error](../../assets/error-custom.png)
+
+### Warning notification
+
+![Warning](../../assets/warning-custom.png)
+
+### Info notification
+
+![Info](../../assets/info-custom.png)
+
+
+<br/>
+
+## Conclusion
+
+Like we can see every notification have its own style, but it's not going above this single notification. <br/>
+What we should remember is that the single notification style overwrites each of those configs:
+
+- `globalConfig`
+- `successConfig`
+- `errorConfig`
+- `warningConfig`
+- `infoConfig`
+
+To read more please go to [SINGLE NOTIFICATION CONFIG](../default-variants-config/props-config.md) and the [ORDER OF SETTINGS OVERWRITING](../comprehensive-configuration/order-of-settings-overwriting.md) sections.
