@@ -8,6 +8,7 @@ import { VariantsRenderer } from './VariantsRenderer'
 
 export const NotificationsRenderer = () => {
   const state = useNotificationsStates()
+
   const animationAPI = useAnimationControl({ ...state })
   useNotificationEventHandler({ ...state, ...animationAPI })
 

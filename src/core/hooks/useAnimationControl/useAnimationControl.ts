@@ -9,6 +9,8 @@ import {
 } from 'react-native-reanimated'
 import { useDrag } from '../useDrag'
 import type { NotificationState } from '../useNotificationsStates'
+import { emitter } from '../../services/NotificationEmitter'
+import { useTimer } from '../useTimer'
 
 type Props = {
   config: NotificationState['config']
@@ -50,15 +52,13 @@ const withAnimationCallbackJSThread = (
  * preset - used to trigger the transitionIn animation on a notification box. Sets transition type to `in`
  */
 export const useAnimationControl = ({
-  config: { gestureConfig, animationConfig },
+  config: { gestureConfig, animationConfig, duration },
   onSwipeFail,
   onSwipeSuccess,
   onTransitionInAnimationFinished,
-  onTransitionOutAnimationFinished,
   onTransitionInAnimationNotFinished,
-  onTransitionOutAnimationNotFinished,
 }: Props) => {
-  // const { resetTimer } = useTimer()
+  const { resetTimer } = useTimer()
   const animationInConfig = animationConfig.animationConfigIn
   const animationOutConfig = animationConfig?.animationConfigOut
 
@@ -76,16 +76,12 @@ export const useAnimationControl = ({
   const onTransitionOutAnimationFinishedWrapper = useCallback(() => {
     currentTransitionType.value = 'in'
 
-    onTransitionOutAnimationFinished?.()
-  }, [onTransitionOutAnimationFinished, currentTransitionType])
+    emitter.emit('pop_notification')
+  }, [currentTransitionType])
 
   const onTransitionInAnimationNotFinishedWrapper = useCallback(() => {
     onTransitionInAnimationNotFinished?.()
   }, [onTransitionInAnimationNotFinished])
-
-  const onTransitionOutAnimationNotFinishedWrapper = useCallback(() => {
-    onTransitionOutAnimationNotFinished?.()
-  }, [onTransitionOutAnimationNotFinished])
 
   // Function which triggers animation for TRANSITION IN
   // it also invokes callback after animation is completed
@@ -121,19 +117,19 @@ export const useAnimationControl = ({
     progress.value = pickedWith(
       0,
       dismissConfig.config,
-      withAnimationCallbackJSThread(
-        onTransitionOutAnimationFinishedWrapper,
-        onTransitionOutAnimationNotFinishedWrapper
+      withAnimationCallbackJSThread(onTransitionOutAnimationFinishedWrapper, () =>
+        resetTimer(dismiss, duration)
       )
     )
   }, [
-    onTransitionOutAnimationFinishedWrapper,
-    resetDrag,
-    animationInConfig,
-    animationOutConfig,
-    onTransitionOutAnimationNotFinishedWrapper,
     currentTransitionType,
+    resetDrag,
+    animationOutConfig,
+    animationInConfig,
     progress,
+    onTransitionOutAnimationFinishedWrapper,
+    resetTimer,
+    duration,
   ])
 
   const cancelTransitionAnimation = useCallback(() => {
