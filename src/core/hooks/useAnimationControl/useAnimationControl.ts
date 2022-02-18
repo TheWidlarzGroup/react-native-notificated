@@ -3,6 +3,7 @@ import {
   AnimationCallback,
   cancelAnimation,
   runOnJS,
+  useAnimatedStyle,
   useSharedValue,
   withSpring,
   withTiming,
@@ -62,8 +63,7 @@ export const useAnimationControl = ({
   const animationInConfig = animationConfig.animationConfigIn
   const animationOutConfig = animationConfig?.animationConfigOut
 
-  // const drag = useSharedValue(0)
-  const { dragStateHandler, resetDrag, dragStyles, ...dragConfig } = useDrag(gestureConfig)
+  const { dragStateHandler, resetDrag, ...dragConfig } = useDrag(gestureConfig)
   const progress = useSharedValue(0)
   const currentTransitionType = useSharedValue<'in' | 'out' | 'idle_active'>('in')
 
@@ -157,9 +157,19 @@ export const useAnimationControl = ({
 
   const handleDragStateChange = dragStateHandler(swipeSuccess, swipeFail)
 
+  const animatedStyles = useAnimatedStyle(() => {
+    const { transitionInStyles, transitionOutStyles } = animationConfig
+
+    if (['out', 'idle_active'].includes(currentTransitionType.value) && transitionOutStyles) {
+      return transitionOutStyles(progress)
+    }
+
+    return transitionInStyles(progress)
+  })
+
   return {
     ...dragConfig,
-    animatedStyles: dragStyles,
+    animatedStyles,
     handleDragStateChange,
     resetDrag,
     present,
