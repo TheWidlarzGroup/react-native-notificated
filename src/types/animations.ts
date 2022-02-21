@@ -29,4 +29,7 @@ export type CustomAnimationConfig = {
   animationConfigOut?: AnimationTypeConfig
 }
 
-export type DragDirection = 'y' | 'x' | 'full' | 'none'
+export enum AnimationRange {
+  START = 1,
+  END = 0,
+}

@@ -11,8 +11,7 @@ import type { NotificationState } from '../useNotificationsStates'
 import { emitter } from '../../services/NotificationEmitter'
 import { useTimer } from '../useTimer'
 import { withAnimationCallbackJSThread } from '../../utils/animation'
-
-type Props = NotificationState['config']
+import { AnimationRange } from '../../../types/animations'
 
 /**
  * onTransitionInAnimationFinished - triggered when animation for in-transition ends.
@@ -25,12 +24,11 @@ type Props = NotificationState['config']
  * dismiss - used to trigger the transitionOut animation on a notification box. Resets DRAG. Sets transition type to `out`
  * preset - used to trigger the transitionIn animation on a notification box. Sets transition type to `in`
  */
-enum AnimationRange {
-  START = 1,
-  END = 0,
-}
-
-export const useAnimationAPI = ({ gestureConfig, animationConfig, duration }: Props) => {
+export const useAnimationAPI = ({
+  gestureConfig,
+  animationConfig,
+  duration,
+}: NotificationState['config']) => {
   const progress = useSharedValue(0)
   const { resetTimer, clearTimer } = useTimer()
   const animationInConfig = animationConfig.animationConfigIn
