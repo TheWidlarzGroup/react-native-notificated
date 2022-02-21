@@ -12,9 +12,7 @@ import { emitter } from '../../services/NotificationEmitter'
 import { useTimer } from '../useTimer'
 import { withAnimationCallbackJSThread } from '../../utils/animation'
 
-type Props = {
-  config: NotificationState['config']
-}
+type Props = NotificationState['config']
 
 /**
  * onTransitionInAnimationFinished - triggered when animation for in-transition ends.
@@ -32,9 +30,7 @@ enum AnimationRange {
   END = 0,
 }
 
-export const useAnimationControl = ({
-  config: { gestureConfig, animationConfig, duration },
-}: Props) => {
+export const useAnimationAPI = ({ gestureConfig, animationConfig, duration }: Props) => {
   const progress = useSharedValue(0)
   const { resetTimer, clearTimer } = useTimer()
   const animationInConfig = animationConfig.animationConfigIn
@@ -112,13 +108,13 @@ export const useAnimationControl = ({
 
   return {
     ...dragConfig,
-    animatedStyles,
-    handleDragStateChange,
     present,
     dismiss,
+    animatedStyles,
+    handleDragStateChange,
     cancelTransitionAnimation,
     revokeTransitionAnimation,
   }
 }
 
-export type AnimationAPI = ReturnType<typeof useAnimationControl>
+export type AnimationAPI = ReturnType<typeof useAnimationAPI>

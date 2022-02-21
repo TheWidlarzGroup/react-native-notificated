@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import { PanGestureHandler } from 'react-native-gesture-handler'
-import type { AnimationAPI } from '../hooks/useAnimationControl/useAnimationControl'
+import type { AnimationAPI } from '../hooks/useAnimationControl/useAnimationAPI'
 import type { NotificationState } from '../hooks/useNotificationsStates'
 import Animated from 'react-native-reanimated'
 import { styles } from '../utils/styles'

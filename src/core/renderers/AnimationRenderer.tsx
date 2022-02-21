@@ -3,19 +3,16 @@ import Animated from 'react-native-reanimated'
 import { LongPressGestureHandler } from 'react-native-gesture-handler'
 import { View } from 'react-native'
 import type { NotificationState } from '../hooks/useNotificationsStates'
-import type { AnimationAPI } from '../hooks/useAnimationControl/useAnimationControl'
+import type { AnimationAPI } from '../hooks/useAnimationControl/useAnimationAPI'
 import { styles } from '../utils/styles'
 import { Constants } from '../config'
 
 type Props = {
   children: ReactNode
-  state: Pick<
-    NotificationState,
-    'notificationEvent' | 'panHandlerRef' | 'longPressHandlerRef' | 'config'
-  >
+  state: Pick<NotificationState, 'notificationEvent' | 'panHandlerRef' | 'longPressHandlerRef'>
   animationAPI: Pick<
     AnimationAPI,
-    'dismiss' | 'animatedStyles' | 'cancelTransitionAnimation' | 'revokeTransitionAnimation'
+    'animatedStyles' | 'cancelTransitionAnimation' | 'revokeTransitionAnimation'
   >
 }
 
