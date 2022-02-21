@@ -12,10 +12,7 @@ type Props = {
     NotificationState,
     'longPressHandlerRef' | 'panHandlerRef' | 'setNotificationHeight' | 'topOffset'
   >
-  animationAPI: Pick<
-    AnimationAPI,
-    'dragGestureHandler' | 'handleDragStateChange' | 'animatedStyles'
-  >
+  animationAPI: Pick<AnimationAPI, 'dragGestureHandler' | 'handleDragStateChange' | 'dragStyles'>
 }
 
 export const GestureHandler = ({ children, state, animationAPI }: Props) => {
@@ -28,7 +25,7 @@ export const GestureHandler = ({ children, state, animationAPI }: Props) => {
       <Animated.View
         onLayout={(e) => state.setNotificationHeight(e.nativeEvent.layout.height)}
         style={[
-          animationAPI.animatedStyles,
+          animationAPI.dragStyles,
           styles.container,
           Constants.isAndroid ? styles.containerAndroid : styles.containerIos,
           { top: state.topOffset },

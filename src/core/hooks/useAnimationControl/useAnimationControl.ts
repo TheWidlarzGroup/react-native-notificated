@@ -1,41 +1,19 @@
 import { useCallback } from 'react'
 import {
-  AnimationCallback,
   cancelAnimation,
-  runOnJS,
+  useAnimatedStyle,
   useSharedValue,
   withSpring,
   withTiming,
 } from 'react-native-reanimated'
 import { useDrag } from '../useDrag'
 import type { NotificationState } from '../useNotificationsStates'
+import { emitter } from '../../services/NotificationEmitter'
+import { useTimer } from '../useTimer'
+import { withAnimationCallbackJSThread } from '../../utils/animation'
 
 type Props = {
   config: NotificationState['config']
-  onTransitionInAnimationFinished?: () => void
-  onTransitionOutAnimationFinished?: () => void
-  onTransitionInAnimationNotFinished?: () => void
-  onTransitionOutAnimationNotFinished?: () => void
-  onSwipeSuccess?: () => void
-  onSwipeFail?: () => void
-}
-
-const withAnimationCallbackJSThread = (
-  finishedAnimationCallback?: () => void,
-  notFinishedAnimationCallback?: () => void
-): AnimationCallback => {
-  const fcb = () => finishedAnimationCallback?.()
-  const nfcb = () => notFinishedAnimationCallback?.()
-
-  return (finished) => {
-    'worklet'
-
-    if (finished) {
-      runOnJS(fcb)()
-    } else {
-      runOnJS(nfcb)()
-    }
-  }
 }
 
 /**
@@ -49,127 +27,95 @@ const withAnimationCallbackJSThread = (
  * dismiss - used to trigger the transitionOut animation on a notification box. Resets DRAG. Sets transition type to `out`
  * preset - used to trigger the transitionIn animation on a notification box. Sets transition type to `in`
  */
+enum AnimationRange {
+  START = 1,
+  END = 0,
+}
+
 export const useAnimationControl = ({
-  config: { gestureConfig, animationConfig },
-  onSwipeFail,
-  onSwipeSuccess,
-  onTransitionInAnimationFinished,
-  onTransitionOutAnimationFinished,
-  onTransitionInAnimationNotFinished,
-  onTransitionOutAnimationNotFinished,
+  config: { gestureConfig, animationConfig, duration },
 }: Props) => {
-  // const { resetTimer } = useTimer()
+  const progress = useSharedValue(0)
+  const { resetTimer, clearTimer } = useTimer()
   const animationInConfig = animationConfig.animationConfigIn
   const animationOutConfig = animationConfig?.animationConfigOut
-
-  // const drag = useSharedValue(0)
-  const { dragStateHandler, resetDrag, dragStyles, ...dragConfig } = useDrag(gestureConfig)
-  const progress = useSharedValue(0)
+  const { dragStateHandler, resetDrag, ...dragConfig } = useDrag(gestureConfig)
   const currentTransitionType = useSharedValue<'in' | 'out' | 'idle_active'>('in')
-
-  const onTransitionInAnimationFinishedWrapper = useCallback(() => {
-    currentTransitionType.value = 'idle_active'
-
-    onTransitionInAnimationFinished?.()
-  }, [onTransitionInAnimationFinished, currentTransitionType])
-
-  const onTransitionOutAnimationFinishedWrapper = useCallback(() => {
-    currentTransitionType.value = 'in'
-
-    onTransitionOutAnimationFinished?.()
-  }, [onTransitionOutAnimationFinished, currentTransitionType])
-
-  const onTransitionInAnimationNotFinishedWrapper = useCallback(() => {
-    onTransitionInAnimationNotFinished?.()
-  }, [onTransitionInAnimationNotFinished])
-
-  const onTransitionOutAnimationNotFinishedWrapper = useCallback(() => {
-    onTransitionOutAnimationNotFinished?.()
-  }, [onTransitionOutAnimationNotFinished])
-
-  // Function which triggers animation for TRANSITION IN
-  // it also invokes callback after animation is completed
-  const present = useCallback(() => {
-    currentTransitionType.value = 'in'
-
-    const pickedWith = animationInConfig.type === 'spring' ? withSpring : withTiming
-
-    progress.value = pickedWith(
-      1,
-      animationInConfig.config,
-      withAnimationCallbackJSThread(
-        onTransitionInAnimationFinishedWrapper,
-        onTransitionInAnimationNotFinishedWrapper
-      )
-    )
-  }, [
-    onTransitionInAnimationFinishedWrapper,
-    animationInConfig,
-    onTransitionInAnimationNotFinishedWrapper,
-    currentTransitionType,
-    progress,
-  ])
 
   const dismiss = useCallback(() => {
     currentTransitionType.value = 'out'
     resetDrag()
 
     const dismissConfig = animationOutConfig || animationInConfig
+    const animateWith = dismissConfig.type === 'spring' ? withSpring : withTiming
 
-    const pickedWith = dismissConfig.type === 'spring' ? withSpring : withTiming
+    const handleSuccess = () => {
+      currentTransitionType.value = 'in'
+      emitter.emit('pop_notification')
+    }
 
-    progress.value = pickedWith(
-      0,
+    const handleError = () => {}
+
+    progress.value = animateWith(
+      AnimationRange.END,
       dismissConfig.config,
-      withAnimationCallbackJSThread(
-        onTransitionOutAnimationFinishedWrapper,
-        onTransitionOutAnimationNotFinishedWrapper
-      )
+      withAnimationCallbackJSThread(handleSuccess, handleError)
     )
-  }, [
-    onTransitionOutAnimationFinishedWrapper,
-    resetDrag,
-    animationInConfig,
-    animationOutConfig,
-    onTransitionOutAnimationNotFinishedWrapper,
-    currentTransitionType,
-    progress,
-  ])
+  }, [currentTransitionType, resetDrag, animationOutConfig, animationInConfig, progress])
+
+  const present = useCallback(() => {
+    currentTransitionType.value = 'in'
+
+    const animateWith = animationInConfig.type === 'spring' ? withSpring : withTiming
+
+    const handleSuccess = () => {
+      currentTransitionType.value = 'idle_active'
+      resetTimer(dismiss, duration)
+    }
+
+    const handleError = () => {}
+
+    progress.value = animateWith(
+      AnimationRange.START,
+      animationInConfig.config,
+      withAnimationCallbackJSThread(handleSuccess, handleError)
+    )
+  }, [animationInConfig, currentTransitionType, dismiss, duration, progress, resetTimer])
 
   const cancelTransitionAnimation = useCallback(() => {
+    clearTimer()
     cancelAnimation(progress)
-  }, [progress])
+  }, [clearTimer, progress])
 
   // Used to revoke transition (progress) value after canceling it with e.g. LongPressGestureHandler
   const revokeTransitionAnimation = useCallback(() => {
-    if (currentTransitionType.value === 'out') {
-      dismiss()
-    } else {
-      present()
+    switch (currentTransitionType.value) {
+      case 'out':
+        return dismiss()
+      case 'in':
+      case 'idle_active':
+        return resetTimer(dismiss, duration)
     }
-  }, [dismiss, present, currentTransitionType])
+  }, [currentTransitionType, dismiss, resetTimer, duration])
 
-  const swipeSuccess = useCallback(() => {
-    dismiss()
-    onSwipeSuccess?.()
-  }, [onSwipeSuccess, dismiss])
+  const handleDragStateChange = dragStateHandler(dismiss, resetDrag)
 
-  const swipeFail = useCallback(() => {
-    resetDrag()
-    onSwipeFail?.()
-  }, [onSwipeFail, resetDrag])
+  const animatedStyles = useAnimatedStyle(() => {
+    const { transitionInStyles, transitionOutStyles } = animationConfig
 
-  const handleDragStateChange = dragStateHandler(swipeSuccess, swipeFail)
+    if (['out', 'idle_active'].includes(currentTransitionType.value) && transitionOutStyles) {
+      return transitionOutStyles(progress)
+    }
+
+    return transitionInStyles(progress)
+  })
 
   return {
     ...dragConfig,
-    animatedStyles: dragStyles,
+    animatedStyles,
     handleDragStateChange,
-    resetDrag,
     present,
     dismiss,
-    progress,
-    currentTransitionType,
     cancelTransitionAnimation,
     revokeTransitionAnimation,
   }

@@ -4,8 +4,11 @@ import type { NotificationState } from './useNotificationsStates'
 import type { AnimationAPI } from './useAnimationControl/useAnimationControl'
 import type { EmitParam, ModifiedEmitParam, RemoveEmitParam } from '../services/types'
 
-type Props = Pick<AnimationAPI, 'dismiss' | 'present'> &
-  Pick<NotificationState, 'setNotificationsQueue' | 'notificationsQueue' | 'notificationEvent'>
+type Props = Pick<
+  NotificationState,
+  'setNotificationsQueue' | 'notificationsQueue' | 'notificationEvent'
+> &
+  Pick<AnimationAPI, 'dismiss' | 'present'>
 
 export const useNotificationEventHandler = ({
   dismiss,
@@ -31,14 +34,6 @@ export const useNotificationEventHandler = ({
   }, [setNotificationsQueue])
 
   useEffect(() => {
-    const removeListener = emitter.addListener('pop_notification', () => {
-      setNotificationsQueue((prev) => prev.filter((_, index: number) => index !== 0))
-    })
-
-    return removeListener
-  }, [setNotificationsQueue])
-
-  useEffect(() => {
     const modifyNotification = ({ id, params }: ModifiedEmitParam<unknown>) => {
       setNotificationsQueue((prevState) =>
         prevState.map((notification) => {
@@ -52,6 +47,14 @@ export const useNotificationEventHandler = ({
     }
 
     const removeListener = emitter.addListener('modify_notification', modifyNotification)
+
+    return removeListener
+  }, [setNotificationsQueue])
+
+  useEffect(() => {
+    const removeListener = emitter.addListener('pop_notification', () => {
+      setNotificationsQueue((prev) => prev.filter((_, index: number) => index !== 0))
+    })
 
     return removeListener
   }, [setNotificationsQueue])

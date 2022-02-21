@@ -4,7 +4,6 @@ import { LongPressGestureHandler } from 'react-native-gesture-handler'
 import { View } from 'react-native'
 import type { NotificationState } from '../hooks/useNotificationsStates'
 import type { AnimationAPI } from '../hooks/useAnimationControl/useAnimationControl'
-import { useTimer } from '../hooks/useTimer'
 import { styles } from '../utils/styles'
 import { Constants } from '../config'
 
@@ -16,40 +15,21 @@ type Props = {
   >
   animationAPI: Pick<
     AnimationAPI,
-    | 'dismiss'
-    | 'animatedStyles'
-    | 'cancelTransitionAnimation'
-    | 'revokeTransitionAnimation'
-    | 'currentTransitionType'
+    'dismiss' | 'animatedStyles' | 'cancelTransitionAnimation' | 'revokeTransitionAnimation'
   >
 }
 
 export const AnimationRenderer = ({ children, animationAPI, state }: Props) => {
-  const { clearTimer, resetTimer } = useTimer()
-
   return (
     <Animated.View style={[animationAPI.animatedStyles]}>
       {state.notificationEvent && (
         <LongPressGestureHandler
           minDurationMs={0}
-          maxDist={Constants.maxLongPressDragDistance}
           ref={state.longPressHandlerRef}
           simultaneousHandlers={state.panHandlerRef}
-          onActivated={() => {
-            animationAPI.cancelTransitionAnimation()
-            clearTimer()
-          }}
-          onEnded={() => {
-            animationAPI.revokeTransitionAnimation()
-
-            if (animationAPI.currentTransitionType.value === 'in') {
-              resetTimer(animationAPI.dismiss, state.config.duration)
-            }
-
-            if (animationAPI.currentTransitionType.value === 'idle_active') {
-              resetTimer(animationAPI.dismiss, state.config.duration)
-            }
-          }}>
+          maxDist={Constants.maxLongPressDragDistance}
+          onEnded={animationAPI.revokeTransitionAnimation}
+          onActivated={animationAPI.cancelTransitionAnimation}>
           <View style={styles.boxWrapper}>{children}</View>
         </LongPressGestureHandler>
       )}
