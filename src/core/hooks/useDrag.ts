@@ -60,7 +60,7 @@ export const useDrag = (config: GestureConfig) => {
     transform: [{ translateX: x.value }, { translateY: y.value }],
   }))
 
-  return { x, y, dragGestureHandler, dragStateHandler, dragStyles, resetDrag }
+  return { dragGestureHandler, dragStateHandler, dragStyles, resetDrag }
 }
 
 const getDragDirections = (direction: DragDirection) => {
