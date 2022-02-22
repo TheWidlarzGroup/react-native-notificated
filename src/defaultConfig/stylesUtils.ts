@@ -52,7 +52,7 @@ export const getContainerStyles = (styles: MergedNotificationStyleConfig): Parti
   }
 }
 
-export const getLeftAccentStyle = (accentColor?: string) => {
+export const getLeftAccentStyle = (accentColor: string | undefined) => {
   return {
     flex: 0.045,
     height: '100%',
