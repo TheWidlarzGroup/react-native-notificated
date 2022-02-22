@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
-import type { DefaultVariantsConfig, NotificationsConfig, VariantsMap } from '../types'
-import type { _DefaultVariants } from '../defaultConfig/defaultConfig'
+import type { NotificationsConfig, VariantsMap } from '../../types'
+import type { _DefaultVariants } from '../../defaultConfig/defaultConfig'
 
 export const NotificationContext = createContext<NotificationsConfig<VariantsMap> | null>(null)
 
@@ -11,5 +11,5 @@ export const useNotificationConfig = () => {
     throw new Error('Notification context used out of scope')
   }
 
-  return config as Omit<DefaultVariantsConfig, 'variants'> & NotificationsConfig<_DefaultVariants>
+  return config as NotificationsConfig<_DefaultVariants>
 }

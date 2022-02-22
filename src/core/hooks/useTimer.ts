@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 
 export const useTimer = () => {
   const timerId = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -16,6 +16,10 @@ export const useTimer = () => {
     },
     [clearTimer]
   )
+
+  useEffect(() => {
+    return () => clearTimer()
+  }, [clearTimer])
 
   return { clearTimer, resetTimer }
 }

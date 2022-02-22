@@ -6,14 +6,15 @@ import type {
   WithTimingConfig,
 } from 'react-native-reanimated'
 
-type AnimatedStylesType = AnimatedStyleProp<ViewStyle | TextStyle | ImageStyle>
-
-type TransistionStylesConfigFunction = (progress: SharedValue<number>) => AnimatedStylesType
+type TransitionStylesConfigFunction = (
+  progress: SharedValue<number>
+) => AnimatedStyleProp<ViewStyle | TextStyle | ImageStyle>
 
 type SpringAnimationConfig = {
   type: 'spring'
   config: WithSpringConfig
 }
+
 type TimingAnimationConfig = {
   type: 'timing'
   config: WithTimingConfig
@@ -22,10 +23,13 @@ type TimingAnimationConfig = {
 export type AnimationTypeConfig = SpringAnimationConfig | TimingAnimationConfig
 
 export type CustomAnimationConfig = {
-  transitionInStyles: TransistionStylesConfigFunction
-  transitionOutStyles?: TransistionStylesConfigFunction
+  transitionInStyles: TransitionStylesConfigFunction
+  transitionOutStyles?: TransitionStylesConfigFunction
   animationConfigIn: AnimationTypeConfig
   animationConfigOut?: AnimationTypeConfig
 }
 
-export type DragDirection = 'y' | 'x' | 'full' | 'none'
+export enum AnimationRange {
+  START = 1,
+  END = 0,
+}

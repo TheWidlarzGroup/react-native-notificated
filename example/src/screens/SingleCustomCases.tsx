@@ -77,7 +77,7 @@ export const SingleCustomCases = () => {
               style: {
                 titleSize: 22,
                 titleColor: '#C71585',
-                leftIconSource: require('../assets/custom-info-icon-2.png'),
+                leftIconSource: require('../../assets/custom-info-icon-2.png'),
                 multiline: 8,
                 accentColor: '#C71585',
                 borderWidth: 2,

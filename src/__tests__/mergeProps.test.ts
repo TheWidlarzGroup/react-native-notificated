@@ -1,6 +1,5 @@
 import { mergeProps } from '../defaultConfig/mergeProps'
-import type { NotificationProps } from '../types'
-import type { NotificationStyleConfig } from '../defaultConfig/types'
+import type { NotificationProps, NotificationStyleConfig } from '../defaultConfig/types'
 
 describe('props merger tests', function () {
   it('should merge props with props as main source', () => {

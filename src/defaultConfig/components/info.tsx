@@ -1,8 +1,8 @@
 import React from 'react'
-import { useNotificationConfig } from '../../core/useNotificationConfig'
+import { useNotificationConfig } from '../../core/hooks/useNotificationConfig'
 import { mergeProps } from '../mergeProps'
-import { NotificationBase } from './NotificationBase'
-import type { NotificationProps } from '../../types'
+import { NotificationBase } from './notificationBase'
+import type { NotificationProps } from '../types'
 
 export const InfoNotification = (props: NotificationProps) => {
   const { defaultStylesSettings } = useNotificationConfig()

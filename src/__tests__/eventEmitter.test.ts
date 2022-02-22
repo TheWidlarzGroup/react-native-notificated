@@ -1,4 +1,4 @@
-import { createNotificationsEmitter } from '../services/NotificationEmitter'
+import { createNotificationsEmitter } from '../core/services/NotificationEmitter'
 import type { EventType } from '../types/config'
 
 describe('event emiter tests', () => {

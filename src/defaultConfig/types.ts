@@ -20,7 +20,7 @@ export type NotificationOwnProps = {
   title?: string
   description: string
   notificationPosition?: NotificationPosition
-  onPress?: () => void | undefined
+  onPress?: () => void
 }
 
 export type NotificationStyleConfig = Partial<{
@@ -30,10 +30,21 @@ export type NotificationStyleConfig = Partial<{
   descriptionColor: string
   bgColor: string
   borderRadius: number
-  accentColor: any
+  accentColor: string
   borderWidth: number
   multiline: number
   defaultIconType: IconVisualStyle
   leftIconSource: ImageSourcePropType
   borderType: BorderType
 }>
+
+export type StyleProps = { style?: Partial<NotificationStyleConfig> }
+export type NotificationProps = NotificationOwnProps & StyleProps
+export type MergedNotificationStyleConfig = NotificationStyleConfig & { theme: Theme }
+
+export type DefaultLayoutConfig = {
+  defaultStylesSettings?: {
+    darkMode?: boolean
+    globalConfig?: Partial<NotificationStyleConfig>
+  } & { [key in `${DefaultKeys}Config`]?: Partial<NotificationStyleConfig> }
+}

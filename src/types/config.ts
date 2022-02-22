@@ -1,7 +1,7 @@
 export type NotificationsType = 'default' | 'success' | 'warning' | 'error'
 export type NotificationPosition = 'top' | 'center' | 'bottom'
 
-export interface NotificationConfig {
+export type NotificationConfig = {
   type: NotificationsType
   withButton?: boolean
   time?: number
@@ -17,4 +17,5 @@ export type EventType =
   | 'pop_notification'
   | 'remove_notification'
   | 'modify_notification'
+
 export type EventCallback = (payload?: any) => void
