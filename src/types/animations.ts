@@ -6,9 +6,9 @@ import type {
   WithTimingConfig,
 } from 'react-native-reanimated'
 
-type AnimatedStylesType = AnimatedStyleProp<ViewStyle | TextStyle | ImageStyle>
-
-type TransitionStylesConfigFunction = (progress: SharedValue<number>) => AnimatedStylesType
+type TransitionStylesConfigFunction = (
+  progress: SharedValue<number>
+) => AnimatedStyleProp<ViewStyle | TextStyle | ImageStyle>
 
 type SpringAnimationConfig = {
   type: 'spring'
