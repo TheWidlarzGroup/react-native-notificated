@@ -3,7 +3,7 @@ import Animated from 'react-native-reanimated'
 import { LongPressGestureHandler } from 'react-native-gesture-handler'
 import { View } from 'react-native'
 import type { NotificationState } from '../hooks/useNotificationsStates'
-import type { AnimationAPI } from '../hooks/useAnimationControl/useAnimationAPI'
+import type { AnimationAPI } from '../hooks/useAnimationAPI'
 import { styles } from '../utils/styles'
 import { Constants } from '../config'
 

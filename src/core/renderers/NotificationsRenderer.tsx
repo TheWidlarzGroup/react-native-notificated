@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAnimationAPI } from '../hooks/useAnimationControl/useAnimationAPI'
+import { useAnimationAPI } from '../hooks/useAnimationAPI'
 import { useNotificationEventHandler } from '../hooks/useNotificationEventHandler'
 import { useNotificationsStates } from '../hooks/useNotificationsStates'
 import { GestureHandler } from './GestureHandler'

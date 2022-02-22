@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { emitter } from '../services/NotificationEmitter'
 import type { NotificationState } from './useNotificationsStates'
-import type { AnimationAPI } from './useAnimationControl/useAnimationAPI'
+import type { AnimationAPI } from './useAnimationAPI'
 import type { EmitParam, ModifiedEmitParam, RemoveEmitParam } from '../services/types'
 
 type Props = Pick<

@@ -6,12 +6,12 @@ import {
   withSpring,
   withTiming,
 } from 'react-native-reanimated'
-import { useDrag } from '../useDrag'
-import type { NotificationState } from '../useNotificationsStates'
-import { emitter } from '../../services/NotificationEmitter'
-import { useTimer } from '../useTimer'
-import { withAnimationCallbackJSThread } from '../../utils/animation'
-import { AnimationRange } from '../../../types/animations'
+import { useDrag } from './useDrag'
+import type { NotificationState } from './useNotificationsStates'
+import { emitter } from '../services/NotificationEmitter'
+import { useTimer } from './useTimer'
+import { withAnimationCallbackJSThread } from '../utils/animation'
+import { AnimationRange } from '../../types/animations'
 
 /**
  * onTransitionInAnimationFinished - triggered when animation for in-transition ends.
