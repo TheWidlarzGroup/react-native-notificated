@@ -1,21 +1,19 @@
 import { Constants } from '../config'
 import type { NotificationsConfig, Variant, VariantsMap } from '../../types'
-import type { _DefaultVariants } from '../../defaultConfig/defaultConfig'
 import type { EmitParam } from '../services/types'
 import type { KeyType } from '../../types/misc'
+import type { VariantKeys } from '../../defaultConfig/types'
 
 export const getTopOffset = (
-  notificationsConfigs: NotificationsConfig<_DefaultVariants>,
-  notificationEvent: EmitParam,
+  globalConfig: NotificationsConfig<VariantsMap>,
   notificationHeight: number
 ) => {
-  const isNotch = notificationsConfigs.isNotch
+  const isNotch = globalConfig.isNotch
   const extraSpace = 50
   const topPosition = isNotch ? extraSpace : 10
-  const notificationFinalPosition =
-    notificationEvent?.config?.notificationPosition ?? notificationsConfigs?.notificationPosition
+  const notificationPosition = globalConfig.notificationPosition
 
-  switch (notificationFinalPosition) {
+  switch (notificationPosition) {
     case 'top':
       return topPosition
     case 'center':
@@ -46,7 +44,9 @@ export const mergeConfigs = (
   globalConfig: NotificationsConfig<VariantsMap>,
   notificationEvent: EmitParam | undefined
 ): NotificationsConfig<VariantsMap> => {
-  const variantConfig = pickVariant(globalConfig, notificationEvent?.notificationType)?.config
+  const name = String(notificationEvent?.notificationType)
+  const variantName: keyof VariantKeys = (name + 'Config') as keyof VariantKeys
+  const variantConfig = globalConfig.defaultStylesSettings?.[variantName]
 
-  return { ...globalConfig, ...variantConfig, ...notificationEvent }
+  return { ...globalConfig, ...variantConfig, ...notificationEvent?.config }
 }

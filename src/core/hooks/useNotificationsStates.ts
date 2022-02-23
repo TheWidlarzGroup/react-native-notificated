@@ -13,7 +13,7 @@ export const useNotificationsStates = () => {
   const notificationEvent = notificationsQueue[0]
   const config = mergeConfigs(globalConfig, notificationEvent)
 
-  const topOffset = getTopOffset(globalConfig, notificationEvent, notificationHeight)
+  const topOffset = getTopOffset(config, notificationHeight)
 
   return {
     config,

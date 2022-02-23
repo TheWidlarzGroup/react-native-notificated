@@ -11,6 +11,12 @@ import { styles } from './styles'
 
 const { useNotifications, NotificationsProvider } = createNotifications({
   isNotch: true,
+  notificationPosition: 'center',
+  defaultStylesSettings: {
+    errorConfig: {
+      notificationPosition: 'bottom',
+    },
+  },
 })
 
 export const DefaultExamples = () => {
@@ -42,6 +48,10 @@ export const DefaultExamples = () => {
             params: {
               description: 'This is where the toast text goes. ',
               title: 'Error',
+            },
+            config: {
+              notificationPosition: 'bottom',
+              duration: 200,
             },
           })
         }
