@@ -17,17 +17,21 @@ export type _DefaultVariants = {
 export const defaultVariants: _DefaultVariants = {
   success: {
     component: SuccessNotification,
+    config: { __isDefault: true },
   },
   warning: {
     component: WarningNotification,
+    config: { __isDefault: true },
   },
   error: {
     component: ErrorNotification,
+    config: { __isDefault: true },
   },
   info: {
     component: InfoNotification,
+    config: { __isDefault: true },
   },
-} as const
+} as const as _DefaultVariants
 
 export const InAppNotificationsConfig: NotificationsConfig<_DefaultVariants> = {
   duration: 3000,

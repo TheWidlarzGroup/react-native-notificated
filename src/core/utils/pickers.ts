@@ -2,7 +2,8 @@ import { Constants } from '../config'
 import type { NotificationsConfig, Variant, VariantsMap } from '../../types'
 import type { EmitParam } from '../services/types'
 import type { KeyType } from '../../types/misc'
-import type { VariantKeys } from '../../defaultConfig/types'
+import type { DefaultKeys } from '../../defaultConfig/defaultConfig'
+import type { DefaultStylesConfigs } from '../../defaultConfig/types'
 
 export const getTopOffset = (
   globalConfig: NotificationsConfig<VariantsMap>,
@@ -40,13 +41,39 @@ export const pickVariant = (
   return variant
 }
 
+const pickDefaultVariantConfig = (
+  config: NotificationsConfig<VariantsMap>,
+  variantKey: string
+): Partial<NotificationsConfig<VariantsMap>> => {
+  const checkIsDefaultConfig = (globalConfig: any, variant: string): variant is DefaultKeys => {
+    return Boolean(globalConfig?.variants?.[variant]?.config?.__isDefault)
+  }
+
+  if (checkIsDefaultConfig(config, variantKey)) {
+    const variantName: keyof DefaultStylesConfigs = `${variantKey}Config`
+    const defaultConfig = config.defaultStylesSettings?.[variantName]
+
+    if (defaultConfig?.notificationPosition) {
+      return { notificationPosition: defaultConfig.notificationPosition }
+    }
+  }
+
+  return {}
+}
+
 export const mergeConfigs = (
   globalConfig: NotificationsConfig<VariantsMap>,
   notificationEvent: EmitParam | undefined
-): NotificationsConfig<VariantsMap> => {
+) => {
   const name = String(notificationEvent?.notificationType)
-  const variantName: keyof VariantKeys = (name + 'Config') as keyof VariantKeys
-  const variantConfig = globalConfig.defaultStylesSettings?.[variantName]
 
-  return { ...globalConfig, ...variantConfig, ...notificationEvent?.config }
+  const defaultVariantConfig = pickDefaultVariantConfig(globalConfig, name)
+  const variantConfig = pickVariant(globalConfig, name)?.config
+
+  return {
+    ...globalConfig,
+    ...variantConfig,
+    ...defaultVariantConfig,
+    ...notificationEvent?.config,
+  }
 }

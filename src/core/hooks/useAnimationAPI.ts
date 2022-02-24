@@ -9,9 +9,9 @@ import {
 import { useDrag } from './useDrag'
 import type { NotificationState } from './useNotificationsStates'
 import { emitter } from '../services/NotificationEmitter'
-import { useTimer } from './useTimer'
 import { withAnimationCallbackJSThread } from '../utils/animation'
 import { AnimationRange } from '../../types/animations'
+import { useTimer } from './useTimer'
 
 /**
  * onTransitionInAnimationFinished - triggered when animation for in-transition ends.

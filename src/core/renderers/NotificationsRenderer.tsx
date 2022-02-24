@@ -1,10 +1,10 @@
 import React from 'react'
-import { useAnimationAPI } from '../hooks/useAnimationAPI'
 import { useNotificationEventHandler } from '../hooks/useNotificationEventHandler'
 import { useNotificationsStates } from '../hooks/useNotificationsStates'
 import { GestureHandler } from './GestureHandler'
 import { AnimationRenderer } from './AnimationRenderer'
 import { VariantsRenderer } from './VariantsRenderer'
+import { useAnimationAPI } from '../hooks/useAnimationAPI'
 
 export const NotificationsRenderer = () => {
   const { config, ...state } = useNotificationsStates()
@@ -12,6 +12,7 @@ export const NotificationsRenderer = () => {
   const animationAPI = useAnimationAPI(config)
 
   useNotificationEventHandler({ ...state, ...animationAPI })
+
 
   return (
     <GestureHandler state={state} animationAPI={animationAPI}>

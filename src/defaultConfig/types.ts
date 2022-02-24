@@ -1,7 +1,6 @@
 import type { NotificationPosition } from '../types/config'
 import type { DefaultKeys, defaultVariants } from './defaultConfig'
 import type { ImageSourcePropType } from 'react-native'
-import type { NotificationConfigBase } from "../types";
 
 export type DefaultVariants = typeof defaultVariants
 export type NotificationVariants = keyof DefaultVariants
@@ -20,7 +19,6 @@ export type IconsLinksTypes = {
 export type NotificationOwnProps = {
   title?: string
   description: string
-  notificationPosition?: NotificationPosition
   onPress?: () => void
 }
 
@@ -44,13 +42,13 @@ export type StyleProps = { style?: Partial<NotificationStyleConfig> }
 export type NotificationProps = NotificationOwnProps & StyleProps
 export type MergedNotificationStyleConfig = NotificationStyleConfig & { theme: Theme }
 
-export type VariantKeys = {
-  [key in `${string}Config`]?: Partial<NotificationConfigBase>
+export type DefaultStylesConfigs = {
+  [key in `${DefaultKeys}Config`]?: Partial<NotificationStyleConfig>
 }
 
 export type DefaultLayoutConfig = {
   defaultStylesSettings?: {
     darkMode?: boolean
     globalConfig?: Partial<NotificationStyleConfig>
-  } & {[key in `${DefaultKeys}Config`]?: Partial<NotificationStyleConfig>}
+  } & DefaultStylesConfigs
 }

@@ -11,7 +11,7 @@ import { styles } from './styles'
 
 const { useNotifications, NotificationsProvider } = createNotifications({
   isNotch: true,
-  notificationPosition: 'center',
+  notificationPosition: 'top',
   defaultStylesSettings: {
     errorConfig: {
       notificationPosition: 'bottom',
@@ -27,6 +27,7 @@ export const DefaultExamples = () => {
   return (
     <SafeAreaView style={styles.container}>
       <NotificationsProvider />
+
       <SuccessButton
         onPress={() =>
           setId(
@@ -35,13 +36,11 @@ export const DefaultExamples = () => {
                 description: 'This is where the toast text goes',
                 title: 'Success',
               },
-              config: {
-                notificationPosition: 'center',
-              },
             }).id
           )
         }
       />
+
       <ErrorButton
         onPress={() =>
           notify('error', {
@@ -50,12 +49,12 @@ export const DefaultExamples = () => {
               title: 'Error',
             },
             config: {
-              notificationPosition: 'bottom',
-              duration: 200,
+              duration: 2000,
             },
           })
         }
       />
+
       <WarningButton
         onPress={() =>
           notify('warning', {
@@ -66,6 +65,7 @@ export const DefaultExamples = () => {
           })
         }
       />
+
       <InfoButton
         onPress={() =>
           notify('info', {
@@ -73,9 +73,13 @@ export const DefaultExamples = () => {
               description: 'This is where the toast text goes.',
               title: 'Info',
             },
+            config: {
+              notificationPosition: 'bottom',
+            },
           })
         }
       />
+
       <ModifyButton
         onPress={() =>
           modify(id, {
@@ -85,6 +89,7 @@ export const DefaultExamples = () => {
           })
         }
       />
+
       <RemoveButton onPress={() => remove(id)} />
     </SafeAreaView>
   )
