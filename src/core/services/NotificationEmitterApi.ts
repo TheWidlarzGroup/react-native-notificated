@@ -5,8 +5,11 @@ import { emitter } from './NotificationEmitter'
 import type { EmitParam, ModifiedEmitParam } from './types'
 
 export const remove = (id: string) => emitter.emit('remove_notification', { id })
-export const modify = <T>({ id, params }: ModifiedEmitParam<T>) =>
-  emitter.emit('modify_notification', { id, params })
+
+export const modify = <T>(
+  id: string,
+  { params, config }: Partial<Omit<ModifiedEmitParam<T>, 'id'>>
+) => emitter.emit('modify_notification', { id, params, config })
 
 export const notify = <
   Variant extends keyof Variants,

@@ -21,7 +21,7 @@ export const AnimationRenderer = ({ children, animationAPI, state }: Props) => {
     <Animated.View style={[animationAPI.animatedStyles]}>
       {state.notificationEvent && (
         <LongPressGestureHandler
-          minDurationMs={0}
+          minDurationMs={800}
           ref={state.longPressHandlerRef}
           simultaneousHandlers={state.panHandlerRef}
           maxDist={Constants.maxLongPressDragDistance}
