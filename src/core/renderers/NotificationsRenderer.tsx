@@ -13,7 +13,6 @@ export const NotificationsRenderer = () => {
 
   useNotificationEventHandler({ ...state, ...animationAPI })
 
-
   return (
     <GestureHandler state={state} animationAPI={animationAPI}>
       <AnimationRenderer state={state} animationAPI={animationAPI}>
