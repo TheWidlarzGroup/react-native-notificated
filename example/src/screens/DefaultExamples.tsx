@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native'
-import { createNotifications, useNotificationController } from 'react-native-notification'
+import { createNotifications } from 'react-native-notification'
 import { SuccessButton } from '../components/basicExamples/SuccessButton'
 import { ErrorButton } from '../components/basicExamples/ErrorButton'
 import { WarningButton } from '../components/basicExamples/WarningButton'
@@ -20,9 +20,8 @@ const { useNotifications, NotificationsProvider } = createNotifications({
 })
 
 export const DefaultExamples = () => {
+  const { notify, remove, modify } = useNotifications()
   const [id, setId] = useState('')
-  const { notify } = useNotifications()
-  const { remove, modify } = useNotificationController()
 
   return (
     <SafeAreaView style={styles.container}>
