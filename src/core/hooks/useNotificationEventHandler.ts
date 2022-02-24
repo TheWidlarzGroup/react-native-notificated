@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { emitter } from '../services/NotificationEmitter'
 import type { NotificationState } from './useNotificationsStates'
-import type { AnimationAPI } from './useAnimationControl/useAnimationAPI'
+import type { AnimationAPI } from './useAnimationAPI'
 import type { EmitParam, ModifiedEmitParam, RemoveEmitParam } from '../services/types'
 
 type Props = Pick<
@@ -38,10 +38,14 @@ export const useNotificationEventHandler = ({
       setNotificationsQueue((prevState) =>
         prevState.map((notification) => {
           if (notification.id !== id) return notification
-          return {
+          const a = {
             ...notification,
             params: { ...(notification.params as any), ...(params as any) },
           }
+
+          console.log(a)
+
+          return a
         })
       )
     }

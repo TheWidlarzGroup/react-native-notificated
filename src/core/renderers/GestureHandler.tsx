@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import { PanGestureHandler } from 'react-native-gesture-handler'
-import type { AnimationAPI } from '../hooks/useAnimationControl/useAnimationAPI'
+import type { AnimationAPI } from '../hooks/useAnimationAPI'
 import type { NotificationState } from '../hooks/useNotificationsStates'
 import Animated from 'react-native-reanimated'
 import { styles } from '../utils/styles'
@@ -27,8 +27,8 @@ export const GestureHandler = ({ children, state, animationAPI }: Props) => {
         style={[
           animationAPI.dragStyles,
           styles.container,
-          { top: state.topOffset },
           Constants.isAndroid ? styles.containerAndroid : styles.containerIos,
+          { top: state.topOffset },
         ]}>
         {children}
       </Animated.View>

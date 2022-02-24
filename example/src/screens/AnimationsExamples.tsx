@@ -13,7 +13,9 @@ import { AnimationButton } from '../components/basicExamples/AnimationButton'
 import { Easing } from 'react-native-reanimated'
 import { generateAnimationConfig } from '../../../src/core/utils/generateAnimationConfig'
 
-const { useNotifications, NotificationsProvider } = createNotifications()
+const { useNotifications, NotificationsProvider } = createNotifications({
+  isNotch: true,
+})
 
 const CustomFadeInFadeOut = generateAnimationConfig({
   animationConfigIn: {

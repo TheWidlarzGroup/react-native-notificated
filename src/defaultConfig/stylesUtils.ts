@@ -56,7 +56,7 @@ export const getLeftAccentStyle = (accentColor: string | undefined) => {
   return {
     flex: 0.045,
     height: '100%',
-    backgroundColor: accentColor,
+    backgroundColor: accentColor ?? '',
   }
 }
 

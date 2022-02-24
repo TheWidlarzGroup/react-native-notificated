@@ -1,5 +1,5 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
-import { notify } from '../components/loginForm/LoginForm'
+import { notify } from '../screens/ReduxExample'
 
 type FormState = {
   login: string
@@ -26,7 +26,18 @@ export const formSlice = createSlice({
         notify('error', {
           params: {
             title: 'Incorrect login',
-            description: 'The login must contain at least 4 characters. ',
+            description: 'Login must contain at least 4 characters. ',
+            style: {
+              multiline: 2,
+            },
+          },
+        })
+      }
+      if (state.password.length < 4) {
+        notify('error', {
+          params: {
+            title: 'Incorrect password',
+            description: 'Password must contain at least 4 characters. ',
             style: {
               multiline: 2,
             },
@@ -36,7 +47,7 @@ export const formSlice = createSlice({
       notify('success', {
         params: {
           title: 'Welcome again',
-          description: 'You have successfully signed in. ',
+          description: 'You have successfully logged in. ',
           style: {
             multiline: 2,
           },
@@ -51,5 +62,5 @@ export const { updateLogin, updatePassword, submit } = formSlice.actions
 export default formSlice.reducer
 
 export const fetchUsers = (dispatch: Dispatch) => {
-  setTimeout(() => dispatch(submit()), 3000)
+  setTimeout(() => dispatch(submit()), 2000)
 }

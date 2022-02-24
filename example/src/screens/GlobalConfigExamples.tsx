@@ -8,6 +8,7 @@ import { InfoButton } from '../components/basicExamples/InfoButton'
 import { styles } from './styles'
 
 const { useNotifications, NotificationsProvider } = createNotifications({
+  isNotch: true,
   defaultStylesSettings: {
     globalConfig: {
       titleSize: 20,

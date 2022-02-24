@@ -39,8 +39,10 @@ return (
 const { notify } = useNotifications()
 
 const notificationMetadata = notify('success', {
-  title: 'Hello',
-  description: 'Wow, that was easy',
+  params: {
+    title: 'Hello',
+    description: 'Wow, that was easy',
+  },
 })
 ```
 

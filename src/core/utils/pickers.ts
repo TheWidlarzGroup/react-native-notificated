@@ -1,21 +1,20 @@
 import { Constants } from '../config'
 import type { NotificationsConfig, Variant, VariantsMap } from '../../types'
-import type { _DefaultVariants } from '../../defaultConfig/defaultConfig'
 import type { EmitParam } from '../services/types'
 import type { KeyType } from '../../types/misc'
+import type { DefaultKeys } from '../../defaultConfig/defaultConfig'
+import type { DefaultStylesConfigs } from '../../defaultConfig/types'
 
 export const getTopOffset = (
-  notificationsConfigs: NotificationsConfig<_DefaultVariants>,
-  notificationEvent: EmitParam,
+  globalConfig: NotificationsConfig<VariantsMap>,
   notificationHeight: number
 ) => {
-  const isNotch = notificationsConfigs.isNotch
+  const isNotch = globalConfig.isNotch
   const extraSpace = 50
   const topPosition = isNotch ? extraSpace : 10
-  const notificationFinalPosition =
-    notificationEvent?.config?.notificationPosition ?? notificationsConfigs?.notificationPosition
+  const notificationPosition = globalConfig.notificationPosition
 
-  switch (notificationFinalPosition) {
+  switch (notificationPosition) {
     case 'top':
       return topPosition
     case 'center':
@@ -42,11 +41,39 @@ export const pickVariant = (
   return variant
 }
 
+const pickDefaultVariantConfig = (
+  config: NotificationsConfig<VariantsMap>,
+  variantKey: string
+): Partial<NotificationsConfig<VariantsMap>> => {
+  const checkIsDefaultConfig = (globalConfig: any, variant: string): variant is DefaultKeys => {
+    return Boolean(globalConfig?.variants?.[variant]?.config?.__isDefault)
+  }
+
+  if (checkIsDefaultConfig(config, variantKey)) {
+    const variantName: keyof DefaultStylesConfigs = `${variantKey}Config`
+    const defaultConfig = config.defaultStylesSettings?.[variantName]
+
+    if (defaultConfig?.notificationPosition) {
+      return { notificationPosition: defaultConfig.notificationPosition }
+    }
+  }
+
+  return {}
+}
+
 export const mergeConfigs = (
   globalConfig: NotificationsConfig<VariantsMap>,
   notificationEvent: EmitParam | undefined
-): NotificationsConfig<VariantsMap> => {
-  const variantConfig = pickVariant(globalConfig, notificationEvent?.notificationType)?.config
+) => {
+  const name = String(notificationEvent?.notificationType)
 
-  return { ...globalConfig, ...variantConfig, ...notificationEvent }
+  const defaultVariantConfig = pickDefaultVariantConfig(globalConfig, name)
+  const variantConfig = pickVariant(globalConfig, name)?.config
+
+  return {
+    ...globalConfig,
+    ...variantConfig,
+    ...defaultVariantConfig,
+    ...notificationEvent?.config,
+  }
 }

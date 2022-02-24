@@ -11,9 +11,6 @@ import {
 import { fetchUsers, updateLogin, updatePassword } from '../../redux/reducers'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { styles } from './styles'
-import { createNotifications } from 'react-native-notification'
-
-export const { notify } = createNotifications()
 
 export const LoginForm = () => {
   const login = useAppSelector((state) => state.form.login)
