@@ -20,4 +20,3 @@ jobs:
       if: github.event.action == 'opened'
       with:
         project: 'https://github.com/orgs/TheWidlarzGroup/projects/2'
-      
