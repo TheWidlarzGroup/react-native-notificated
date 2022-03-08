@@ -1,27 +1,45 @@
-# react-native-notification
+# react-native-notificated
 
 Blazingly super fast RN notification library. Better than your delivery man
 
-## Installation
+## 🏹 Requirements
 
-```sh
-npm install react-native-notification
+- `react-native` >= 0.62.0
+- `reanimated` >= 2
+- `react-native-gesture-handler` >= 1.10.3
+- `typescript` >= 4.1.0 (if you use TypeScript)
+- `expo` >= 41 (if you use Expo)
+
+## 🚀 Installation
+
+```shell
+yarn add react-native-notificated
 ```
 
-## Usage
+## 🛸 Dependencies
 
-```js
-import { multiply } from "react-native-notification";
+This library needs these dependencies to be installed in your project before you can use it:
 
-// ...
-
-const result = await multiply(3, 7);
+```shell
+yarn add react-native-reanimated react-native-gesture-handler
 ```
 
-## Contributing
+**react-native-reanimated** requires additional installations
+steps: [guide here](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation) 👈
+
+**react-native-gesture-handler** requires additional installations
+steps: [guide here](https://docs.swmansion.com/react-native-gesture-handler/docs/) 👈
+
+## ❤️ Built With[](https://gorhom.github.io/react-native-bottom-sheet/#built-with-%EF%B8%8F)
+
+- [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated)
+- [react-native-gesture-handler](https://github.com/software-mansion/react-native-gesture-handler)
+- [react-native-builder-bob](https://github.com/callstack/react-native-builder-bob)
+
+## 🥂 Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
 
-## License
+## 🏢 License
 
 MIT
