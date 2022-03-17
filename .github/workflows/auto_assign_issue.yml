@@ -18,5 +18,4 @@ jobs:
       if: github.event.action == 'opened'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-      with:
         project: 'https://github.com/orgs/TheWidlarzGroup/projects/2'
