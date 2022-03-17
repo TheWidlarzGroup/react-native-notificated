@@ -14,12 +14,12 @@ jobs:
       - name: Install node modules
         run: cd docs/ && yarn
       - name: Deploy
-        run: cd docs/ && USE_SSH=true yarn deploy
+        run: cd docs/ && USE_SSH=true yarn build
 
       - name: Push to gh-pages branch
-        uses: ad-m/github-push-action@v0.5.0
+        uses: crazy-max/ghaction-github-pages@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
-          force: true
-          directory: ./docs/
+          target_branch: gh-pages
+          build_dir: docs/build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
