@@ -9,7 +9,7 @@ const config = {
   title: 'RN Notification',
   tagline: 'React Native Notifications',
   url: 'https://thewidlarzgroup.github.io',
-  baseUrl: '/',
+  baseUrl: '/react-native-notification/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
