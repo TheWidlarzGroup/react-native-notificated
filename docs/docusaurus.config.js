@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 const config = {
   title: 'RN Notification',
   tagline: 'React Native Notifications',
-  url: 'https://thewidlarzgroup.github.io/react-native-notification/',
+  url: 'https://thewidlarzgroup.github.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
