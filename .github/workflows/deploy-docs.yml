@@ -1,7 +1,7 @@
 name: 'Deploy Docs'
 
 on: 
-  deployment
+  pull_request
 
 jobs:
   deploy-docs:
