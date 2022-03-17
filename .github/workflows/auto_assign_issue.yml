@@ -17,5 +17,6 @@ jobs:
       uses: srggrs/assign-one-project-github-action@1.2.1
       if: github.event.action == 'opened'
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
         project: 'https://github.com/orgs/TheWidlarzGroup/projects/2'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
