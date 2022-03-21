@@ -36,8 +36,6 @@ Return type of this function (`generateAnimationConfig`) is `CustomAnimationConf
 
 ### Generating transition config with `generateAnimationConfig`
 
-<!-- BELOW IS WIP -->
-
 The `generateAnimationConfig` takes in a config object as a property with which you can define the animation.
 
 Below code snippets should give an idea how it works:
