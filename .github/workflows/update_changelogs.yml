@@ -1,0 +1,23 @@
+name: Update Changelogs
+
+on:
+  push:
+    branches: [playground/gha]
+jobs:
+  append:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Update
+        run: |
+          heading=`date`
+          printf "\n$heading\n" >> CHANGELOGS.md
+
+          cat CHANGED.md >> CHANGELOGS.md
+          printf "\n" >> CHANGELOGS.md
+
+          > CHANGED.md
+
+          git add CHANGELOGS.md CHANGED.md
+          git commit -m "Update changelogs"
+          git push
