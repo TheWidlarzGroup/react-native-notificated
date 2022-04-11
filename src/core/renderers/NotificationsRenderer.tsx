@@ -9,7 +9,7 @@ import { useAnimationAPI } from '../hooks/useAnimationAPI'
 export const NotificationsRenderer = () => {
   const { config, ...state } = useNotificationsStates()
 
-  const animationAPI = useAnimationAPI(config)
+  const animationAPI = useAnimationAPI(config, state?.notificationEvent?.id)
 
   useNotificationEventHandler({ ...state, ...animationAPI })
 

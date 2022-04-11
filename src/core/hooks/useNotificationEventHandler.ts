@@ -18,10 +18,10 @@ export const useNotificationEventHandler = ({
   setNotificationsQueue,
 }: Props) => {
   useEffect(() => {
-    if (notificationEvent) {
+    if (notificationEvent?.id) {
       present()
     }
-  }, [notificationEvent, present])
+  }, [notificationEvent?.id, present])
 
   useEffect(() => {
     const removeListener = emitter.addListener('add_notification', (config: EmitParam<unknown>) => {
@@ -38,14 +38,10 @@ export const useNotificationEventHandler = ({
       setNotificationsQueue((prevState) =>
         prevState.map((notification) => {
           if (notification.id !== id) return notification
-          const a = {
+          return {
             ...notification,
             params: { ...(notification.params as any), ...(params as any) },
           }
-
-          console.log(a)
-
-          return a
         })
       )
     }
@@ -56,8 +52,14 @@ export const useNotificationEventHandler = ({
   }, [setNotificationsQueue])
 
   useEffect(() => {
-    const removeListener = emitter.addListener('pop_notification', () => {
-      setNotificationsQueue((prev) => prev.filter((_, index: number) => index !== 0))
+    const removeListener = emitter.addListener('pop_notification', (id?: string) => {
+      setNotificationsQueue((prevState) => {
+        if (id) {
+          return prevState.filter((notification) => notification.id !== id)
+        }
+
+        return prevState.filter((_, index: number) => index !== 0)
+      })
     })
 
     return removeListener
@@ -65,12 +67,15 @@ export const useNotificationEventHandler = ({
 
   useEffect(() => {
     const removeNotification = ({ id }: RemoveEmitParam<unknown>) => {
-      const [firstNotification] = notificationsQueue
-      // if notification is currently displayed animate it back
-      if (firstNotification?.id === id) return dismiss()
-      setNotificationsQueue((prevState) =>
-        prevState.filter((notification) => notification.id !== id)
-      )
+      setNotificationsQueue((prevState) => {
+        // if notification is currently displayed animate it back
+        if (prevState[0]?.id === id) {
+          dismiss(id)
+          return prevState
+        }
+
+        return prevState.filter((notification) => notification.id !== id)
+      })
     }
 
     const removeListener = emitter.addListener('remove_notification', removeNotification)
