@@ -52,7 +52,13 @@ export const useNotificationEventHandler = ({
   }, [setNotificationsQueue])
 
   useEffect(() => {
+    let lastId: string | undefined
+
     const removeListener = emitter.addListener('pop_notification', (id?: string) => {
+      if (lastId && lastId === id) {
+        return
+      }
+
       setNotificationsQueue((prevState) => {
         if (id) {
           return prevState.filter((notification) => notification.id !== id)
@@ -60,6 +66,8 @@ export const useNotificationEventHandler = ({
 
         return prevState.filter((_, index: number) => index !== 0)
       })
+
+      lastId = id
     })
 
     return removeListener
