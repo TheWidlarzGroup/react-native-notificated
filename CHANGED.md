@@ -1,3 +1,3 @@
-### Added
+### Fixed
 
-Changelog flow
+Changelogs flow set to initial values
