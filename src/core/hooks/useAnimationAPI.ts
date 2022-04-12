@@ -13,10 +13,11 @@ import { withAnimationCallbackJSThread } from '../utils/animation'
 import { AnimationRange } from '../../types/animations'
 import { useTimer } from './useTimer'
 
-export const useAnimationAPI = (
-  { gestureConfig, animationConfig, duration }: NotificationState['config'],
-  id: string
-) => {
+export const useAnimationAPI = ({
+  gestureConfig,
+  animationConfig,
+  duration,
+}: NotificationState['config']) => {
   const progress = useSharedValue(0)
   const { resetTimer, clearTimer } = useTimer()
   const animationInConfig = animationConfig.animationConfigIn
@@ -25,8 +26,9 @@ export const useAnimationAPI = (
   const currentTransitionType = useSharedValue<'in' | 'out' | 'idle_active'>('in')
 
   const dismiss = useCallback(
-    (optionalId?: string) => {
+    (id?: string) => {
       currentTransitionType.value = 'out'
+      clearTimer()
       resetDrag()
 
       const dismissConfig = animationOutConfig || animationInConfig
@@ -34,7 +36,7 @@ export const useAnimationAPI = (
 
       const handleSuccess = () => {
         currentTransitionType.value = 'in'
-        emitter.emit('pop_notification', optionalId ?? id)
+        emitter.emit('pop_notification', { id: id })
       }
 
       const handleError = () => {}
@@ -45,7 +47,7 @@ export const useAnimationAPI = (
         withAnimationCallbackJSThread(handleSuccess, handleError)
       )
     },
-    [currentTransitionType, resetDrag, animationOutConfig, animationInConfig, progress, id]
+    [currentTransitionType, clearTimer, resetDrag, animationOutConfig, animationInConfig, progress]
   )
 
   const present = useCallback(() => {
