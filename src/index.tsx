@@ -1,4 +1,10 @@
 import { createNotifications } from './core/createNotifications'
+import type {
+  modify,
+  notify,
+  remove,
+  useNotifications,
+} from './core/services/NotificationEmitterApi'
 import {
   ZoomInDownZoomOutUp,
   SlideInLeftSlideOutRight,
@@ -22,7 +28,7 @@ export {
 }
 
 // core api, root level
-export { createNotifications }
+export { createNotifications, remove, modify, notify, useNotifications }
 
 // toolbelt
 export { useNotificationController }

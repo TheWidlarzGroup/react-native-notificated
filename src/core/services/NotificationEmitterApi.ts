@@ -35,4 +35,6 @@ const NotificationEmitterApi = {
   notify,
 }
 
+export const useNotifications = () => NotificationEmitterApi
+
 export default NotificationEmitterApi
