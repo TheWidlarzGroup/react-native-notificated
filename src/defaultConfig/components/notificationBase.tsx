@@ -35,11 +35,12 @@ export const NotificationBase = (props: NotificationOwnProps & MergedNotificatio
   )
 
   const renderTitle = () => <Text style={titleStyle}>{props.title}</Text>
-  const renderDescription = () => (
-    <Text style={descriptionStyle} numberOfLines={props.multiline ?? 1}>
-      {props.description}
-    </Text>
-  )
+  const renderDescription = () =>
+    !!props.description && (
+      <Text style={descriptionStyle} numberOfLines={props.multiline ?? 1}>
+        {props.description}
+      </Text>
+    )
 
   return (
     <View style={constShadow(props.theme, props.borderRadius)}>
