@@ -2,7 +2,7 @@ name: Append To Changelogs
 
 on:
   push:
-    branches: [gha-test-site]
+    branches: [master]
 jobs:
   append:
     runs-on: ubuntu-latest
