@@ -6,13 +6,12 @@ import type { MergedNotificationStyleConfig, NotificationVariants, Theme } from 
 export const getTitleStyle = (styles: MergedNotificationStyleConfig): Partial<TextStyle> => ({
   color: styles.titleColor ? styles.titleColor : themeBase.fontColor[styles.theme],
   fontSize: styles.titleSize ? styles.titleSize : themeBase.fontSize.headerFontSize,
-  paddingBottom: themeBase.spacing.xs,
-  flex: 1,
 })
 
 export const getDescriptionStyle = (styles: MergedNotificationStyleConfig): Partial<TextStyle> => ({
   color: styles.descriptionColor ? styles.descriptionColor : themeBase.fontColor[styles.theme],
   fontSize: styles.descriptionSize ? styles.descriptionSize : themeBase.fontSize.messageFontSize,
+  paddingTop: themeBase.spacing.xs,
 })
 
 export const constShadow = (theme: Theme, borderRadius?: number): Partial<ViewStyle> => {
