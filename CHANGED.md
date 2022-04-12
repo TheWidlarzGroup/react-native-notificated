@@ -1,3 +1,3 @@
-### Fixed
+#### FIXED
 
-Changelogs flow set to initial values
+Downgrade ga checkout and remove trigger on push to master
