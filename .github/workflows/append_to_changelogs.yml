@@ -2,7 +2,7 @@ name: Append To Changelogs
 
 on:
   push:
-    branches: [master]
+    branches: [playground/changelogs_workflow]
 jobs:
   append:
     runs-on: ubuntu-latest
