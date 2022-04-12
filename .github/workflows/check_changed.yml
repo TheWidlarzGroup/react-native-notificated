@@ -1,0 +1,20 @@
+name: Changed Check
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check
+        run: |
+          if [ -s CHANGED.md ]; then
+            exit 0
+          else
+            echo "No changes saved in CHANGED.md"
+            exit 1
+          fi
