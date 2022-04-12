@@ -30,7 +30,8 @@ export const createNotificationsEmitter = () => {
   }
 
   const emit = <T>(eventType: EventType, payload?: T) => {
-    console.log({ eventType, payload })
+    // @ts-ignore
+    console.log(eventType, payload)
 
     listeners.forEach((listener) => listener.eventType === eventType && listener.callback(payload))
   }

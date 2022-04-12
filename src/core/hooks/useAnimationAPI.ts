@@ -81,7 +81,7 @@ export const useAnimationAPI = (
       case 'idle_active':
         return resetTimer(dismiss, duration)
     }
-  }, [currentTransitionType, dismiss, resetTimer, duration])
+  }, [currentTransitionType.value, dismiss, resetTimer, duration])
 
   const handleDragStateChange = dragStateHandler(dismiss, resetDrag)
 

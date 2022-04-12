@@ -4,10 +4,7 @@ import type { NotificationState } from './useNotificationsStates'
 import type { AnimationAPI } from './useAnimationAPI'
 import type { EmitParam, ModifiedEmitParam, RemoveEmitParam } from '../services/types'
 
-type Props = Pick<
-  NotificationState,
-  'setNotificationsQueue' | 'notificationsQueue' | 'notificationEvent'
-> &
+type Props = Pick<NotificationState, 'dispatch' | 'notificationsQueue' | 'notificationEvent'> &
   Pick<AnimationAPI, 'dismiss' | 'present'>
 
 export const useNotificationEventHandler = ({
@@ -15,7 +12,7 @@ export const useNotificationEventHandler = ({
   notificationEvent,
   notificationsQueue,
   present,
-  setNotificationsQueue,
+  dispatch,
 }: Props) => {
   useEffect(() => {
     if (notificationEvent?.id) {
@@ -25,68 +22,36 @@ export const useNotificationEventHandler = ({
 
   useEffect(() => {
     const removeListener = emitter.addListener('add_notification', (config: EmitParam<unknown>) => {
-      setNotificationsQueue((prev) => {
-        return [...prev, config]
-      })
+      dispatch({ type: 'add', payload: config })
     })
 
     return removeListener
-  }, [setNotificationsQueue])
+  }, [dispatch])
 
   useEffect(() => {
-    const modifyNotification = ({ id, params }: ModifiedEmitParam<unknown>) => {
-      setNotificationsQueue((prevState) =>
-        prevState.map((notification) => {
-          if (notification.id !== id) return notification
-          return {
-            ...notification,
-            params: { ...(notification.params as any), ...(params as any) },
-          }
-        })
-      )
+    const modifyNotification = (modifiedConfig: ModifiedEmitParam<unknown>) => {
+      dispatch({ type: 'modify', payload: modifiedConfig })
     }
 
     const removeListener = emitter.addListener('modify_notification', modifyNotification)
 
     return removeListener
-  }, [setNotificationsQueue])
+  }, [dispatch])
 
   useEffect(() => {
-    let lastId: string | undefined
-
     const removeListener = emitter.addListener('pop_notification', (id?: string) => {
-      if (lastId && lastId === id) {
-        return
-      }
-
-      setNotificationsQueue((prevState) => {
-        if (id) {
-          return prevState.filter((notification) => notification.id !== id)
-        }
-
-        return prevState.filter((_, index: number) => index !== 0)
-      })
-
-      lastId = id
+      dispatch({ type: 'pop', payload: id })
     })
 
     return removeListener
-  }, [setNotificationsQueue])
+  }, [dispatch])
 
   useEffect(() => {
     const removeNotification = ({ id }: RemoveEmitParam<unknown>) => {
-      setNotificationsQueue((prevState) => {
-        // if notification is currently displayed animate it back
-        if (prevState[0]?.id === id) {
-          dismiss(id)
-          return prevState
-        }
-
-        return prevState.filter((notification) => notification.id !== id)
-      })
+      dispatch({ type: 'remove', payload: id, callback: dismiss })
     }
 
     const removeListener = emitter.addListener('remove_notification', removeNotification)
     return removeListener
-  }, [dismiss, notificationsQueue, setNotificationsQueue])
+  }, [dismiss, dispatch, notificationsQueue])
 }
