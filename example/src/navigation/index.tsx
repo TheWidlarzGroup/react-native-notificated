@@ -14,9 +14,9 @@ const Drawer = createDrawerNavigator<Routes>()
 
 export const AppNavigator = () => (
   <Drawer.Navigator screenOptions={{ header: () => null }}>
+    <Drawer.Screen name="Custom Variants Examples" component={CustomCaseExamples} />
     <Drawer.Screen name="Default Examples" component={DefaultExamples} />
     <Drawer.Screen name="Dark Mode Examples" component={DarkModeExamples} />
-    <Drawer.Screen name="Custom Variants Examples" component={CustomCaseExamples} />
     <Drawer.Screen name="Global Config Examples" component={GlobalConfigExamples} />
     <Drawer.Screen name="Global Types Config Examples" component={GlobalTypesConfigExamples} />
     <Drawer.Screen name="Single Custom Cases" component={SingleCustomCases} />
