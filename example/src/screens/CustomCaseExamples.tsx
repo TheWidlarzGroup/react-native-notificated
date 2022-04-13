@@ -4,21 +4,28 @@ import { createNotifications } from 'react-native-notification'
 import { SuccessButton } from '../components/basicExamples/SuccessButton'
 import { ErrorButton } from '../components/basicExamples/ErrorButton'
 import { styles } from './styles'
-import { View } from 'react-native'
+import { CustomSuccess } from '../components/customVariants/CustomSuccess'
+import { CustomError } from '../components/customVariants/CustomError'
 
 const { useNotifications, NotificationsProvider } = createNotifications({
   variants: {
     custom_success: {
-      component: View,
+      component: CustomSuccess,
+      config: {
+        notificationPosition: 'top',
+      },
     },
     custom_error: {
-      component: View,
+      component: CustomError,
+      config: {
+        duration: 2000,
+      },
     },
   },
   isNotch: true,
 })
 
-export const CustomCase = () => {
+export const CustomCaseExamples = () => {
   const { notify } = useNotifications()
 
   return (
@@ -29,8 +36,8 @@ export const CustomCase = () => {
         onPress={() =>
           notify('custom_success', {
             params: {
-              description: 'This is where the toast text goes',
-              title: 'Success',
+              customTitle: 'This props is inferred from variants',
+              callback: () => console.log('inferred params'),
             },
           })
         }
@@ -40,8 +47,8 @@ export const CustomCase = () => {
         onPress={() =>
           notify('custom_error', {
             params: {
-              description: 'This is where the toast text goes. ',
-              title: 'Error',
+              customTitle: 'custom error component',
+              customText: 'infered',
             },
             config: {
               duration: 2000,

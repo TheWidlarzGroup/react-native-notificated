@@ -35,6 +35,15 @@ const NotificationEmitterApi = {
   notify,
 }
 
+export type Modify = (id: string, params: Partial<ModifiedEmitParam<unknown>>) => void
+export type Remove = (id: string) => void
+export type Notify<Variants extends VariantsMap = DefaultVariants> = <
+  Variant extends keyof Variants
+>(
+  notificationType: Variant,
+  setup: { params: RequiredProps<Variants[Variant]>; config?: Partial<NotificationConfigBase> }
+) => { id: string }
+
 export const useNotifications = () => NotificationEmitterApi
 
 export default NotificationEmitterApi

@@ -1,20 +1,17 @@
-import type { FC } from 'react'
 import type { CustomAnimationConfig } from './types/animations'
 import type { DefaultLayoutConfig } from './defaultConfig/types'
 import type { NotificationPosition } from './types/config'
 import type { GestureConfig } from './types/gestures'
+import type { ComponentProps, FC } from 'react'
 
-// todo: extend this type
-export type ComponentProps<T> = T extends FC<infer Props> ? Props : never
-
-export type RequiredProps<T extends Variant<unknown>> = ComponentProps<T['component']>
+export type RequiredProps<T extends Variant<FC>> = ComponentProps<T['component']>
 
 export type Variant<T> = {
   component: T
-  config?: Partial<NotificationConfigBase>
+  config?: Partial<Omit<NotificationConfigBase, 'isNotch'>>
 }
 
-export type VariantsMap = Readonly<Record<string, Variant<unknown>>>
+export type VariantsMap = Readonly<Record<string, Variant<FC<any>>>>
 
 export type NotificationConfigBase = {
   duration: number

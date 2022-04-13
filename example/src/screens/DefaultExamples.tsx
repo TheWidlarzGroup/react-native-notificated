@@ -82,7 +82,7 @@ export const DefaultExamples = () => {
       <ModifyButton
         onPress={() =>
           modify(id, {
-            params: { id: id, title: 'Modified title', description: 'Modified description' },
+            params: { title: 'Modified title', description: 'Modified description' },
           })
         }
       />
