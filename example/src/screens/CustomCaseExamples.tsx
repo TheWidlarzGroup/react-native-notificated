@@ -7,7 +7,7 @@ import { styles } from './styles'
 import { CustomSuccess } from '../components/customVariants/CustomSuccess'
 import { CustomError } from '../components/customVariants/CustomError'
 
-const { useNotifications, NotificationsProvider } = createNotifications({
+const { NotificationsProvider, useNotifications } = createNotifications({
   variants: {
     custom_success: {
       component: CustomSuccess,

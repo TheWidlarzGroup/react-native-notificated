@@ -25,3 +25,5 @@ export type NotificationsConfig<Variants> = {
   variants: Variants
 } & NotificationConfigBase &
   DefaultLayoutConfig
+
+export interface CustomVariants {}

@@ -1,10 +1,5 @@
 import { createNotifications } from './core/createNotifications'
-import type {
-  modify,
-  notify,
-  remove,
-  useNotifications,
-} from './core/services/NotificationEmitterApi'
+import { useNotifications, modify, notify, remove } from './core/services/NotificationEmitterApi'
 import {
   ZoomInDownZoomOutUp,
   SlideInLeftSlideOutRight,
