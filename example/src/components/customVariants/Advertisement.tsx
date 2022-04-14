@@ -7,12 +7,12 @@ type Props = {
   customDescription: string
 }
 
-export const Advertisement = (p: Props) => {
+export const Advertisement = ({ customTitle, customDescription }: Props) => {
   return (
     <View style={styles.advertisement_container}>
-      <Text style={styles.advertisement_title}>{p.customTitle}</Text>
+      <Text style={styles.advertisement_title}>{customTitle}</Text>
       <Image source={require('../../../assets/doughnut.png')} style={styles.advertisement_image} />
-      <Text style={styles.advertisement_description}>{p.customDescription}</Text>
+      <Text style={styles.advertisement_description}>{customDescription}</Text>
     </View>
   )
 }

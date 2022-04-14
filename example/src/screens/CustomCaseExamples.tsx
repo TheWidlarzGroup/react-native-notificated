@@ -42,7 +42,7 @@ export const CustomCaseExamples = () => {
                 'Doughnuts are usually deep fried from a flour dough, but other types of batters can also be used. Various toppings and flavorings are used for different types, such as sugar, chocolate or maple glazing. Doughnuts may also include water, leavening, eggs, milk, sugar, oil, shortening, and natural or artificial flavors.',
             },
             config: {
-              duration: 2000,
+              duration: 6000,
             },
           })
         }
@@ -56,7 +56,7 @@ export const CustomCaseExamples = () => {
               customTitle: 'In progress',
             },
             config: {
-              duration: 3000,
+              duration: 6000,
             },
           })
         }
