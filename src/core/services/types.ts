@@ -1,5 +1,5 @@
-import type { NotificationConfigBase } from '../../types'
-import type { KeyType } from '../../types/misc'
+import type { NotificationConfigBase } from "../../types";
+import type { KeyType } from "../../types/misc";
 
 export type EmitParam<T = unknown> = {
   notificationType: KeyType

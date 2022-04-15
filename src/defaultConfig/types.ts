@@ -4,6 +4,7 @@ import type { ImageSourcePropType } from 'react-native'
 
 export type DefaultVariants = typeof defaultVariants
 export type NotificationVariants = keyof DefaultVariants
+
 export type IconVisualStyle = 'color' | 'monochromatic' | 'no-icon'
 export type Theme = 'regular' | 'dark'
 export type BorderType = 'border' | 'accent' | 'no-border'

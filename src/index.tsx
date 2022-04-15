@@ -1,14 +1,15 @@
 import { createNotifications } from './core/createNotifications'
-import { useNotifications, modify, notify, remove } from './core/services/NotificationEmitterApi'
+import { modify, notify, remove, useNotifications } from './core/services/NotificationEmitterApi'
 import {
-  ZoomInDownZoomOutUp,
-  SlideInLeftSlideOutRight,
-  ZoomInDownZoomOutDown,
   RotateInRotateOut,
   RotateZIn,
+  SlideInLeftSlideOutRight,
+  ZoomInDownZoomOutDown,
+  ZoomInDownZoomOutUp,
 } from './defaultConfig/defaultAnimationConfig'
 import { defaultVariants } from './defaultConfig/defaultConfig'
 import { useNotificationController } from './hooks/useNotificationController'
+import type { CustomVariants } from './types'
 
 // default
 export { defaultVariants }
@@ -27,3 +28,6 @@ export { createNotifications, remove, modify, notify, useNotifications }
 
 // toolbelt
 export { useNotificationController }
+
+// utility types
+export { CustomVariants }

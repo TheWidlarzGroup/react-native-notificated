@@ -38,14 +38,10 @@ export const useNotificationEventHandler = ({
       setNotificationsQueue((prevState) =>
         prevState.map((notification) => {
           if (notification.id !== id) return notification
-          const a = {
+          return {
             ...notification,
             params: { ...(notification.params as any), ...(params as any) },
           }
-
-          console.log(a)
-
-          return a
         })
       )
     }
