@@ -1,11 +1,23 @@
-import type { NotificationConfigBase } from "../../types";
-import type { KeyType } from "../../types/misc";
+import type {
+  NotificationConfigBase,
+  RequiredProps,
+  Variant,
+  Variants,
+  VariantsMap,
+} from '../../types'
 
-export type EmitParam<T = unknown> = {
-  notificationType: KeyType
-  params: T
+export type EmitParam<T extends VariantsMap = Variants> = {
+  notificationType: keyof T
+  params: RequiredProps<T[keyof T]>
   id: string
   config?: Partial<NotificationConfigBase>
 }
-export type ModifiedEmitParam<T> = Omit<EmitParam<T>, 'notificationType'>
-export type RemoveEmitParam<T> = Pick<EmitParam<T>, 'id'>
+
+export type ModifiedEmitParam<T extends Variant<any> = Variant<any>> = {
+  id: string
+  notificationType: keyof T
+  params: Partial<RequiredProps<T>>
+  config?: Partial<NotificationConfigBase>
+}
+
+export type RemoveEmitParam<T extends VariantsMap = Variants> = Pick<EmitParam<T>, 'id'>

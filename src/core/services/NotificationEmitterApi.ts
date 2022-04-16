@@ -10,7 +10,7 @@ export const modify: Modify = (id: string, { params, config }) =>
 
 export const notify: Notify = (notificationType, setup) => {
   const id = generateNotificationId(notificationType.toString())
-  emitter.emit<EmitParam<typeof setup['params']>>('add_notification', {
+  emitter.emit<EmitParam>('add_notification', {
     notificationType,
     id,
     ...setup,
@@ -29,7 +29,10 @@ const NotificationEmitterApi = {
 export const createEmitterApi = <T extends VariantsMap>() =>
   NotificationEmitterApi as unknown as Operations<T>
 
-export type Modify = (id: string, params: Partial<ModifiedEmitParam<any>>) => void
+export type Modify<V extends VariantsMap = Variants> = <K extends keyof V>(
+  id: string,
+  params: Partial<ModifiedEmitParam<V[K]>>
+) => void
 
 export type Remove = (id: string) => void
 export type Notify<V extends VariantsMap = Variants> = <Variant extends keyof V>(
@@ -38,7 +41,7 @@ export type Notify<V extends VariantsMap = Variants> = <Variant extends keyof V>
 ) => { id: string }
 
 export type Operations<T extends VariantsMap> = {
-  modify: Modify
+  modify: Modify<T>
   remove: Remove
   notify: Notify<T>
 }
