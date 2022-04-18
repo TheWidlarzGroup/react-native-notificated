@@ -23,9 +23,7 @@ export const GestureHandler = ({ children, state, animationAPI }: Props) => {
       onGestureEvent={animationAPI.dragGestureHandler}
       onHandlerStateChange={animationAPI.handleDragStateChange}>
       <Animated.View
-        onLayout={(e) => {
-          return state.setNotificationHeight(e.nativeEvent.layout.height)
-        }}
+        onLayout={(e) => state.setNotificationHeight(e.nativeEvent.layout.height)}
         style={[
           animationAPI.dragStyles,
           styles.container,
