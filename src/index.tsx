@@ -1,5 +1,6 @@
 import { createNotifications } from './core/createNotifications'
 import { modify, notify, remove, useNotifications } from './core/services/NotificationEmitterApi'
+import { generateAnimationConfig } from './core/utils/generateAnimationConfig'
 import {
   RotateInRotateOut,
   RotateZIn,
@@ -16,6 +17,7 @@ export { defaultVariants }
 
 // animations
 export {
+  generateAnimationConfig,
   ZoomInDownZoomOutUp,
   SlideInLeftSlideOutRight,
   ZoomInDownZoomOutDown,
