@@ -1,13 +1,13 @@
 import { useNotificationConfig } from './useNotificationConfig'
-import { useRef, useState } from 'react'
+import { useReducer, useRef, useState } from 'react'
 import { getTopOffset, mergeConfigs } from '../utils/pickers'
-import type { EmitParam } from '../services/types'
+import { queueReducer } from '../utils/queueReducer'
 
 export const useNotificationsStates = () => {
   const panHandlerRef = useRef(null)
   const longPressHandlerRef = useRef(null)
   const globalConfig = useNotificationConfig()
-  const [notificationsQueue, setNotificationsQueue] = useState<EmitParam[]>([])
+  const [notificationsQueue, dispatch] = useReducer(queueReducer, [])
   const [notificationHeight, setNotificationHeight] = useState(0)
 
   const notificationEvent = notificationsQueue[0]
@@ -17,12 +17,12 @@ export const useNotificationsStates = () => {
 
   return {
     config,
+    dispatch,
     topOffset,
     panHandlerRef,
     notificationEvent,
     notificationsQueue,
     longPressHandlerRef,
-    setNotificationsQueue,
     setNotificationHeight,
   }
 }
