@@ -21,7 +21,7 @@ export const useNotificationEventHandler = ({
   }, [notificationEvent?.id, present])
 
   useEffect(() => {
-    const removeListener = emitter.addListener('add_notification', (config: EmitParam<unknown>) => {
+    const removeListener = emitter.addListener('add_notification', (config: EmitParam) => {
       dispatch({ type: 'add', payload: config })
     })
 
@@ -29,7 +29,7 @@ export const useNotificationEventHandler = ({
   }, [dispatch])
 
   useEffect(() => {
-    const modifyNotification = (modifiedConfig: ModifiedEmitParam<unknown>) => {
+    const modifyNotification = (modifiedConfig: ModifiedEmitParam) => {
       dispatch({ type: 'modify', payload: modifiedConfig })
     }
 
@@ -47,7 +47,7 @@ export const useNotificationEventHandler = ({
   }, [dispatch])
 
   useEffect(() => {
-    const removeNotification = ({ id }: RemoveEmitParam<unknown>) => {
+    const removeNotification = ({ id }: RemoveEmitParam) => {
       dispatch({ type: 'remove', payload: id, onActiveNotification: dismiss })
     }
 

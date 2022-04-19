@@ -7,5 +7,5 @@ export type Remove = {
   payload: EmitParam['id']
   onActiveNotification: (id: EmitParam['id']) => void
 }
-export type Modify = { type: 'modify'; payload: ModifiedEmitParam<unknown> }
+export type Modify = { type: 'modify'; payload: ModifiedEmitParam }
 export type Pop = { type: 'pop'; payload?: EmitParam['id'] }

@@ -31,6 +31,8 @@ export const useVariantsRendererContext = () => {
 }
 
 export const VariantsRenderer = (props: Props) => {
+  console.log('fail there', props.config.variants, props.notificationEvent.notificationType)
+
   const variant = pickVariant(props.config, props.notificationEvent.notificationType, true)
 
   const Component = variant.component
@@ -41,3 +43,8 @@ export const VariantsRenderer = (props: Props) => {
     </VariantsRendererProvider>
   )
 }
+
+// const a = {
+//   "custom_error": { "component": [Function CustomError], "config": { "duration": 2000 } },
+//   "success": { "component": [Function CustomSuccess], "config": { "notificationPosition": "top" } }
+// }

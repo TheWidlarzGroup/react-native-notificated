@@ -112,7 +112,7 @@ describe('props merger tests', function () {
 
   it('should merge props with mixed sources', () => {
     const props: NotificationProps = {
-      description: 'test description props',
+      title: 'test title props',
       style: {
         descriptionColor: 'rgb(0, 0, 50)',
         borderRadius: 5,
