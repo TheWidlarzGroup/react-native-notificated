@@ -8,11 +8,13 @@ import { DarkModeExamples } from '../screens/DarkModeExamples'
 import { SingleCustomCases } from '../screens/SingleCustomCases'
 import { ReduxExample } from '../screens/ReduxExample'
 import { AnimationsExamples } from '../screens/AnimationsExamples'
+import { CustomCaseExamples } from '../screens/CustomCaseExamples'
 
 const Drawer = createDrawerNavigator<Routes>()
 
 export const AppNavigator = () => (
   <Drawer.Navigator screenOptions={{ header: () => null }}>
+    <Drawer.Screen name="Custom Variants Examples" component={CustomCaseExamples} />
     <Drawer.Screen name="Default Examples" component={DefaultExamples} />
     <Drawer.Screen name="Dark Mode Examples" component={DarkModeExamples} />
     <Drawer.Screen name="Global Config Examples" component={GlobalConfigExamples} />

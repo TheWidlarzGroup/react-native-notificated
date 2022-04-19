@@ -24,7 +24,7 @@ export const useNotificationEventHandler = ({
   }, [notificationEvent, present])
 
   useEffect(() => {
-    const removeListener = emitter.addListener('add_notification', (config: EmitParam<unknown>) => {
+    const removeListener = emitter.addListener('add_notification', (config: EmitParam) => {
       setNotificationsQueue((prev) => {
         return [...prev, config]
       })
@@ -34,18 +34,14 @@ export const useNotificationEventHandler = ({
   }, [setNotificationsQueue])
 
   useEffect(() => {
-    const modifyNotification = ({ id, params }: ModifiedEmitParam<unknown>) => {
+    const modifyNotification = ({ id, params }: ModifiedEmitParam) => {
       setNotificationsQueue((prevState) =>
         prevState.map((notification) => {
           if (notification.id !== id) return notification
-          const a = {
+          return {
             ...notification,
-            params: { ...(notification.params as any), ...(params as any) },
+            params: { ...notification.params, ...params },
           }
-
-          console.log(a)
-
-          return a
         })
       )
     }
@@ -64,7 +60,7 @@ export const useNotificationEventHandler = ({
   }, [setNotificationsQueue])
 
   useEffect(() => {
-    const removeNotification = ({ id }: RemoveEmitParam<unknown>) => {
+    const removeNotification = ({ id }: RemoveEmitParam) => {
       const [firstNotification] = notificationsQueue
       // if notification is currently displayed animate it back
       if (firstNotification?.id === id) return dismiss()
