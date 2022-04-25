@@ -36,7 +36,7 @@ export const useAnimationAPI = ({
 
       const handleSuccess = () => {
         currentTransitionType.value = 'in'
-        emitter.emit('pop_notification', { id: id })
+        emitter.emit('pop_notification', id)
       }
 
       const handleError = () => {}
