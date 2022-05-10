@@ -8,7 +8,7 @@ import { NotificationsRenderer } from './renderers/NotificationsRenderer'
 import { NotificationContext } from './hooks/useNotificationConfig'
 
 export const createNotifications = <Variants extends VariantsMap = DefaultVariants>(
-  config: Partial<NotificationsConfig<Variants>> | Partial<NotificationsConfig<_DefaultVariants>>
+  config?: Partial<NotificationsConfig<Variants>> | Partial<NotificationsConfig<_DefaultVariants>>
 ) => {
   const emitterApi = createEmitterApi<Variants>()
 
