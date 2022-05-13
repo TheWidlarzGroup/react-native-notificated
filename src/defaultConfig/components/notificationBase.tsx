@@ -23,7 +23,9 @@ export const NotificationBase = (props: NotificationOwnProps & MergedNotificatio
       : require('../../assets/images/close-darkMode.png')
   const { remove } = useNotificationController()
 
-  const renderLeftIcon = () => <Image source={props.leftIconSource!} style={{...styles.icon, ...props?.imageStyle}} />
+  const renderLeftIcon = () => (
+    <Image source={props.leftIconSource!} style={{ ...styles.icon, ...props?.imageStyle }} />
+  )
 
   const renderRightIcon = () => (
     <TouchableOpacity

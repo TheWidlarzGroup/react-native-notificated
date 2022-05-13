@@ -63,6 +63,6 @@ export const mergeProps = (
           defaultGlobalConfig?.defaultIconType
       ),
     onPress: props.onPress ?? undefined,
-    imageStyle: chooseProps('imageStyle')
+    imageStyle: chooseProps('imageStyle'),
   }
 }
