@@ -11,6 +11,7 @@ export const useTimer = () => {
 
   const resetTimer = useCallback(
     (callback: () => void, duration: number) => {
+      if (!duration) return
       clearTimer()
       timerId.current = setTimeout(callback, duration)
     },
