@@ -193,3 +193,32 @@ export const VeryCustomTransition = generateAnimationConfig({
     }
   },
 })
+
+export const FadeInFadeOut = generateAnimationConfig({
+  animationConfigIn: {
+    type: 'timing',
+    config: {
+      duration: 500,
+    },
+  },
+  transitionInStyles: (progress) => {
+    'worklet'
+
+    const translateX = 0
+
+    return {
+      opacity: progress.value,
+      transform: [{ translateX }],
+    }
+  },
+  transitionOutStyles: (progress) => {
+    'worklet'
+
+    const translateX = 0
+
+    return {
+      opacity: progress.value,
+      transform: [{ translateX }],
+    }
+  },
+})
