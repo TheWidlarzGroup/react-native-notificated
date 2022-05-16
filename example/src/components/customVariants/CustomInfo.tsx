@@ -6,10 +6,10 @@ type Props = {
   customTitle: string
 }
 
-export const CustomInfo = (p: Props) => {
+export const CustomInfo = ({ customTitle }: Props) => {
   return (
     <View style={styles.info_container}>
-      <Text style={styles.info_title}>{p.customTitle}</Text>
+      <Text style={styles.info_title}>{customTitle}</Text>
       <Image source={require('../../../assets/in_progress.png')} style={styles.info_image} />
     </View>
   )

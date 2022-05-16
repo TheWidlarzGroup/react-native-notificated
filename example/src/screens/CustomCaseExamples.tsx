@@ -43,6 +43,7 @@ export const CustomCaseExamples = () => {
             },
             config: {
               duration: 2000,
+              notificationPosition: 'center',
             },
           })
         }
