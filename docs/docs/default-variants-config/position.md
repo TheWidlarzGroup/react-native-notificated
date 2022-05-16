@@ -14,13 +14,13 @@ There are three possible options to choose from:
 - `center` - at the middle of the screen (y-axis)
 - `bottom`- at the bottom of the screen
 
-Default setting for the `notificationPosition` is the `top` value.
+The default setting for the `notificationPosition` is the `top` value.
 
-Depending on whether you want to change notification position for the whole app or only change it for a certain notification, you can either:
+Depending on whether you want to change the notification position for the whole app or only change it for a certain notification, you can either:
 
 <br/>
 
-### Set position for all notifications in the global config object:
+### Set the position for all notifications in the global config object:
 
 ```jsx
 import React from 'react'
@@ -55,13 +55,13 @@ export const ExampleNotification = () => {
 
 ```
 
-Now all the notifications in the app will be displayed at the middle of the screen (y-axis) because we have set the `notificationPosition` value for the `center`.
+Now all the notifications in the app will be displayed in the middle of the screen (y-axis) because we have set the `notificationPosition` value for the `center`.
 
 <br/>
 <br/>
 
 
-### Set position locally inside config object in the single notification instance:
+### Set the position locally inside config object in a single notification instance:
 
 ```jsx
 import React from 'react'
@@ -99,7 +99,7 @@ export const ExampleNotification = () => {
 ```
 
 Now, all the notifications in the app (instead of this one `error` notification in the example above) will be displayed in the middle of the screen (y-axis).<br />
-But `error` notification from the example above will be displayed at the bottom of the screen because the local config overwrites the global config.<br/>
+But the `error` notification from the example above will be displayed at the bottom of the screen because the local config overwrites the global config.<br/>
 Of course, we can just set it locally, there is no need to set it globally if we don't need to. <br/>
 (You can read more about props overwriting in the [ORDER OF SETTINGS OVERWRITING](../../docs/comprehensive-configuration/order-of-settings-overwriting) section)
 
