@@ -194,6 +194,35 @@ export const VeryCustomTransition = generateAnimationConfig({
   },
 })
 
+export const DiagonalSlideInLeftSlideOutRight = generateAnimationConfig({
+  animationConfigIn: {
+    type: 'timing',
+    config: {
+      duration: 700,
+    },
+  },
+  transitionInStyles: (progress) => {
+    'worklet'
+
+    const translateX = interpolate(progress.value, [0, 1], [-100, 0])
+    const translateY = interpolate(progress.value, [0, 1], [-100, 0])
+    return {
+      transform: [{ translateX }, { translateY }],
+      opacity: progress.value,
+    }
+  },
+  transitionOutStyles: (progress) => {
+    'worklet'
+
+    const translateX = interpolate(progress.value, [0, 1], [100, 0])
+    const translateY = interpolate(progress.value, [0, 1], [-100, 0])
+    return {
+      transform: [{ translateX }, { translateY }],
+      opacity: progress.value,
+    }
+  },
+})
+
 export const FadeInFadeOut = generateAnimationConfig({
   animationConfigIn: {
     type: 'timing',

@@ -20,18 +20,18 @@ yarn add react-native-notificaitons
 
 ### 🛸 Dependencies[](https://gorhom.github.io/react-native-bottom-sheet/#dependencies)
 
-This library needs these dependencies to be installed in your project before you can use it:
+This library requires these dependencies to be installed in your project:
 
 ```shell
 yarn add react-native-reanimated react-native-gesture-handler
 ```
 
 :::info
-**react-native-reanimated** requires additional installations steps: [guide here](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation) 👈
+**react-native-reanimated** requires additional installation steps: [guide here](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation) 👈
 :::
 
 :::info
-**react-native-gesture-handler** requires additional installations steps: [guide here](https://docs.swmansion.com/react-native-gesture-handler/docs/) 👈
+**react-native-gesture-handler** requires additional installation steps: [guide here](https://docs.swmansion.com/react-native-gesture-handler/docs/) 👈
 :::
 
 ## ❤️ Built With[](https://gorhom.github.io/react-native-bottom-sheet/#built-with-%EF%B8%8F)

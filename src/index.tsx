@@ -8,6 +8,7 @@ import {
   ZoomInDownZoomOutDown,
   ZoomInDownZoomOutUp,
   FadeInFadeOut,
+  DiagonalSlideInLeftSlideOutRight,
 } from './defaultConfig/defaultAnimationConfig'
 import { defaultVariants } from './defaultConfig/defaultConfig'
 import { useNotificationController } from './hooks/useNotificationController'
@@ -25,6 +26,7 @@ export {
   RotateInRotateOut,
   RotateZIn,
   FadeInFadeOut,
+  DiagonalSlideInLeftSlideOutRight,
 }
 
 // core api, root level
