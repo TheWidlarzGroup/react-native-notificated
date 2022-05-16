@@ -8,7 +8,7 @@ on:
   issue_comment:
     types: [created]
 env:
-  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  GH_TOKEN_NOTIFICATED: ${{ secrets.GH_TOKEN_NOTIFICATED }}
 
 jobs:
   assign_one_project:
