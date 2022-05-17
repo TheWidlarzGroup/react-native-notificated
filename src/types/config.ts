@@ -3,6 +3,7 @@ export type NotificationPosition = 'top' | 'center' | 'bottom'
 
 export type NotificationConfig = {
   type: NotificationsType
+  showCloseButton?: boolean
   withButton?: boolean
   time?: number
   msg?: string

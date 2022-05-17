@@ -32,6 +32,7 @@ export type NotificationStyleConfig = Partial<{
   bgColor: string
   borderRadius: number
   accentColor: string
+  showCloseButton: boolean
   borderWidth: number
   multiline: number
   defaultIconType: IconVisualStyle

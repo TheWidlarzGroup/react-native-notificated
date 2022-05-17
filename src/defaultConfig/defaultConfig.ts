@@ -36,6 +36,7 @@ export const defaultVariants: _DefaultVariants = {
 export const InAppNotificationsConfig: NotificationsConfig<_DefaultVariants> = {
   duration: 3000,
   notificationPosition: 'top',
+  showCloseButton: true,
   variants: defaultVariants,
   animationConfig: SlideInLeftSlideOutRight,
   gestureConfig: Constants.isAndroid ? AndroidGestureConfig : IosGestureConfig,

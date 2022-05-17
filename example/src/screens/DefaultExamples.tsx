@@ -12,6 +12,7 @@ import { styles } from './styles'
 const { useNotifications, NotificationsProvider } = createNotifications({
   isNotch: true,
   notificationPosition: 'top',
+  showCloseButton: true,
   defaultStylesSettings: {
     errorConfig: {
       notificationPosition: 'bottom',
@@ -31,6 +32,9 @@ export const DefaultExamples = () => {
         onPress={() =>
           setId(
             notify('success', {
+              config: {
+                showCloseButton: true,
+              },
               params: {
                 description: 'This is where the toast text goes',
                 title: 'Success',
@@ -48,6 +52,7 @@ export const DefaultExamples = () => {
               title: 'Error',
             },
             config: {
+              showCloseButton: true,
               duration: 2000,
             },
           })
