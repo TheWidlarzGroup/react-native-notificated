@@ -18,6 +18,7 @@ export type IconsLinksTypes = {
 }
 
 export type NotificationOwnProps = {
+  hideCloseButton?: boolean
   title: string
   description?: string
   onPress?: () => void
@@ -32,7 +33,6 @@ export type NotificationStyleConfig = Partial<{
   bgColor: string
   borderRadius: number
   accentColor: string
-  showCloseButton: boolean
   borderWidth: number
   multiline: number
   defaultIconType: IconVisualStyle

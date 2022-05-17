@@ -24,7 +24,6 @@ export type NotificationConfigBase = {
   notificationPosition: NotificationPosition
   animationConfig: CustomAnimationConfig
   gestureConfig: GestureConfig
-  showCloseButton: boolean
   isNotch?: boolean
 }
 

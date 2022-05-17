@@ -26,7 +26,7 @@ export const NotificationBase = (props: NotificationOwnProps & MergedNotificatio
   const renderLeftIcon = () => <Image source={props.leftIconSource!} style={styles.icon} />
 
   const renderRightIcon = () =>
-    props.showCloseButton && (
+    !props.hideCloseButton && (
       <TouchableOpacity
         onPress={() => {
           remove()
@@ -34,6 +34,7 @@ export const NotificationBase = (props: NotificationOwnProps & MergedNotificatio
         <Image source={rightIconSource} style={styles.icon} />
       </TouchableOpacity>
     )
+  console.log({ props: props })
 
   const renderTitle = () => <Text style={titleStyle}>{props.title}</Text>
   const renderDescription = () =>
