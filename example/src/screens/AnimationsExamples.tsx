@@ -7,7 +7,7 @@ import {
   SlideInLeftSlideOutRight,
   ZoomInDownZoomOutDown,
   ZoomInDownZoomOutUp,
-} from 'react-native-notification'
+} from 'react-native-notificated'
 import { styles } from './styles'
 import { AnimationButton } from '../components/basicExamples/AnimationButton'
 import { Easing } from 'react-native-reanimated'

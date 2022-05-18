@@ -9,12 +9,12 @@ const config = {
   title: 'RN Notification',
   tagline: 'React Native Notifications',
   url: 'https://thewidlarzgroup.github.io',
-  baseUrl: '/react-native-notification/',
+  baseUrl: '/react-native-notificated/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'thewidlarzgroup', // Usually your GitHub org/user name.
-  projectName: 'react-native-notification', // Usually your repo name.
+  projectName: 'react-native-notificated', // Usually your repo name.
 
   presets: [
     [
