@@ -7,6 +7,7 @@ import {
   SlideInLeftSlideOutRight,
   ZoomInDownZoomOutDown,
   ZoomInDownZoomOutUp,
+  FadeInFadeOut,
   DiagonalSlideInLeftSlideOutRight,
 } from './defaultConfig/defaultAnimationConfig'
 import { defaultVariants } from './defaultConfig/defaultConfig'
@@ -24,6 +25,7 @@ export {
   ZoomInDownZoomOutDown,
   RotateInRotateOut,
   RotateZIn,
+  FadeInFadeOut,
   DiagonalSlideInLeftSlideOutRight,
 }
 
