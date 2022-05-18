@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     width: Constants.notificationWidth,
-    minHeight: 30,
+    minHeight: 0,
     left: 0,
     backgroundColor: 'transparent',
     top: 0,
