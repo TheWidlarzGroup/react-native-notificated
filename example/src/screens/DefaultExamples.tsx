@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native'
-import { createNotifications } from 'react-native-notification'
+import { createNotifications } from 'react-native-notificated'
 import { SuccessButton } from '../components/basicExamples/SuccessButton'
 import { ErrorButton } from '../components/basicExamples/ErrorButton'
 import { WarningButton } from '../components/basicExamples/WarningButton'

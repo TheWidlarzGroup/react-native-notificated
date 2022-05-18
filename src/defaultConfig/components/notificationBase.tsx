@@ -10,7 +10,7 @@ import {
 import { styles } from '../styles'
 import type { MergedNotificationStyleConfig, NotificationOwnProps } from '../types'
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler'
-import { useNotificationController } from 'react-native-notification'
+import { useNotificationController } from 'react-native-notificated'
 
 export const NotificationBase = (props: NotificationOwnProps & MergedNotificationStyleConfig) => {
   const containerStyles = getContainerStyles({ ...props })
