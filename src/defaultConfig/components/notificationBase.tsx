@@ -34,7 +34,6 @@ export const NotificationBase = (props: NotificationOwnProps & MergedNotificatio
         <Image source={rightIconSource} style={styles.icon} />
       </TouchableOpacity>
     )
-  console.log({ props: props })
 
   const renderTitle = () => <Text style={titleStyle}>{props.title}</Text>
   const renderDescription = () =>
