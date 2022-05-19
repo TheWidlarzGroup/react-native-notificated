@@ -4,12 +4,13 @@ import type { EmitParam } from '../services/types'
 import type { DefaultKeys } from '../../defaultConfig/defaultConfig'
 import type { DefaultStylesConfigs } from '../../defaultConfig/types'
 import type { KeyType } from '../../types/misc'
+import { hasNotch } from 'react-native-device-info'
 
 export const getTopOffset = (
   globalConfig: NotificationsConfig<VariantsMap>,
   notificationHeight: number
 ) => {
-  const isNotch = globalConfig.isNotch
+  const isNotch = (typeof globalConfig.isNotch === "undefined")  ? hasNotch() : globalConfig.isNotch;
   const extraSpace = 50
   const topPosition = isNotch ? extraSpace : 10
   const notificationPosition = globalConfig.notificationPosition
