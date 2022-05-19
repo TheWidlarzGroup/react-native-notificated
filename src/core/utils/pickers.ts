@@ -10,7 +10,7 @@ export const getTopOffset = (
   globalConfig: NotificationsConfig<VariantsMap>,
   notificationHeight: number
 ) => {
-  const isNotch = (typeof globalConfig.isNotch === "undefined")  ? hasNotch() : globalConfig.isNotch;
+  const isNotch = typeof globalConfig.isNotch === 'undefined' ? hasNotch() : globalConfig.isNotch
   const extraSpace = 50
   const topPosition = isNotch ? extraSpace : 10
   const notificationPosition = globalConfig.notificationPosition
