@@ -1,6 +1,6 @@
 {
   "name": "react-native-notificated",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "description": "Blazingly super fast RN notification library. Better than your delivery man",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -32,7 +32,11 @@
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn docs && yarn && yarn pods"
   },
-  "keywords": ["react-native", "ios", "android"],
+  "keywords": [
+    "react-native",
+    "ios",
+    "android"
+  ],
   "repository": "https://github.com/TheWidlarzGroup/react-native-notificated",
   "author": "TWG <rn-notificated@thewidlarzgroup.com> (https://thewidlarzgroup.com/)",
   "license": "MIT",
@@ -76,10 +80,15 @@
   },
   "jest": {
     "preset": "react-native",
-    "modulePathIgnorePatterns": ["<rootDir>/example/node_modules", "<rootDir>/lib/"]
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/node_modules",
+      "<rootDir>/lib/"
+    ]
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "release-it": {
     "git": {
@@ -100,9 +109,16 @@
   },
   "eslintConfig": {
     "root": true,
-    "extends": ["@react-native-community", "prettier"]
+    "extends": [
+      "@react-native-community",
+      "prettier"
+    ]
   },
-  "eslintIgnore": ["node_modules/", "lib/", "docs/"],
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/",
+    "docs/"
+  ],
   "prettier": "@twgdev/prettier-config",
   "react-native-builder-bob": {
     "source": "src",
