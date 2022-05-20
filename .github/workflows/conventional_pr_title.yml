@@ -1,0 +1,13 @@
+name: 'Is PR Title Conventional'
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  main:
+    name: Conventional Pull Request Title Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: amannn/action-semantic-pull-request@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
