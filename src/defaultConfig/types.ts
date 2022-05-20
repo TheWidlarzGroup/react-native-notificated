@@ -18,6 +18,7 @@ export type IconsLinksTypes = {
 }
 
 export type NotificationOwnProps = {
+  hideCloseButton?: boolean
   title: string
   description?: string
   onPress?: () => void
