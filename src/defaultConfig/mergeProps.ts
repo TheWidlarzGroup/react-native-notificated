@@ -35,6 +35,7 @@ export const mergeProps = (
   return {
     title: props.title ?? '',
     description: props.description ?? '',
+    hideCloseButton: props.hideCloseButton,
     theme: darkMode ? 'dark' : 'regular',
     titleSize: chooseProps('titleSize'),
     titleColor: chooseProps('titleColor'),

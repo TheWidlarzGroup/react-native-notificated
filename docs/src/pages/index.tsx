@@ -25,7 +25,7 @@ function HomepageHero() {
         </div>
         <div className={styles.heroButtons}>
           <a href='docs/intro' className={buttonStyle}>OK, let's go</a>
-          <a href='https://github.com/TheWidlarzGroup/react-native-notification' className={buttonStyle}>
+          <a href='https://github.com/TheWidlarzGroup/react-native-notificated' className={buttonStyle}>
             <img src={iconColor} alt="github icon"  className={styles.githubIcon}/>
             Github
           </a>
