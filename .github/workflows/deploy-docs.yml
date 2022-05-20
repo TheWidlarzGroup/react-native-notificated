@@ -1,7 +1,8 @@
 name: 'Deploy Docs'
 
 on: 
-  deployment
+  release:
+    types: [released]
 
 jobs:
   deploy-docs:
