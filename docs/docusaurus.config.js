@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'RN Notification',
-  tagline: 'React Native Notifications',
+  title: 'RN Notificated',
+  tagline: 'React Native Notificated',
   url: 'https://thewidlarzgroup.github.io',
   baseUrl: '/react-native-notificated/',
   onBrokenLinks: 'throw',
@@ -45,7 +45,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'RN Notification',
+        title: 'RN Notificated',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
