@@ -1,9 +1,9 @@
 import { Constants } from '../config'
 import type { NotificationsConfig, Variant, VariantsMap } from '../../types'
 import type { EmitParam } from '../services/types'
-import type { KeyType } from '../../types/misc'
 import type { DefaultKeys } from '../../defaultConfig/defaultConfig'
 import type { DefaultStylesConfigs } from '../../defaultConfig/types'
+import type { KeyType } from '../../types/misc'
 
 export const getTopOffset = (
   globalConfig: NotificationsConfig<VariantsMap>,

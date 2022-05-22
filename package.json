@@ -1,6 +1,6 @@
 {
-  "name": "react-native-notification",
-  "version": "0.1.0",
+  "name": "react-native-notificated",
+  "version": "0.0.1-alpha.0",
   "description": "Blazingly super fast RN notification library. Better than your delivery man",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -13,7 +13,7 @@
     "android",
     "ios",
     "cpp",
-    "react-native-notification.podspec",
+    "react-native-notificated.podspec",
     "!lib/typescript/example",
     "!android/build",
     "!ios/build",
@@ -37,13 +37,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/TheWidlarzGroup/react-native-notification",
-  "author": "TWG <rn-notification@thewidlarzgroup.com> (https://thewidlarzgroup.com/)",
+  "repository": "https://github.com/TheWidlarzGroup/react-native-notificated",
+  "author": "TWG <rn-notificated@thewidlarzgroup.com> (https://thewidlarzgroup.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TheWidlarzGroup/react-native-notification/issues"
+    "url": "https://github.com/TheWidlarzGroup/react-native-notificated/issues"
   },
-  "homepage": "https://github.com/TheWidlarzGroup/react-native-notification#readme",
+  "homepage": "https://github.com/TheWidlarzGroup/react-native-notificated#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
