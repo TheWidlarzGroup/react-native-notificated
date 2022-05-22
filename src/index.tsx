@@ -1,15 +1,6 @@
 import { createNotifications } from './core/createNotifications'
-<<<<<<< HEAD
-import type {
-  modify,
-  notify,
-  remove,
-  useNotifications,
-} from './core/services/NotificationEmitterApi'
-=======
 import { modify, notify, remove, useNotifications } from './core/services/NotificationEmitterApi'
 import { generateAnimationConfig } from './core/utils/generateAnimationConfig'
->>>>>>> origin
 import {
   RotateInRotateOut,
   RotateZIn,
@@ -46,3 +37,4 @@ export { useNotificationController }
 
 // utility types
 export { CustomVariants }
+
