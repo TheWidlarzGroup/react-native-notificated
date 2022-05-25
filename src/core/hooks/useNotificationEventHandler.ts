@@ -49,6 +49,7 @@ export const useNotificationEventHandler = ({
   useEffect(() => {
     const removeNotification = ({ id }: RemoveEmitParam) => {
       dispatch({ type: 'remove', payload: id, onActiveNotification: dismiss })
+      notificationEvent.config?.customCallback && notificationEvent.config?.customCallback()
     }
 
     const removeListener = emitter.addListener('remove_notification', removeNotification)

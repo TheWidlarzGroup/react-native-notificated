@@ -10,6 +10,7 @@ export type NotificationConfig = {
   id?: string
   position?: NotificationPosition
   onPress?: () => void
+  someCallback?: () => void
 }
 
 export type EventType =
