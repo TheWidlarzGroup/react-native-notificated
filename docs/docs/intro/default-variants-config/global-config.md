@@ -76,34 +76,34 @@ We can set there:
 
 - `'border'`
 #
-  ![Border](../../assets/border.png)
+  ![Border](../../../assets/border.png)
 
 - `'accent'`
 #
-  ![Accent](../../assets/accent.png)
+  ![Accent](../../../assets/accent.png)
 
 - `'no-border'`
 #
-  ![No-border](../../assets/no-border.png)
+  ![No-border](../../../assets/no-border.png)
 
 ##
 ### 🏵️ Default icon type examples
 
 - `'color'`
 #
-![Color](../../assets/border.png)
+![Color](../../../assets/border.png)
 
 - `'monochromatic'`
 #
-![Monochromatic](../../assets/monochromatic.png)
+![Monochromatic](../../../assets/monochromatic.png)
 
 - `'monochromatic'` (dark mode)
 #
-![Monochromatic-darkMode](../../assets/monochromatic-darkMode.png)
+![Monochromatic-darkMode](../../../assets/monochromatic-darkMode.png)
 
 - `'no-icon'`
 #
-![No-border](../../assets/no-icon.png)
+![No-border](../../../assets/no-icon.png)
 
 
 ##
@@ -163,7 +163,7 @@ export const GlobalConfigExamples = () => {
 
 The effect is visible below:
 
-![No-border](../../assets/global-example.png)
+![No-border](../../../assets/global-example.png)
 
 
 In `globalConfig` above, we have overwritten all the default values.
@@ -221,8 +221,8 @@ export const GlobalConfigExamples = () => {
 
 ```
 
-![No-border](../../assets/rounded-error.png)
-![No-border](../../assets/rounded-success.png)
+![No-border](../../../assets/rounded-error.png)
+![No-border](../../../assets/rounded-success.png)
 
 #
 
@@ -288,8 +288,8 @@ export const GlobalConfigExamples = () => {
 ```
 
 
-![No-border](../../assets/rounded-error.png)
-![No-border](../../assets/less-rounded-success.png)
+![No-border](../../../assets/rounded-error.png)
+![No-border](../../../assets/less-rounded-success.png)
 
 
 ##

@@ -4,10 +4,9 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import githubBlackIcon from '../../static/img/githubBlack.png';
 import githubWhiteIcon from '../../static/img/githubWhite.png';
-import useThemeContext from '@theme/hooks/useThemeContext';
+import isDarkTheme from '@docusaurus/theme-common';
 
 function HomepageHero() {
-  const { isDarkTheme } = useThemeContext()
   const buttonStyle = isDarkTheme ? styles.heroButtonWhite : styles.heroButtonBlack
   const iconColor = isDarkTheme ? githubWhiteIcon : githubBlackIcon
   const leftLightningColor = isDarkTheme ? styles.whiteLightningLeft : styles.blackLightningLeft

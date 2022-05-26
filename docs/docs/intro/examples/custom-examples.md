@@ -126,19 +126,19 @@ Let's see the notifications we declared above:
 
 ### Success notification
 
-![Success](../../assets/success-custom.png)
+![Success](../../../assets/success-custom.png)
 
 ### Error notification
 
-![Error](../../assets/error-custom.png)
+![Error](../../../assets/error-custom.png)
 
 ### Warning notification
 
-![Warning](../../assets/warning-custom.png)
+![Warning](../../../assets/warning-custom.png)
 
 ### Info notification
 
-![Info](../../assets/info-custom.png)
+![Info](../../../assets/info-custom.png)
 
 
 <br/>

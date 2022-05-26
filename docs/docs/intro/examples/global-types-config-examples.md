@@ -138,19 +138,19 @@ Let's see the notifications we declared above:
 
 ### Success notification
 
-![Success](../../assets/success-global-type.png)
+![Success](../../../assets/success-global-type.png)
 
 ### Error notification
 
-![Error](../../assets/error-global-type.png)
+![Error](../../../assets/error-global-type.png)
 
 ### Warning notification
 
-![Warning](../../assets/warning-global-type.png)
+![Warning](../../../assets/warning-global-type.png)
 
 ### Info notification
 
-![Info](../../assets/info-global-type.png)
+![Info](../../../assets/info-global-type.png)
 
 
 <br/>
