@@ -9,10 +9,6 @@
 
 ---
 
-# react-native-notificated
-
-Blazingly super fast RN notification library. Better than your delivery man
-
 ## 🏹 Requirements
 
 - `react-native` >= 0.62.0
