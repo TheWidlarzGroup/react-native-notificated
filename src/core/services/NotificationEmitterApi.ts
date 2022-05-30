@@ -1,12 +1,12 @@
 import { generateNotificationId } from '../utils/uuid'
-import type { NotificationConfigBase, RequiredProps, VariantsMap } from '../../types'
+import type { NotificationConfigBase, RequiredProps, Variant, VariantsMap } from '../../types'
 import type { DefaultVariants } from '../../defaultConfig/types'
 import { emitter } from './NotificationEmitter'
 import type { EmitParam, ModifiedEmitParam } from './types'
 
 export const remove = (id: string) => emitter.emit('remove_notification', { id })
 
-export const modify = <T>(
+export const modify = <T extends Variant<any>>(
   id: string,
   { params, config }: Partial<Omit<ModifiedEmitParam<T>, 'id'>>
 ) => emitter.emit('modify_notification', { id, params, config })
@@ -35,7 +35,7 @@ const NotificationEmitterApi = {
   notify,
 }
 
-export type Modify = (id: string, params: Partial<ModifiedEmitParam<unknown>>) => void
+export type Modify = (id: string, params: Partial<ModifiedEmitParam<Variant<any>>>) => void
 export type Remove = (id: string) => void
 export type Notify<Variants extends VariantsMap = DefaultVariants> = <
   Variant extends keyof Variants
