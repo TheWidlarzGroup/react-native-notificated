@@ -35,9 +35,6 @@ export const DefaultExamples = () => {
                 description: 'This is where the toast text goes',
                 title: 'Success',
               },
-              config: {
-                onClose: () => console.log('elo'),
-              },
             }).id
           )
         }
