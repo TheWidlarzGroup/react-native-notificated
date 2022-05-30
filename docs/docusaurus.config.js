@@ -59,7 +59,8 @@ const config = {
           },
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            // href: 'https://github.com/facebook/docusaurus',
+			href: 'https://github.com/TheWidlarzGroup/react-native-notificated',
             label: 'GitHub',
             position: 'right',
           },
