@@ -15,13 +15,13 @@ Here goes all types referenced in the API section.
 animationConfigIn: {
     type: "timing" | "spring",
     config: WithSpringConfig | WithTimingConfig // -> Reanimated type declarations
-    }
+}
 ```
 ```tsx
 animationConfigOut?: {
     type: "timing" | "spring",
     config: WithSpringConfig | WithTimingConfig // -> Reanimated type declarations
-    }
+}
 ```
 ```tsx
 transitionInStyles: (progress: SharedValue<number>) => AnimatedStylesType // -> must be a worklet / Reanimated type declarations
@@ -109,7 +109,7 @@ params: {
     hideCloseButton?: boolean // default false
 }
 ```
-**When used with custom notification, there is a little difirence in 'title' and 'description'**
+**When used with custom notification, there is a little difference in 'title' and 'description'**
 ```tsx
 // when calling custom component:
 params: {

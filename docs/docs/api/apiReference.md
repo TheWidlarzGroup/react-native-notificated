@@ -4,14 +4,14 @@ title: API
 ---
 
 # ⚙️ API Reference
-<br/>
 
-Below you will find a short description of APIs provided by this library.<br/>
-All are sorted alphabetically. Check on the right side and find an interesting API on the list.
+
+Below you will find a short description of all methods and properties that the library exposes.
+All entries are sorted alphabetically.
 ***
 ### `animationConfig`
 
-Parameter used to configure animation. Can be set up for the entire app or selectively for a particular notification. <br/>
+Parameter used to configure animation. Can be set up for the entire app or selectively for a particular notification.
 Below is the global configuration:
 
 ```tsx
@@ -22,7 +22,7 @@ const { NotificationsProvider } = createNotifications({
 })
 ```
 
-And can be overwrite in local scope, when calling notification:
+And it can be overwritten in local scope, when calling notification:
 
 ```tsx
 import { SlideInLeftSlideOutRight } from 'react-native-notification'
@@ -50,14 +50,14 @@ We've prepared for you a couple of ready-to-use animations (just import them fro
 ***
 ### `createNotifications()`
 
-API is used to initialize the library in the project.
+API used to initialize the library in the project.
 
 ```tsx
 import { createNotifications } from 'react-native-notification'
 
 const { NotificationsProvider } = createNotifications()
 ```
-The `createNotifications()` invoked without any configuration, as in the above example, is fairly enough to use the library on its basic level.<br/>
+The `createNotifications()` invoked without any configuration, as in the above example, is fairly enough to use the library on its basic level.
 Here is an example of all available parameters, that can be adjusted in `createNotifications()`:
 
 ```tsx
@@ -78,19 +78,19 @@ const { NotificationsProvider } = createNotifications({
   variants: CustomVariants
 })
 ```
-Check on [`StyleProps`](http://localhost:3000/react-native-notificated/docs/api/types#styleprops)
+Check on [`StyleProps`](https://thewidlarzgroup.github.io/react-native-notificated/docs/api/types#styleprops)
 
 The `defaultStylesSettings` provides styles for all default notifications. `globalConfig` is on the top of the hierarchy, and distributes styles for all types of build-in notifications: success, error, warning, and info. For example `successConfig` (if provided) will overwrite `globalConfig` styles only for notifications of type 'success'. `successConfig` styles can be overwritten on the lowest level when calling notification 'success' using a `notify()`. Check on [`Order of settings overwriting`](https://thewidlarzgroup.github.io/react-native-notificated/docs/comprehensive-configuration/order-of-settings-overwriting) for more details.
 
 ***
 ### `generateAnimationConfig()`
 
-This method allows to set up custom animations. <br/>
+This method allows to set up custom animations.
 
 ```tsx
 generateAnimationConfig(config: CustomAnimationConfig)
 ```
-Check on [`CustomAnimationConfig`](http://localhost:3000/react-native-notificated/docs/api/types#customanimationconfig)
+Check on [`CustomAnimationConfig`](https://thewidlarzgroup.github.io/react-native-notificated/docs/api/types#customanimationconfig) and [`Custom transitions`](https://thewidlarzgroup.github.io/react-native-notificated/docs/animations/custom-transitions)
 
 It takes four properties:
 
@@ -118,15 +118,15 @@ const myCustomAnimation = generateAnimationConfig({
 ***
 ### `modify()`
 
-Method imported from hook `useNotifications()` as well as `useNotificationsController()`.<br/>
-This method is very similar to notify. <br/>
-The main difference is that you have the opportunity to change existing notifications.<br/>
+Method returned from `useNotifications()` and `useNotificationsController()` hooks.
+This method is very similar to notify.
+The main difference is that you have the opportunity to change existing notifications.
 
 ```tsx
 modify(id: string, setup: { params: NotificationParams; config?: NotificationConfigParams }): void
 ```
 
-Jump to [`NotificationParams`](http://localhost:3000/react-native-notificated/docs/api/types#notificationparams) and [`NotificationConfigParams`](http://localhost:3000/react-native-notificated/docs/api/types#notificationconfigparams)
+Jump to [`NotificationParams`](https://thewidlarzgroup.github.io/react-native-notificated/docs/api/types#notificationparams) and [`NotificationConfigParams`](https://thewidlarzgroup.github.io/react-native-notificated/docs/api/types#notificationconfigparams)
 
 Sample code below shows how the method should be implemented:
 
@@ -170,7 +170,7 @@ const SomeFunctionComponent = () => {
 ***
 ### `NotificationsProvider`
 
-This API is a provider that can be used as follows:
+Provider, which acts as the notifications root. Depending on when you mount it, this will be the place where the notifications get rendered in your component tree.
 
 ```tsx
 return (
@@ -183,13 +183,13 @@ return (
 ***
 ### `notify()`
 
-This method is responsible for launching notification (default or custom, if implemented).<br/>
-Is imported from hook `useNotifications()`.
+This method is responsible for launching notification (default or custom, if implemented).
+Is returned from `useNotifications()` hook.
 
 ```tsx
 notify(notificationType: string, setup: { params: NotificationParams; config?: NotificationConfigParams }): string
 ```
-Jump to [`NotificationParams`](http://localhost:3000/react-native-notificated/docs/api/types#notificationparams) and [`NotificationConfigParams`](http://localhost:3000/react-native-notificated/docs/api/types#notificationconfigparams)
+Jump to [`NotificationParams`](https://thewidlarzgroup.github.io/react-native-notificated/docs/api/types#notificationparams) and [`NotificationConfigParams`](https://thewidlarzgroup.github.io/react-native-notificated/docs/api/types#notificationconfigparams)
 
 Sample code below shows how should be implemented:
 
@@ -207,8 +207,8 @@ const SomeFunctionComponent = () => {
     })
 }
 ```
-The `notify()` returns id as a string. The example below shows how it can be achieved. <br/>
-Id can be used later to manipulate that particular notification (remove or update content).
+The `notify()` returns the notification's id.
+The ID can be later used to manipulate that particular notification (remove or update content).
 
 ```tsx
 [...]
@@ -224,7 +224,7 @@ Id can be used later to manipulate that particular notification (remove or updat
 ***
 ### `remove()`
 
-This method removes notification. Is imported from hook `useNotifications()` as well as `useNotificationsController()`.<br/>
+This method removes notification. It is returned from `useNotifications()` and `useNotificationsController()` hooks.
 
 ```tsx
 remove(id: string): void
