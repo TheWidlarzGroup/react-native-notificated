@@ -1,3 +1,14 @@
+<p align="center">
+  <img alt="react-native-notificated" src="docs/static/img/logo.svg?sanitize=true" width="300">
+</p>
+<p align="center">
+  Blazingly super fast RN notification library.<br />
+  Better than your delivery man. <br/>
+  <a href="https://thewidlarzgroup.github.io/react-native-notificated/">react-native-notificated</a>
+</p>
+
+---
+
 # react-native-notificated
 
 Blazingly super fast RN notification library. Better than your delivery man
