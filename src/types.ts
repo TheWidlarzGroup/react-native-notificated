@@ -33,4 +33,3 @@ export type NotificationsConfig<Variants> = {
   DefaultLayoutConfig
 
 export type { CustomAnimationConfig }
-
