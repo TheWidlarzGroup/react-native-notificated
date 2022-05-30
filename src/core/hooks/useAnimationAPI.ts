@@ -17,6 +17,7 @@ export const useAnimationAPI = ({
   gestureConfig,
   animationConfig,
   duration,
+  onClose,
 }: NotificationState['config']) => {
   const progress = useSharedValue(0)
   const { resetTimer, clearTimer } = useTimer()
@@ -37,6 +38,7 @@ export const useAnimationAPI = ({
       const handleSuccess = () => {
         currentTransitionType.value = 'in'
         emitter.emit('pop_notification', id)
+        onClose && onClose()
       }
 
       const handleError = () => {}
@@ -47,7 +49,15 @@ export const useAnimationAPI = ({
         withAnimationCallbackJSThread(handleSuccess, handleError)
       )
     },
-    [currentTransitionType, clearTimer, resetDrag, animationOutConfig, animationInConfig, progress]
+    [
+      currentTransitionType,
+      clearTimer,
+      resetDrag,
+      animationOutConfig,
+      animationInConfig,
+      progress,
+      onClose,
+    ]
   )
 
   const present = useCallback(() => {
