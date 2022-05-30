@@ -254,7 +254,7 @@ Let's see the notifications we declared above:
 
 #### And after
 
-![Modify](../../assets/border.png)
+![Modify](../../assets/success-modified.png)
 
 ### Remove notification
 

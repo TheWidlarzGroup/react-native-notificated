@@ -1,22 +1,22 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native'
 import { createNotifications } from 'react-native-notificated'
-import { SuccessButton } from '../components/basicExamples/SuccessButton'
-import { ErrorButton } from '../components/basicExamples/ErrorButton'
 import { styles } from './styles'
-import { CustomSuccess } from '../components/customVariants/CustomSuccess'
-import { CustomError } from '../components/customVariants/CustomError'
+import { Advertisement } from '../components/customVariants/Advertisement'
+import { CustomInfo } from '../components/customVariants/CustomInfo'
+import { CustomCaseButton } from '../components/customVariants/CustomCaseButton'
 
-const { NotificationsProvider, useNotifications } = createNotifications({
+const { useNotifications, NotificationsProvider } = createNotifications({
   variants: {
-    custom_success: {
-      component: CustomSuccess,
+    advertisement: {
+      component: Advertisement,
       config: {
         notificationPosition: 'top',
+        duration: 5000,
       },
     },
-    custom_error: {
-      component: CustomError,
+    custom_info: {
+      component: CustomInfo,
       config: {
         duration: 2000,
       },
@@ -32,26 +32,32 @@ export const CustomCaseExamples = () => {
     <SafeAreaView style={styles.container}>
       <NotificationsProvider />
 
-      <SuccessButton
+      <CustomCaseButton
+        buttonTitle="Advertisement"
         onPress={() =>
-          notify('custom_success', {
+          notify('advertisement', {
             params: {
-              customTitle: 'This props is inferred from variants',
-              callback: () => console.log('inferred params'),
+              customTitle: 'The best Doughnuts in Krakow',
+              customDescription:
+                'Doughnuts are usually deep fried from a flour dough, but other types of batters can also be used. Various toppings and flavorings are used for different types, such as sugar, chocolate or maple glazing. Doughnuts may also include water, leavening, eggs, milk, sugar, oil, shortening, and natural or artificial flavors.',
+            },
+            config: {
+              duration: 2000,
+              notificationPosition: 'center',
             },
           })
         }
       />
 
-      <ErrorButton
+      <CustomCaseButton
+        buttonTitle="Custom Info"
         onPress={() =>
-          notify('custom_error', {
+          notify('custom_info', {
             params: {
-              customTitle: 'custom error component',
-              customText: 'infered',
+              customTitle: 'In progress',
             },
             config: {
-              duration: 2000,
+              duration: 3000,
             },
           })
         }

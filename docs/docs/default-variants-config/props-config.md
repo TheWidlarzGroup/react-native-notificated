@@ -25,12 +25,12 @@ There are two main props you can pass to the notification:
 
 Let's take a look at the `params` object properties:
 
-| Name             | Type             | Default  | Description                                                                                                                                                            |
-| ---------------- |----------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| title            | String           | ''       | Props you can use to pass the notification title. Most of the notifications have the title, but this is not required.
-| description      | String           | ''       | Props you can use to pass the notification description. This props is required!
-| onPress          | Function         | -        | The onPress props gives you possibility to pass extra function, which will be invoked when you use 'X' to close the notification
-| style            | Object           | -        | Object with the style properties. You can pass here style settings which will be applied only to this notification instance. Style properties passed here overwrites style settings from `defaultStylesSettings`.
+| Name        | Type     | Default | Description                                                                                                                                                                                                       |
+|-------------|----------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| title       | String   | ''      | Props you can use to pass the notification title. Most of the notifications have the title, but this is not required.                                                                                             |
+| description | String   | ''      | Props you can use to pass the notification description. This props is required!                                                                                                                                   |
+| onPress     | Function | -       | The onPress props gives you possibility to pass extra function, which will be invoked when you use 'X' to close the notification                                                                                  |
+| style       | Object   | -       | Object with the style properties. You can pass here style settings which will be applied only to this notification instance. Style properties passed here overwrites style settings from `defaultStylesSettings`. |
 
 ```typescript jsx
     <Text
@@ -51,12 +51,11 @@ Let's take a look at the `params` object properties:
 And at the `config` object:
 
 
-| Name                  | Type                        | Default                  | Description                                                                                                                                                            |
-| --------------------- |---------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| duration              | Number                      | 3000                     | Use this property to set how long the notifications should be displayed on the screen. Value expressed in milliseconds
-| notificationPosition  | 'top' / 'center' / 'bottom' | 'top'                    | Set where the notifications should appear on the screen. You can choose one of three default options: top / center / bottom. To read more about the notification position please go to the [NOTIFICATION POSITION](../default-variants-config/position) section.
-| animationConfig       | Object                      | SlideInLeftSlideOutRight | Property responsible for the notification animation. You can set one of the animations prepared by us, or make your own config. To read more about the animation settings please go to the [ANIMATIONS SETTINGS](../animations/changing-transitions) section.
-
+| Name                 | Type                        | Default                  | Description                                                                                                                                                                                                                                                      |
+|----------------------|-----------------------------|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| duration             | Number                      | 3000                     | Use this property to set how long the notifications should be displayed on the screen. Value expressed in milliseconds                                                                                                                                           |
+| notificationPosition | 'top' / 'center' / 'bottom' | 'top'                    | Set where the notifications should appear on the screen. You can choose one of three default options: top / center / bottom. To read more about the notification position please go to the [NOTIFICATION POSITION](../default-variants-config/position) section. |
+| animationConfig      | Object                      | SlideInLeftSlideOutRight | Property responsible for the notification animation. You can set one of the animations prepared by us, or make your own config. To read more about the animation settings please go to the [ANIMATIONS SETTINGS](../animations/changing-transitions) section.    |
 
 ```typescript jsx
     <Text
@@ -84,20 +83,21 @@ In fact `style` props have the same properties as the `globalConfig`, `successCo
 Check the [GLOBAL STYLES SETTINGS](./global-config.md)
 
 
-| Name             | Type                                        | Default                                                                                                      | Description                                                                                    |
-| ---------------- |-------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
-| titleSize        | Number                                      | `16`                                                                                                         | Set font size for the notification title
-| titleColor       | String                                      | `'#505050'` (darkMode - false) / `'#FAFAFA'` (darkMode - true)                                               | Set font color for the notification title
-| descriptionSize  | Number                                      | `14`                                                                                                         | Set font size for the notification description
-| descriptionColor | String                                      | `'#505050'` (darkMode - false) / `'#FAFAFA'` (darkMode - true)                                               | Set font color for the notification description
-| bgColor          | String                                      | `'#FFFFFF'` (darkMode - false) / `'#2D2D2D'` (darkMode - true)                                               | Set background color for the notification
-| borderType       | `'border'` / `'accent'` / `'no-border'`     | `'border'`                                                                                                   | Set type of border for the notification ([EXAMPLES](#border-types-examples))
-| accentColor      | String                                      | `'#00EA33'` (success type) / `'#FC6060'` (error type) / `'#8CACFF'` (warning type) / `'#FFD37D'` (info type) | Set accent color for the notification. The color of the border or the left side accent line
-| borderRadius     | Number                                      | `14`                                                                                                         | Set border radius for the notification container
-| borderWidth      | Number                                      | `1`                                                                                                          | Set border width for the notification container
-| multiline        | Number                                      | `1`                                                                                                          | Set number of visible lines for the notification description
-| defaultIconType  | `'color'` / `'monochromatic'` / `'no-icon'` | `'color'`                                                                                                    | This props works only with default icons. If you set your own icon it has no effect. ([EXAMPLES](#default-icon-type-examples))
-| leftIconSource   | ImageSourcePropType                         | -                                                                                                            | Set custom left icon for the notification (in png). For example. `require(../assets/icon.png)`
+| Name             | Type                                        | Default                                                                                                      | Description                                                                                                                                             |
+|------------------|---------------------------------------------|--------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| titleSize        | Number                                      | `16`                                                                                                         | Set font size for the notification title                                                                                                                |
+| titleColor       | String                                      | `'#505050'` (darkMode - false) / `'#FAFAFA'` (darkMode - true)                                               | Set font color for the notification title                                                                                                               |
+| descriptionSize  | Number                                      | `14`                                                                                                         | Set font size for the notification description                                                                                                          |
+| descriptionColor | String                                      | `'#505050'` (darkMode - false) / `'#FAFAFA'` (darkMode - true)                                               | Set font color for the notification description                                                                                                         |
+| bgColor          | String                                      | `'#FFFFFF'` (darkMode - false) / `'#2D2D2D'` (darkMode - true)                                               | Set background color for the notification                                                                                                               |
+| borderType       | `'border'` / `'accent'` / `'no-border'`     | `'border'`                                                                                                   | Set type of border for the notification ([EXAMPLES](./global-config#-border-types-examples))                                                            |
+| accentColor      | String                                      | `'#00EA33'` (success type) / `'#FC6060'` (error type) / `'#8CACFF'` (warning type) / `'#FFD37D'` (info type) | Set accent color for the notification. The color of the border or the left side accent line                                                             |
+| borderRadius     | Number                                      | `14`                                                                                                         | Set border radius for the notification container                                                                                                        |
+| borderWidth      | Number                                      | `1`                                                                                                          | Set border width for the notification container                                                                                                         |
+| multiline        | Number                                      | `1`                                                                                                          | Set number of visible lines for the notification description                                                                                            |
+| defaultIconType  | `'color'` / `'monochromatic'` / `'no-icon'` | `'color'`                                                                                                    | This props works only with default icons. If you set your own icon it has no effect. ([EXAMPLES](./global-config#%EF%B8%8F-default-icon-type-examples)) |
+| leftIconSource   | ImageSourcePropType                         | -                                                                                                            | Set custom left icon for the notification (in png). For example. `require(../assets/icon.png)`                                                          |
+
 
 What is important here is that the `style` props overwrite the styles passed in `defaultStylesSettings`. <br/>
 To understand it perfectly, let's take a look at the few examples below.
@@ -164,7 +164,7 @@ export const GlobalConfigExamples = () => {
 
 ```
 
-In the beginning, in the `globalConfig`, we have overwritten default settings:
+At the beginning, in the `globalConfig`, we have overwritten default settings:
 - titleSize
 - titleColor
 - descriptionSize

@@ -1,16 +1,25 @@
 import { generateNotificationId } from '../utils/uuid'
-import type { NotificationConfigBase, RequiredProps, Variants, VariantsMap } from '../../types'
+import type { NotificationConfigBase, RequiredProps, Variant, VariantsMap } from '../../types'
+import type { DefaultVariants } from '../../defaultConfig/types'
 import { emitter } from './NotificationEmitter'
 import type { EmitParam, ModifiedEmitParam } from './types'
 
-export const remove: Remove = (id) => emitter.emit('remove_notification', { id })
+export const remove = (id: string) => emitter.emit('remove_notification', { id })
 
-export const modify: Modify = (id: string, { params, config }) =>
-  emitter.emit('modify_notification', { id, params, config })
+export const modify = <T extends Variant<any>>(
+  id: string,
+  { params, config }: Partial<Omit<ModifiedEmitParam<T>, 'id'>>
+) => emitter.emit('modify_notification', { id, params, config })
 
-export const notify: Notify = (notificationType, setup) => {
+export const notify = <
+  Variant extends keyof Variants,
+  Variants extends VariantsMap = DefaultVariants
+>(
+  notificationType: Variant,
+  setup: { params: RequiredProps<Variants[Variant]>; config?: Partial<NotificationConfigBase> }
+) => {
   const id = generateNotificationId(notificationType.toString())
-  emitter.emit<EmitParam>('add_notification', {
+  emitter.emit<EmitParam<typeof setup['params']>>('add_notification', {
     notificationType,
     id,
     ...setup,
@@ -26,25 +35,14 @@ const NotificationEmitterApi = {
   notify,
 }
 
-export const createEmitterApi = <T extends VariantsMap>() =>
-  NotificationEmitterApi as unknown as Operations<T>
-
-export type Modify<V extends VariantsMap = Variants> = <K extends keyof V>(
-  id: string,
-  params: Partial<ModifiedEmitParam<V[K]>>
-) => void
-
+export type Modify = (id: string, params: Partial<ModifiedEmitParam<Variant<any>>>) => void
 export type Remove = (id: string) => void
-export type Notify<V extends VariantsMap = Variants> = <Variant extends keyof V>(
+export type Notify<Variants extends VariantsMap = DefaultVariants> = <
+  Variant extends keyof Variants
+>(
   notificationType: Variant,
-  setup: { params: RequiredProps<V[Variant]>; config?: Partial<NotificationConfigBase> }
+  setup: { params: RequiredProps<Variants[Variant]>; config?: Partial<NotificationConfigBase> }
 ) => { id: string }
-
-export type Operations<T extends VariantsMap> = {
-  modify: Modify<T>
-  remove: Remove
-  notify: Notify<T>
-}
 
 export const useNotifications = () => NotificationEmitterApi
 
