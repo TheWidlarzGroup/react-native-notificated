@@ -29,7 +29,7 @@ export const Advertisement = ({ customTitle, customDescription }: Props) => {
   return (
     <View style={styles.advertisement_container}>
       <Text style={styles.advertisement_title}>{customTitle}</Text>
-      <Image source={require('../../../assets/doughnut.png')} style={styles.advertisement_image} />
+      <Image source={require('../../../../assets/doughnut.png')} style={styles.advertisement_image} />
       <Text style={styles.advertisement_description}>{customDescription}</Text>
     </View>
   )
@@ -52,7 +52,7 @@ export const CustomInfo = ({ customTitle }: Props) => {
   return (
     <View style={styles.info_container}>
       <Text style={styles.info_title}>{customTitle}</Text>
-      <Image source={require('../../../assets/in_progress.png')} style={styles.info_image} />
+      <Image source={require('../../../../assets/in_progress.png')} style={styles.info_image} />
     </View>
   )
 }
@@ -280,13 +280,46 @@ In the `CustomInfo` we require only `customTitle`, so we just need to pass this 
 We can pass the `config` when we're 'injecting' our custom modal to the library, or when we call it. It depends on you. <br/>
 Please remember that the `config` in the `notify` (when we call it) overwrites `config` that we declared in the 'injection' process.<br/>
 
+### Implement close button
+In case you need to implement close button in your custom component, here is the code showing implementation in out 'CustomInfo' notification:
+
+```tsx
+import { Image, Text, View } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import React from 'react'
+import { styles } from './styles'
+import { useNotificationController } from 'react-native-notificated'
+
+type Props = {
+  customTitle: string
+}
+
+export const CustomInfo = ({ customTitle }: Props) => {
+  const { remove } = useNotificationController()
+
+  return (
+    <View style={styles.info_container}>
+      <Text style={styles.info_title}>{customTitle}</Text>
+      <Image source={require('../../../../assets/in_progress.png')} style={styles.info_image} />
+      <TouchableOpacity
+        onPress={() => {
+          remove()
+        }}>
+        <Image source={'../../../../assets/close-regularMode.png'} style={styles.icon} />
+      </TouchableOpacity>
+    </View>
+  )
+}
+
+```
+
 Now let's take a look how our examples looks like:
 
 ### Advertisement
 
-![Success](../../assets/doughnuts.png)
+![Success](../../../assets/doughnuts.png)
 
 ### Custom info
 
-![Error](../../assets/custom_info.png)
+![Error](../../../assets/custom_info.png)
 
