@@ -9,6 +9,7 @@
 
 ---
 
+![Build status - typescript compile](https://img.shields.io/github/workflow/status/TheWidlarzGroup/react-native-notificated/TypeScript)
 ![License badge](https://img.shields.io/npm/l/react-native-notificated)
 ![Latest, released version](https://img.shields.io/github/v/release/TheWidlarzGroup/react-native-notificated)
 ![Date of latest commit](https://img.shields.io/github/last-commit/TheWidlarzGroup/react-native-notificated)
