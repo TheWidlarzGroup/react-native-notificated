@@ -53,5 +53,5 @@ export const useNotificationEventHandler = ({
 
     const removeListener = emitter.addListener('remove_notification', removeNotification)
     return removeListener
-  }, [dismiss, dispatch, notificationsQueue, notificationEvent?.config])
+  }, [dismiss, dispatch, notificationsQueue])
 }
