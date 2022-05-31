@@ -60,10 +60,10 @@ steps: [guide here](https://github.com/react-native-device-info/react-native-dev
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
 
-## 🏢 License
-
-MIT
-
 ## 🏢 Built with ♥️ and ⌨️ at TheWidlarzGroup
 
 Built at TheWidlarzGroup - the group of React Native Developers and Designers who has built this project for you. If you like it -> give it a star! E-mail if you have any questions or just want to talk <hello@thewidlarzgroup.com>
+
+## 🏢 License
+
+MIT
