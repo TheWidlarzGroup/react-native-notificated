@@ -49,7 +49,7 @@ steps: [guide here](https://docs.swmansion.com/react-native-gesture-handler/docs
 **react-native-device-info** requires additional installations
 steps: [guide here](https://github.com/react-native-device-info/react-native-device-info) 👈
 
-## ❤️ Built With
+## ❤️ Uses
 
 - [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated)
 - [react-native-gesture-handler](https://github.com/software-mansion/react-native-gesture-handler)
