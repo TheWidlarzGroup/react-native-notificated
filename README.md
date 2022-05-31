@@ -11,8 +11,6 @@
 
 ![License badge](https://img.shields.io/npm/l/react-native-notificated)
 
----
-
 ## 🏹 Requirements
 
 - `react-native` >= 0.62.0
