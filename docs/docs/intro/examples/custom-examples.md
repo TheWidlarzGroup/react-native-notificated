@@ -19,7 +19,7 @@ Let's take a look at the code and the visualisations then:
 
 ## Code
 
-```jsx
+```tsx
 import React from 'react'
 import { SafeAreaView } from 'react-native'
 import { styles } from './styles'
