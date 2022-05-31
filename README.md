@@ -12,6 +12,7 @@
 ![License badge](https://img.shields.io/npm/l/react-native-notificated)
 ![Latest, released version](https://img.shields.io/github/v/release/TheWidlarzGroup/react-native-notificated)
 ![Date of latest commit](https://img.shields.io/github/last-commit/TheWidlarzGroup/react-native-notificated)
+![Number of contributors](https://img.shields.io/github/contributors/TheWidlarzGroup/react-native-notificated)
 
 ## 🏹 Requirements
 
