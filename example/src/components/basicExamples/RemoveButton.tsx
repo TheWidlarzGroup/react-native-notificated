@@ -1,6 +1,6 @@
 import React, { VFC } from 'react'
 import { Text } from 'react-native'
-import { styles } from '../styles'
+import { styles } from './styles'
 
 type Props = {
   onPress: () => void
