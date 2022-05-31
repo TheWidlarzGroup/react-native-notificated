@@ -19,7 +19,7 @@ export const getTopOffset = (
     case 'top':
       return topPosition
     case 'center':
-      return Constants.height / 2 - (notificationHeight ? notificationHeight - extraSpace : 75)
+      return Constants.height / 2 - (notificationHeight ? notificationHeight / 2 : 75)
     case 'bottom':
       return Constants.height - (notificationHeight ? notificationHeight + extraSpace : 150)
     default:
