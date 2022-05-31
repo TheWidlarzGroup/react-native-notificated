@@ -56,8 +56,8 @@ And at the `config` object:
 | duration             | Number                      | 3000                     | Use this property to set how long the notifications should be displayed on the screen. Value expressed in milliseconds                                                                                                                                           |
 | notificationPosition | 'top' / 'center' / 'bottom' | 'top'                    | Set where the notifications should appear on the screen. You can choose one of three default options: top / center / bottom. To read more about the notification position please go to the [NOTIFICATION POSITION](../default-variants-config/position) section. |
 | animationConfig      | Object                      | SlideInLeftSlideOutRight | Property responsible for the notification animation. You can set one of the animations prepared by us, or make your own config. To read more about the animation settings please go to the [ANIMATIONS SETTINGS](../animations/changing-transitions) section.    |
-| onClose              | Function                    | -                        | The onClose config option gives you possibility to pass an extra function, which will be invoked upon dismissal of the notification (triggered either by a swipe gesture or the `remove` method - e.g. close button in default variants)                         |
-|  |
+| onClose              | Function                    | -                        | The onClose config option gives you possibility to pass an extra function, which will be invoked upon dismissal of the notification (triggered by swipe gesture, `remove` method - e.g. close button in default variants or when notification disappears)        |
+|                      |
 
 ```typescript jsx
     <Text
