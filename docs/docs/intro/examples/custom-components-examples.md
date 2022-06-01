@@ -29,7 +29,7 @@ export const Advertisement = ({ customTitle, customDescription }: Props) => {
   return (
     <View style={styles.advertisement_container}>
       <Text style={styles.advertisement_title}>{customTitle}</Text>
-      <Image source={require('../../../../assets/doughnut.png')} style={styles.advertisement_image} />
+      <Image source={require('../../../assets/doughnut.png')} style={styles.advertisement_image} />
       <Text style={styles.advertisement_description}>{customDescription}</Text>
     </View>
   )
@@ -52,7 +52,7 @@ export const CustomInfo = ({ customTitle }: Props) => {
   return (
     <View style={styles.info_container}>
       <Text style={styles.info_title}>{customTitle}</Text>
-      <Image source={require('../../../../assets/in_progress.png')} style={styles.info_image} />
+      <Image source={require('../../../assets/in_progress.png')} style={styles.info_image} />
     </View>
   )
 }
@@ -281,7 +281,7 @@ We can pass the `config` when we're 'injecting' our custom modal to the library,
 Please remember that the `config` in the `notify` (when we call it) overwrites `config` that we declared in the 'injection' process.<br/>
 
 ### Implement close button
-In case you need to implement close button in your custom component, here is the code showing implementation in out 'CustomInfo' notification:
+In case you need to implement close button in your custom component, here is the code showing implementation in our 'CustomInfo' notification:
 
 ```tsx
 import { Image, Text, View } from 'react-native'
@@ -300,18 +300,22 @@ export const CustomInfo = ({ customTitle }: Props) => {
   return (
     <View style={styles.info_container}>
       <Text style={styles.info_title}>{customTitle}</Text>
-      <Image source={require('../../../../assets/in_progress.png')} style={styles.info_image} />
+      <Image source={require('../../../assets/in_progress.png')} style={styles.info_image} />
       <TouchableOpacity
         onPress={() => {
           remove()
         }}>
-        <Image source={'../../../../assets/close-regularMode.png'} style={styles.icon} />
+        <Image source={'../../../assets/close-regularMode.png'} style={styles.icon} />
       </TouchableOpacity>
     </View>
   )
 }
 
 ```
+There are a few new things along with the previously shown code.
+First, we need to add two imports:  a 'TouchableOpacity' from react-native-gesture-handler and 'useNotificationController' hook provided with react-native-notificated.
+'useNotificationController' hook returns method 'remove' which can be applied in our custom notification.
+The only thing that has to be done to implement the close button is to add a close button in our return part of the component and invoke remove() on the press event.
 
 Now let's take a look how our examples looks like:
 
