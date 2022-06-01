@@ -1,10 +1,8 @@
 name: Auto Assign to Project(s)
 
 on:
-  push
+  pull_request
   issues:
-    types: [opened, labeled]
-  pull_request:
     types: [opened, labeled]
   issue_comment:
     types: [created]
