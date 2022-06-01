@@ -1,14 +1,14 @@
 name: Auto Assign to Project(s)
 
 on:
-  pull_request
   issues:
+    types: [opened, labeled]
+  pull_request:
     types: [opened, labeled]
   issue_comment:
     types: [created]
-
 env:
-  GH_TOKEN_NOTIFICATED: ${{ secrets.GH_TOKEN_NOTIFICATED }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   assign_one_project:
