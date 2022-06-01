@@ -1,12 +1,14 @@
 name: Auto Assign to Project(s)
 
 on:
+  push
   issues:
     types: [opened, labeled]
   pull_request:
     types: [opened, labeled]
   issue_comment:
     types: [created]
+
 env:
   GH_TOKEN_NOTIFICATED: ${{ secrets.GH_TOKEN_NOTIFICATED }}
 
