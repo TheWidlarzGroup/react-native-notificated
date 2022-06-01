@@ -48,14 +48,14 @@ Below you will find the default styling, for all notification types, with `darkM
 
 | NotificationType  | `darkMode`         | Visualisation
 | ----------------- | ------------------ | -----------------
-| Success           | `false`            | ![Border](../../assets/border.png)
-| Success           | `true`             | ![Border](../../assets/success-darkMode.png)
+| Success           | `false`            | ![Border](../../../assets/border.png)
+| Success           | `true`             | ![Border](../../../assets/success-darkMode.png)
 |                   |                    |
-| Error             | `false`            | ![Border](../../assets/error.png)
-| Error             | `true`             | ![Border](../../assets/error-darkMode.png)
+| Error             | `false`            | ![Border](../../../assets/error.png)
+| Error             | `true`             | ![Border](../../../assets/error-darkMode.png)
 |                   |                    |
-| Warning           | `false`            | ![Border](../../assets/warning.png)
-| Warning           | `true`             | ![Border](../../assets/warning-darkMode.png)
+| Warning           | `false`            | ![Border](../../../assets/warning.png)
+| Warning           | `true`             | ![Border](../../../assets/warning-darkMode.png)
 |                   |                    |
-| Info              | `false`            | ![Border](../../assets/info.png)
-| Info              | `true`             | ![Border](../../assets/info-darkMode.png)
+| Info              | `false`            | ![Border](../../../assets/info.png)
+| Info              | `true`             | ![Border](../../../assets/info-darkMode.png)

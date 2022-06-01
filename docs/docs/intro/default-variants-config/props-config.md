@@ -211,7 +211,7 @@ And the final effect:
 <br/>
 <br/>
 
-![Border](../../assets/success-props.png)
+![Border](../../../assets/success-props.png)
 
 <br/>
 <br/>
