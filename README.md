@@ -32,6 +32,28 @@
 yarn add react-native-notificated
 ```
 
+## 📖 Documentation
+
+Check the docs here [Click](https://thewidlarzgroup.github.io/react-native-notificated/)
+
+- [Basic Usage](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/basics/basic-usage)
+- [Basic Configuration](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/basics/basic-configuration)
+- [Global Notifications Settings](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/comprehensive-configuration/global-notifications-settings)
+- [Order Of Settings Overwriting](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/comprehensive-configuration/order-of-settings-overwriting)
+- [Default Variants](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/default-variants-config/default-variants)
+- [Global Styles Settings](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/default-variants-config/global-config)
+- [Single Notification Config](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/default-variants-config/props-config)
+- [Notification position](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/default-variants-config/position)
+- [Transitions](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/animations/changing-transitions)
+- [Custom Transitions](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/animations/custom-transitions)
+- [Default Examples](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/examples/default-examples)
+- [Dark Mode Examples](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/examples/dark-mode-examples)
+- [Global Config Examples](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/examples/global-config-examples)
+- [Global Types Config Examples](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/examples/global-types-config-examples)
+- [Custom Examples](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/examples/custom-examples)
+- [Redux Example](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/examples/redux-example)
+- [Api Reference](https://thewidlarzgroup.github.io/react-native-notificated/docs/api/apiReference)
+
 ## 🛸 Dependencies
 
 This library needs these dependencies to be installed in your project before you can use it:
