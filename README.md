@@ -49,6 +49,12 @@ steps: [guide here](https://docs.swmansion.com/react-native-gesture-handler/docs
 **react-native-device-info** requires additional installations
 steps: [guide here](https://github.com/react-native-device-info/react-native-device-info) 👈
 
+## Example
+
+Android Emulator        |  iOS Simulator
+:-------------------------:|:-------------------------:
+<video src="https://user-images.githubusercontent.com/62747088/171445996-7e83ffc2-80a2-4a03-a972-3b4e26c878ad.mp4"></video>  | <video src="https://user-images.githubusercontent.com/62747088/171443943-e0f897c2-ed11-42cd-95a7-9cf75d8cc115.mp4"></video>
+
 ## 💪🏽 Uses
 
 - [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated)
