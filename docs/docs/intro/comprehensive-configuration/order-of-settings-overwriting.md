@@ -15,7 +15,7 @@ For example, we can set the `titleColor` of the notification in the: <br/>
 
 Instance range overwrites notification type range and global range. Notification type range overwrites global range.<br/>
 
-Let's consider the case where we set all the possible for single `success` notification on all depth levels: <br/>
+Let's consider the case where we set all possible options for single `success` notification on all depth levels: <br/>
 (all the props for other notifications are the same)<br/>
 
 ```jsx
@@ -152,7 +152,7 @@ Can be set up for all notifications in the app. Some of them can be set up only 
 
 The rest can be overwritten at lower levels - notification type range (for example, for all errors) and instance range (for the single notification).
 
-## Notification type range (for example for all errors):
+## Notification type range (for example for all success notifications):
 
 ```jsx
 const { useNotifications, NotificationsProvider } = createNotifications({

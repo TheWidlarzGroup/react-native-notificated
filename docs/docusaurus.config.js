@@ -52,10 +52,16 @@ const config = {
         },
         items: [
           {
-            type: 'doc',
-            docId: 'intro',
+            type: 'docSidebar',
+            sidebarId: 'intro',
             position: 'left',
             label: 'Documentation',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'api',
+            position: 'left',
+            label: 'API Reference',
           },
           // {to: '/blog', label: 'Blog', position: 'left'},
           {

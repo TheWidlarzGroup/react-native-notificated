@@ -49,7 +49,7 @@ Let's check what happened here:
 
 ### Visualisation
 
-![Success](../../assets/login-form.png)
+![Success](../../../assets/login-form.png)
 
 <br/>
 
@@ -269,18 +269,18 @@ Let's take a look at how our notifications look, when we do put not a valid emai
 
 ## Incorrect Login
 
-![Success](../../assets/incorrect-login.png)
+![Success](../../../assets/incorrect-login.png)
 
 <br/>
 
 ## Incorrect Password
 
-![Success](../../assets/incorrect-password.png)
+![Success](../../../assets/incorrect-password.png)
 
 <br/>
 
 ## You have successfully logged in
 
-![Success](../../assets/login-success.png)
+![Success](../../../assets/login-success.png)
 
 <br/>

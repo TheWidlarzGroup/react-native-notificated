@@ -160,7 +160,7 @@ First argument is a notification type (`success/error/info/warning`) and the sec
 Only description props is required, but usually, it's good to have also a title. >br/>
 Our notification has been set, and it looks like that:
 
-![Error](../../assets/error.png)
+![Error](../../../assets/error.png)
 
 TADAM! Magic happens!! 🤗
 
@@ -232,37 +232,37 @@ Let's see the notifications we declared above:
 
 ### Success notification
 
-![Success](../../assets/border.png)
+![Success](../../../assets/border.png)
 
 ### Error notification
 
-![Error](../../assets/error.png)
+![Error](../../../assets/error.png)
 
 ### Warning notification
 
-![Warning](../../assets/warning.png)
+![Warning](../../../assets/warning.png)
 
 ### Info notification
 
-![Info](../../assets/info.png)
+![Info](../../../assets/info.png)
 
 ### Modify notification
 
 #### Before
 
-![Modify](../../assets/border.png)
+![Modify](../../../assets/border.png)
 
 #### And after
 
-![Modify](../../assets/border.png)
+![Modify](../../../assets/border.png)
 
 ### Remove notification
 
 #### Before
 
-![Modify](../../assets/border.png)
+![Modify](../../../assets/border.png)
 
 #### And after ;)
 
-![Modify](../../assets/remove.png)
+![Modify](../../../assets/remove.png)
 

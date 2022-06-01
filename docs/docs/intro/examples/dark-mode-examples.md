@@ -1,21 +1,20 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
-# ✒️ Global config examples
+# 🖊️ Dark mode examples
 <br/>
 
 Code has been already described step by step in the [DEFAULT EXAMPLES](./default-examples.md) section.<br/>
 So I think there is no use to do it here again.<br/>
 Here we have only a few differences I need to mention, and they are minimal:
 
-- we use `modify()` and `remove()` only if the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove the notification, or modify it. So, we will not use them here and in the other examples. Because of the same reason, we will not use `useState` and `useNotificationController` here.
-- we filled the `globalConfig` object in the `defaultStylesSettings`. This object is responsible for setting properties for all notifications. To read more please go back to the [GLOBAL CONFIG](../default-variants-config/global-config.md) section.
+- we use `modify()` and `remove()` only if the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove notification, or modify it. So, we will not use them here and in the other examples. Because of the same reason we will not use `useState` and `useNotificationController` here.
+- we added one extra property - `darkMode` in the global settings <br/> (because we want to show examples in the dark mode, right? 😉 )
   <br/>
 
-That's the only difference between Default Examples and Global Config Examples.<br/>
+That's the only difference between Default Examples and Dark Mode Examples.<br/>
 Let's take a look at the code and the visualizations then:
-
 
 
 ## Code
@@ -99,25 +98,16 @@ Let's see the notifications we declared above:
 
 ### Success notification
 
-![Success](../../assets/success-global.png)
+![Success](../../../assets/success-darkMode.png)
 
 ### Error notification
 
-![Error](../../assets/error-global.png)
+![Error](../../../assets/error-darkMode.png)
 
 ### Warning notification
 
-![Warning](../../assets/warning-global.png)
+![Warning](../../../assets/warning-darkMode.png)
 
 ### Info notification
 
-![Info](../../assets/info-global.png)
-
-
-<br/>
-
-## Conclusion
-
-If we exclude titles and icons, we can see that all those notifications are the same. <br/>
-It's because `globalConfig` affects all the notifications. Doesn't matter what the type of notification is.<br/>
-To read more please go back to the [GLOBAL CONFIG](../default-variants-config/global-config.md) section.
+![Info](../../../assets/info-darkMode.png)

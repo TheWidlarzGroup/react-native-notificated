@@ -1,15 +1,16 @@
 import React, { VFC } from 'react'
 import { Text } from 'react-native'
-import { styles } from './styles'
+import { styles } from '../basicExamples/styles'
 
 type Props = {
   onPress: () => void
+  buttonTitle: string
 }
 
-export const InfoButton: VFC<Props> = ({ onPress }) => {
+export const CustomCaseButton: VFC<Props> = ({ onPress, buttonTitle }) => {
   return (
     <Text style={[styles.text, styles.info]} onPress={onPress}>
-      Emit info
+      {buttonTitle}
     </Text>
   )
 }

@@ -8,8 +8,8 @@ export interface GestureProps {
 }
 
 export interface GestureConfigProps {
-  activationDistances: Range | number
-  activationVelocities: Range | number
+  activationDistances?: Range | number
+  activationVelocities?: Range | number
 }
 
 export interface NoneGestureConfig {
