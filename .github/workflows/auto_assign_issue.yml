@@ -14,5 +14,5 @@ jobs:
         with:
           project-url: https://github.com/orgs/TheWidlarzGroup/projects/2
           github-token: ${{ secrets.GH_TOKEN_NOTIFICATED }}
-          labeled: bug, android, build_or_config_issue, dependencies_update_request, dependecies, documentation, enchancement, good first issue, help wanted, idea, iOS, question, typescript
+          labeled: bug, android, build or config issue, dependencies update request, dependecies, documentation, enchancement, good first issue, help wanted, idea, iOS, question, typescript
           label-operator: OR
