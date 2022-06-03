@@ -8,14 +8,14 @@ sidebar_position: 2
 
 Our library is dependent on the `react-native-reanimated` (v2) with which we animate the wrapper around the notification components.
 
-To thoroughly understand how animations work, you can also take a look in to the documentation for aforementioned [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/)
+To thoroughly understand how animations work, you can also take a look into the documentation for aforementioned [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/)
 
-Our animation system is designed in such a way, that is recognizes two kinds of transitions:
+Our animation system is designed in such a way, that it recognizes two kinds of transitions:
 
 1. **transition in**
 2. **transition out**
 
-and is based on one animated value, that represents these transitions and animates from `0` to `1`.
+and it is based on one animated value (shared value), that represents these transitions and animates itself from `0` to `1`.
 
 Its range should be self-explanatory, `0` represents the beginning of the **transition in** animation, whereas `1` stands for the starting point for **transition out** kind of animation.
 
@@ -23,7 +23,7 @@ When notification is about to show up, the value is animated from `0` to `1`. Wh
 
 Every time a notification is about to be shown, the library renders the UI part wrapped with an `<Animated.View />` and applies **animated styles** to it so it knows how it should animate.
 
-The source of these styles comes from the **animation config** that is generated wih `generateAnimationConfig` function and is used internally by the library to generate the animations. You can also use it yourself to cretae whatever transition you desiere.
+The source of these styles comes from the **animation config** that is generated wih `generateAnimationConfig` function and is used internally by the library to generate the animations. You can also use it yourself to cretae whatever transition you desire.
 
 Summarizing, there are *4 properties* that can controll the transtion. They all are handled by `generateAnimationConfig` and go as follows:
 
