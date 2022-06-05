@@ -5,16 +5,15 @@ sidebar_position: 5
 # 🪶 Custom examples
 <br/>
 
-Code has been already described step by step in the [DEFAULT EXAMPLES](./default-examples.md) section.<br/>
-So I think there is no use to do it here again.<br/>
+The code has already been described step by step in the [DEFAULT EXAMPLES](./default-examples.md) section, so I think there is no use to do it here again.<br/>
 Here we have only a few differences I need to mention, and they are minimal:
 
-- we use `modify()` and `remove()` only if the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove notification, or modify it. So, we will not use them here and in the other examples. Because of the same reason we will not use `useState` and `useNotificationController` here.
-- we filled the `style` object in every notification. To read more about the single notification properties please go to the [SINGLE NOTIFICATION CONFIG](../default-variants-config/props-config.md) section.
+- we use `modify()` and `remove()` only if the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove the notification or modify it. So, we will not use them here and in the other examples. For the same reason, we will not use `useState` and `useNotificationController` here.
+- we filled the `style` object in every notification. To read more about the single notification properties, please go to the [SINGLE NOTIFICATION CONFIG](../default-variants-config/props-config.md) section.
   <br/>
 
-In fact that's the only differences between Default Examples and Custom Examples.<br/>
-Let's take a look at the code and the visualisations then:
+In fact, that's the only differences between Default Examples and Custom Examples.<br/>
+Let's take a look at the code and the visualizations then:
 
 
 ## Code
@@ -145,8 +144,8 @@ Let's see the notifications we declared above:
 
 ## Conclusion
 
-Like we can see every notification have its own style, but it's not going above this single notification. <br/>
-What we should remember is that the single notification style overwrites each of those configs:
+Like we can see, every notification has its own style, but it's not going above this single notification. <br/>
+What we should remember is that a single notification style overwrites each of those configs:
 
 - `globalConfig`
 - `successConfig`
@@ -154,4 +153,4 @@ What we should remember is that the single notification style overwrites each of
 - `warningConfig`
 - `infoConfig`
 
-To read more please go to [SINGLE NOTIFICATION CONFIG](../default-variants-config/props-config.md) and the [ORDER OF SETTINGS OVERWRITING](../comprehensive-configuration/order-of-overwriting-settings.md) sections.
+To read more, please go to [SINGLE NOTIFICATION CONFIG](../default-variants-config/props-config.md) and the [ORDER OF SETTINGS OVERWRITING](../comprehensive-configuration/order-of-overwriting-settings.md) sections.

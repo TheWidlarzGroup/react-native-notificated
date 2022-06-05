@@ -5,12 +5,12 @@ sidebar_position: 1
 # 🔏 Default examples
 <br/>
 
-We prepared a lot of examples to help you understand how we can use our library. <br/>
+We've prepared a lot of examples to help you understand how we can use our library. <br/>
 First, let's focus on the most basic examples. It takes very little effort to make them work.<br/>
-A few lines below, you will find all the code with explanations.<br/>
+A few lines below, you will find all the whole code with the explanations.<br/>
 Let's go then!
 
-## How to use the `notify()`
+## How to use `notify()`
 
 ```jsx
 import React, { useState } from 'react'
@@ -98,13 +98,13 @@ export const DefaultExamples = () => {
 ```
 
 
-At first, we need to import everything that is necessary for our component:
+First, we need to import everything that is necessary for our component:
 
-- `React` and `useState` - we will explain below why we need `useState` in this example
+- `React` and `useState` - we will explain why we need `useState` in the example below
 - `SafeAreaView`
 - `createNotifications` - to set the basic config and pull out our `notify()` function
-- `useNotificationController` - to pull out `remove()` and `modify()` functions (we will explain them below)
-- `SuccessButton` and other buttons - are just styled `Text` components which imitates our buttons:
+- `useNotificationController` - to pull out the `remove()` and `modify()` functions (we will explain them below)
+- `SuccessButton` and other buttons - they are just styled `Text` components that imitate our buttons:
 
   ```typescript jsx
   import React, { VFC } from 'react'
@@ -130,20 +130,20 @@ At first, we need to import everything that is necessary for our component:
 When the imports are applied, we initiate `createNotifications` and pick `useNotifications` and `NotificationsProvider` from the box.<br/>
 
 - `useNotifications` - allows us to get access to the `notify()` function
-- `NotificationsProvider` - it's a wrapper, like all others providers (ContextProvider, ApolloProvider etc.). This one is necessary to allow the library to operate within the prescribed scope. What is special here, is that we don't need to wrap scope in it. We can just put it as a self-closing component, and everything that is nested in the same wrapper as our provider will get access to our notifications.
+- `NotificationsProvider` - it's a wrapper, like all others providers (ContextProvider, ApolloProvider etc.). This one is necessary to allow the library to operate within the prescribed scope. What is special here is that we don't need to wrap scope in it. We can just put it as a self-closing component, and everything that is nested in the same wrapper as our provider will get access to our notifications.
 
 <br/>
 <br/>
 
-Inside our `DefaultExamples` component we initiate `state` which will hold the notification `ID` for us. <br/>
-Last thing, we need to do is to unpack `notify()`, `remove()` and `modify()` methods.<br/>
-Those methods are crucial because:
+Inside our `DefaultExamples` component, we initiate `state` which will hold the notification `ID` for us. <br/>
+Last thing we need to do is to unpack the `notify()`, `remove()` and `modify()` methods.<br/>
+These methods are crucial because:
 
-- `notify()` - initiate every single notification. In the examples, we trigger it by `onPress`, but of course, it can be called in every other context you need, for example, after data fetching or after successful sign-in.
-- `remove()` - externally remove triggered notification (it's not required, in the basic usage, but worth knowing)
-- `modify()` - modify triggered notification (it's not required, in the basic usage, but worth knowing)<br/>
+- `notify()` - initiates every single notification. In the examples, we trigger it by `onPress`, but of course, it can be called in every other context you need, for example, after data fetching or after successful sign-in.
+- `remove()` - externally removes a triggered notification (it's not required in the basic usage, but it's worth knowing)
+- `modify()` - modifies a triggered notification (it's not required in the basic usage, but it's worth knowing)<br/>
 
-If you need more info on how those methods works please check the [BASIC USAGE](../basics/basic-usage.md) section.<br/>
+If you need more info on how these methods works, please check the [BASIC USAGE](../basics/basic-usage.md) section.<br/>
 
 As we said above, we trigger every notification by pressing the button. All we need to pass to the `onPress` event is:
 
@@ -156,23 +156,23 @@ As we said above, we trigger every notification by pressing the button. All we n
             })
  ```
 
-First argument is a notification type (`success/error/info/warning`) and the second is an object with settings, consisting of the two parts: `params` and `config` (check [Single Notification Config](../default-variants-config/props-config.md)).<br/>
-Only description props is required, but usually, it's good to have also a title. >br/>
-Our notification has been set, and it looks like that:
+The first argument is a notification type (`success/error/info/warning`) and the second is an object with settings, consisting of two parts: `params` and `config` (check [Single Notification Config](../default-variants-config/props-config.md)).<br/>
+Only description props is required, but it’s usually good to have the title as well. >br/>
+Our notification has been set and it looks like that:
 
 ![Error](../../../assets/error.png)
 
-TADAM! Magic happens!! 🤗
+TADAM! The magic happens!! 🤗
 
 <br/>
 <br/>
 
-## How to use the `error()` and the `modify()`
+## How to use `error()` and `modify()`
 
 This is a little more complicated, but just a little (I promise!) <br/>
 <br/>
 
-All we need to do is to get chosen notification `ID` and set it in our `state`.<br/>
+All we need to do is get the chosen notification `ID` and set it in our `state`.<br/>
 As you can see in the code below:
 
 ```typescript jsx
@@ -190,7 +190,7 @@ As you can see in the code below:
   )
 ```
 
-We just wrapped `notify()` in our `setId` setter, and pulled `id` from the object returned by `notify()`.<br/>
+We just wrapped `notify()` in our `setId` setter and pulled `id` from the object returned by `notify()`.<br/>
 
 Now it's time to:
 
@@ -210,7 +210,7 @@ Now it's time to:
 
 and add new settings which will overwrite those previously set in the notification (only one extra is `id` in the `params` object).<br/>
 In other words, we can easily change any notification to a completely different one. <br/>
-In the example above we changed only the `title` and the `description`, but we literally can change any value described in the [Single Notification Config](../default-variants-config/props-config.md) section.
+In the example above, we only changed the `title` and the `description`, but we can literally change any value described in the [Single Notification Config](../default-variants-config/props-config.md) section.
 
 
 ### Pass the `id` to the `remove()` method:
@@ -220,8 +220,8 @@ In the example above we changed only the `title` and the `description`, but we l
 ```
 
 and... that's all... <br/>
-We can simply call `remove()` method and pass `id` of the notification that should be manually and externally removed. <br/>
-Why externally? Because internally (inside the notification), we have the close `X` icon.<br/>
+We can simply call the `remove()` method and pass the `id` of the notification that should be removed manually and externally. <br/>
+Why externally? Because we have the close icon `X` internally.<br/>
 It's just... let's call it 'CLOSE BUTTON' you can put outside the notification.
 
 ## Visualization of examples

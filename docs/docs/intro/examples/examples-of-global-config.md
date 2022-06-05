@@ -2,14 +2,13 @@
 sidebar_position: 3
 ---
 
-# ✒️ Global config examples
+# ✒️ Examples of global config
 <br/>
 
-Code has been already described step by step in the [DEFAULT EXAMPLES](./default-examples.md) section.<br/>
-So I think there is no use to do it here again.<br/>
+The code has already been described step by step in the [DEFAULT EXAMPLES](./default-examples.md) section, so I think there is no use to do it here again.<br/>
 Here we have only a few differences I need to mention, and they are minimal:
 
-- we use `modify()` and `remove()` only if the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove the notification, or modify it. So, we will not use them here and in the other examples. Because of the same reason, we will not use `useState` and `useNotificationController` here.
+- we use `modifyv()` and `remove()` only if the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove the notification or modify it. So, we will not use them here and in the other examples. For that same reason, we will not use `useState` and `useNotificationController` here.
 - we filled the `globalConfig` object in the `defaultStylesSettings`. This object is responsible for setting properties for all notifications. To read more please go back to the [GLOBAL CONFIG](../default-variants-config/global-config.md) section.
   <br/>
 
@@ -118,6 +117,6 @@ Let's see the notifications we declared above:
 
 ## Conclusion
 
-If we exclude titles and icons, we can see that all those notifications are the same. <br/>
-It's because `globalConfig` affects all the notifications. Doesn't matter what the type of notification is.<br/>
-To read more please go back to the [GLOBAL CONFIG](../default-variants-config/global-config.md) section.
+If we exclude the titles and icons, we can see that all these notifications are the same. <br/>
+That's because `globalConfig` affects all the notifications. It doesn't matter what the type of notification is.<br/>
+To read more, please go back to the [GLOBAL CONFIG](../default-variants-config/global-config.md) section.

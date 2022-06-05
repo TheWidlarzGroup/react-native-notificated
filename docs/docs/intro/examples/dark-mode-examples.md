@@ -5,11 +5,10 @@ sidebar_position: 2
 # 🖊️ Dark mode examples
 <br/>
 
-Code has been already described step by step in the [DEFAULT EXAMPLES](./default-examples.md) section.<br/>
-So I think there is no use to do it here again.<br/>
+The code has been already described step by step in the [DEFAULT EXAMPLES](./default-examples.md) section, so I think there is no use to do it here again.<br/>
 Here we have only a few differences I need to mention, and they are minimal:
 
-- we use `modify()` and `remove()` only if the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove notification, or modify it. So, we will not use them here and in the other examples. Because of the same reason we will not use `useState` and `useNotificationController` here.
+- we use `modify()` and `remove()` only if the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove the notification or modify it. So, we will not use them here and in the other examples. For that same reason, we will not use `useState` and `useNotificationController` here.
 - we added one extra property - `darkMode` in the global settings <br/> (because we want to show examples in the dark mode, right? 😉 )
   <br/>
 

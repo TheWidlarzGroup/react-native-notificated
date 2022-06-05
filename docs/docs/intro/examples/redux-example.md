@@ -6,10 +6,10 @@ sidebar_position: 6
 <br/>
 
 This example is quite different from the previous ones. <br/>
-Our goal here is to show you how we can use RN Notifications library in real-life, in a more complicated environment.<br/>
-For this reason, we built a dummy login screen.<br/>
+Our goal here is to show you how we can use the RN Notificated library in real life and in a more complicated environment.<br/>
+For this reason, we have built a dummy login screen.<br/>
 In this example, we use the Redux Toolkit library.<br/>
-Let's go step by step through it, and check where exactly notifications were triggered.
+Let's go step by step and check where the notifications are triggered exactly.
 
 
 
@@ -36,18 +36,18 @@ export const ReduxExample = () => {
 }
 ```
 
-Redux Example is the main component, where we apply redux `Provider`, `NotificationsProvider` and render `LoginForm` component.<br/>
+Redux Example is the main component where we apply redux `Provider`, `NotificationsProvider` and render the `LoginForm` component.<br/>
 
 Let's check what happened here:
 
-- we imported `React` (of course), `store` (previously created), redux `Provider`, `LoginForm` component (previously created) and well known `createNotifications`
-- we didn't pick `useNotifications` hook. Only `createNotification`, because we're not triggering notifications here
-- because `NotificationsProvider` is applied on the same level as `LoginForm` we have access to the notifications inside the form
+- we imported the `React` (of course), `store` (previously created), redux `Provider`, `LoginForm` components (previously created) and the well-known `createNotifications`
+- we didn't pick the `useNotifications` hook - only `createNotification`, because we're not triggering notifications here
+- because `NotificationsProvider` is applied on the same level as `LoginForm`, we have access to the notifications inside the form
 
 
 <br/>
 
-### Visualisation
+### Visualization
 
 ![Success](../../../assets/login-form.png)
 
@@ -71,10 +71,10 @@ export type AppDispatch = typeof store.dispatch
 
 In the `store.ts` file, we:
 
-- import `configureStore` function, from `@reduxjs/toolkit`. That function is necessary to create the store.
-- import `formReducer` (we will describe this function in the next paragraphs)
-- create `store` with `configureStore` function, and pass `formReducer` as a `reducer` there, with a key `form`
-- export two types: `RootState` and `AppDispatch` which we use to type `useDispatch` and `useSelector` hooks (we will come back to them soon)
+- import the `configureStore` function from `@reduxjs/toolkit`. This function is necessary to create the store.
+- import `formReducer` (we will describe this function in the coming paragraphs)
+- create `store` with the `configureStore` function and pass `formReducer` as a `reducer` there with a key `form`
+- export two types: `RootState` and `AppDispatch`, which we use to type the `useDispatch` and `useSelector` hooks (we will come back to them soon)
 
 <br/>
 
@@ -90,14 +90,14 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
 We're now inside the `hooks.ts`.<br/>
 Because we use `typescript`, we also want to type `useDispatch` and `useSelector` provided by `Redux`.
-Thanks to that we received `useAppDispatch` function which is a typed `useDispatch` and `useAppSelector` which is typed `useSelector`
-We will use them in the app, instead of using `useDispatch` and `useSelector`.
+Thanks to this we received the `useAppDispatch` function which is typed `useDispatch` and `useAppSelector` which is typed `useSelector`
+We will use them in the app instead of `useDispatch` and `useSelector`.
 
 <br/>
 
 ## Reducers
 
-This file (`reducers.ts`) is most important for us, because we use our `notify()` function here.
+This file (`reducers.ts`) is the most important for us, because we use our `notify()` function here.
 
 ```typescript jsx
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
@@ -169,16 +169,16 @@ export const fetchUsers = (dispatch: Dispatch) => {
 
 ```
 
-In this file we:
+In this file, we:
 
 - import function and types: `createSlice`, `Dispatch`, `PayloadAction` from the `@reduxjs/toolkit`
 - and the `notify()` function from the `LoginForm` component. Why from there? In our opinion, it belongs there. We just want to use it in the `reducers.ts` file, that's why we have imported it here
-- create the type for our `initialState` (type `FormState`), and create `initialState` which contains only `login` and `password`, because it's all we need in our simple form
-- create `formSlice` which contains our reducers: `updateLogin`, `updatePassword` and `submit`. <br/>
-  The `updateLogin` and the `updatePassword` are just updaters, which are responsible for our state change, but `submit` is a function that sends our data to the backend (Of course, as we can see, it is not doing that. It's just making simple validation, and check if the login and the password have at least 4 characters but shhh ;) ). <br/>
-  If there is a problem with validation, our `error` notifications are used. If everything is fine, we use `success` notification.
+- create the type for our `initialState` (type `FormState`) and create `initialState`, which contains only `login` and `password`, because it's all we need in our simple form
+- create `formSlice`, which contains our reducers: `updateLogin`, `updatePassword` and `submit`. <br/>
+  `updateLogin` and `updatePassword` are just updaters, which are responsible for our state change, but `submit` is a function that sends our data to the backend (Of course, as we can see, it is not doing that. It's just making a simple validation and checking if the login and the password have at least 4 characters but shhh ;) ). <br/>
+  If there is a problem with validation, our `error` notifications are used. If everything is fine, we use the `success` notification.
 - after that, we just export our reducer function and the reducer itself
-- The last step is to create `fetchUsers` function, which imitates the time we need to get a response from the backend. In fact, we just wrap our `submit` here
+- The last step is to create the `fetchUsers` function, which imitates the time we need to get a response from the backend. In fact, we just wrap our `submit` here
 
 This is where we used our `notify()` function. Let's go to the last file: `LoginForm` where we use all of that.
 
@@ -241,15 +241,15 @@ export const LoginForm = () => {
 
 ```
 
-So again at the beginning, we need to import everything we need:
+Again, in the beginning we need to:
 
 - `react native` components and event
 - our reducers (please remember that `fetchUsers` is in fact `submit` with `setTimeout`)
 - our hooks, because we use them instead of `useDispatch` and `useSelector`
 - styles (previously prepared)
-- and `createNotifications` to get access to the `notify()`
+- and `createNotifications` to get access to `notify()`
 
-After that we pick and export `notify()` (we're using it in the `reducers.ts` file).
+Next, we pick and export `notify()` (we're using it in the `reducers.ts` file).
 
 Our `LoginForm` component consists of:
 
@@ -262,7 +262,7 @@ Our `LoginForm` component consists of:
 In fact, that is all...<br/>
 We need to pass the function to the inputs and submit button.<br/>
 
-Let's take a look at how our notifications look, when we do put not a valid email, not a valid password, and when we put the valid data.
+Let’s take a look at our notifications, when we do put not a valid email, not a valid password, and when we put the valid data.
 
 
 <br/>

@@ -11,6 +11,8 @@ So I think there is no need to do it here again.<br/>
 In custom components examples, we will create our own modal, and pass it to the library.<br/>
 Thanks to this, we will obtain the maximum possibility of customization, without losing library advantages.
 
+PLEASE NOTICE: When you use your own components please do not use `defaultStylesSettings`
+
 Let's create our custom components:
 
 ## Custom modal - advertisement
