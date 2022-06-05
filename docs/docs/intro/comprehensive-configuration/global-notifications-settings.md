@@ -26,10 +26,8 @@ Here we can see the global notifications settings in their basic form with defau
 
 ```jsx
 const { useNotifications, NotificationsProvider } = createNotifications({
-  defaultNotificationTime: 3000,
-  defaultNotificationTimeLong: 5000,
+  duration: 3000,
   notificationPosition: 'top',
-  notificationMsgLengthTimerThreshold: 100,
   animationConfig: SlideInLeftSlideOutRight,
   isNotch: true / false, // depends on react-native-device-info's 'hasNotch' returned value
   defaultStylesSettings: {},
