@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# ✏️ Order of settings overwriting
+# ✏️ Order of overwriting settings
 <br/>
 
 In the React Native Notifications library, we can pass some settings on different levels. <br/>
@@ -10,12 +10,12 @@ When we go deeper and the range of the settings is narrower, the importance of t
 For example, we can set the `titleColor` of the notification in the: <br/>
 
 - global range (for all notifications)
-- notification type range (for example for all errors)
+- notification type range (for example, for all errors)
 - instance range (for the single notification)
 
 Instance range overwrites notification type range and global range. Notification type range overwrites global range.<br/>
 
-Let's consider the case where we set all possible options for single `success` notification on all depth levels: <br/>
+Let's consider a case where we set all possible options for a single `success` notification on all depth levels: <br/>
 (all the props for other notifications are the same)<br/>
 
 ```jsx
@@ -104,7 +104,7 @@ export const Example = () => {
 
 ```
 
-We can divide them as above for the three depth levels. Let's take a look at what properties can we pass at different levels:
+We can divide them as above for the three depth levels. Let's take a look at what properties we can pass at different levels:
 
 ## Global range (for all notifications):
 
@@ -134,7 +134,7 @@ const { useNotifications, NotificationsProvider } = createNotifications({
 })
 ```
 
-All those properties:
+All properties:
 - isNotch
 - duration
 - notificationPosition
@@ -152,7 +152,7 @@ Can be set up for all notifications in the app. Some of them can be set up only 
 
 The rest can be overwritten at lower levels - notification type range (for example, for all errors) and instance range (for the single notification).
 
-## Notification type range (for example for all success notifications):
+## Notification type range (for example, for all success notifications):
 
 ```jsx
 const { useNotifications, NotificationsProvider } = createNotifications({
@@ -178,7 +178,7 @@ const { useNotifications, NotificationsProvider } = createNotifications({
 })
 ```
 
-On the second level we can set only style properties for the different notification types:
+On the second level, we can set only style properties for the different notification types:
 
 (defaultStylesSettings)
 
@@ -187,10 +187,10 @@ On the second level we can set only style properties for the different notificat
 - warningConfig
 - infoConfig
 
-Properties set in these `configs` will affect all notifications of a given type. All of them have the same properties inside.<br/>
-This level overwrites only style properties previously set at the global range. You cannot overwrite here other global properties. <br/>
-Please notice that, if you set `globalConfig` styles (for all notifications), and then you set `successConfig`, then all `success` type notifications will take style config from the `successConfig`, but other notification types will take it from the `globalConfig`(unless you set them their notification type style config).<br/>
-As you can see Notification types have a smaller range than global, but they are more important overall.
+THe properties set in these `configs` will affect all notifications of a given type. All of them have the same properties inside.<br/>
+This level overwrites only the style properties previously set at the global range. You cannot overwrite other global properties here. <br/>
+Please notice that if you set `globalConfig` styles (for all notifications) and then you set `successConfig`, then all `success` type notifications will take style config from the `successConfig`, but other notification types will take it from the `globalConfig`(unless you set them their notification type style config).<br/>
+As you can see, Notification types have a smaller range than global, but they are more important overall.
 
 
 ## Instance range (for the single notification):
@@ -227,7 +227,7 @@ As you can see Notification types have a smaller range than global, but they are
       />
 ```
 
-All those properties:
+All properties:
 
 (params)
 - description
@@ -244,14 +244,14 @@ Can be set up for one single notification when we initiate it. Some of them can 
 - description
 - title
 
-What makes sense, because every notification should have its reason. <br/>
-If we set some property here, it has the highest level of importance (overwrites the same property in the Global range and Notification type range), but only for this single notification.
+This makes sense, because every notification should have its reason. <br/>
+If we set some property here, it will have the highest level of importance (it overwrite the same property in the Global range and Notification type range), but only for this single notification.
 
 
 
 ## Conclusion
 
-**In other words if the President says something it affects all the people in the country.** <br/>
+**In other words, if the President says something, it affects all the people in the country.** <br/>
 But seriously, we can listen to him, but the president of our town can easily challenge his opinion, and probably his words will be more valuable for us. <br/>
 **If the president of our city will say something, that will affect all the people in the city (smaller range, stronger attention).** <br/>
 But if our mother will challenge his opinion, he's just lost, same as the President :) <br/>

@@ -154,4 +154,4 @@ What we should remember is that the single notification style overwrites each of
 - `warningConfig`
 - `infoConfig`
 
-To read more please go to [SINGLE NOTIFICATION CONFIG](../default-variants-config/props-config.md) and the [ORDER OF SETTINGS OVERWRITING](../comprehensive-configuration/order-of-settings-overwriting.md) sections.
+To read more please go to [SINGLE NOTIFICATION CONFIG](../default-variants-config/props-config.md) and the [ORDER OF SETTINGS OVERWRITING](../comprehensive-configuration/order-of-overwriting-settings.md) sections.
