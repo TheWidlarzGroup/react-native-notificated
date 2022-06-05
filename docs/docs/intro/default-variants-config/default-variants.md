@@ -5,8 +5,8 @@ sidebar_position: 1
 # 🖼️ Default Variants
 <br/>
 
-At the start, you receive from us default styling, for all 4 types of notifications (`success` / `error` / `warning` / `info`). <br/>
-If you just trigger the notification, like in the example below (we trigger the `error` here, but of course, it can be any other notification):
+At the start, you receive default styling for all 4 types of notifications (`success` / `error` / `warning` / `info`). <br/>
+If you just trigger the notification like in the example below (we trigger the `error` here, but of course, it can be any other notification):
 #
 ```jsx
 import React from 'react'
@@ -41,9 +41,9 @@ export const GlobalConfigExamples = () => {
 #
 You will get the basic styling with the `borderType` set for the `'border'` value, the `darkMode` set to `false`, and the `defaultIconType` for the `color` value. <br/>
 #
-(TO CHECK `borderType` AND OTHER STYLE PROPS GO TO THE [GLOBAL STYLES SETTINGS](./global-config.md) OR [SINGLE NOTIFICATION CONFIG](./props-config.md)).
+(TO CHECK `borderType` AND OTHER STYLE PROPS, GO TO THE [GLOBAL STYLES SETTINGS](./global-config.md) OR [SINGLE NOTIFICATION CONFIG](./props-config.md)).
 #
-Below you will find the default styling, for all notification types, with `darkMode` set for a `false` and a `true` variants.
+Below you will find the default styling for all notification types, with `darkMode` set for a `false` and a `true` variants.
 
 
 | NotificationType  | `darkMode`         | Visualisation

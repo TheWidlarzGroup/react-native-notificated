@@ -31,7 +31,7 @@ const { useNotifications, NotificationsProvider } = createNotifications({
   notificationPosition: 'top',
   notificationMsgLengthTimerThreshold: 100,
   animationConfig: SlideInLeftSlideOutRight,
-  isNotch: true or false, // depends on react-native-device-info's 'hasNotch' returned value
+  isNotch: true / false, // depends on react-native-device-info's 'hasNotch' returned value
   defaultStylesSettings: {},
 })
 ```

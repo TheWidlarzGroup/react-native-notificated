@@ -36,8 +36,8 @@ const {useNotifications, NotificationsProvider} = createNotifications({
 
 #
 
-Like we said above - in the config descriptions, `globalConfig` even if is set can be overwritten by the config of the different notifications types (`successConfig` / `errorConfig` / `warningConfig` / `infoConfig`).
-You can find examples explaining it below, but first, let's find out what exactly, can we set in config objects.
+Like we said above - in the config descriptions, even if `globalConfig` is set, it can be overwritten by the config of different notifications types (`successConfig` / `errorConfig` / `warningConfig` / `infoConfig`).
+You can find examples explaining it below, but first, let's find out what we can set in the config objects exactly.
 #
 <br/>
 
@@ -52,28 +52,28 @@ All five configs:
 - `warningConfig`
 - `infoConfig`
 
-are the objects with the same properties.
+are objects with the same properties.
 #
-We can set there:
+There, we can set the following:
 
-| Name             | Type                                        | Default                                                                                                      | Description                                                                                                                              |
-|------------------|---------------------------------------------|--------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| titleSize        | Number                                      | `16`                                                                                                         | Set font size for the notification title                                                                                                 |
-| titleColor       | String                                      | `'#505050'` (darkMode - false) / `'#FAFAFA'` (darkMode - true)                                               | Set font color for the notification title                                                                                                |
-| descriptionSize  | Number                                      | `14`                                                                                                         | Set font size for the notification description                                                                                           |
-| descriptionColor | String                                      | `'#505050'` (darkMode - false) / `'#FAFAFA'` (darkMode - true)                                               | Set font color for the notification description                                                                                          |
-| bgColor          | String                                      | `'#FFFFFF'` (darkMode - false) / `'#2D2D2D'` (darkMode - true)                                               | Set background color for the notification                                                                                                |
-| borderType       | `'border'` / `'accent'` / `'no-border'`     | `'border'`                                                                                                   | Set type of border for the notification ([EXAMPLES](#-border-types-examples))                                                            |
-| accentColor      | String                                      | `'#00EA33'` (success type) / `'#FC6060'` (error type) / `'#8CACFF'` (warning type) / `'#FFD37D'` (info type) | Set accent color for the notification. The color of the border or the left side accent line                                              |
-| borderRadius     | Number                                      | `14`                                                                                                         | Set border radius for the notification container                                                                                         |
-| borderWidth      | Number                                      | `1`                                                                                                          | Set border width for the notification container                                                                                          |
-| multiline        | Number                                      | `1`                                                                                                          | Set number of visible lines for the notification description                                                                             |
-| defaultIconType  | `'color'` / `'monochromatic'` / `'no-icon'` | `'color'`                                                                                                    | This props works only with default icons. If you set your own icon it has no effect. ([EXAMPLES](#%EF%B8%8F-default-icon-type-examples)) |
-| leftIconSource   | ImageSourcePropType                         | -                                                                                                            | Set custom left icon for the notification (in png). For example. `require(../assets/icon.png)`                                           |
+| Name             | Type                                        | Default                                                                                                      | Description                                                                                                                                  |
+|------------------|---------------------------------------------|--------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| titleSize        | Number                                      | `16`                                                                                                         | Set font size for the notification title                                                                                                     |
+| titleColor       | String                                      | `'#505050'` (darkMode - false) / `'#FAFAFA'` (darkMode - true)                                               | Set font color for the notification title                                                                                                    |
+| descriptionSize  | Number                                      | `14`                                                                                                         | Set font size for the notification description                                                                                               |
+| descriptionColor | String                                      | `'#505050'` (darkMode - false) / `'#FAFAFA'` (darkMode - true)                                               | Set font color for the notification description                                                                                              |
+| bgColor          | String                                      | `'#FFFFFF'` (darkMode - false) / `'#2D2D2D'` (darkMode - true)                                               | Set background color for the notification                                                                                                    |
+| borderType       | `'border'` / `'accent'` / `'no-border'`     | `'border'`                                                                                                   | Set type of border for the notification ([EXAMPLES](#-border-type-examples))                                                                 |
+| accentColor      | String                                      | `'#00EA33'` (success type) / `'#FC6060'` (error type) / `'#8CACFF'` (warning type) / `'#FFD37D'` (info type) | Set accent color for the notification. The color of the border or the left side accent line                                                  |
+| borderRadius     | Number                                      | `14`                                                                                                         | Set border radius for the notification container                                                                                             |
+| borderWidth      | Number                                      | `1`                                                                                                          | Set border width for the notification container                                                                                              |
+| multiline        | Number                                      | `1`                                                                                                          | Set number of visible lines for the notification description                                                                                 |
+| defaultIconType  | `'color'` / `'monochromatic'` / `'no-icon'` | `'color'`                                                                                                    | This props works only with default icons. If you set your own icon it has no effect. ([EXAMPLES](#%EF%B8%8F-examples-of-default-icon-types)) |
+| leftIconSource   | ImageSourcePropType                         | -                                                                                                            | Set custom left icon for the notification (in png). For example: `require(../assets/icon.png)`                                               |
 
 
 ##
-### 🔳 Border types examples
+### 🔳 Border type examples
 
 - `'border'`
 #
@@ -88,7 +88,7 @@ We can set there:
   ![No-border](../../../assets/no-border.png)
 
 ##
-### 🏵️ Default icon type examples
+### 🏵️ Examples of default icon types
 
 - `'color'`
 #
@@ -108,7 +108,7 @@ We can set there:
 
 
 ##
-## 🏞️ Global styles setting examples
+## 🏞️ Examples of global styles settings
 
 Let's start with the basic notification settings with some global style.
 <br/>
@@ -169,9 +169,9 @@ The effect is visible below:
 
 In `globalConfig` above, we have overwritten all the default values.
 #
-That means that doesn't matter now if we use `error` or `info` notification. All will now look the same.
+This means that it doesn’t matter is we use `error` or `info` notification now. Everything will look the same.
 That is what `globalConfig` does. It overwrites properties for all notifications.
-If we set there only `borderRadius` property for some value, then only `borderRadius` would be set globally. Default values of all other properties would stay untouched:
+If we only set the `borderRadius` property for some value, then only `borderRadius` would be set globally. The default values of all other properties would stay untouched:
 #
 
 ```jsx
@@ -227,16 +227,16 @@ export const GlobalConfigExamples = () => {
 
 #
 
-Both notifications - error and success - have their default settings. Only `borderRadius` has been changed for both of them because we did it in `globalConfig`.
+Both notifications - error and success - have their default settings. Only `borderRadius` has been changed for both because we did it in `globalConfig`.
 
 ##
 ### ℹ️ `successConfig` / `errorConfig` / `warningConfig` / `infoConfig`
 
-Those settings work the same as `globalConfig` but for different notification types. <br/>
-In other words, we can set configuration for ALL errors, ALL info, etc.
+These settings work the same as `globalConfig` but for different notification types. <br/>
+In other words, we can set the configuration for ALL errors, ALL info, etc.
 
-In addition `successConfig` / `errorConfig` / `warningConfig` / `infoConfig` are overwriting properties set in `globalConfig`.<br/>
-So if we set `borderRadius` in `globalConfig` for `50` as we did in the example above, and we will overwrite it in the `successConfig` for `10`, then `borderRadius` for ALL the SUCCESS notifications will be set for `10`, but for ALL OTHER it will be still `50`.
+In addition, `successConfig` / `errorConfig` / `warningConfig` / `infoConfig` are overwriting properties set in `globalConfig`.<br/>
+So if we set `borderRadius` in `globalConfig` for `50` as we did in the example above and we will overwrite it in the `successConfig` for `10`, then `borderRadius` for ALL the SUCCESS notifications will be set for `10`, but for ALL OTHER it will still be `50`.
 
 ```jsx
 import React from 'react'
@@ -295,9 +295,9 @@ export const GlobalConfigExamples = () => {
 
 ##
 
-So in conclusion -
+So, in conclusion -
 #
-`successConfig` / `errorConfig` / `warningConfig` / `infoConfig` overwrites `globalConfig`, and DEFAULT SETTINGS
+`successConfig` / `errorConfig` / `warningConfig` / `infoConfig` overwrites `globalConfig` and DEFAULT SETTINGS
 #
 `globalConfig` overwrites DEFAULT SETTINGS
 
