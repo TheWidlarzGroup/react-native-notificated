@@ -20,7 +20,7 @@ const { useNotifications } = createNotifications({
 })
 ```
 
-2. Use `config.animationConfig` property in the **payload** of a `notify` function:
+2. Use the `config.animationConfig` property in the **payload** of a `notify` function:
 
 ```typescript
 import { createNotifications, SlideInLeftSlideOutRight } from 'react-native-notification'
@@ -44,7 +44,7 @@ notify('success', {
 
 > _Not yet implemented 😔_
 
-###### ‼️ When changing the transition **type**, you can choose from a variety of pre-made configs that our team prepared for you!
+###### ‼️ When changing the transition **type**, you can choose from a variety of pre-made configs that our team has prepared for you!
 
 ### 🔦 Config priority
 
@@ -52,7 +52,7 @@ For each subsequent notification, the library looks for an animation config in t
 
 1. First, it looks for a config defined in `notify` payload
 2. Next, it looks for a global config from `createNotification`
-3. At last, when no config is found, it uses the default behaviour, which is platform dependend
+3. At last, when no config is found, it uses the default behaviour, which is platform-dependend
 
 ### 📦 Pre-made configs:
 
