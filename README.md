@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="react-native-notificated" src="docs/static/img/notificated_logo_small.png?sanitize=true">
+  <img alt="react-native-notificated" src="https://github.com/TheWidlarzGroup/react-native-notificated/blob/master/docs/static/img/notificated_logo_small.png?raw=true">
 </p>
 <p align="center">
   Blazingly super fast RN notification library.<br />
