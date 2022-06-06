@@ -101,7 +101,7 @@ export const ExampleNotification = () => {
 Now, all the notifications in the app (instead of this one `error` notification in the example above) will be displayed in the middle of the screen (y-axis).<br />
 But the `error` notification from the example above will be displayed at the bottom of the screen because the local config overwrites the global config.<br/>
 Of course, we can just set it locally, there is no need to set it globally if we don't need to. <br/>
-(You can read more about props overwriting in the [ORDER OF SETTINGS OVERWRITING](../../docs/comprehensive-configuration/order-of-settings-overwriting) section)
+(You can read more about props overwriting in the [ORDER OF SETTINGS OVERWRITING](../comprehensive-configuration/order-of-settings-overwriting) section)
 
 <br/>
 <br/>
