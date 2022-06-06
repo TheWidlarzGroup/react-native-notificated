@@ -313,6 +313,11 @@ export const CustomInfo = ({ customTitle }: Props) => {
 
 ```
 
+There are a few new things along with the previously shown code.
+First, we need to add two imports:  a 'TouchableOpacity' from react-native-gesture-handler and 'useNotificationController' hook provided with react-native-notificated.
+'useNotificationController' hook returns method 'remove' which can be applied in our custom notification.
+The only thing that has to be done to implement the close button is to add a close button in our return part of the component and invoke remove() on the press event.
+
 Now let's take a look how our examples looks like:
 
 ### Advertisement
