@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="react-native-notificated" src="docs/static/img/notificated_logo_small.png?sanitize=true" width="300">
+ ![Notificated Logo](./docs/static/img/notificated_logo_small.png)
 </p>
 <p align="center">
   Blazingly super fast RN notification library.<br />
@@ -73,9 +73,9 @@ steps: [guide here](https://github.com/react-native-device-info/react-native-dev
 
 ## Example
 
-Android Emulator        |  iOS Simulator
-:-------------------------:|:-------------------------:
-<video src="https://user-images.githubusercontent.com/62747088/171445996-7e83ffc2-80a2-4a03-a972-3b4e26c878ad.mp4"></video>  | <video src="https://user-images.githubusercontent.com/62747088/171443943-e0f897c2-ed11-42cd-95a7-9cf75d8cc115.mp4"></video>
+|                                                      Android Emulator                                                       |                                                        iOS Simulator                                                        |
+| :-------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: |
+| <video src="https://user-images.githubusercontent.com/62747088/171445996-7e83ffc2-80a2-4a03-a972-3b4e26c878ad.mp4"></video> | <video src="https://user-images.githubusercontent.com/62747088/171443943-e0f897c2-ed11-42cd-95a7-9cf75d8cc115.mp4"></video> |
 
 ## 💪🏽 Uses
 
