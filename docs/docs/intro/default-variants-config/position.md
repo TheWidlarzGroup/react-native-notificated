@@ -25,7 +25,7 @@ Depending on whether you want to change the notification position for the whole 
 ```jsx
 import React from 'react'
 import { SafeAreaView, Text } from 'react-native'
-import { createNotifications } from 'react-native-notification'
+import { createNotifications } from 'react-native-notificated'
 import { styles } from './styles'
 
 const { NotificationsProvider, useNotifications } = createNotifications({
@@ -66,7 +66,7 @@ Now all the notifications in the app will be displayed in the middle of the scre
 ```jsx
 import React from 'react'
 import { SafeAreaView, Text } from 'react-native'
-import { createNotifications } from 'react-native-notification'
+import { createNotifications } from 'react-native-notificated'
 import { styles } from './styles'
 
 const { NotificationsProvider, useNotifications } = createNotifications({

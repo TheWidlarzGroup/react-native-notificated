@@ -15,7 +15,7 @@ Let's go then!
 ```jsx
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native'
-import { createNotifications, useNotificationController } from 'react-native-notification'
+import { createNotifications, useNotificationController } from 'react-native-notificated'
 import { SuccessButton } from '../components/basicExamples/SuccessButton'
 import { ErrorButton } from '../components/basicExamples/ErrorButton'
 import { WarningButton } from '../components/basicExamples/WarningButton'

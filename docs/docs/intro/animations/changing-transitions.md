@@ -13,7 +13,7 @@ Depending on whether you want to change the default transitions for the whole ap
 1. Change the animation **type** in the config object of `createNotification`:
 
 ```typescript
-import { createNotifications, RotateInRotateOut } from 'react-native-notification'
+import { createNotifications, RotateInRotateOut } from 'react-native-notificated'
 
 const { useNotifications } = createNotifications({
   animationConfig: RotateInRotateOut,
@@ -23,7 +23,7 @@ const { useNotifications } = createNotifications({
 2. Use the `config.animationConfig` property in the **payload** of a `notify` function:
 
 ```typescript
-import { createNotifications, SlideInLeftSlideOutRight } from 'react-native-notification'
+import { createNotifications, SlideInLeftSlideOutRight } from 'react-native-notificated'
 
 const { useNotifications } = createNotifications()
 

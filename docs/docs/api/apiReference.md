@@ -15,7 +15,7 @@ Parameter used to configure animation. Can be set up for the entire app or selec
 Below is the global configuration:
 
 ```tsx
-import { createNotifications, RotateInRotateOut } from 'react-native-notification'
+import { createNotifications, RotateInRotateOut } from 'react-native-notificated'
 
 const { NotificationsProvider } = createNotifications({
     animationConfig: RotateInRotateOut
@@ -25,7 +25,7 @@ const { NotificationsProvider } = createNotifications({
 And it can be overwritten in local scope, when calling notification:
 
 ```tsx
-import { SlideInLeftSlideOutRight } from 'react-native-notification'
+import { SlideInLeftSlideOutRight } from 'react-native-notificated'
 
 [...]
 
@@ -53,7 +53,7 @@ We've prepared for you a couple of ready-to-use animations (just import them fro
 API used to initialize the library in the project.
 
 ```tsx
-import { createNotifications } from 'react-native-notification'
+import { createNotifications } from 'react-native-notificated'
 
 const { NotificationsProvider } = createNotifications()
 ```

@@ -20,7 +20,7 @@ import React from 'react'
 import { store } from '../redux/store'
 import { Provider } from 'react-redux'
 import { LoginForm } from '../components/loginForm/LoginForm'
-import { createNotifications } from 'react-native-notification'
+import { createNotifications } from 'react-native-notificated'
 
 const { NotificationsProvider } = createNotifications({
   isNotch: true,
@@ -201,7 +201,7 @@ import {
 import { fetchUsers, updateLogin, updatePassword } from '../../redux/reducers'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { styles } from './styles'
-import { createNotifications } from 'react-native-notification'
+import { createNotifications } from 'react-native-notificated'
 
 export const { notify } = createNotifications()
 
