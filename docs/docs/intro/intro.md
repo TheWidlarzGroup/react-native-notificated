@@ -20,7 +20,7 @@ id: intro
 yarn add react-native-notificated
 ```
 
-### 🛸 Dependencies[](https://gorhom.github.io/react-native-bottom-sheet/#dependencies)
+### 🛸 Dependencies
 
 This library requires these dependencies to be installed in your project:
 
