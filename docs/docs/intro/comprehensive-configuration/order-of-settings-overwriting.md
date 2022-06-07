@@ -21,7 +21,7 @@ Let's consider the case where we set all possible options for single `success` n
 ```jsx
 import React from 'react'
 import { SafeAreaView } from 'react-native'
-import { createNotifications, SlideInLeftSlideOutRight } from 'react-native-notification'
+import { createNotifications, SlideInLeftSlideOutRight } from 'react-native-notificated'
 import { styles } from './styles'
 import { SuccessButton } from '../components/basicExamples/SuccessButton'
 

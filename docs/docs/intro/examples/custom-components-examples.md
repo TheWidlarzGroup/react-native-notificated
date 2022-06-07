@@ -123,7 +123,7 @@ Please notice, that we pass props to those components. I will explain how to do 
 ```tsx
 import React from 'react'
 import { SafeAreaView } from 'react-native'
-import { createNotifications } from 'react-native-notification'
+import { createNotifications } from 'react-native-notificated'
 import { styles } from './styles'
 import { Advertisement } from '../components/customVariants/Advertisement'
 import { CustomInfo } from '../components/customVariants/CustomInfo'

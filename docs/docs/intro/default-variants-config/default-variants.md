@@ -11,7 +11,7 @@ If you just trigger the notification, like in the example below (we trigger the 
 ```jsx
 import React from 'react'
 import { SafeAreaView, Text } from 'react-native'
-import { createNotifications } from 'react-native-notification'
+import { createNotifications } from 'react-native-notificated'
 import { styles } from './styles'
 
 const { useNotifications, NotificationsProvider } = createNotifications()

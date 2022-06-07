@@ -110,7 +110,7 @@ To understand it perfectly, let's take a look at the few examples below.
 ```jsx
 import React from 'react'
 import { SafeAreaView, Text } from 'react-native'
-import { createNotifications } from 'react-native-notification'
+import { createNotifications } from 'react-native-notificated'
 import { styles } from './styles'
 
 const { useNotifications, NotificationsProvider } = createNotifications({

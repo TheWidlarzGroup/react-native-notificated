@@ -118,7 +118,7 @@ Let's start with the basic notification settings with some global style.
 ```jsx
 import React from 'react'
 import { SafeAreaView, Text } from 'react-native'
-import { createNotifications } from 'react-native-notification'
+import { createNotifications } from 'react-native-notificated'
 import { styles } from './styles'
 
 const { useNotifications, NotificationsProvider } = createNotifications({
@@ -177,7 +177,7 @@ If we set there only `borderRadius` property for some value, then only `borderRa
 ```jsx
 import React from 'react'
 import { SafeAreaView, Text } from 'react-native'
-import { createNotifications } from 'react-native-notification'
+import { createNotifications } from 'react-native-notificated'
 import { styles } from './styles'
 
 const { useNotifications, NotificationsProvider } = createNotifications({
@@ -241,7 +241,7 @@ So if we set `borderRadius` in `globalConfig` for `50` as we did in the example 
 ```jsx
 import React from 'react'
 import { SafeAreaView, Text } from 'react-native'
-import { createNotifications } from 'react-native-notification'
+import { createNotifications } from 'react-native-notificated'
 import { styles } from './styles'
 
 const { useNotifications, NotificationsProvider } = createNotifications({
