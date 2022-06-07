@@ -17,10 +17,10 @@ id: intro
 ## 🚀 Installation
 
 ```shell
-yarn add react-native-notificaitons
+yarn add react-native-notificated
 ```
 
-### 🛸 Dependencies[](https://gorhom.github.io/react-native-bottom-sheet/#dependencies)
+### 🛸 Dependencies
 
 This library requires these dependencies to be installed in your project:
 
