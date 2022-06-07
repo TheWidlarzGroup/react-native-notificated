@@ -29,7 +29,7 @@ const { useNotifications, NotificationsProvider } = createNotifications({
   duration: 300,
   notificationPosition: 'top',
   animationConfig: SlideInLeftSlideOutRight,
-  isNotch: true or false,
+  isNotch: undefined,
   defaultStylesSettings: {},
 })
 ```
