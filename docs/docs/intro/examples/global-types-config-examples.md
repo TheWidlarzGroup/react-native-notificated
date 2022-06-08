@@ -5,11 +5,11 @@ sidebar_position: 4
 # 🖋️ Global types config examples
 <br/>
 
-Code has been already described step by step in the [DEFAULT EXAMPLES](./default-examples.md) section.<br/>
-So I think there is no use to do it here again.<br/>
+Code has been already described step by step in the [DEFAULT EXAMPLES](./default-examples.md) section, so I think there is no use to do it here again.
+
 Here we have only a few differences I need to mention, and they are minimal:
 
-- we use `modify()` and `remove()` only if the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove the notification, or modify it. So, we will not use them here and in the other examples. Because of the same reason, we will not use `useState` and `useNotificationController` here.
+- we use `modify()` and `remove()` only in the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove the notification, or modify it, and therefore we will not be using them here and in the other examples as well. For that same reason, we will not be using `useState` and `useNotificationController` here. 
 - we filled the `successConfig`, `errorConfig`, `warningConfig` and the `infoConfig` objects in the `defaultStylesSettings`. Those objects are responsible for setting properties for all notifications in the given type. To read more please go back to the [GLOBAL CONFIG](../default-variants-config/global-config.md) section.
   <br/>
 
@@ -157,6 +157,7 @@ Let's see the notifications we declared above:
 
 ## Conclusion
 
-All the notifications in the same type will have the same style properties.<br/>
-What is important, is the `successConfig`, `errorConfig`, `warningConfig` and the `infoConfig` overwrites the `globalConfig` setting, but only for their types.<br/>
-To read more please go back to the [GLOBAL CONFIG](../default-variants-config/global-config.md)<br/> and the [ORDER OF SETTINGS OVERWRITING](../comprehensive-configuration/order-of-settings-overwriting.md) sections.
+All notifications of the same type will have the same style properties.
+
+Importantly, the `successConfig`, `errorConfig`, `warningConfig` and the `infoConfig` overwrites the `globalConfig` setting, but only for its own types.<br/>
+To find out more, go back to the [GLOBAL CONFIG](../default-variants-config/global-config.md)<br/> and the [ORDER OF SETTINGS OVERWRITING](../comprehensive-configuration/order-of-settings-overwriting.md) sections.
