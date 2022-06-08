@@ -49,7 +49,7 @@ Let's take a look at the `params` object properties:
     >
 ```
 
-And at the `config` object:
+And in the `config` object:
 
 | Name                 | Type                        | Default                  | Description                                                                                                                                                                                                                                                      |
 | -------------------- | --------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -162,7 +162,7 @@ export const GlobalConfigExamples = () => {
 }
 ```
 
-At the beginning, in the `globalConfig`, we have overwritten default settings:
+In the beginning, we overwrote `globalConfig` in the default settings:
 
 - titleSize
 - titleColor

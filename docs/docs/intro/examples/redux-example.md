@@ -3,6 +3,7 @@ sidebar_position: 6
 ---
 
 # 🔥 Redux example
+
 <br/>
 
 This example is quite different from the previous ones. <br/>
@@ -10,8 +11,6 @@ Our goal here is to show you how we can use RN Notifications library in real-lif
 For this reason, we built a dummy login screen.<br/>
 In this example, we use the Redux Toolkit library.<br/>
 Let's go step by step through it, and check where exactly notifications were triggered.
-
-
 
 ## Redux Example component
 
@@ -43,7 +42,6 @@ Let's check what happened here:
 - we imported `React` (of course), `store` (previously created), redux `Provider`, `LoginForm` component (previously created) and well known `createNotifications`
 - we didn't pick `useNotifications` hook. Only `createNotification`, because we're not triggering notifications here
 - because `NotificationsProvider` is applied on the same level as `LoginForm` we have access to the notifications inside the form
-
 
 <br/>
 
@@ -166,7 +164,6 @@ export default formSlice.reducer
 export const fetchUsers = (dispatch: Dispatch) => {
   setTimeout(() => dispatch(submit()), 2000)
 }
-
 ```
 
 In this file we:
@@ -181,7 +178,6 @@ In this file we:
 - The last step is to create `fetchUsers` function, which imitates the time we need to get a response from the backend. In fact, we just wrap our `submit` here
 
 This is where we used our `notify()` function. Let's go to the last file: `LoginForm` where we use all of that.
-
 
 <br/>
 
@@ -238,7 +234,6 @@ export const LoginForm = () => {
     </SafeAreaView>
   )
 }
-
 ```
 
 So again at the beginning, we need to import everything we need:
@@ -259,13 +254,11 @@ Our `LoginForm` component consists of:
 - `handleLoginChange` function (where we dispatch `updateLogin`)
 - `handlePasswordChange` function (where we dispatch `updatePassword`)
 
-In fact, that is all...<br/>
-We need to pass the function to the inputs and submit button.<br/>
+In fact, that is all...
 
-Let's take a look at how our notifications look, when we do put not a valid email, not a valid password, and when we put the valid data.
+We need to pass the function to the inputs and the submit button.
 
-
-<br/>
+Now let’s take a look at our notifications when we provide an invalid email or password vs. when we enter valid data.
 
 ## Incorrect Login
 

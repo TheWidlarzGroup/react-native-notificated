@@ -130,7 +130,7 @@ At first, we need to import everything that is necessary for our component:
 When the imports are applied, we initiate `createNotifications` and pick `useNotifications` and `NotificationsProvider` from the box.<br/>
 
 - `useNotifications` - allows us to get access to the `notify()` function
-- `NotificationsProvider` - it's a wrapper, like all others providers (ContextProvider, ApolloProvider etc.). This one is necessary to allow the library to operate within the prescribed scope. What is special here, is that we don't need to wrap scope in it. We can just put it as a self-closing component, and everything that is nested in the same wrapper as our provider will get access to our notifications.
+- `NotificationsProvider` - it's a wrapper, like all others providers (ContextProvider, ApolloProvider etc.). This one is necessary to allow the library to operate within the prescribed scope. What is special here is that we don't need to wrap the scope in it. We can just put it as a self-closing component, and everything that is nested in the same wrapper as our provider will get access to our notifications.
 
 <br/>
 <br/>
@@ -208,7 +208,7 @@ Now it's time to:
     />
 ```
 
-and add new settings which will overwrite those previously set in the notification (only one extra is `id` in the `params` object).<br/>
+and add new settings which will overwrite those previously set in the notification (the only extra value is the `id` in the `params` object).<br/>
 In other words, we can easily change any notification to a completely different one. <br/>
 In the example above we changed only the `title` and the `description`, but we literally can change any value described in the [Single Notification Config](../default-variants-config/props-config.md) section.
 
@@ -222,7 +222,7 @@ In the example above we changed only the `title` and the `description`, but we l
 and... that's all... <br/>
 We can simply call `remove()` method and pass `id` of the notification that should be manually and externally removed. <br/>
 Why externally? Because internally (inside the notification), we have the close `X` icon.<br/>
-It's just... let's call it 'CLOSE BUTTON' you can put outside the notification.
+It’s simply a `CLOSE BUTTON` (let’s call it that) which you can use outside the notification.
 
 ## Visualization of examples
 
