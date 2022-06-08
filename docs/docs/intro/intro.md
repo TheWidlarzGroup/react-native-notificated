@@ -20,7 +20,7 @@ yarn add react-native-notificated
 ```
 
 :::info
-Starting from the latest beta version (0.0.2.beta), you are expected to manually tell the library whether a device has notch or not. Use the `isNotch` prop in the config for it (you can use the `react-native-device-info` for instance).
+Starting from the latest beta version, you are expected to manually tell the library whether a device has notch or not. Use the `isNotch` prop in the config for it (you can use the `react-native-device-info` for instance).
 
 We are currently working on improving this part of our API 💪
 :::
