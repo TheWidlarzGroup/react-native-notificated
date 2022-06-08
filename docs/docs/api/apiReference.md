@@ -70,7 +70,7 @@ const { NotificationsProvider } = createNotifications({
   notificationPosition: NotificationPosition
   animationConfig: CustomAnimationConfig
   gestureConfig: GestureConfig
-  isNotch?: boolean // -> by default uses react-native-device-info
+  isNotch?: boolean
   defaultStylesSettings: {
     darkMode: false,
     globalConfig: StyleProps
