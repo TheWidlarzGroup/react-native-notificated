@@ -1,6 +1,7 @@
 import type { NotificationPosition } from '../types/config'
 import type { DefaultKeys, defaultVariants } from './defaultConfig'
 import type { ImageSourcePropType, ImageStyle } from 'react-native'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export type DefaultVariants = typeof defaultVariants
 export type NotificationVariants = keyof DefaultVariants
@@ -36,7 +37,7 @@ export type NotificationStyleConfig = Partial<{
   borderWidth: number
   multiline: number
   defaultIconType: IconVisualStyle
-  leftIconSource: ImageSourcePropType
+  leftIconSource: ImageSourcePropType | JSX.Element
   borderType: BorderType
   imageStyle: ImageStyle
 }>
