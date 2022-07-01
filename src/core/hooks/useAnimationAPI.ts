@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import {
   cancelAnimation,
+  SharedValue,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
@@ -10,8 +11,33 @@ import { useDrag } from './useDrag'
 import type { NotificationState } from './useNotificationsStates'
 import { emitter } from '../services/NotificationEmitter'
 import { withAnimationCallbackJSThread } from '../utils/animation'
-import { AnimationRange } from '../../types/animations'
+import { AnimationRange, TransitionStylesConfigFunction } from '../../types/animations'
 import { useTimer } from './useTimer'
+import type { AnimationBuilder } from '../utils/generateAnimationConfig'
+
+const mergeStylesObjects = (styles: any, newStyles: any) => {
+  const oldTransform = [...(styles?.transform || [])]
+
+  const newTransform = [...(newStyles?.transform || [])]
+
+  return { ...styles, ...newStyles, transform: [...oldTransform, ...newTransform] }
+}
+
+const mergeStylesFunctions = (
+  stylesFunctions: TransitionStylesConfigFunction[],
+  progress: SharedValue<number>
+) => {
+  'worklet'
+
+  return stylesFunctions.reduce(
+    (accumulatedStyles, styleFunction) => {
+      // return { ...accumulatedStyles, ...(styleFunction(progress) as unknown as {}) }
+      // return { ...accumulatedStyles, ...(styleFunction(progress) as unknown as {}) }
+      return mergeStylesObjects(accumulatedStyles, styleFunction(progress) as unknown as {})
+    },
+    { opacity: 1 }
+  )
+}
 
 export const useAnimationAPI = ({
   gestureConfig,
@@ -72,6 +98,9 @@ export const useAnimationAPI = ({
 
     const handleError = () => {}
 
+    console.log('present/0 - firing up animation with:')
+    console.log(animationInConfig)
+
     progress.value = animateWith(
       AnimationRange.START,
       animationInConfig.config,
@@ -98,13 +127,21 @@ export const useAnimationAPI = ({
   const handleDragStateChange = dragStateHandler(dismiss, resetDrag)
 
   const animatedStyles = useAnimatedStyle(() => {
+    const test: AnimationBuilder = animationConfig as AnimationBuilder
     const { transitionInStyles, transitionOutStyles } = animationConfig
 
+    console.log('func')
+    console.log(transitionInStyles(progress) || 'no in styled')
+
     if (['out', 'idle_active'].includes(currentTransitionType.value) && transitionOutStyles) {
-      return transitionOutStyles(progress)
+      return { opacity: 1, ...(transitionOutStyles(progress) as unknown as {}) }
     }
 
-    return transitionInStyles(progress)
+    if (test?.transitionInStylesQueue?.length > 0) {
+      return mergeStylesFunctions(test.transitionInStylesQueue, progress)
+    }
+
+    return { opacity: 1, ...(transitionInStyles(progress) as unknown as {}) }
   })
 
   return {

@@ -1,6 +1,12 @@
 import { createNotifications } from './core/createNotifications'
 import { modify, notify, remove, useNotifications } from './core/services/NotificationEmitterApi'
-import { generateAnimationConfig } from './core/utils/generateAnimationConfig'
+import {
+  generateAnimationConfig,
+  SlideInTest,
+  SlideUpTest,
+  RotateTest,
+  FadeInTest,
+} from './core/utils/generateAnimationConfig'
 import {
   RotateInRotateOut,
   RotateZIn,
@@ -27,6 +33,10 @@ export {
   RotateZIn,
   FadeInFadeOut,
   DiagonalSlideInLeftSlideOutRight,
+  SlideInTest,
+  SlideUpTest,
+  RotateTest,
+  FadeInTest,
 }
 
 // core api, root level
