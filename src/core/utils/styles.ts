@@ -4,7 +4,7 @@ import { Constants } from '../config'
 export const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    maxWidth: 400,
+    maxWidth: 343,
     minHeight: 0,
     left: 0,
     backgroundColor: 'transparent',
