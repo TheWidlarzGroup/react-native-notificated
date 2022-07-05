@@ -4,7 +4,7 @@ import { Constants } from '../config'
 export const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    width: Constants.notificationWidth,
+    maxWidth: 400,
     minHeight: 0,
     left: 0,
     backgroundColor: 'transparent',
@@ -13,11 +13,13 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   containerIos: {
-    left: Constants.notificationSideMargin,
+    left: `auto`,
+    right: Constants.notificationSideMargin,
     top: 50,
   },
   containerAndroid: {
-    left: Constants.notificationSideMargin,
+    left: `auto`,
+    right: Constants.notificationSideMargin,
     top: 30,
   },
   boxWrapper: {
