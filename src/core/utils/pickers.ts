@@ -7,11 +7,12 @@ import type { KeyType } from '../../types/misc'
 
 export const getTopOffset = (
   globalConfig: NotificationsConfig<VariantsMap>,
-  notificationHeight: number
+  notificationHeight: number,
+  isPortaitMode: boolean
 ) => {
   const isNotch = globalConfig.isNotch
   const extraSpace = 50
-  const topPosition = isNotch ? extraSpace : 10
+  const topPosition = isNotch && isPortaitMode ? extraSpace : 10
   const notificationPosition = globalConfig.notificationPosition
 
   switch (notificationPosition) {
