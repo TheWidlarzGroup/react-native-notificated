@@ -7,16 +7,21 @@ import { queueReducer } from '../utils/queueReducer'
 export const useNotificationsStates = () => {
   const panHandlerRef = useRef(null)
   const longPressHandlerRef = useRef(null)
-  const { height, width } = useWindowDimensions()
+  const { height: windowHeight, width: windowWidth } = useWindowDimensions()
   const globalConfig = useNotificationConfig()
   const [notificationsQueue, dispatch] = useReducer(queueReducer, [])
   const [notificationHeight, setNotificationHeight] = useState(0)
 
-  const isPortaitMode = height > width
+  const isPortaitMode = windowHeight > windowWidth
   const notificationEvent = notificationsQueue[0]
   const config = mergeConfigs(globalConfig, notificationEvent)
 
-  const topOffset = getTopOffset(config, notificationHeight, isPortaitMode)
+  const topOffset = getTopOffset({
+    globalConfig: config,
+    notificationHeight,
+    isPortaitMode,
+    windowHeight,
+  })
 
   return {
     config,

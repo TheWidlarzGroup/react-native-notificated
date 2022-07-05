@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+import { useWindowDimensions } from 'react-native'
 import { PanGestureHandler } from 'react-native-gesture-handler'
 import type { AnimationAPI } from '../hooks/useAnimationAPI'
 import type { NotificationState } from '../hooks/useNotificationsStates'
@@ -16,6 +17,8 @@ type Props = {
 }
 
 export const GestureHandler = ({ children, state, animationAPI }: Props) => {
+  const { width } = useWindowDimensions()
+  const notificationWidth = width - Constants.notificationSideMargin * 2
   return (
     <PanGestureHandler
       ref={state.panHandlerRef}
@@ -28,7 +31,7 @@ export const GestureHandler = ({ children, state, animationAPI }: Props) => {
           animationAPI.dragStyles,
           styles.container,
           Constants.isAndroid ? styles.containerAndroid : styles.containerIos,
-          { top: state.topOffset },
+          { top: state.topOffset, width: notificationWidth },
         ]}>
         {children}
       </Animated.View>
