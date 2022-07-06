@@ -32,6 +32,7 @@ export const useNotificationsStates = () => {
     notificationsQueue,
     longPressHandlerRef,
     setNotificationHeight,
+    isPortaitMode,
   }
 }
 

@@ -6,6 +6,7 @@ const maxLongPressDragDistance = 300
 const notificationSideMargin = 14
 const initialOffsetY = -300
 const targetOffsetY = true ? 50 : 10
+const maxNotificationWidth = 343
 
 export const Constants = {
   maxLongPressDragDistance,
@@ -13,4 +14,5 @@ export const Constants = {
   initialOffsetY,
   targetOffsetY,
   isAndroid,
+  maxNotificationWidth,
 }
