@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useRef, useState } from 'react'
-import { useWindowDimensions, NativeModules, Platform, StatusBar, Alert } from 'react-native'
+import { useWindowDimensions, NativeModules, Platform, StatusBar } from 'react-native'
 import { useNotificationConfig } from './useNotificationConfig'
 import { getTopOffset, mergeConfigs } from '../utils/pickers'
 import { queueReducer } from '../utils/queueReducer'
@@ -19,13 +19,12 @@ export const useNotificationsStates = () => {
   const config = mergeConfigs(globalConfig, notificationEvent)
 
   useEffect(() => {
-    Alert.alert('bar Height:', `${barHeight}`)
-  }, [barHeight])
-
-  useEffect(() => {
     if (Platform.OS !== 'ios') return setBarHeight(StatusBar.currentHeight ?? 0)
-    setBarHeight(isPortaitMode && StatusBarManager.HEIGHT !== 0 ? StatusBarManager.HEIGHT : 50)
-  }, [StatusBarManager.HEIGHT, isPortaitMode])
+    // handling edge case when app is opened in landscape mode and barHeight = 0
+    StatusBarManager.getHeight(({ height }: { height: number }) =>
+      setBarHeight(isPortaitMode && height !== 0 ? height : 50)
+    )
+  }, [StatusBarManager, isPortaitMode])
 
   const topOffset = getTopOffset({
     globalConfig: config,
