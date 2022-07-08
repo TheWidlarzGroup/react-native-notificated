@@ -1,26 +1,34 @@
-import { Constants } from '../config'
 import type { NotificationsConfig, Variant, VariantsMap } from '../../types'
 import type { EmitParam } from '../services/types'
 import type { DefaultKeys } from '../../defaultConfig/defaultConfig'
 import type { DefaultStylesConfigs } from '../../defaultConfig/types'
 import type { KeyType } from '../../types/misc'
 
-export const getTopOffset = (
-  globalConfig: NotificationsConfig<VariantsMap>,
+type GetOffsetTopProps = {
+  globalConfig: NotificationsConfig<VariantsMap>
   notificationHeight: number
-) => {
+  isPortaitMode: boolean
+  windowHeight: number
+}
+
+export const getTopOffset = ({
+  globalConfig,
+  notificationHeight,
+  isPortaitMode,
+  windowHeight,
+}: GetOffsetTopProps) => {
   const isNotch = globalConfig.isNotch
   const extraSpace = 50
-  const topPosition = isNotch ? extraSpace : 10
+  const topPosition = isNotch && isPortaitMode ? extraSpace : 10
   const notificationPosition = globalConfig.notificationPosition
 
   switch (notificationPosition) {
     case 'top':
       return topPosition
     case 'center':
-      return Constants.height / 2 - (notificationHeight ? notificationHeight / 2 : 75)
+      return windowHeight / 2 - (notificationHeight ? notificationHeight / 2 : 75)
     case 'bottom':
-      return Constants.height - (notificationHeight ? notificationHeight + extraSpace : 150)
+      return windowHeight - (notificationHeight ? notificationHeight + extraSpace : 150)
     default:
       return topPosition
   }
