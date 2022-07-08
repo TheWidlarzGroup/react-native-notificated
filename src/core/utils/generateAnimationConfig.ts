@@ -5,11 +5,20 @@ import type {
   TransitionStylesConfigFunction,
 } from '../../types/animations'
 
+// TODO:
+// [ ] cleanup
+// ------- 1. remove `..XTest` animation configs
+// ------- 2. rewrite existing animation configs with new api
+// ------- 3. exports from lib
+// [ ] add tests for AnimationBuilder
+// [ ] docs - 1. describe new API, 2. make sure to note that old `generateAnimationConfig` is still working
+
 export class AnimationBuilder {
   animationConfigIn: AnimationTypeConfig
   animationConfigOut?: AnimationTypeConfig
-  transitionInStylesQueue: TransitionStylesConfigFunction[] = []
-  transitionOutStylesQueue?: TransitionStylesConfigFunction[] = []
+
+  transitionInStylesQueue: TransitionStylesConfigFunction[] = [] // stores stacked styles functions after merging animation configs
+  transitionOutStylesQueue?: TransitionStylesConfigFunction[] = [] // stores stacked styles functions after merging animation configs
 
   transitionInStyles: TransitionStylesConfigFunction // helper field for handling style funcs merging
   transitionOutStyles?: TransitionStylesConfigFunction // helper field for handling style funcs merging
@@ -113,6 +122,22 @@ export const RotateTest = new AnimationBuilder({
     return {
       perspective: 400,
       transform: [{ rotate: `${rotate}deg` }],
+    }
+  },
+})
+
+export const ScaleTest = new AnimationBuilder({
+  animationConfigIn: {
+    type: 'timing',
+    config: {
+      duration: 1000,
+    },
+  },
+  transitionInStyles: (progress) => {
+    'worklet'
+    const scale = interpolate(progress.value, [0, 0.25, 0.5, 0.75, 1], [1, 1.5, 1, 0.5, 1])
+    return {
+      transform: [{ scale }],
     }
   },
 })
