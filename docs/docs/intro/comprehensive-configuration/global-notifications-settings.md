@@ -38,6 +38,13 @@ const { useNotifications, NotificationsProvider } = createNotifications({
 
 ## Notch handling
 
-If not defined by developers, the library automatically handles detecting whether a device has a notch or not. Please make sure that `NotificationsProvider` is used in the root of your app and is NOT wrapped with `SafeAreaView`, otherwise you may enocounter rendering additional space with notifications positioned on top of the screen. However, if you decide to initialize notification config within the `SafeAreaView`, explicitly set `isNotch: false` in the global settings.
+The library handles notch detection automatically so you don't have to worry about configuring this on your side. However, if you wish to take control over this by yourself, you can do that by declaring `isNotch` property in the global config.
 
-You still have the possibility to handle detecting notch on your own, by using for example `react-native-device-info`.
+```jsx
+const { useNotifications, NotificationsProvider } = createNotifications({
+  ...
+  isNotch: true,
+})
+```
+
+Feel free to use for example `react-native-device-info`.
