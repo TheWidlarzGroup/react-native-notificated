@@ -10,7 +10,7 @@ import { RemoveButton } from '../components/basicExamples/RemoveButton'
 import { styles } from './styles'
 
 const { useNotifications, NotificationsProvider } = createNotifications({
-  isNotch: true,
+  // isNotch: true,
   notificationPosition: 'top',
   defaultStylesSettings: {
     errorConfig: {

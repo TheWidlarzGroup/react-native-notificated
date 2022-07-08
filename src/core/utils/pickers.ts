@@ -23,8 +23,8 @@ export const getTopOffset = ({
   const isNotch = globalConfig.isNotch
   const extraSpace = statusBarHeight + 10
 
-  const foo = isPortaitMode && (isNotch || !Constants.isAndroid)
-  const topPosition = foo ? extraSpace : 10
+  const shouldRenderExtraSpace = isNotch ?? (isPortaitMode && !Constants.isAndroid)
+  const topPosition = shouldRenderExtraSpace ? extraSpace : 10
   const notificationPosition = globalConfig.notificationPosition
 
   switch (notificationPosition) {
