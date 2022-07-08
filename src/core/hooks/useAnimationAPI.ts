@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import type { ViewStyle, TextStyle, ImageStyle } from 'react-native'
 import {
   cancelAnimation,
   SharedValue,
@@ -6,6 +7,7 @@ import {
   useSharedValue,
   withSpring,
   withTiming,
+  AnimateStyle,
 } from 'react-native-reanimated'
 import { useDrag } from './useDrag'
 import type { NotificationState } from './useNotificationsStates'
@@ -15,25 +17,30 @@ import { AnimationRange, TransitionStylesConfigFunction } from '../../types/anim
 import { useTimer } from './useTimer'
 import type { AnimationBuilder } from '../utils/generateAnimationConfig'
 
-const mergeStylesObjects = (styles: any, newStyles: any) => {
-  // const oldTransform = [...(styles?.transform || [])]
-  // const newTransform = [...(newStyles?.transform || [])]
+type Styles = AnimateStyle<ViewStyle | TextStyle | ImageStyle>
 
-  // console.log({ oldTransform, newTransform })
+export const mergeStylesObjects = (styles: Styles, newStyles: Styles) => {
+  'worklet'
 
-  return { ...styles, ...newStyles }
+  const oldTransform = [...(styles?.transform || [])]
+  const newTransform = [...(newStyles?.transform || [])]
+
+  return {
+    ...styles,
+    ...newStyles,
+    transform: [...oldTransform, ...newTransform],
+  }
 }
 
-const mergeStylesFunctions = (
+export const mergeStylesFunctions = (
   stylesFunctions: TransitionStylesConfigFunction[],
   progress: SharedValue<number>
 ) => {
   'worklet'
 
-  return stylesFunctions.reduce(
+  return stylesFunctions.reduce<Styles>(
     (accumulatedStyles, styleFunction) => {
-      // return { ...accumulatedStyles, ...(styleFunction(progress) as unknown as {}) }
-      return mergeStylesObjects(accumulatedStyles, styleFunction(progress) as unknown as {})
+      return mergeStylesObjects(accumulatedStyles, styleFunction(progress) as Styles)
     },
     { opacity: 1 } // it has to have the default opacity value
   )
@@ -124,16 +131,29 @@ export const useAnimationAPI = ({
   const handleDragStateChange = dragStateHandler(dismiss, resetDrag)
 
   const animatedStyles = useAnimatedStyle(() => {
-    const test: AnimationBuilder = animationConfig as AnimationBuilder
+    const animationBuilder: AnimationBuilder = animationConfig as AnimationBuilder
     const { transitionInStyles, transitionOutStyles } = animationConfig
+
+    // TODO: check if there is styles queue in config
+
+    if (animationBuilder?.transitionInStylesQueue?.length > 0) {
+      return mergeStylesFunctions(animationBuilder.transitionInStylesQueue, progress)
+    }
+
+    if (
+      ['out', 'idle_active'].includes(currentTransitionType.value) &&
+      animationBuilder?.transitionOutStylesQueue?.length > 0
+    ) {
+      return mergeStylesFunctions(animationBuilder!.transitionOutStylesQueue!, progress)
+    }
 
     if (['out', 'idle_active'].includes(currentTransitionType.value) && transitionOutStyles) {
       return { opacity: 1, ...(transitionOutStyles(progress) as unknown as {}) }
     }
 
-    if (test?.transitionInStylesQueue?.length > 0) {
-      return mergeStylesFunctions(test.transitionInStylesQueue, progress)
-    }
+    // if (test?.transitionInStylesQueue?.length > 0) {
+    //   return mergeStylesFunctions(test.transitionInStylesQueue, progress)
+    // }
 
     return { opacity: 1, ...(transitionInStyles(progress) as unknown as {}) }
   })
