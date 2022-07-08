@@ -1,12 +1,6 @@
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native'
-import {
-  createNotifications,
-  FadeInTest,
-  RotateTest,
-  SlideInLeftSlideOutRight,
-  SlideInTest,
-} from 'react-native-notificated'
+import { createNotifications } from 'react-native-notificated'
 import { SuccessButton } from '../components/basicExamples/SuccessButton'
 import { ErrorButton } from '../components/basicExamples/ErrorButton'
 import { WarningButton } from '../components/basicExamples/WarningButton'
@@ -40,10 +34,6 @@ export const DefaultExamples = () => {
               params: {
                 description: 'This is where the toast text goes',
                 title: 'Success',
-              },
-              config: {
-                // animationConfig: RotateTest.add(SlideInTest),
-                animationConfig: SlideInTest.add(RotateTest),
               },
             }).id
           )
