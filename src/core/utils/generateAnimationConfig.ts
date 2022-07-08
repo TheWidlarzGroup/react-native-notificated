@@ -11,6 +11,7 @@ import type {
 // ------- 2. rewrite existing animation configs with new api
 // ------- 3. exports from lib
 // [ ] add tests for AnimationBuilder
+// [ ] TS in useAnimationAPI
 // [ ] docs - 1. describe new API, 2. make sure to note that old `generateAnimationConfig` is still working
 
 export class AnimationBuilder {
