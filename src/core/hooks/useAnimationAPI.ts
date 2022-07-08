@@ -16,11 +16,12 @@ import { useTimer } from './useTimer'
 import type { AnimationBuilder } from '../utils/generateAnimationConfig'
 
 const mergeStylesObjects = (styles: any, newStyles: any) => {
-  const oldTransform = [...(styles?.transform || [])]
+  // const oldTransform = [...(styles?.transform || [])]
+  // const newTransform = [...(newStyles?.transform || [])]
 
-  const newTransform = [...(newStyles?.transform || [])]
+  // console.log({ oldTransform, newTransform })
 
-  return { ...styles, ...newStyles, transform: [...oldTransform, ...newTransform] }
+  return { ...styles, ...newStyles }
 }
 
 const mergeStylesFunctions = (
@@ -32,10 +33,9 @@ const mergeStylesFunctions = (
   return stylesFunctions.reduce(
     (accumulatedStyles, styleFunction) => {
       // return { ...accumulatedStyles, ...(styleFunction(progress) as unknown as {}) }
-      // return { ...accumulatedStyles, ...(styleFunction(progress) as unknown as {}) }
       return mergeStylesObjects(accumulatedStyles, styleFunction(progress) as unknown as {})
     },
-    { opacity: 1 }
+    { opacity: 1 } // it has to have the default opacity value
   )
 }
 
@@ -98,9 +98,6 @@ export const useAnimationAPI = ({
 
     const handleError = () => {}
 
-    console.log('present/0 - firing up animation with:')
-    console.log(animationInConfig)
-
     progress.value = animateWith(
       AnimationRange.START,
       animationInConfig.config,
@@ -129,9 +126,6 @@ export const useAnimationAPI = ({
   const animatedStyles = useAnimatedStyle(() => {
     const test: AnimationBuilder = animationConfig as AnimationBuilder
     const { transitionInStyles, transitionOutStyles } = animationConfig
-
-    console.log('func')
-    console.log(transitionInStyles(progress) || 'no in styled')
 
     if (['out', 'idle_active'].includes(currentTransitionType.value) && transitionOutStyles) {
       return { opacity: 1, ...(transitionOutStyles(progress) as unknown as {}) }
