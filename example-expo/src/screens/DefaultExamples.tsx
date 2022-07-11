@@ -40,7 +40,7 @@ export const DefaultExamples = () => {
               params: { title: 'Hello!', description: 'Notification text goes here' },
             })
           }
-        />{' '}
+        />
         <Button variant="primary" title="Remove notification" onPress={() => remove()} />
       </View>
     </>
