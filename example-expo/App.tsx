@@ -1,12 +1,22 @@
 import React from 'react'
 import { SafeAreaView, StyleSheet } from 'react-native'
 import { DefaultExamples } from './src/screens/DefaultExamples'
+import { createNotifications } from '../src/index'
+
+const { NotificationsProvider } = createNotifications({
+  duration: 1000,
+  notificationPosition: 'top',
+})
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <DefaultExamples />
-    </SafeAreaView>
+    <>
+      <NotificationsProvider>
+        <SafeAreaView style={styles.container}>
+          <DefaultExamples />
+        </SafeAreaView>
+      </NotificationsProvider>
+    </>
   )
 }
 
