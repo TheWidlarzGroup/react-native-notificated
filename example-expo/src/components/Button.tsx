@@ -4,12 +4,13 @@ import { Text, StyleSheet } from 'react-native'
 interface ButtonProps {
   variant: 'error' | 'success' | 'info' | 'warning' | 'primary'
   onPress: () => void
+  title?: string
 }
 
 export const Button = (p: ButtonProps) => {
   return (
     <Text style={[s[p.variant], s.label]} onPress={p.onPress}>
-      Emit {p.variant !== 'primary' && `${p.variant} `}notification
+      {p.title ?? `Emit ${p.variant}`}
     </Text>
   )
 }
@@ -23,14 +24,14 @@ const s = StyleSheet.create({
     borderRadius: 10,
     textAlign: 'center',
     marginVertical: 6,
+    color: 'black',
+    fontWeight: '600',
   },
   primary: {
-    color: 'black',
     borderColor: 'black',
   },
   error: {
     borderColor: 'red',
-    color: 'red',
   },
   warning: {
     borderColor: 'orange',
@@ -38,10 +39,8 @@ const s = StyleSheet.create({
   },
   info: {
     borderColor: 'blue',
-    color: 'blue',
   },
   success: {
     borderColor: 'green',
-    color: 'green',
   },
 })
