@@ -23,9 +23,12 @@ export const NotificationBase = (props: NotificationOwnProps & MergedNotificatio
       : require('../../assets/images/close-darkMode.png')
   const { remove } = useNotificationController()
 
-  const renderLeftIcon = () => (
-    <Image source={props.leftIconSource!} style={{ ...styles.icon, ...props?.imageStyle }} />
-  )
+  const renderLeftIcon = () =>
+    typeof props.leftIconSource === 'object' ? (
+      props.leftIconSource
+    ) : (
+      <Image source={props.leftIconSource!} style={{ ...styles.icon, ...props?.imageStyle }} />
+    )
 
   const renderRightIcon = () =>
     !props.hideCloseButton && (

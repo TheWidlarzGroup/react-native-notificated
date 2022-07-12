@@ -16,7 +16,7 @@ export const mergeProps = (
   defaultGlobalConfig?: NotificationStyleConfig,
   defaultNotificationTypeConfig?: NotificationStyleConfig
 ): NotificationProps & MergedNotificationStyleConfig => {
-  const customIconSource: ImageSourcePropType | undefined =
+  const customIconSource: ImageSourcePropType | undefined | JSX.Element =
     props.style?.leftIconSource ??
     defaultNotificationTypeConfig?.leftIconSource ??
     defaultGlobalConfig?.leftIconSource
