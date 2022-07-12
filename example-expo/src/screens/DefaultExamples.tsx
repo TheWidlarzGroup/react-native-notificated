@@ -1,47 +1,41 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
+import { useNotifications } from 'react-native-notificated'
 import { Button } from '../components/Button'
-import { useNotificationController, useNotifications } from '../../../src/index'
 
 export const DefaultExamples = () => {
   const { notify } = useNotifications()
-  const { remove } = useNotificationController()
   return (
     <>
       <View style={s.container}>
         <Button
-          variant="error"
+          variant="success"
           onPress={() =>
-            notify('error', {
-              params: { title: 'Hello!', description: 'Notification text goes here' },
+            notify('success', {
+              params: { title: 'Hello!', description: 'Some text goes here...' },
             })
           }
         />
         <Button
-          variant="success"
+          variant="error"
           onPress={() =>
-            notify('success', {
-              params: { title: 'Hello!', description: 'Notification text goes here' },
-            })
+            notify('error', { params: { title: 'Hello!', description: 'Some text goes here...' } })
           }
         />
         <Button
           variant="warning"
           onPress={() =>
             notify('warning', {
-              params: { title: 'Hello!', description: 'Notification text goes here' },
+              params: { title: 'Hello!', description: 'Some text goes here...' },
             })
           }
         />
         <Button
           variant="info"
           onPress={() =>
-            notify('info', {
-              params: { title: 'Hello!', description: 'Notification text goes here' },
-            })
+            notify('info', { params: { title: 'Hello!', description: 'Some text goes here...' } })
           }
         />
-        <Button variant="primary" title="Remove notification" onPress={() => remove()} />
       </View>
     </>
   )

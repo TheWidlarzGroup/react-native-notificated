@@ -1,22 +1,21 @@
 import React from 'react'
 import { SafeAreaView, StyleSheet } from 'react-native'
 import { DefaultExamples } from './src/screens/DefaultExamples'
-import { createNotifications } from '../src/index'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { createNotifications } from 'react-native-notificated'
 
 const { NotificationsProvider } = createNotifications({
-  duration: 1000,
-  notificationPosition: 'top',
+  isNotch: true,
 })
 
 export default function App() {
   return (
-    <>
-      <NotificationsProvider>
-        <SafeAreaView style={styles.container}>
-          <DefaultExamples />
-        </SafeAreaView>
-      </NotificationsProvider>
-    </>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NotificationsProvider />
+      <SafeAreaView style={styles.container}>
+        <DefaultExamples />
+      </SafeAreaView>
+    </GestureHandlerRootView>
   )
 }
 
