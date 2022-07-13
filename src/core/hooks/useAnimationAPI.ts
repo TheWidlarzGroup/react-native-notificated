@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import type { ViewStyle, TextStyle, ImageStyle } from 'react-native'
-import {
+import Animated, {
   cancelAnimation,
   SharedValue,
   useAnimatedStyle,
@@ -25,10 +25,22 @@ export const mergeStylesObjects = (styles: Styles, newStyles: Styles) => {
   const oldTransform = [...(styles?.transform || [])]
   const newTransform = [...(newStyles?.transform || [])]
 
+  const mergedTransforms = [...oldTransform, ...newTransform]
+
+  const uniqueTransforms: Animated.AdaptTransforms<unknown>[] = []
+
+  mergedTransforms.reverse().forEach((a) => {
+    const uniqueKeys = uniqueTransforms.flatMap((a) => Object.keys(a))
+
+    if (uniqueKeys.indexOf(Object.keys(a)[0]) === -1) {
+      uniqueTransforms.push(a)
+    }
+  })
+
   return {
     ...styles,
     ...newStyles,
-    transform: [...oldTransform, ...newTransform],
+    transform: uniqueTransforms,
   }
 }
 
