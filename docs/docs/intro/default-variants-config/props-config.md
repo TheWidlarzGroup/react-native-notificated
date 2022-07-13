@@ -57,6 +57,7 @@ And in the `config` object:
 | notificationPosition | 'top' / 'center' / 'bottom' | 'top'                    | Set where the notifications should appear on the screen. You can choose one of three default options: top / center / bottom. To read more about the notification position please go to the [NOTIFICATION POSITION](../default-variants-config/position) section. |
 | animationConfig      | Object                      | SlideInLeftSlideOutRight | Property responsible for the notification animation. You can set one of the animations prepared by us, or make your own config. To read more about the animation settings please go to the [ANIMATIONS SETTINGS](../animations/changing-transitions) section.    |
 | onClose              | Function                    | -                        | The onClose config option gives you possibility to pass an extra function, which will be invoked upon dismissal of the notification (triggered by swipe gesture, `remove` method - e.g. close button in default variants or when notification disappears)        |
+| gestureConfig        | Object                      | iOS: 'y' / android: 'x'  | Object responsible for setting gesture direction that triggers swipe-dismiss of notification.                                                                                                                                                                    |
 |                      |
 
 ```typescript jsx
@@ -68,7 +69,8 @@ And in the `config` object:
               duration: 100,
               notificationPosition: 'top',
               animationConfig: {},
-              onClose: () => {}
+              onClose: () => {},
+              gestureConfig: { direction: 'y' }
             },
           },
         )}
@@ -77,6 +79,33 @@ And in the `config` object:
 
 <br/>
 <br/>
+
+## Gesture config
+
+The library gives the possibility to swipe-dismiss the notication so users don't rely only on pressing close button or `duration` timeout.
+
+There are 3 types of gesture config: none, one-dimensional and two-dimensional. By choosing `none`, we switch off the possibility to swipe-dismiss a notification.
+
+We can pass `gestureConfig` to `config` object like so:
+
+```typescript jsx
+gestureConfig: {
+  direction: 'y' | 'x' | 'full' | 'none'
+}
+```
+
+Default value for iOS: `'y'`
+Default value for Android: `'x'`
+
+By choosing `full` direction, we allow notifications to be dismissed in both directions. In this case, some additional config is required, like so:
+
+```typescript jsx
+  gestureConfig: {
+    direction: 'full',
+    x: { activationDistances: 50, activationVelocities: 200 },
+    y: { activationDistances: 50, activationVelocities: 200 },
+  },
+```
 
 ## ✨ Style props
 
