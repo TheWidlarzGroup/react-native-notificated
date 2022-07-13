@@ -25,6 +25,7 @@ export const mergeStylesObjects = (styles: Styles, newStyles: Styles) => {
   const oldTransform = [...(styles?.transform || [])]
   const newTransform = [...(newStyles?.transform || [])]
 
+
   return {
     ...styles,
     ...newStyles,
@@ -42,7 +43,7 @@ export const mergeStylesFunctions = (
     (accumulatedStyles, styleFunction) => {
       return mergeStylesObjects(accumulatedStyles, styleFunction(progress) as Styles)
     },
-    { opacity: 1 } // it has to have the default opacity value
+    { opacity: 1, transform: [{translateY: 0}, {translateX: 0}]  } // it has to have the default opacity value
   )
 }
 
@@ -134,27 +135,18 @@ export const useAnimationAPI = ({
     const animationBuilder: AnimationBuilder = animationConfig as AnimationBuilder
     const { transitionInStyles, transitionOutStyles } = animationConfig
 
-    // TODO: check if there is styles queue in config
-
+    if (
+      ['out', 'idle_active'].includes(currentTransitionType.value) &&
+      animationBuilder.transitionOutStylesQueue.length > 0
+    ) {
+      return mergeStylesFunctions(animationBuilder.transitionOutStylesQueue, progress)
+    } 
     if (animationBuilder?.transitionInStylesQueue?.length > 0) {
       return mergeStylesFunctions(animationBuilder.transitionInStylesQueue, progress)
     }
-
-    if (
-      ['out', 'idle_active'].includes(currentTransitionType.value) &&
-      animationBuilder?.transitionOutStylesQueue?.length > 0
-    ) {
-      return mergeStylesFunctions(animationBuilder!.transitionOutStylesQueue!, progress)
-    }
-
     if (['out', 'idle_active'].includes(currentTransitionType.value) && transitionOutStyles) {
       return { opacity: 1, ...(transitionOutStyles(progress) as unknown as {}) }
     }
-
-    // if (test?.transitionInStylesQueue?.length > 0) {
-    //   return mergeStylesFunctions(test.transitionInStylesQueue, progress)
-    // }
-
     return { opacity: 1, ...(transitionInStyles(progress) as unknown as {}) }
   })
 

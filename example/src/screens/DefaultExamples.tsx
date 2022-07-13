@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native'
-import { createNotifications } from 'react-native-notificated'
+import { createNotifications, ZoomIn, MoveDown, ZoomInDownZoomOutDown, MoveUp, ZoomInDownZoomOutUp, SlideInLeft, SlideInLeftSlideOutRight, RotateZIn, FadeIn } from 'react-native-notificated'
 import { SuccessButton } from '../components/basicExamples/SuccessButton'
 import { ErrorButton } from '../components/basicExamples/ErrorButton'
 import { WarningButton } from '../components/basicExamples/WarningButton'
@@ -8,6 +8,8 @@ import { InfoButton } from '../components/basicExamples/InfoButton'
 import { ModifyButton } from '../components/basicExamples/ModifyButton'
 import { RemoveButton } from '../components/basicExamples/RemoveButton'
 import { styles } from './styles'
+
+
 
 const { useNotifications, NotificationsProvider } = createNotifications({
   isNotch: true,
@@ -22,6 +24,17 @@ const { useNotifications, NotificationsProvider } = createNotifications({
 export const DefaultExamples = () => {
   const { notify, remove, modify } = useNotifications()
   const [id, setId] = useState('')
+  const test = SlideInLeftSlideOutRight.add(MoveDown).add(FadeIn).transitionInStylesQueue.map((a) => {
+    return {
+      x: a({value: 1})
+    }
+  })
+
+  console.log({tutaj: SlideInLeftSlideOutRight.add(MoveDown).add(FadeIn).transitionInStyles({value: 1}).transform});
+  console.log({tutajjjjj: test[0]});
+  console.log(MoveDown.add(FadeIn).transitionOutStyles?.({value:1}));
+  
+  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -35,6 +48,9 @@ export const DefaultExamples = () => {
                 description: 'This is where the toast text goes',
                 title: 'Success',
               },
+              config: {
+                animationConfig: SlideInLeftSlideOutRight.add(MoveDown).add(FadeIn)
+              }
             }).id
           )
         }

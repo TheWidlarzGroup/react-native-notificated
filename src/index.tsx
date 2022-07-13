@@ -3,16 +3,15 @@ import { modify, notify, remove, useNotifications } from './core/services/Notifi
 import { generateAnimationConfig, AnimationBuilder } from './core/utils/generateAnimationConfig'
 import {
   RotateInRotateOut,
-  RotateZIn,
-  SlideInLeftSlideOutRight,
-  ZoomInDownZoomOutDown,
-  ZoomInDownZoomOutUp,
   FadeInFadeOut,
   DiagonalSlideInLeftSlideOutRight,
+  
 } from './defaultConfig/defaultAnimationConfig'
 import { defaultVariants } from './defaultConfig/defaultConfig'
 import { useNotificationController } from './hooks/useNotificationController'
 import type { CustomVariants } from './types'
+import {SlideInLeftSlideOutRight, ZoomIn,MoveUp,ZoomInDownZoomOutUp, ZoomInDownZoomOutDown, MoveDown, SlideInLeft,RotateZIn, FadeIn } from './core/utils/generateAnimationConfig'
+
 
 // default
 export { defaultVariants }
@@ -21,13 +20,19 @@ export { defaultVariants }
 export {
   generateAnimationConfig,
   AnimationBuilder,
-  ZoomInDownZoomOutUp,
-  SlideInLeftSlideOutRight,
-  ZoomInDownZoomOutDown,
+  
   RotateInRotateOut,
-  RotateZIn,
   FadeInFadeOut,
   DiagonalSlideInLeftSlideOutRight,
+  ZoomIn,
+  ZoomInDownZoomOutDown,
+  MoveDown,
+  ZoomInDownZoomOutUp,
+  MoveUp,
+  SlideInLeft,
+  SlideInLeftSlideOutRight,
+  RotateZIn,
+  FadeIn
 }
 
 // core api, root level
