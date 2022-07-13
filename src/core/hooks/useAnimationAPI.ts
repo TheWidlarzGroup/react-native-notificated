@@ -25,7 +25,6 @@ export const mergeStylesObjects = (styles: Styles, newStyles: Styles) => {
   const oldTransform = [...(styles?.transform || [])]
   const newTransform = [...(newStyles?.transform || [])]
 
-
   return {
     ...styles,
     ...newStyles,
@@ -43,7 +42,7 @@ export const mergeStylesFunctions = (
     (accumulatedStyles, styleFunction) => {
       return mergeStylesObjects(accumulatedStyles, styleFunction(progress) as Styles)
     },
-    { opacity: 1, transform: [{translateY: 0}, {translateX: 0}]  } // it has to have the default opacity value
+    { opacity: 1, transform: [{ translateY: 0 }, { translateX: 0 }] } // it has to have the default opacity value
   )
 }
 
@@ -137,10 +136,10 @@ export const useAnimationAPI = ({
 
     if (
       ['out', 'idle_active'].includes(currentTransitionType.value) &&
-      animationBuilder.transitionOutStylesQueue.length > 0
+      animationBuilder.transitionOutStylesQueue?.length > 0
     ) {
       return mergeStylesFunctions(animationBuilder.transitionOutStylesQueue, progress)
-    } 
+    }
     if (animationBuilder?.transitionInStylesQueue?.length > 0) {
       return mergeStylesFunctions(animationBuilder.transitionInStylesQueue, progress)
     }

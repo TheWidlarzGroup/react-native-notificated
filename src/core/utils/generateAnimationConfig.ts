@@ -38,7 +38,6 @@ export class AnimationBuilder {
 
     this.transitionInStylesQueue.push(config.transitionInStyles)
     config.transitionOutStyles && this.transitionOutStylesQueue?.push(config.transitionOutStyles)
-    
   }
 
   add(configToPipe: AnimationBuilder) {
@@ -62,7 +61,7 @@ export class AnimationBuilder {
     return this
   }
 }
-const ZoomInAnimation : CustomAnimationConfig = {
+const ZoomInAnimation: CustomAnimationConfig = {
   animationConfigIn: {
     type: 'timing',
     config: {
@@ -78,56 +77,56 @@ const ZoomInAnimation : CustomAnimationConfig = {
   },
 }
 
-export const MoveDownAnimation :CustomAnimationConfig = {
-    animationConfigIn: {
-      type: 'timing',
-      config: {
-        duration: 400
-      },
+export const MoveDownAnimation: CustomAnimationConfig = {
+  animationConfigIn: {
+    type: 'timing',
+    config: {
+      duration: 400,
     },
-    transitionInStyles: (progress) => {
-      'worklet'
-      const translateY = interpolate(progress.value, [0, 1], [-100, 0])
-      return {
-        opacity: progress.value,
-        transform: [ { translateY }],
-      }
-    },
-    transitionOutStyles: (progress) => {
-      'worklet'
-      const translateY = interpolate(progress.value, [0, 1], [100, 0])
-      return {
-        opacity: progress.value,
-        transform: [ { translateY }],
-      }
+  },
+  transitionInStyles: (progress) => {
+    'worklet'
+    const translateY = interpolate(progress.value, [0, 1], [-100, 0])
+    return {
+      opacity: progress.value,
+      transform: [{ translateY }],
     }
+  },
+  transitionOutStyles: (progress) => {
+    'worklet'
+    const translateY = interpolate(progress.value, [0, 1], [100, 0])
+    return {
+      opacity: progress.value,
+      transform: [{ translateY }],
+    }
+  },
 }
 
-const MoveUpAnimation :CustomAnimationConfig = {
-    animationConfigIn: {
-      type: 'timing',
-      config: {
-        duration: 400
-      },
+const MoveUpAnimation: CustomAnimationConfig = {
+  animationConfigIn: {
+    type: 'timing',
+    config: {
+      duration: 400,
     },
-    transitionInStyles: (progress) => {
-      'worklet'
-      const translateY = interpolate(progress.value, [0, 1], [-100, 0])
-      return {
-        opacity: progress.value,
-        transform: [ { translateY }],
-      }
-    },
-    transitionOutStyles: (progress) => {
-      'worklet'
-      const translateY = interpolate(progress.value, [0, 1], [-100, 0])
-      return {
-        transform: [ { translateY }],
-      }
+  },
+  transitionInStyles: (progress) => {
+    'worklet'
+    const translateY = interpolate(progress.value, [0, 1], [-100, 0])
+    return {
+      opacity: progress.value,
+      transform: [{ translateY }],
     }
+  },
+  transitionOutStyles: (progress) => {
+    'worklet'
+    const translateY = interpolate(progress.value, [0, 1], [-100, 0])
+    return {
+      transform: [{ translateY }],
+    }
+  },
 }
 
-const RotateZInAnimation : CustomAnimationConfig = {
+const RotateZInAnimation: CustomAnimationConfig = {
   animationConfigIn: {
     type: 'timing',
     config: {
@@ -155,7 +154,7 @@ const RotateZInAnimation : CustomAnimationConfig = {
   },
 }
 
-const SlideInLeftAnimation : CustomAnimationConfig = {
+const SlideInLeftAnimation: CustomAnimationConfig = {
   animationConfigIn: {
     type: 'timing',
     config: {
@@ -175,7 +174,7 @@ const SlideInLeftAnimation : CustomAnimationConfig = {
   },
 }
 
-const SlideInLeftSlideOutRightAnimation : CustomAnimationConfig = {
+const SlideInLeftSlideOutRightAnimation: CustomAnimationConfig = {
   animationConfigIn: {
     type: 'timing',
     config: {
@@ -205,7 +204,7 @@ const SlideInLeftSlideOutRightAnimation : CustomAnimationConfig = {
   },
 }
 
-const FadeInFadeOut : CustomAnimationConfig = {
+const FadeInFadeOut: CustomAnimationConfig = {
   animationConfigIn: {
     type: 'timing',
     config: {
@@ -234,8 +233,6 @@ const FadeInFadeOut : CustomAnimationConfig = {
   },
 }
 
-
-
 export const MoveDown = new AnimationBuilder(MoveDownAnimation)
 export const MoveUp = new AnimationBuilder(MoveUpAnimation)
 export const ZoomIn = new AnimationBuilder(ZoomInAnimation)
@@ -245,9 +242,6 @@ export const RotateZIn = new AnimationBuilder(RotateZInAnimation)
 export const FadeIn = new AnimationBuilder(FadeInFadeOut)
 export const ZoomInDownZoomOutDown = new AnimationBuilder(ZoomInAnimation).add(MoveDown)
 export const ZoomInDownZoomOutUp = new AnimationBuilder(ZoomIn).add(MoveUp)
-
-
-
 
 export const generateAnimationConfig = (config: CustomAnimationConfig): CustomAnimationConfig => {
   return config
