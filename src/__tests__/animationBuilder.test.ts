@@ -13,6 +13,9 @@ describe('props merger tests', function () {
     const MoveDownFadeIn = FadeIn.add(MoveDown).transitionInStylesQueue
     const styles = mergeStylesFunctions(MoveDownFadeIn, { value: 1 })
 
-    expect(styles).toMatchObject({ opacity: 1, transform: [{ translateY: 0 }, { translateX: 0 }] })
+    expect(styles).toMatchObject({
+      opacity: 1,
+      transform: [{ translateY: 0 }, { translateX: 0 }, { translateX: 0 }, { translateY: 0 }],
+    })
   })
 })
