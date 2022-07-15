@@ -1,16 +1,11 @@
 import { createNotifications } from './core/createNotifications'
 import { modify, notify, remove, useNotifications } from './core/services/NotificationEmitterApi'
 import { generateAnimationConfig, AnimationBuilder } from './core/utils/generateAnimationConfig'
-import {
-  RotateInRotateOut,
-  FadeInFadeOut,
-  DiagonalSlideInLeftSlideOutRight,
-  
-} from './defaultConfig/defaultAnimationConfig'
+
 import { defaultVariants } from './defaultConfig/defaultConfig'
 import { useNotificationController } from './hooks/useNotificationController'
 import type { CustomVariants } from './types'
-import {SlideInLeftSlideOutRight, ZoomIn,MoveUp,ZoomInDownZoomOutUp, ZoomInDownZoomOutDown, MoveDown, SlideInLeft,RotateZIn, FadeIn } from './core/utils/generateAnimationConfig'
+import {SlideInLeftSlideOutRight, ZoomIn,MoveUp,ZoomInDownZoomOutUp, ZoomInDownZoomOutDown, MoveDown, SlideInLeft,RotateZIn, FadeIn, RotateIn,VeryCustomTransition,DiagonalSlideInLeftSlideOutRight } from './core/utils/generateAnimationConfig'
 
 
 // default
@@ -20,10 +15,7 @@ export { defaultVariants }
 export {
   generateAnimationConfig,
   AnimationBuilder,
-  
-  RotateInRotateOut,
-  FadeInFadeOut,
-  DiagonalSlideInLeftSlideOutRight,
+
   ZoomIn,
   ZoomInDownZoomOutDown,
   MoveDown,
@@ -32,7 +24,10 @@ export {
   SlideInLeft,
   SlideInLeftSlideOutRight,
   RotateZIn,
-  FadeIn
+  FadeIn,
+  RotateIn,
+  VeryCustomTransition,
+  DiagonalSlideInLeftSlideOutRight
 }
 
 // core api, root level

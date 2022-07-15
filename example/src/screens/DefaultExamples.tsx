@@ -1,16 +1,7 @@
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native'
 import {
-  createNotifications,
-  ZoomIn,
-  MoveDown,
-  ZoomInDownZoomOutDown,
-  MoveUp,
-  ZoomInDownZoomOutUp,
-  SlideInLeft,
-  SlideInLeftSlideOutRight,
-  RotateZIn,
-  FadeIn,
+  createNotifications
 } from 'react-native-notificated'
 import { SuccessButton } from '../components/basicExamples/SuccessButton'
 import { ErrorButton } from '../components/basicExamples/ErrorButton'
@@ -33,20 +24,9 @@ const { useNotifications, NotificationsProvider } = createNotifications({
 export const DefaultExamples = () => {
   const { notify, remove, modify } = useNotifications()
   const [id, setId] = useState('')
-  const test = SlideInLeftSlideOutRight.add(MoveDown)
-    .add(FadeIn)
-    .transitionInStylesQueue.map((a) => {
-      return {
-        x: a({ value: 1 }),
-      }
-    })
 
-  console.log({
-    tutaj: SlideInLeftSlideOutRight.add(MoveDown).add(FadeIn).transitionInStyles({ value: 1 })
-      .transform,
-  })
-  console.log({ tutajjjjj: test[0] })
-  console.log(MoveDown.add(FadeIn).transitionOutStyles?.({ value: 1 }))
+  
+  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -59,9 +39,6 @@ export const DefaultExamples = () => {
               params: {
                 description: 'This is where the toast text goes',
                 title: 'Success',
-              },
-              config: {
-                animationConfig: SlideInLeftSlideOutRight.add(MoveDown).add(FadeIn),
               },
             }).id
           )

@@ -5,15 +5,6 @@ import type {
   TransitionStylesConfigFunction,
 } from '../../types/animations'
 
-// TODO:
-// [ ] cleanup
-// ------- 1. remove `..XTest` animation configs
-// ------- 2. rewrite existing animation configs with new api
-// ------- 3. exports from lib
-// [ ] add tests for AnimationBuilder
-// [ ] TS in useAnimationAPI
-// [ ] docs - 1. describe new API, 2. make sure to note that old `generateAnimationConfig` is still working
-
 export class AnimationBuilder {
   animationConfigIn: AnimationTypeConfig
   animationConfigOut?: AnimationTypeConfig
@@ -102,7 +93,7 @@ export const MoveDownAnimation: CustomAnimationConfig = {
   },
 }
 
-const MoveUpAnimation: CustomAnimationConfig = {
+export const MoveUpAnimation: CustomAnimationConfig = {
   animationConfigIn: {
     type: 'timing',
     config: {
@@ -126,7 +117,27 @@ const MoveUpAnimation: CustomAnimationConfig = {
   },
 }
 
-const RotateZInAnimation: CustomAnimationConfig = {
+const RotateInAnimation: CustomAnimationConfig = {
+  animationConfigIn: {
+    type: 'timing',
+    config: {
+      duration: 700,
+      easing: Easing.out(Easing.exp),
+    },
+  },
+  transitionInStyles: (progress) => {
+    'worklet'
+
+    const rotate = interpolate(progress.value, [0, 1], [-360, 0])
+
+    return {
+      transform: [{ rotate: `${rotate}deg` }, { scale: progress.value }],
+      opacity: progress.value,
+    }
+  },
+}
+
+export const RotateZInAnimation: CustomAnimationConfig = {
   animationConfigIn: {
     type: 'timing',
     config: {
@@ -204,7 +215,7 @@ const SlideInLeftSlideOutRightAnimation: CustomAnimationConfig = {
   },
 }
 
-const FadeInFadeOut: CustomAnimationConfig = {
+const FadeInAnimation: CustomAnimationConfig = {
   animationConfigIn: {
     type: 'timing',
     config: {
@@ -233,13 +244,110 @@ const FadeInFadeOut: CustomAnimationConfig = {
   },
 }
 
+const CrazyAnimationConfigAnimation: CustomAnimationConfig = {
+  animationConfigIn: {
+    type: 'spring',
+    config: { damping: 10, velocity: 20, stiffness: 80, mass: 1.2 },
+  },
+  animationConfigOut: {
+    type: 'timing',
+    config: { duration: 200 },
+  },
+  transitionInStyles: (progress) => {
+    'worklet'
+
+    const interpolatedTrans = interpolate(progress.value, [0, 1], [0, 100])
+
+    return {
+      transform: [{ translateY: 500 }, { translateX: interpolatedTrans }],
+      opacity: progress.value,
+    }
+  },
+  transitionOutStyles: (progress) => {
+    'worklet'
+
+    const interpolatedTrans = interpolate(progress.value, [0, 1], [0, 500])
+
+    return {
+      transform: [{ translateY: interpolatedTrans }],
+      opacity: progress.value,
+    }
+  },
+}
+
+const VeryCustomTransitionAnimation: CustomAnimationConfig = {
+  animationConfigIn: {
+    type: 'spring',
+    config: { damping: 10, velocity: 20, stiffness: 80, mass: 1.2 },
+  },
+  animationConfigOut: {
+    type: 'timing',
+    config: { duration: 200 },
+  },
+  transitionInStyles: (progress) => {
+    'worklet'
+
+    const translateY = interpolate(progress.value, [0, 1], [0, 100])
+
+    return {
+      transform: [{ translateY }],
+      opacity: progress.value,
+    }
+  },
+  transitionOutStyles: (progress) => {
+    'worklet'
+
+    const translateY = interpolate(progress.value, [0, 1], [500, 100])
+
+    return {
+      transform: [{ translateY }],
+      opacity: progress.value,
+    }
+  },
+}
+
+const DiagonalSlideInLeftSlideOutRightAnimation: CustomAnimationConfig = {
+  animationConfigIn: {
+    type: 'timing',
+    config: {
+      duration: 700,
+    },
+  },
+  transitionInStyles: (progress) => {
+    'worklet'
+
+    const translateX = interpolate(progress.value, [0, 1], [-100, 0])
+    const translateY = interpolate(progress.value, [0, 1], [-100, 0])
+    return {
+      transform: [{ translateX }, { translateY }],
+      opacity: progress.value,
+    }
+  },
+  transitionOutStyles: (progress) => {
+    'worklet'
+
+    const translateX = interpolate(progress.value, [0, 1], [100, 0])
+    const translateY = interpolate(progress.value, [0, 1], [-100, 0])
+    return {
+      transform: [{ translateX }, { translateY }],
+      opacity: progress.value,
+    }
+  },
+}
+
+
+
 export const MoveDown = new AnimationBuilder(MoveDownAnimation)
 export const MoveUp = new AnimationBuilder(MoveUpAnimation)
 export const ZoomIn = new AnimationBuilder(ZoomInAnimation)
 export const SlideInLeft = new AnimationBuilder(SlideInLeftAnimation)
 export const SlideInLeftSlideOutRight = new AnimationBuilder(SlideInLeftSlideOutRightAnimation)
+export const RotateIn = new AnimationBuilder(RotateInAnimation)
 export const RotateZIn = new AnimationBuilder(RotateZInAnimation)
-export const FadeIn = new AnimationBuilder(FadeInFadeOut)
+export const FadeIn = new AnimationBuilder(FadeInAnimation)
+export const CrazyAnimationConfig = new AnimationBuilder(CrazyAnimationConfigAnimation)
+export const VeryCustomTransition = new AnimationBuilder(VeryCustomTransitionAnimation)
+export const DiagonalSlideInLeftSlideOutRight = new AnimationBuilder(DiagonalSlideInLeftSlideOutRightAnimation)
 export const ZoomInDownZoomOutDown = new AnimationBuilder(ZoomInAnimation).add(MoveDown)
 export const ZoomInDownZoomOutUp = new AnimationBuilder(ZoomIn).add(MoveUp)
 

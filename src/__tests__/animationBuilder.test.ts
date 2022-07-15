@@ -1,5 +1,5 @@
 import { mergeStylesFunctions } from 'src/core/hooks/useAnimationAPI'
-import { AnimationBuilder, FadeIn, MoveDownAnimation } from 'src/core/utils/generateAnimationConfig'
+import { AnimationBuilder, FadeIn, MoveDownAnimation, MoveUpAnimation, RotateZIn } from 'src/core/utils/generateAnimationConfig'
 
 describe('props merger tests', function () {
   it('should make an instance from class', () => {
@@ -15,7 +15,17 @@ describe('props merger tests', function () {
 
     expect(styles).toMatchObject({
       opacity: 1,
-      transform: [{ translateY: 0 }, { translateX: 0 }, { translateX: 0 }, { translateY: 0 }],
+      transform: [{ translateY: 0 }, { translateX: 0 }, {translateX: 0}, {translateY: 0}],
+    })
+  })
+  it('should merge styles properly with add method outstyles', () => {
+    const MoveUp = new AnimationBuilder(MoveUpAnimation)
+    const MoveUpRotateZIn = RotateZIn.add(MoveUp).transitionOutStylesQueue
+    const styles = mergeStylesFunctions(MoveUpRotateZIn, { value: 1 })
+
+    expect(styles).toMatchObject({
+      opacity: 1,
+      transform: [{ translateY: 0 }, { translateX: 0 },{translateY:0}],
     })
   })
 })
