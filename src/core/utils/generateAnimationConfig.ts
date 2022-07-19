@@ -165,7 +165,7 @@ export const RotateZInAnimation: CustomAnimationConfig = {
   },
 }
 
-const SlideInLeftAnimation: CustomAnimationConfig = {
+export const SlideInLeftAnimation: CustomAnimationConfig = {
   animationConfigIn: {
     type: 'timing',
     config: {
@@ -244,7 +244,7 @@ const FadeInAnimation: CustomAnimationConfig = {
   },
 }
 
-const CrazyAnimationConfigAnimation: CustomAnimationConfig = {
+export const CrazyAnimationConfigAnimation: CustomAnimationConfig = {
   animationConfigIn: {
     type: 'spring',
     config: { damping: 10, velocity: 20, stiffness: 80, mass: 1.2 },
@@ -335,8 +335,6 @@ const DiagonalSlideInLeftSlideOutRightAnimation: CustomAnimationConfig = {
   },
 }
 
-
-
 export const MoveDown = new AnimationBuilder(MoveDownAnimation)
 export const MoveUp = new AnimationBuilder(MoveUpAnimation)
 export const ZoomIn = new AnimationBuilder(ZoomInAnimation)
@@ -347,7 +345,9 @@ export const RotateZIn = new AnimationBuilder(RotateZInAnimation)
 export const FadeIn = new AnimationBuilder(FadeInAnimation)
 export const CrazyAnimationConfig = new AnimationBuilder(CrazyAnimationConfigAnimation)
 export const VeryCustomTransition = new AnimationBuilder(VeryCustomTransitionAnimation)
-export const DiagonalSlideInLeftSlideOutRight = new AnimationBuilder(DiagonalSlideInLeftSlideOutRightAnimation)
+export const DiagonalSlideInLeftSlideOutRight = new AnimationBuilder(
+  DiagonalSlideInLeftSlideOutRightAnimation
+)
 export const ZoomInDownZoomOutDown = new AnimationBuilder(ZoomInAnimation).add(MoveDown)
 export const ZoomInDownZoomOutUp = new AnimationBuilder(ZoomIn).add(MoveUp)
 
