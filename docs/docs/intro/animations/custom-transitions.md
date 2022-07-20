@@ -23,9 +23,9 @@ When notification is about to show up, the value is animated from `0` to `1`. Wh
 
 Every time a notification is about to be shown, the library renders the UI part wrapped with an `<Animated.View />` and applies **animated styles** to it so it knows how it should animate.
 
-The source of these styles comes from the **animation config** that is generated wih `generateAnimationConfig` function and is used internally by the library to generate the animations. You can also use it yourself to cretae whatever transition you desiere.
+The source of these styles comes from the **animation config** that is generated with `AnimationBuilder` class or `generateAnimationConfig` function and is used internally by the library to generate the animations. You can also use it yourself to create whatever transition you desiere.
 
-Summarizing, there are *4 properties* that can controll the transtion. They all are handled by `generateAnimationConfig` and go as follows:
+Summarizing, there are _4 properties_ that can controll the transtion. They all are handled by `AnimationBuilder` or `generateAnimationConfig` and go as follows:
 
 - `animationConfigIn` - spring / timing configuration for trannsition in. **REQUIRED**
 - `animationConfigOut` - spring / timing configuration for transition out. **Not required**, fallbacks to `animationConfigIn` when not provided
@@ -34,13 +34,85 @@ Summarizing, there are *4 properties* that can controll the transtion. They all 
 
 Return type of this function (`generateAnimationConfig`) is `CustomAnimationConfig` which you can then use when changing animation types in e.g. `createNotification` or `notify` call.
 
+### Generating transition config with `AnimationBuilder`
+
+The `AnimationBuilder` takes in a config object as a property with which you can define the animation.
+
+Below code snippets should give an idea how it works:
+
+**Example 1**
+
+```typescript
+export const MoveDown = new AnimationBuilder({
+  animationConfigIn: {
+    type: 'timing',
+    config: {
+      duration: 400,
+    },
+  },
+  transitionInStyles: (progress) => {
+    'worklet'
+    const translateY = interpolate(progress.value, [0, 1], [-100, 0])
+    return {
+      opacity: progress.value,
+      transform: [{ translateY }],
+    }
+  },
+  transitionOutStyles: (progress) => {
+    'worklet'
+    const translateY = interpolate(progress.value, [0, 1], [100, 0])
+    return {
+      opacity: progress.value,
+      transform: [{ translateY }],
+    }
+  },
+})
+```
+
+**Example 2**
+
+```typescript
+export const RotateIn = generateAnimationConfig({
+  animationConfigIn: {
+    type: 'timing',
+    config: {
+      duration: 700,
+      easing: Easing.out(Easing.exp),
+    },
+  },
+  transitionInStyles: (progress) => {
+    'worklet'
+
+    const rotate = interpolate(progress.value, [0, 1], [-360, 0])
+
+    return {
+      transform: [{ rotate: `${rotate}deg` }, { scale: progress.value }],
+      opacity: progress.value,
+    }
+  },
+})
+```
+
+**Example 3**
+
+```typescript
+export const MoveDownRotateIn = MoveDown.add(RotateIn)
+```
+
 ### Generating transition config with `generateAnimationConfig`
+
+:::caution
+
+generateAnimation config is `deprecated`. Please use Animation builder which allows your animations to be more customizable.
+
+:::
 
 The `generateAnimationConfig` takes in a config object as a property with which you can define the animation.
 
 Below code snippets should give an idea how it works:
 
 **Example 1**
+
 ```typescript
 export const Example1 = generateAnimationConfig({
   animationConfigIn: {
@@ -65,12 +137,13 @@ export const Example1 = generateAnimationConfig({
 ```
 
 **Example 2**
+
 ```typescript
 export const Example2 = generateAnimationConfig({
   animationConfigIn: {
     type: 'timing',
     config: {
-      duration: 300
+      duration: 300,
     },
   },
   animationConfigOut: {
