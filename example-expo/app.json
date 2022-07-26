@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "example-expo",
-    "slug": "example-expo",
+    "name": "twgpreview",
+    "owner": "jarmy",
+    "slug": "twgpreview",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,9 +15,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
