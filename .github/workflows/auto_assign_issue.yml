@@ -1,22 +1,18 @@
-name: Auto Assign to Project(s)
+name: Add bugs to bugs project
 
-# on:
-#   issues:
-#     types: [opened, labeled]
-#   pull_request:
-#     types: [opened, labeled]
-#   issue_comment:
-#     types: [created]
+on:
+  issues:
+    types:
+      - opened
 
 jobs:
-  assign_one_project:
+  add-to-project:
+    name: Add issue to project
     runs-on: ubuntu-latest
-    name: Assign to One Project
     steps:
-      - name: Assign NEW issues and NEW pull requests to project
-        uses: srggrs/assign-one-project-github-action@1.2.1
-        if: github.event.action == 'opened'
+      - uses: actions/add-to-project@main
         with:
-          project: 'https://github.com/orgs/TheWidlarzGroup/projects/2'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          project-url: https://github.com/orgs/TheWidlarzGroup/projects/2
+          github-token: ${{ secrets.GH_TOKEN_NOTIFICATED }}
+          labeled: bug, android, build or config issue, dependencies update request, dependecies, documentation, enchancement, good first issue, help wanted, idea, iOS, question, typescript
+          label-operator: OR

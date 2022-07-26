@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native'
-import {
-  createNotifications
-} from 'react-native-notificated'
+import { createNotifications } from 'react-native-notificated'
 import { SuccessButton } from '../components/basicExamples/SuccessButton'
 import { ErrorButton } from '../components/basicExamples/ErrorButton'
 import { WarningButton } from '../components/basicExamples/WarningButton'
@@ -12,7 +10,6 @@ import { RemoveButton } from '../components/basicExamples/RemoveButton'
 import { styles } from './styles'
 
 const { useNotifications, NotificationsProvider } = createNotifications({
-  isNotch: true,
   notificationPosition: 'top',
   defaultStylesSettings: {
     errorConfig: {
@@ -24,9 +21,6 @@ const { useNotifications, NotificationsProvider } = createNotifications({
 export const DefaultExamples = () => {
   const { notify, remove, modify } = useNotifications()
   const [id, setId] = useState('')
-
-  
-  
 
   return (
     <SafeAreaView style={styles.container}>

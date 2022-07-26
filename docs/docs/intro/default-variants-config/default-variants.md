@@ -11,7 +11,7 @@ If you just trigger the notification, like in the example below (we trigger the 
 ```jsx
 import React from 'react'
 import { SafeAreaView, Text } from 'react-native'
-import { createNotifications } from 'react-native-notification'
+import { createNotifications } from 'react-native-notificated'
 import { styles } from './styles'
 
 const { useNotifications, NotificationsProvider } = createNotifications()
@@ -43,7 +43,7 @@ You will get the basic styling with the `borderType` set for the `'border'` valu
 #
 (TO CHECK `borderType` AND OTHER STYLE PROPS GO TO THE [GLOBAL STYLES SETTINGS](./global-config.md) OR [SINGLE NOTIFICATION CONFIG](./props-config.md)).
 #
-Below you will find the default styling, for all notification types, with `darkMode` set for a `false` and a `true` variants.
+Below you will find the default styling for all notification types with `darkMode` set to false and true for all variants.
 
 
 | NotificationType  | `darkMode`         | Visualisation

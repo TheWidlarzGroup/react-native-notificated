@@ -5,9 +5,9 @@ title: Types
 
 # 🪛 Types
 
-Here goes all types referenced in the API section.
+Here are all the types referenced in the API section.
 
-***
+---
 
 ### `CustomAnimationConfig`
 
@@ -17,21 +17,26 @@ animationConfigIn: {
     config: WithSpringConfig | WithTimingConfig // -> Reanimated type declarations
 }
 ```
+
 ```tsx
 animationConfigOut?: {
     type: "timing" | "spring",
     config: WithSpringConfig | WithTimingConfig // -> Reanimated type declarations
 }
 ```
+
 ```tsx
 transitionInStyles: (progress: SharedValue<number>) => AnimatedStylesType // -> must be a worklet / Reanimated type declarations
 ```
+
 ```tsx
 transitionOutStyles?: (progress: SharedValue<number>) => AnimatedStylesType // -> must be a worklet / Reanimated type declarations
 ```
 
-***
+---
+
 ### `CustomVariants`
+
 ```tsx
 {
     key: {
@@ -41,56 +46,75 @@ transitionOutStyles?: (progress: SharedValue<number>) => AnimatedStylesType // -
 }
 
 ```
-***
+
+---
+
 ### `GestureConfig`
 
 ```tsx
-direction: "y" | "x" | "full" | "none"
+direction: 'y' | 'x' | 'full' | 'none'
 ```
-***
+
+---
+
 ### `StyleProps`
 
 ```tsx
 titleSize: number // default 20
 ```
+
 ```tsx
 titleColor: string
 ```
+
 ```tsx
 descriptionSize: number // default 12
 ```
+
 ```tsx
 descriptionColor: string
 ```
+
 ```tsx
 bgColor: string
 ```
+
 ```tsx
 borderType: 'border' | 'accent' | 'no-border' // default 'accent',
 ```
+
 ```tsx
 borderRadius: number // default 25
 ```
+
 ```tsx
 accentColor: string
 ```
+
 ```tsx
 borderWidth: number // default 3
 ```
+
 ```tsx
 multiline: number // default 5
 ```
+
 ```tsx
 defaultIconType: 'color' | 'monochromatic' | 'no-icon' // default 'color'
 ```
+
 ```tsx
 leftIconSource: ImageSourcePropType // -> React Native type declaration
 ```
+
 ```tsx
 imageStyle: ImageStyle // -> React Native type declaration
 ```
-***
+
+---
+
 ### `NotificationConfigParams`
+
 ```tsx
 config?: {
     duration?: number // default 3000
@@ -98,8 +122,11 @@ config?: {
     animationConfig: CustomAnimationConfig
 }
 ```
-***
+
+---
+
 ### `NotificationParams`
+
 ```tsx
 params: {
     title?: string
@@ -109,7 +136,9 @@ params: {
     hideCloseButton?: boolean // default false
 }
 ```
-**When used with custom notification, there is a little difference in 'title' and 'description'**
+
+**When used with a custom notification, there is a little difference in the 'title' and 'description'**
+
 ```tsx
 // when calling custom component:
 params: {
@@ -119,9 +148,13 @@ params: {
     // rest is the same
 }
 ```
-***
+
+---
+
 ### `NotificationPosition`
+
 ```tsx
-"top" | "center" | "top"
+;'top' | 'center' | 'top'
 ```
-***
+
+---

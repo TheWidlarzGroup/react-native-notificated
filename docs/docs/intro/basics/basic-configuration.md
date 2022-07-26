@@ -7,7 +7,7 @@ sidebar_position: 2
 ### Create Notifications
 
 ```tsx
-import { createNotifications } from 'react-native-notification'
+import { createNotifications } from 'react-native-notificated'
 
 const { NotificationsProvider } = createNotifications()
 ```
