@@ -36,7 +36,7 @@ export type NotificationStyleConfig = Partial<{
   borderWidth: number
   multiline: number
   defaultIconType: IconVisualStyle
-  leftIconSource: ImageSourcePropType
+  leftIconSource: ImageSourcePropType | JSX.Element
   borderType: BorderType
   imageStyle: ImageStyle
 }>

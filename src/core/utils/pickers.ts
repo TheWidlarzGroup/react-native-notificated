@@ -3,12 +3,14 @@ import type { EmitParam } from '../services/types'
 import type { DefaultKeys } from '../../defaultConfig/defaultConfig'
 import type { DefaultStylesConfigs } from '../../defaultConfig/types'
 import type { KeyType } from '../../types/misc'
+import { Constants } from '../config'
 
 type GetOffsetTopProps = {
   globalConfig: NotificationsConfig<VariantsMap>
   notificationHeight: number
   isPortaitMode: boolean
   windowHeight: number
+  statusBarHeight: number
 }
 
 export const getTopOffset = ({
@@ -16,10 +18,13 @@ export const getTopOffset = ({
   notificationHeight,
   isPortaitMode,
   windowHeight,
+  statusBarHeight,
 }: GetOffsetTopProps) => {
   const isNotch = globalConfig.isNotch
-  const extraSpace = 50
-  const topPosition = isNotch && isPortaitMode ? extraSpace : 10
+  const extraSpace = statusBarHeight + 10
+
+  const shouldRenderExtraSpace = isNotch ?? (isPortaitMode && !Constants.isAndroid)
+  const topPosition = shouldRenderExtraSpace ? extraSpace : 10
   const notificationPosition = globalConfig.notificationPosition
 
   switch (notificationPosition) {
