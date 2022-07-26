@@ -37,3 +37,16 @@ const { useNotifications, NotificationsProvider } = createNotifications({
   gestureConfig: { direction: 'y' },
 })
 ```
+
+## Notch handling
+
+The library handles notch detection automatically so you don't have to worry about configuring this on your side. However, if you wish to take control over this by yourself, you can do that by declaring `isNotch` property in the global config.
+
+```jsx
+const { useNotifications, NotificationsProvider } = createNotifications({
+  ...
+  isNotch: true,
+})
+```
+
+Feel free to use for example `react-native-device-info`.
