@@ -9,21 +9,18 @@ jobs:
     env:
       PR_BRANCH: ${GITHUB_REF##*/}
       EXPO_PROJECT: '@TheWidlarzGroup/react-native-notificated'
-    defaults:
-      run:
-      working-directory: ./example-expo
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 14
       - name: PWD
-        run: pwd
+        run: cd example-expo && pwd
       - name: Install YARN
-        run: npm -g install yarn
+        run: cd example-expo && npm -g install yarn
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: cd example-expo && echo "::set-output name=dir::$(yarn cache dir)"
       - uses: actions/cache@v2
         id: yarn-cache
         with:
@@ -38,9 +35,9 @@ jobs:
           expo-cache: true
           expo-version: 4.x
       - name: Install packages
-        run: yarn install
+        run: cd example-expo && yarn install
       - name: EXPO Publish
-        run: expo publish --non-interactive --release-channel ${{ env.PR_BRANCH }}
+        run: cd example-expo && expo publish --non-interactive --release-channel ${{ env.PR_BRANCH }}
       - name: Add Comment To PR
         uses: mshick/add-pr-comment@v1
         env:
