@@ -4,6 +4,8 @@ on: [push]
 
 jobs:
   pr_build:
+      - name: PWD
+        run: pwd
     name: Push to Expo Go on Pull Requests
     runs-on: ubuntu-latest
     env:
