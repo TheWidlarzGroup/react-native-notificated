@@ -4,8 +4,6 @@ on: [push]
 
 jobs:
   pr_build:
-      - name: PWD
-        run: pwd
     name: Push to Expo Go on Pull Requests
     runs-on: ubuntu-latest
     env:
@@ -16,6 +14,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
+      - name: PWD
+        run: pwd
       - name: Install YARN
         run: npm -g install yarn
       - name: Get yarn cache directory path
