@@ -9,6 +9,9 @@ jobs:
     env:
       PR_BRANCH: ${GITHUB_REF##*/}
       EXPO_PROJECT: '@TheWidlarzGroup/react-native-notificated'
+    defaults:
+      run:
+      working-directory: ./example-expo
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
