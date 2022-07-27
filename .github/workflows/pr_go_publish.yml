@@ -40,7 +40,7 @@ jobs:
       - name: Install packages
         run: yarn install
       - name: EXPO Publish
-        run: cd example-expo && expo publish --non-interactive --release-channel ${{ env.PR_BRANCH }}
+        run: expo publish --non-interactive --release-channel ${{ env.PR_BRANCH }}
       - name: Add Comment To PR
         uses: mshick/add-pr-comment@v1
         env:
