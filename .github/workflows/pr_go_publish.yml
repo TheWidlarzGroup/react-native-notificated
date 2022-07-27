@@ -7,7 +7,7 @@ jobs:
     name: Push to Expo Go on Pull Requests
     runs-on: ubuntu-latest
     env:
-      PR_BRANCH: ${{ GITHUB_REF#refs/heads/ }}
+      PR_BRANCH: ${GITHUB_REF##*/}
       EXPO_PROJECT: '@TheWidlarzGroup/react-native-notificated'
     steps:
       - uses: actions/checkout@v2
