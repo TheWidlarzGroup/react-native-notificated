@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "twgpreview",
-    "owner": "jarmy",
-    "slug": "twgpreview",
+    "name": "example-expo",
+    "slug": "example-expo",
+    "owner": "TheWidlarzGroup",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
