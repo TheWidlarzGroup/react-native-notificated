@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "twgpreview",
-    "slug": "twgpreview",
+    "name": "example-expo",
+    "slug": "example-expo",
     "owner": "jarmy",
     "version": "1.0.0",
     "orientation": "portrait",
