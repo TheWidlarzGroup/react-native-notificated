@@ -7,7 +7,7 @@ jobs:
     name: Push to Expo Go on Pull Requests
     runs-on: ubuntu-latest
     env:
-      PR_BRANCH: ${GITHUB_REF##*/}
+      PR_BRANCH: example-expo
       EXPO_PROJECT: '@thewidlarzgroup/notificated-example-expo'
     steps:
       - uses: actions/checkout@v2
