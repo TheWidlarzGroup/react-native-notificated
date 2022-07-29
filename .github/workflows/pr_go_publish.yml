@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PR_BRANCH: ${GITHUB_REF##*/}
-      EXPO_PROJECT: '@TheWidlarzGroup/react-native-notificated'
+      EXPO_PROJECT: '@thewidlarzgroup/notificated-example-expo'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
