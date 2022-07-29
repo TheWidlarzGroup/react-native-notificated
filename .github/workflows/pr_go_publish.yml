@@ -40,6 +40,8 @@ jobs:
         run: cd example-expo && expo publish --non-interactive --release-channel ${{ env.PR_BRANCH }}
       - name: Add Comment To PR
         uses: mshick/add-pr-comment@v1
+        env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           message: |
             ## 🚀 📲 Application preview:
