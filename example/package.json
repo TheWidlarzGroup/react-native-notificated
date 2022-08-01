@@ -10,6 +10,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-native-firebase/app": "^15.2.0",
+    "@react-native-firebase/messaging": "^15.2.0",
     "@react-native-masked-view/masked-view": "^0.2.6",
     "@react-navigation/drawer": "^6.1.8",
     "@react-navigation/native": "^6.0.6",
