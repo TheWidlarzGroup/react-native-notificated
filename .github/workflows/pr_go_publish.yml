@@ -41,11 +41,11 @@ jobs:
       - name: Add Comment To PR
         uses: mshick/add-pr-comment@v1
         env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           message: |
             ## 🚀 📲 Application preview:
             ### Scan with your mobile:
             ![Expo QR](https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=exp://exp.host/${{ env.EXPO_PROJECT }}?release-channel=${{ env.PR_BRANCH }})
             ### or visit this link:
-            Published to https://exp.host/${{ env.EXPO_PROJECT }}?release-channel=pr${{ github.event.number }}
+            Published to https://exp.host/${{ env.EXPO_PROJECT }}?release-channel=pr${{ env.PR_BRANCH }}
