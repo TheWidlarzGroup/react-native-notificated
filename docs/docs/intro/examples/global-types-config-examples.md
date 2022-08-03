@@ -9,7 +9,7 @@ Code has been already described step by step in the [DEFAULT EXAMPLES](./default
 
 Here we have only a few differences I need to mention, and they are minimal:
 
-- we use `modify()` and `remove()` only in the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove the notification, or modify it, and therefore we will not be using them here and in the other examples as well. For that same reason, we will not be using `useState` and `useNotificationController` here.
+- we use `modify()` and `remove()` only in the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove the notification, or modify it, and therefore we will not be using them here and in the other examples as well. For that same reason, we will not be using `useState` and `useNotificationController` here. 
 - we filled the `successConfig`, `errorConfig`, `warningConfig` and the `infoConfig` objects in the `defaultStylesSettings`. Those objects are responsible for setting properties for all notifications in the given type. To read more please go back to the [GLOBAL CONFIG](../default-variants-config/global-config.md) section.
   <br/>
 
@@ -27,7 +27,6 @@ import { ErrorButton } from '../components/basicExamples/ErrorButton'
 import { WarningButton } from '../components/basicExamples/WarningButton'
 import { InfoButton } from '../components/basicExamples/InfoButton'
 import { styles } from './styles'
-
 const { useNotifications, NotificationsProvider } = createNotifications({
   isNotch: true,
   defaultStylesSettings: {
@@ -74,10 +73,8 @@ const { useNotifications, NotificationsProvider } = createNotifications({
     },
   },
 })
-
 export const GlobalTypesConfigExamples = () => {
   const { notify } = useNotifications()
-
   return (
     <SafeAreaView style={styles.container}>
       <NotificationsProvider />
@@ -149,6 +146,7 @@ Let's see the notifications we declared above:
 ### Info notification
 
 ![Info](../../../assets/info-global-type.png)
+
 
 <br/>
 
