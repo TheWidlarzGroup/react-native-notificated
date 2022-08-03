@@ -3,7 +3,7 @@ name: Publish on Pull Request
 on:
   push:
     paths:
-      - example-expo
+      - example-expo/**
 jobs:
   pr_build:
     name: Push to Expo Go on Pull Requests
