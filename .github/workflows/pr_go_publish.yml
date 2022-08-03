@@ -2,8 +2,6 @@ name: Publish on Pull Request
 
 on:
   push:
-    branches:
-      - feat/example-expo-app
     paths:
       - example-expo
 jobs:
