@@ -3,7 +3,6 @@ sidebar_position: 4
 ---
 
 # 🖋️ Global types config examples
-
 <br/>
 
 Code has been already described step by step in the [DEFAULT EXAMPLES](./default-examples.md) section, so I think there is no use to do it here again.
