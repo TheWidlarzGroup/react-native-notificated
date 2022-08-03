@@ -1,13 +1,10 @@
 name: Publish on Pull Request
 
 on:
+  workflow_dispatch: {}
   push:
     paths:
-      - example-expo
-trigger:
-  paths:
-    include:
-      - example-expo/**
+      - 'example-expo/**'
 jobs:
   pr_build:
     name: Push to Expo Go on Pull Requests
