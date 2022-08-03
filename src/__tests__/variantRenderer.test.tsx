@@ -1,1 +1,1 @@
-it.todo('addd testss for variantRenderer')
+it.todo('add testss for variantRenderer')
