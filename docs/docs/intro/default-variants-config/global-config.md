@@ -159,7 +159,7 @@ const { useNotifications, NotificationsProvider } = createNotifications({
 })
 
 export const GlobalConfigExamples = () => {
-  const { notify } = useNotifications()
+  const {} = useNotifications()
 
   return (
     <SafeAreaView style={styles.container}>
