@@ -1,6 +1,9 @@
 name: Publish on Pull Request
 
-on: [push]
+on:
+  push:
+    paths:
+      - example-expo
 
 jobs:
   pr_build:
