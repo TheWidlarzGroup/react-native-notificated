@@ -61,7 +61,7 @@ Below you will find the default styling for all notification types with `darkMod
 | Error            | `false`    | ![Border](../../../assets/error.png)            |
 | Error            | `true`     | ![Border](../../../assets/error-darkMode.png)   |
 |                  |            |
-| Warning          | `fals`     | ![Border](../../../assets/warning.png)          |
+| Warning          | `false`    | ![Border](../../../assets/warning.png)          |
 | Warning          | `true`     | ![Border](../../../assets/warning-darkMode.png) |
 |                  |            |
 | Info             | `false`    | ![Border](../../../assets/info.png)             |
