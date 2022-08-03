@@ -27,6 +27,7 @@ import { ErrorButton } from '../components/basicExamples/ErrorButton'
 import { WarningButton } from '../components/basicExamples/WarningButton'
 import { InfoButton } from '../components/basicExamples/InfoButton'
 import { styles } from './styles'
+
 const { useNotifications, NotificationsProvider } = createNotifications({
   isNotch: true,
   defaultStylesSettings: {
@@ -73,8 +74,10 @@ const { useNotifications, NotificationsProvider } = createNotifications({
     },
   },
 })
+
 export const GlobalTypesConfigExamples = () => {
   const { notify } = useNotifications()
+
   return (
     <SafeAreaView style={styles.container}>
       <NotificationsProvider />
@@ -121,6 +124,8 @@ export const GlobalTypesConfigExamples = () => {
     </SafeAreaView>
   )
 }
+
+
 ```
 
 <br/>
