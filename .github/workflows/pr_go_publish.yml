@@ -1,12 +1,11 @@
 name: Publish on Pull Request
 
-trigger:
-  branches:
-    include:
-      - '*'
-  paths:
-    include:
-      - example-expo/*
+on:
+  push:
+    branches:
+      - feat/example-expo-app
+    paths:
+      - example-expo/**
 jobs:
   pr_build:
     name: Push to Expo Go on Pull Requests
