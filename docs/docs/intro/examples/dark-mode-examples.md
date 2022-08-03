@@ -3,6 +3,7 @@ sidebar_position: 2
 ---
 
 # 🖊️ Dark mode examples
+
 <br/>
 
 Code has been already described step by step in the [DEFAULT EXAMPLES](./default-examples.md) section.<br/>
@@ -15,7 +16,6 @@ Here we have only a few differences I need to mention, and they are minimal:
 
 That's the only difference between Default Examples and Dark Mode Examples.<br/>
 Let's take a look at the code and the visualizations then:
-
 
 ## Code
 
@@ -85,7 +85,6 @@ export const DarkModeExamples = () => {
     </SafeAreaView>
   )
 }
-
 ```
 
 <br/>
