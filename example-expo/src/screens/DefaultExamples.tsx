@@ -12,7 +12,7 @@ export const DefaultExamples = () => {
           variant="success"
           onPress={() =>
             notify('success', {
-              params: { title: 'Helloi!', description: 'Some text goes here...' },
+              params: { title: 'Hello!', description: 'Some text goes here...' },
             })
           }
         />
