@@ -5,7 +5,7 @@ on:
     branches:
       - feat/example-expo-app
     paths:
-      - example-expo/**
+      - example-expo
 jobs:
   pr_build:
     name: Push to Expo Go on Pull Requests
