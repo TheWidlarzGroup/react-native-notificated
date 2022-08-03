@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - example-expo/**
+      - src
 jobs:
   pr_build:
     name: Push to Expo Go on Pull Requests
