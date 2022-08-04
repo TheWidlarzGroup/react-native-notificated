@@ -12,8 +12,7 @@ sidebar_position: 7
 ## 💡 Setup
 
 <br/>
-    Before we jump into setup proccess, make sure that you have created a new firebase project. We will need it later. 
-    If you haven't done it yet, you can do it <a href="https://console.firebase.google.com/">here</a>. 
+    Before we jump into setup proccess, make sure that you have created a new firebase project. You will need it later to send push notifications. If you haven't done it yet, you can do it <a href="https://console.firebase.google.com/">here</a>. 
 <br/>
 <br/>
     Ok, after we have created a new firebase project, it's time to proceed to installing two packages that will be necessary to handle push notifications:
@@ -28,12 +27,6 @@ Documentation clearly describes the whole process of installation, so I will not
 Before proceeding to the next step, make sure you have done all previous steps.
 
 :::
-
-### ❗Extra step for IOS
-
-<br/>
-    TODO  
-<br/>
 
 ## 👀 Example Implementation
 
