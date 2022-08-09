@@ -1,0 +1,54 @@
+name: Publish on Pull Request
+
+on:
+  push:
+    paths:
+      - example-expo/**
+      - src/**
+jobs:
+  pr_build:
+    name: Push to Expo Go on Pull Requests
+    runs-on: ubuntu-latest
+    env:
+      PR_BRANCH: example-expo
+      EXPO_PROJECT: '@thewidlarzgroup/notificated-example-expo'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: PWD
+        run: cd example-expo && pwd
+      - name: Install YARN
+        run: cd example-expo && npm -g install yarn
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: cd example-expo && echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-i
+      - uses: expo/expo-github-action@v6
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+          expo-cache: true
+          expo-version: 4.x
+      - name: Install packages
+        run: cd example-expo && yarn install
+      - name: EXPO Publish
+        run: cd example-expo && expo publish --non-interactive --release-channel ${{ env.PR_BRANCH }}
+      - name: Add Comment To PR
+        uses: mshick/add-pr-comment@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          message: |
+            ## 🚀 📲 Application preview:
+            ### Scan with your mobile:
+            ![Expo QR](https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=exp://exp.host/${{ env.EXPO_PROJECT }}?release-channel=${{ env.PR_BRANCH }})
+            ### or visit this link:
+            Published to https://exp.host/${{ env.EXPO_PROJECT }}?release-channel=${{ env.PR_BRANCH }}
