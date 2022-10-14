@@ -2,7 +2,6 @@ import React from 'react'
 import { SafeAreaView } from 'react-native'
 import {
   createNotifications,
-  RotateInRotateOut,
   RotateZIn,
   SlideInLeftSlideOutRight,
   ZoomInDownZoomOutDown,
@@ -99,17 +98,7 @@ export const AnimationsExamples = () => {
         }
         buttonText="Zoom In Bounce"
       />
-      <AnimationButton
-        onPress={() =>
-          notify('success', {
-            params: {
-              ...baseNotifyConfig,
-            },
-            config: { animationConfig: RotateInRotateOut },
-          })
-        }
-        buttonText="Rotate In"
-      />
+
       <AnimationButton
         onPress={() =>
           notify('success', {

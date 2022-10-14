@@ -34,14 +34,6 @@ describe('props merger tests', function () {
 
     expect(SlideInLeftCrazy).toMatchObject(configIn)
   })
-  it('should merge animationConfigIn properly with add method outstyles', () => {
-    const SlideInLeft = new AnimationBuilder(SlideInLeftAnimation)
-    const SlideInLeftCrazy = SlideInLeft.add(CrazyAnimationConfig).animationConfigOut
-
-    const configOut = CrazyAnimationConfig.animationConfigOut || {}
-
-    expect(SlideInLeftCrazy).toMatchObject(configOut)
-  })
   it('should merge styles properly with add method outstyles', () => {
     const MoveUp = new AnimationBuilder(MoveUpAnimation)
     const MoveUpRotateZIn = RotateZIn.add(MoveUp).transitionOutStylesQueue

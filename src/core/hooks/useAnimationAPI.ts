@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import type { ViewStyle, TextStyle, ImageStyle } from 'react-native'
-import  {
+import {
   cancelAnimation,
   SharedValue,
   useAnimatedStyle,

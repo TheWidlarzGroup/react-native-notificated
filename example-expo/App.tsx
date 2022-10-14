@@ -10,7 +10,7 @@ const { NotificationsProvider } = createNotifications({
 
 export default function App() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={styles.gestureHandlerWrapper}>
       <NotificationsProvider />
       <SafeAreaView style={styles.container}>
         <DefaultExamples />
@@ -20,6 +20,9 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  gestureHandlerWrapper: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',

@@ -179,7 +179,6 @@ export const SlideInLeftAnimation: CustomAnimationConfig = {
     const translateX = interpolate(progress.value, [0, 1], [-100, 0])
 
     return {
-      // opacity: progress.value,
       transform: [{ translateX }],
     }
   },
