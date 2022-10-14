@@ -19,7 +19,7 @@ import type { AnimationBuilder } from '../utils/generateAnimationConfig'
 
 type Styles = AnimateStyle<ViewStyle | TextStyle | ImageStyle>
 
-export const mergeStylesObjects = (styles: Styles, newStyles: Styles) => {
+const mergeStylesObjects = (styles: Styles, newStyles: Styles) => {
   'worklet'
 
   const oldTransform = [...(styles?.transform || [])]
