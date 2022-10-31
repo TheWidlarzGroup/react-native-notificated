@@ -23,7 +23,6 @@ export type Variants = CustomVariants[keyof CustomVariants] extends never
 export type NotificationConfigBase = {
   duration: number
   notificationPosition: NotificationPosition
-  // animationConfig: CustomAnimationConfig
   animationConfig: AnimationBuilder | CustomAnimationConfig
   gestureConfig: GestureConfig
   isNotch?: boolean
