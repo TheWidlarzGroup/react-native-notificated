@@ -1,7 +1,7 @@
 import type { TextStyle, ViewStyle } from 'react-native'
 import { Platform } from 'react-native'
 import { themeBase } from './components/theme'
-import type { MergedNotificationStyleConfig, NotificationVariants, Theme } from './types'
+import type { DefaultKeys, MergedNotificationStyleConfig, Theme } from './types'
 
 export const getTitleStyle = (styles: MergedNotificationStyleConfig): Partial<TextStyle> => ({
   color: styles.titleColor ? styles.titleColor : themeBase.fontColor[styles.theme],
@@ -59,7 +59,7 @@ export const getLeftAccentStyle = (accentColor: string | undefined) => {
   }
 }
 
-export const chooseDefaultAccentColor = (notificationType: NotificationVariants) => {
+export const chooseDefaultAccentColor = (notificationType: DefaultKeys) => {
   switch (notificationType) {
     case 'success':
       return themeBase.color.success

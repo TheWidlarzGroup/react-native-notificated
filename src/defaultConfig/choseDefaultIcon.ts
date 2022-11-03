@@ -1,8 +1,8 @@
 import type { ImageSourcePropType } from 'react-native'
-import type { IconsLinksTypes, IconVisualStyle, NotificationVariants } from './types'
+import type { DefaultKeys, IconsLinksTypes, IconVisualStyle } from './types'
 
 export const chooseDefaultIcon = (
-  notificationType: NotificationVariants,
+  notificationType: DefaultKeys,
   darkMode: boolean,
   defaultIconType?: IconVisualStyle
 ): ImageSourcePropType | undefined => {
@@ -29,7 +29,7 @@ export const chooseDefaultIcon = (
     },
   }
 
-  const renderIcon = (type: NotificationVariants): ImageSourcePropType | undefined => {
+  const renderIcon = (type: DefaultKeys): ImageSourcePropType | undefined => {
     switch (defaultIconType) {
       case 'color':
         return iconLinks[type].color

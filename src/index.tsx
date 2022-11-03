@@ -12,7 +12,6 @@ import {
 } from './defaultConfig/defaultAnimationConfig'
 import { defaultVariants } from './defaultConfig/defaultConfig'
 import { useNotificationController } from './hooks/useNotificationController'
-import type { CustomVariants } from './types'
 
 // default
 export { defaultVariants }
@@ -34,6 +33,3 @@ export { createNotifications, remove, modify, notify, useNotifications }
 
 // toolbelt
 export { useNotificationController }
-
-// utility types
-export { CustomVariants }

@@ -4,6 +4,12 @@ import type { NotificationPosition } from './types/config'
 import type { GestureConfig } from './types/gestures'
 import type { ComponentProps, VFC } from 'react'
 
+declare global {
+  namespace Notificated {
+    interface CustomVariants {}
+  }
+}
+
 export type RequiredProps<T extends Variant<VFC<any>>> = ComponentProps<T['component']>
 
 export type Variant<T> = {
@@ -13,7 +19,7 @@ export type Variant<T> = {
 
 export type VariantsMap = Record<string, Variant<VFC<any>>>
 
-export interface CustomVariants {}
+type CustomVariants = Notificated.CustomVariants
 
 export type Variants = CustomVariants[keyof CustomVariants] extends never
   ? DefaultVariants
