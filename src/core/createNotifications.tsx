@@ -2,13 +2,15 @@ import React, { FC, ReactNode } from 'react'
 import { InAppNotificationsConfig } from '../defaultConfig/defaultConfig'
 
 import type { DefaultVariants } from '../defaultConfig/types'
-import NotificationEmitterApi, {
+import NotificationEmitterApi from './services/NotificationEmitterApi'
+import type {
   Modify,
+  NotificationsConfig,
   Notify,
   Remove,
   UseNotification,
-} from './services/NotificationEmitterApi'
-import type { NotificationsConfig, VariantsMap } from '../types'
+  VariantsMap,
+} from '../types'
 import { NotificationsRenderer } from './renderers/NotificationsRenderer'
 import { NotificationContext } from './hooks/useNotificationConfig'
 
