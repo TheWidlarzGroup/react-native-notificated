@@ -56,3 +56,9 @@ export type UseNotification<V extends VariantsMap = Variants> = () => {
   remove: Remove
   notify: Notify<V>
 }
+
+export type Emmiter<V extends VariantsMap> = {
+  remove: Remove
+  modify: Modify
+  notify: Notify<V>
+}

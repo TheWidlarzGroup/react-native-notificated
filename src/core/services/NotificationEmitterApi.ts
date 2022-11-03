@@ -1,6 +1,7 @@
 import { generateNotificationId } from '../utils/uuid'
-import type { Modify, Notify, Remove, UseNotification } from '../../types'
+import type { Emmiter, Modify, Notify, Remove, UseNotification, VariantsMap } from '../../types'
 import { emitter } from './NotificationEmitter'
+import type { Variants } from '../../../lib/typescript/types'
 
 export const remove: Remove = (id) => emitter.emit('remove_notification', { id })
 
@@ -25,4 +26,10 @@ const NotificationEmitterApi = {
   notify,
 }
 
-export const useNotifications: UseNotification = () => NotificationEmitterApi
+export const getNotificationEmmiter = <V extends VariantsMap = Variants>(): Emmiter<V> => {
+  return NotificationEmitterApi as unknown as Emmiter<V>
+}
+
+export const useNotifications: UseNotification<Variants> = () => NotificationEmitterApi
+
+export default NotificationEmitterApi
