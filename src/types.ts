@@ -51,11 +51,13 @@ export type Notify<V extends VariantsMap = Variants> = <Variant extends keyof V>
   setup: { params: RequiredProps<V[Variant]>; config?: Partial<NotificationConfigBase> }
 ) => { id: string }
 
-export type UseNotification<V extends VariantsMap = Variants> = () => {
-  modify: Modify
-  remove: Remove
-  notify: Notify<V>
-}
+export type UseNotification<V extends VariantsMap = Variants> = () => Emmiter<V>
+
+export type CreateNotificationsReturnType<V extends VariantsMap = Variants> = {
+  useNotifications: UseNotification<V>
+  NotificationsProvider: React.FC
+  CustomVariantsTypeHelper: V
+} & ReturnType<UseNotification<V>>
 
 export type Emmiter<V extends VariantsMap> = {
   remove: Remove
