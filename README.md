@@ -53,6 +53,10 @@ Check the docs here [Click](https://thewidlarzgroup.github.io/react-native-notif
 - [Redux Example](https://thewidlarzgroup.github.io/react-native-notificated/docs/intro/examples/redux-example)
 - [Api Reference](https://thewidlarzgroup.github.io/react-native-notificated/docs/api/apiReference)
 
+## 🎯 Usage
+
+Features of this library have been presented at App.js 2022 conference. Find out why `react-native-notificated` is the only in-app notitication library that you'll ever need [HERE](https://youtu.be/LDeTWZDDtiM)
+
 ## 🛸 Dependencies
 
 This library needs these dependencies to be installed in your project before you can use it:
@@ -69,9 +73,9 @@ steps: [guide here](https://docs.swmansion.com/react-native-gesture-handler/docs
 
 ## Example
 
-Android Emulator        |  iOS Simulator
-:-------------------------:|:-------------------------:
-<video src="https://user-images.githubusercontent.com/62747088/171445996-7e83ffc2-80a2-4a03-a972-3b4e26c878ad.mp4"></video>  | <video src="https://user-images.githubusercontent.com/62747088/171443943-e0f897c2-ed11-42cd-95a7-9cf75d8cc115.mp4"></video>
+|                                                      Android Emulator                                                       |                                                        iOS Simulator                                                        |
+| :-------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: |
+| <video src="https://user-images.githubusercontent.com/62747088/171445996-7e83ffc2-80a2-4a03-a972-3b4e26c878ad.mp4"></video> | <video src="https://user-images.githubusercontent.com/62747088/171443943-e0f897c2-ed11-42cd-95a7-9cf75d8cc115.mp4"></video> |
 
 ## 💪🏽 Uses
 
