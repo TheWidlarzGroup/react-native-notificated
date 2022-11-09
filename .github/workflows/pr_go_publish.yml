@@ -46,7 +46,7 @@ jobs:
         uses: mshick/add-pr-comment@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_CHANNEL: ${{github.head_ref }}
+          RELEASE_CHANNEL: ${{github.sha }}
         with:
           message: |
             ## 🚀 📲 Application preview:
