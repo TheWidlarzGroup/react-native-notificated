@@ -39,7 +39,7 @@ jobs:
       - name: Install packages
         run: cd example-expo && yarn install
       - name: EXPO Publish
-        run: cd example-expo && expo publish --non-interactive --release-channel ${{ github.base_ref }}
+        run: cd example-expo && expo publish --non-interactive --release-channel ${{ github.head_ref }}
       - name: Add Comment To PR
         uses: mshick/add-pr-comment@v1
         env:
@@ -48,6 +48,6 @@ jobs:
           message: |
             ## 🚀 📲 Application preview:
             ### Scan with your mobile:
-            ![Expo QR](https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=exp://exp.host/${{ env.EXPO_PROJECT }}?release-channel=${{ github.base_ref }})
+            ![Expo QR](https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=exp://exp.host/${{ env.EXPO_PROJECT }}?release-channel=${{ github.head_ref }})
             ### or visit this link:
-            Published to https://exp.host/${{ env.EXPO_PROJECT }}?release-channel=${{ github.base_ref }}
+            Published to https://exp.host/${{ env.EXPO_PROJECT }}?release-channel=${{ github.head_ref }}
