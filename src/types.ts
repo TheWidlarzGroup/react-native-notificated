@@ -3,6 +3,7 @@ import type { DefaultLayoutConfig, DefaultVariants } from './defaultConfig/types
 import type { NotificationPosition } from './types/config'
 import type { GestureConfig } from './types/gestures'
 import type { ComponentProps, VFC } from 'react'
+import type { AnimationBuilder } from './core/utils/generateAnimationConfig'
 
 export type RequiredProps<T extends Variant<VFC<any>>> = ComponentProps<T['component']>
 
@@ -22,7 +23,7 @@ export type Variants = CustomVariants[keyof CustomVariants] extends never
 export type NotificationConfigBase = {
   duration: number
   notificationPosition: NotificationPosition
-  animationConfig: CustomAnimationConfig
+  animationConfig: AnimationBuilder | CustomAnimationConfig
   gestureConfig: GestureConfig
   isNotch?: boolean
   onClose?: () => void
