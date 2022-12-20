@@ -31,12 +31,12 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-i
-      - uses: expo/expo-github-action@v6
+      - uses: expo/expo-github-action@v7
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
           expo-cache: true
-          expo-version: 4.x
+          expo-version: latest
       - name: Install packages
         run: cd example-expo && yarn install
       - name: EXPO Publish
