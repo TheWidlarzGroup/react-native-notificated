@@ -9,6 +9,7 @@ const { NotificationsProvider } = createNotifications({
 })
 
 export default function App() {
+  //Run expo go publish workflow
   return (
     <GestureHandlerRootView style={styles.gestureHandlerWrapper}>
       <NotificationsProvider />

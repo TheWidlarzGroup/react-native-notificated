@@ -17,6 +17,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
+          cache: yarn
       - name: PWD
         run: cd example-expo && pwd
       - name: Install YARN
@@ -24,13 +25,6 @@ jobs:
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: cd example-expo && echo "name=dir::$(yarn cache dir)" >> $GITHUB_STATE
-      - uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-i
       - uses: expo/expo-github-action@v7
         with:
           eas-version: latest
