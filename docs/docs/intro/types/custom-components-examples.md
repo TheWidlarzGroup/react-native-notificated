@@ -38,7 +38,7 @@ declare global {
 ```
 
 Second one assumes that you will use utility type provided by library.
-This approach assumes that configuration is your source of type. If you change your configuration the tyeps will not require update.
+This approach assumes that configuration is your source of type. If you change your configuration the types will not require update.
 
 ```tsx
 import { createNotifications } from 'react-native-notificated'
