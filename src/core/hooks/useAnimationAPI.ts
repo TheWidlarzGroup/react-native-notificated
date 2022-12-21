@@ -1,17 +1,50 @@
 import { useCallback } from 'react'
+import type { ViewStyle, TextStyle, ImageStyle } from 'react-native'
 import {
   cancelAnimation,
+  SharedValue,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
   withTiming,
+  AnimateStyle,
 } from 'react-native-reanimated'
 import { useDrag } from './useDrag'
 import type { NotificationState } from './useNotificationsStates'
 import { emitter } from '../services/NotificationEmitter'
 import { withAnimationCallbackJSThread } from '../utils/animation'
-import { AnimationRange } from '../../types/animations'
+import { AnimationRange, TransitionStylesConfigFunction } from '../../types/animations'
 import { useTimer } from './useTimer'
+import type { AnimationBuilder } from '../utils/generateAnimationConfig'
+
+type Styles = AnimateStyle<ViewStyle | TextStyle | ImageStyle>
+
+const mergeStylesObjects = (styles: Styles, newStyles: Styles) => {
+  'worklet'
+
+  const oldTransform = [...(styles?.transform || [])]
+  const newTransform = [...(newStyles?.transform || [])]
+
+  return {
+    ...styles,
+    ...newStyles,
+    transform: [...oldTransform, ...newTransform],
+  }
+}
+
+export const mergeStylesFunctions = (
+  stylesFunctions: TransitionStylesConfigFunction[],
+  progress: SharedValue<number>
+) => {
+  'worklet'
+
+  return stylesFunctions.reduce<Styles>(
+    (accumulatedStyles, styleFunction) => {
+      return mergeStylesObjects(accumulatedStyles, styleFunction(progress) as Styles)
+    },
+    { opacity: 1, transform: [{ translateY: 0 }, { translateX: 0 }] } // it has to have the default opacity value
+  )
+}
 
 export const useAnimationAPI = ({
   gestureConfig,
@@ -98,13 +131,22 @@ export const useAnimationAPI = ({
   const handleDragStateChange = dragStateHandler(dismiss, resetDrag)
 
   const animatedStyles = useAnimatedStyle(() => {
+    const animationBuilder: AnimationBuilder = animationConfig as AnimationBuilder
     const { transitionInStyles, transitionOutStyles } = animationConfig
 
-    if (['out', 'idle_active'].includes(currentTransitionType.value) && transitionOutStyles) {
-      return transitionOutStyles(progress)
+    if (
+      ['out', 'idle_active'].includes(currentTransitionType.value) &&
+      animationBuilder.transitionOutStylesQueue?.length > 0
+    ) {
+      return mergeStylesFunctions(animationBuilder.transitionOutStylesQueue, progress)
     }
-
-    return transitionInStyles(progress)
+    if (animationBuilder?.transitionInStylesQueue?.length > 0) {
+      return mergeStylesFunctions(animationBuilder.transitionInStylesQueue, progress)
+    }
+    if (['out', 'idle_active'].includes(currentTransitionType.value) && transitionOutStyles) {
+      return { opacity: 1, ...(transitionOutStyles(progress) as unknown as {}) }
+    }
+    return { opacity: 1, ...(transitionInStyles(progress) as unknown as {}) }
   })
 
   return {

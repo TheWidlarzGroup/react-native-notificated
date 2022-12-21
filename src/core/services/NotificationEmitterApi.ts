@@ -1,7 +1,14 @@
 import { generateNotificationId } from '../utils/uuid'
-import type { Emmiter, Modify, Notify, Remove, UseNotification, VariantsMap } from '../../types'
+import type {
+  Emmiter,
+  Modify,
+  Notify,
+  Remove,
+  UseNotification,
+  VariantsMap,
+  Variants,
+} from '../../types'
 import { emitter } from './NotificationEmitter'
-import type { Variants } from '../../../lib/typescript/types'
 
 export const remove: Remove = (id) => emitter.emit('remove_notification', { id })
 
