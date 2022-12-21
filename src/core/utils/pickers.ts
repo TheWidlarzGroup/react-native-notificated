@@ -1,7 +1,6 @@
 import type { NotificationsConfig, Variant, VariantsMap } from '../../types'
 import type { EmitParam } from '../services/types'
-import type { DefaultKeys } from '../../defaultConfig/defaultConfig'
-import type { DefaultStylesConfigs } from '../../defaultConfig/types'
+import type { DefaultKeys, DefaultStylesConfigs } from '../../defaultConfig/types'
 import type { KeyType } from '../../types/misc'
 import { Constants } from '../config'
 

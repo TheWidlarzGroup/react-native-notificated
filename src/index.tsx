@@ -4,7 +4,6 @@ import { generateAnimationConfig, AnimationBuilder } from './core/utils/generate
 
 import { defaultVariants } from './defaultConfig/defaultConfig'
 import { useNotificationController } from './hooks/useNotificationController'
-import type { CustomVariants } from './types'
 import {
   SlideInLeftSlideOutRight,
   ZoomIn,
@@ -46,6 +45,3 @@ export { createNotifications, remove, modify, notify, useNotifications }
 
 // toolbelt
 export { useNotificationController }
-
-// utility types
-export { CustomVariants }

@@ -1,9 +1,19 @@
 import type { NotificationPosition } from '../types/config'
-import type { DefaultKeys, defaultVariants } from './defaultConfig'
 import type { ImageSourcePropType, ImageStyle } from 'react-native'
+import type { Variant } from '../types'
+import type { SuccessNotification } from './components/success'
+import type { ErrorNotification } from './components/error'
+import type { WarningNotification } from './components/warning'
+import type { InfoNotification } from './components/info'
 
-export type DefaultVariants = typeof defaultVariants
-export type NotificationVariants = keyof DefaultVariants
+export type DefaultVariants = {
+  success: Variant<typeof SuccessNotification>
+  error: Variant<typeof ErrorNotification>
+  warning: Variant<typeof WarningNotification>
+  info: Variant<typeof InfoNotification>
+}
+
+export type DefaultKeys = keyof DefaultVariants
 
 export type IconVisualStyle = 'color' | 'monochromatic' | 'no-icon'
 export type Theme = 'regular' | 'dark'

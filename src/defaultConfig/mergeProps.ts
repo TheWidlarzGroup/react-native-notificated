@@ -3,15 +3,15 @@ import { themeBase } from './components/theme'
 import { chooseDefaultAccentColor } from './stylesUtils'
 import { chooseDefaultIcon } from './choseDefaultIcon'
 import type {
+  DefaultKeys,
   MergedNotificationStyleConfig,
   NotificationProps,
   NotificationStyleConfig,
-  NotificationVariants,
 } from './types'
 
 export const mergeProps = (
   props: NotificationProps,
-  notificationType: NotificationVariants,
+  notificationType: DefaultKeys,
   darkMode: boolean,
   defaultGlobalConfig?: NotificationStyleConfig,
   defaultNotificationTypeConfig?: NotificationStyleConfig
