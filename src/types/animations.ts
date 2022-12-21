@@ -6,7 +6,7 @@ import type {
   WithTimingConfig,
 } from 'react-native-reanimated'
 
-type TransitionStylesConfigFunction = (
+export type TransitionStylesConfigFunction = (
   progress: SharedValue<number>
 ) => AnimatedStyleProp<ViewStyle | TextStyle | ImageStyle>
 

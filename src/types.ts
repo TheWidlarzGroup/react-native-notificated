@@ -10,6 +10,7 @@ declare global {
     interface CustomVariants {}
   }
 }
+import type { AnimationBuilder } from './core/utils/generateAnimationConfig'
 
 export type RequiredProps<T extends Variant<VFC<any>>> = ComponentProps<T['component']>
 
@@ -29,7 +30,7 @@ export type Variants = CustomVariants[keyof CustomVariants] extends never
 export type NotificationConfigBase = {
   duration: number
   notificationPosition: NotificationPosition
-  animationConfig: CustomAnimationConfig
+  animationConfig: AnimationBuilder | CustomAnimationConfig
   gestureConfig: GestureConfig
   isNotch?: boolean
   onClose?: () => void
