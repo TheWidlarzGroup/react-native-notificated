@@ -9,8 +9,8 @@ export const useNotificationsStates = () => {
   const panHandlerRef = useRef(null)
   const longPressHandlerRef = useRef(null)
   const { height: windowHeight, width: windowWidth } = useWindowDimensions()
-  const isPortaitMode = windowHeight > windowWidth
-  const { statusBarHeight } = useStatusBarHeightDetector({ isPortaitMode })
+  const isPortraitMode = windowHeight > windowWidth
+  const { statusBarHeight } = useStatusBarHeightDetector({ isPortraitMode })
   const globalConfig = useNotificationConfig()
   const [notificationsQueue, dispatch] = useReducer(queueReducer, [])
   const [notificationHeight, setNotificationHeight] = useState(0)
@@ -21,7 +21,7 @@ export const useNotificationsStates = () => {
   const topOffset = getTopOffset({
     globalConfig: config,
     notificationHeight,
-    isPortaitMode,
+    isPortraitMode,
     windowHeight,
     statusBarHeight,
   })
@@ -35,7 +35,7 @@ export const useNotificationsStates = () => {
     notificationsQueue,
     longPressHandlerRef,
     setNotificationHeight,
-    isPortaitMode,
+    isPortaitMode: isPortraitMode,
   }
 }
 
