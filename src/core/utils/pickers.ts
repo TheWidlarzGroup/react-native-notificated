@@ -7,7 +7,7 @@ import { Constants } from '../config'
 type GetOffsetTopProps = {
   globalConfig: NotificationsConfig<VariantsMap>
   notificationHeight: number
-  isPortaitMode: boolean
+  isPortraitMode: boolean
   windowHeight: number
   statusBarHeight: number
 }
@@ -15,14 +15,14 @@ type GetOffsetTopProps = {
 export const getTopOffset = ({
   globalConfig,
   notificationHeight,
-  isPortaitMode,
+  isPortraitMode,
   windowHeight,
   statusBarHeight,
 }: GetOffsetTopProps) => {
   const isNotch = globalConfig.isNotch
   const extraSpace = statusBarHeight + 10
 
-  const shouldRenderExtraSpace = isNotch ?? (isPortaitMode && !Constants.isAndroid)
+  const shouldRenderExtraSpace = isNotch ?? (isPortraitMode && !Constants.isAndroid)
   const topPosition = shouldRenderExtraSpace ? extraSpace : 10
   const notificationPosition = globalConfig.notificationPosition
 

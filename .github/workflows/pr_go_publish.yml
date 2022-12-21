@@ -1,7 +1,7 @@
 name: Publish on Pull Request
 
 on:
-  push:
+  pull_request:
     paths:
       - example-expo/**
       - src/**
@@ -10,7 +10,6 @@ jobs:
     name: Push to Expo Go on Pull Requests
     runs-on: ubuntu-latest
     env:
-      PR_BRANCH: example-expo
       EXPO_PROJECT: '@thewidlarzgroup/notificated-example-expo'
     steps:
       - uses: actions/checkout@v2
@@ -34,15 +33,18 @@ jobs:
       - name: Install packages
         run: cd example-expo && yarn install
       - name: EXPO Publish
-        run: cd example-expo && expo publish --non-interactive --release-channel ${{ env.PR_BRANCH }}
+        run: cd example-expo && expo publish --non-interactive --release-channel ${{ env.RELEASE_CHANNEL }}
+        env:
+          RELEASE_CHANNEL: ${{github.sha }}
       - name: Add Comment To PR
         uses: mshick/add-pr-comment@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_CHANNEL: ${{github.sha }}
         with:
           message: |
             ## 🚀 📲 Application preview:
             ### Scan with your mobile:
-            ![Expo QR](https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=exp://exp.host/${{ env.EXPO_PROJECT }}?release-channel=${{ env.PR_BRANCH }})
+            ![Expo QR](https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=exp://exp.host/${{ env.EXPO_PROJECT }}?release-channel=${{ env.RELEASE_CHANNEL }})
             ### or visit this link:
-            Published to https://exp.host/${{ env.EXPO_PROJECT }}?release-channel=${{ env.PR_BRANCH }}
+            Published to https://exp.host/${{ env.EXPO_PROJECT }}?release-channel=${{ env.RELEASE_CHANNEL }}
