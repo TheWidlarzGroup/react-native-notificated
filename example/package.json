@@ -21,7 +21,7 @@
     "react": "17.0.2",
     "react-native": "0.66.3",
     "react-native-gesture-handler": "2.1.1",
-    "react-native-reanimated": "^2.10.0",
+    "react-native-reanimated": "^2.3.1",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.10.1",
     "react-redux": "^7.2.6"
@@ -44,7 +44,9 @@
     "typescript": "^4.4.4"
   },
   "resolutions": {
-    "@types/react": "^17"
+    "@types/react": "^17",
+    "@expo/plist": "0.0.19",
+    "shell-quote": "1.7.3"
   },
   "jest": {
     "preset": "react-native",
