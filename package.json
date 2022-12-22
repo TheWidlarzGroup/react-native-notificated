@@ -69,15 +69,18 @@
     "react-native": "0.66.4",
     "react-native-builder-bob": "^0.18.0",
     "react-native-gesture-handler": "^1.10.3",
-    "react-native-reanimated": "^2.2.4",
-    "release-it": "^14.14.3",
+    "react-native-reanimated": "^2.10.0",
+    "release-it": "^15.5.1",
     "typescript": "^4.1.3"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
     "react-native-gesture-handler": "^1.10.3",
-    "react-native-reanimated": "^2.2.4"
+    "react-native-reanimated": "^2.10.0"
+  },
+  "resolutions": {
+    "shell-quote": "1.7.3"
   },
   "jest": {
     "preset": "react-native",
