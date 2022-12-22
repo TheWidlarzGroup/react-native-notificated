@@ -10,8 +10,6 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "@react-native-firebase/app": "^15.2.0",
-    "@react-native-firebase/messaging": "^15.2.0",
     "@react-native-masked-view/masked-view": "^0.2.6",
     "@react-navigation/drawer": "^6.1.8",
     "@react-navigation/native": "^6.0.6",
@@ -19,11 +17,11 @@
     "@react-navigation/stack": "^6.0.11",
     "@reduxjs/toolkit": "^1.7.1",
     "react": "17.0.2",
-    "react-native": "0.66.3",
+    "react-native": "0.68.4",
     "react-native-gesture-handler": "2.1.1",
-    "react-native-reanimated": "^2.3.1",
+    "react-native-reanimated": "^2.10.0",
     "react-native-safe-area-context": "^3.3.2",
-    "react-native-screens": "^3.10.1",
+    "react-native-screens": "^3.14.0",
     "react-redux": "^7.2.6"
   },
   "devDependencies": {
@@ -33,13 +31,13 @@
     "@testing-library/jest-native": "^4.0.4",
     "@testing-library/react-native": "^9.0.0",
     "@types/jest": "^26.0.23",
-    "@types/react-native": "^0.66.4",
+    "@types/react-native": "^0.68.4",
     "@types/react-test-renderer": "^17.0.1",
     "babel-jest": "^26.6.3",
     "babel-plugin-module-resolver": "^4.1.0",
-    "eslint": "^7.14.0",
+    "eslint": "^7.32.0",
     "jest": "^26.6.3",
-    "metro-react-native-babel-preset": "^0.66.2",
+    "metro-react-native-babel-preset": "^0.67.0",
     "react-test-renderer": "17.0.2",
     "typescript": "^4.4.4"
   },
