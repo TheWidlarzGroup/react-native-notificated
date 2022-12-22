@@ -1,29 +1,15 @@
-import React, { FC, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { InAppNotificationsConfig } from '../defaultConfig/defaultConfig'
 
 import { getNotificationEmmiter } from './services/NotificationEmitterApi'
-import type {
-  Modify,
-  NotificationsConfig,
-  Notify,
-  Remove,
-  UseNotification,
-  VariantsMap,
-} from '../types'
+import type { CreateNotificationsReturnType, NotificationsConfig, VariantsMap } from '../types'
 import { NotificationsRenderer } from './renderers/NotificationsRenderer'
 import { NotificationContext } from './hooks/useNotificationConfig'
 import type { DefaultVariants } from '../defaultConfig/types'
 
 export const createNotifications = <V extends VariantsMap = DefaultVariants>(
   config?: Partial<NotificationsConfig<V>>
-): {
-  useNotifications: UseNotification<V>
-  NotificationsProvider: FC
-  modify: Modify
-  remove: Remove
-  notify: Notify<V>
-  CustomVariantsTypeHelper: V
-} => {
+): CreateNotificationsReturnType<V> => {
   const emitter = getNotificationEmmiter<V>()
   const CustomVariantsTypeHelper = {} as V
 
