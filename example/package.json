@@ -10,8 +10,6 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "@react-native-firebase/app": "^15.2.0",
-    "@react-native-firebase/messaging": "^15.2.0",
     "@react-native-masked-view/masked-view": "^0.2.6",
     "@react-navigation/drawer": "^6.1.8",
     "@react-navigation/native": "^6.0.6",
@@ -21,9 +19,9 @@
     "react": "17.0.2",
     "react-native": "0.68.4",
     "react-native-gesture-handler": "2.1.1",
-    "react-native-reanimated": "^2.3.1",
+    "react-native-reanimated": "^2.10.0",
     "react-native-safe-area-context": "^3.3.2",
-    "react-native-screens": "^3.10.1",
+    "react-native-screens": "^3.14.0",
     "react-redux": "^7.2.6"
   },
   "devDependencies": {
