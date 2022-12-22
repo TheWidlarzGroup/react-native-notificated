@@ -23,10 +23,9 @@ When the notification is about to show up, the value is animated from `0` to `1`
 
 Every time a notification is about to be shown, the library renders the UI part wrapped with an `<Animated.View />` and applies **animated styles** to it so it knows how it should animate.
 
-
 The source of these styles comes from the **animation config** that is generated with `AnimationBuilder` class or `generateAnimationConfig` function and is used internally by the library to generate the animations. You can also use it yourself to create whatever transition you desiere.
 
-Summarizing, there are _4 properties_ that can controll the transtion. They all are handled by `AnimationBuilder` or `generateAnimationConfig` and go as follows:
+Summarizing, there are _4 properties_ that can controll the transition. They all are handled by `AnimationBuilder` or `generateAnimationConfig` and go as follows:
 
 - `animationConfigIn` - spring / timing configuration for transition in. **REQUIRED**
 - `animationConfigOut` - spring / timing configuration for transition out. **Not required**, fallbacks to `animationConfigIn` when not provided
