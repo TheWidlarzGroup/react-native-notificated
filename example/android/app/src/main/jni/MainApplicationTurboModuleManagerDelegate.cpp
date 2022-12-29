@@ -1,7 +1,9 @@
 #include "MainApplicationTurboModuleManagerDelegate.h"
 #include "MainApplicationModuleProvider.h"
+
 namespace facebook {
 namespace react {
+
 jni::local_ref<MainApplicationTurboModuleManagerDelegate::jhybriddata>
 MainApplicationTurboModuleManagerDelegate::initHybrid(
     jni::alias_ref<jhybridobject>) {
@@ -34,5 +36,6 @@ bool MainApplicationTurboModuleManagerDelegate::canCreateTurboModule(
   return getTurboModule(name, nullptr) != nullptr ||
       getTurboModule(name, {.moduleName = name}) != nullptr;
 }
+
 } // namespace react
 } // namespace facebook

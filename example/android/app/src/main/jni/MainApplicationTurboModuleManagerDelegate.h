@@ -2,8 +2,10 @@
 #include <string>
 #include <ReactCommon/TurboModuleManagerDelegate.h>
 #include <fbjni/fbjni.h>
+
 namespace facebook {
 namespace react {
+
 class MainApplicationTurboModuleManagerDelegate
     : public jni::HybridClass<
           MainApplicationTurboModuleManagerDelegate,
@@ -26,5 +28,6 @@ class MainApplicationTurboModuleManagerDelegate
    */
   bool canCreateTurboModule(std::string name);
 };
+
 } // namespace react
 } // namespace facebook

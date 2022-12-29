@@ -3,8 +3,10 @@
 #include <fbjni/fbjni.h>
 #include <react/renderer/componentregistry/ComponentDescriptorProviderRegistry.h>
 #include <react/renderer/componentregistry/ComponentDescriptorRegistry.h>
+
 namespace facebook {
 namespace react {
+    
 class MainComponentsRegistry
     : public facebook::jni::HybridClass<MainComponentsRegistry> {
  public:
@@ -20,5 +22,6 @@ class MainComponentsRegistry
       jni::alias_ref<jclass>,
       ComponentFactory *delegate);
 };
+
 } // namespace react
 } // namespace facebook
