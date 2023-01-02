@@ -1,5 +1,5 @@
 import type { NotificationPosition } from '../types/config'
-import type { ImageSourcePropType, ImageStyle } from 'react-native'
+import type { ImageSourcePropType, ImageStyle, TextStyle } from 'react-native'
 import type { Variant } from '../types'
 import type { SuccessNotification } from './components/success'
 import type { ErrorNotification } from './components/error'
@@ -49,6 +49,10 @@ export type NotificationStyleConfig = Partial<{
   leftIconSource: ImageSourcePropType | JSX.Element
   borderType: BorderType
   imageStyle: ImageStyle
+  titleFamily: string
+  descriptionFamily: string
+  titleWeight: TextStyle['fontWeight']
+  descriptionWeight: TextStyle['fontWeight']
 }>
 
 export type StyleProps = { style?: Partial<NotificationStyleConfig> }

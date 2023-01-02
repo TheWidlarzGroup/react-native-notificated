@@ -31,4 +31,8 @@ export const themeBase = {
     lightGray: '#CACACA',
     shadow: '#A1A1A140',
   },
+  fontWeight: {
+    title: '600',
+    description: '400',
+  } as const,
 }
