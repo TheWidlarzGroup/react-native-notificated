@@ -6,12 +6,18 @@ import type { DefaultKeys, MergedNotificationStyleConfig, Theme } from './types'
 export const getTitleStyle = (styles: MergedNotificationStyleConfig): Partial<TextStyle> => ({
   color: styles.titleColor ? styles.titleColor : themeBase.fontColor[styles.theme],
   fontSize: styles.titleSize ? styles.titleSize : themeBase.fontSize.headerFontSize,
+  fontFamily: styles.titleFamily ? styles.titleFamily : undefined,
+  fontWeight: styles.titleWeight ? styles.titleWeight : themeBase.fontWeight.title,
 })
 
 export const getDescriptionStyle = (styles: MergedNotificationStyleConfig): Partial<TextStyle> => ({
   color: styles.descriptionColor ? styles.descriptionColor : themeBase.fontColor[styles.theme],
   fontSize: styles.descriptionSize ? styles.descriptionSize : themeBase.fontSize.messageFontSize,
   paddingTop: themeBase.spacing.xs,
+  fontFamily: styles.descriptionFamily ? styles.descriptionFamily : undefined,
+  fontWeight: styles.descriptionWeight
+    ? styles.descriptionWeight
+    : themeBase.fontWeight.description,
 })
 
 export const constShadow = (theme: Theme, borderRadius?: number): Partial<ViewStyle> => {
