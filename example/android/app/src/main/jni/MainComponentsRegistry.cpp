@@ -3,8 +3,10 @@
 #include <fbjni/fbjni.h>
 #include <react/renderer/componentregistry/ComponentDescriptorProviderRegistry.h>
 #include <react/renderer/components/rncore/ComponentDescriptors.h>
+
 namespace facebook {
 namespace react {
+
 MainComponentsRegistry::MainComponentsRegistry(ComponentFactory *delegate) {}
 std::shared_ptr<ComponentDescriptorProviderRegistry const>
 MainComponentsRegistry::sharedProviderRegistry() {
@@ -44,5 +46,6 @@ void MainComponentsRegistry::registerNatives() {
       makeNativeMethod("initHybrid", MainComponentsRegistry::initHybrid),
   });
 }
+
 } // namespace react
 } // namespace facebook

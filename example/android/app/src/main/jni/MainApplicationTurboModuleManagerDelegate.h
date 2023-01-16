@@ -2,8 +2,10 @@
 #include <string>
 #include <ReactCommon/TurboModuleManagerDelegate.h>
 #include <fbjni/fbjni.h>
+
 namespace facebook {
 namespace react {
+
 class MainApplicationTurboModuleManagerDelegate
     : public jni::HybridClass<
           MainApplicationTurboModuleManagerDelegate,
@@ -11,7 +13,7 @@ class MainApplicationTurboModuleManagerDelegate
  public:
   // Adapt it to the package you used for your Java class.
   static constexpr auto kJavaDescriptor =
-      "Lcom/rndiffapp/newarchitecture/modules/MainApplicationTurboModuleManagerDelegate;";
+      "Lcom/example/newarchitecture/modules/MainApplicationTurboModuleManagerDelegate;";
   static jni::local_ref<jhybriddata> initHybrid(jni::alias_ref<jhybridobject>);
   static void registerNatives();
   std::shared_ptr<TurboModule> getTurboModule(
@@ -26,5 +28,6 @@ class MainApplicationTurboModuleManagerDelegate
    */
   bool canCreateTurboModule(std::string name);
 };
+
 } // namespace react
 } // namespace facebook
