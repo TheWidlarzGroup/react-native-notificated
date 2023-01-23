@@ -1,7 +1,7 @@
 import { mergeStylesFunctions } from 'src/core/hooks/useAnimationAPI'
 import {
   AnimationBuilder,
-  FadeIn,
+  FadeInFadeOut,
   MoveDownAnimation,
   MoveUpAnimation,
   RotateZIn,
@@ -18,8 +18,8 @@ describe('props merger tests', function () {
 
   it('should merge styles properly with add method', () => {
     const MoveDown = new AnimationBuilder(MoveDownAnimation)
-    const MoveDownFadeIn = FadeIn.add(MoveDown).transitionInStylesQueue
-    const styles = mergeStylesFunctions(MoveDownFadeIn, { value: 1 })
+    const MoveDownFadeInFadeOut = FadeInFadeOut.add(MoveDown).transitionInStylesQueue
+    const styles = mergeStylesFunctions(MoveDownFadeInFadeOut, { value: 1 })
 
     expect(styles).toMatchObject({
       opacity: 1,
