@@ -48,6 +48,13 @@ We've prepared a couple of ready-to-use animations for you (just import them fro
 - `ZoomInDownZoomOutDown`
 - `RotateInRotateOut`
 - `SlideInLeftSlideOutRight`
+- `ZoomInZoomOut`
+- `MoveUp`
+- `MoveDown`
+- `SlideInLeft`
+- `FadeInFadeOut`
+- `VeryCustomTransition`
+- `DiagonalSlideInLeftSlideOutRight`
 
 ---
 

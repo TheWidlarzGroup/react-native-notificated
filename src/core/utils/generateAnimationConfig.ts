@@ -336,20 +336,19 @@ const DiagonalSlideInLeftSlideOutRightAnimation: CustomAnimationConfig = {
 
 export const MoveDown = new AnimationBuilder(MoveDownAnimation)
 export const MoveUp = new AnimationBuilder(MoveUpAnimation)
-export const ZoomIn = new AnimationBuilder(ZoomInAnimation)
+export const ZoomInZoomOut = new AnimationBuilder(ZoomInAnimation)
 export const SlideInLeft = new AnimationBuilder(SlideInLeftAnimation)
 export const SlideInLeftSlideOutRight = new AnimationBuilder(SlideInLeftSlideOutRightAnimation)
-export const RotateIn = new AnimationBuilder(RotateInAnimation)
+export const RotateInRotateOut = new AnimationBuilder(RotateInAnimation)
 export const RotateZIn = new AnimationBuilder(RotateZInAnimation)
-export const FadeIn = new AnimationBuilder(FadeInAnimation)
+export const FadeInFadeOut = new AnimationBuilder(FadeInAnimation)
 export const CrazyAnimationConfig = new AnimationBuilder(CrazyAnimationConfigAnimation)
 export const VeryCustomTransition = new AnimationBuilder(VeryCustomTransitionAnimation)
 export const DiagonalSlideInLeftSlideOutRight = new AnimationBuilder(
   DiagonalSlideInLeftSlideOutRightAnimation
 )
 export const ZoomInDownZoomOutDown = new AnimationBuilder(ZoomInAnimation).add(MoveDown)
-export const ZoomInDownZoomOutUp = new AnimationBuilder(ZoomIn).add(MoveUp)
-
+export const ZoomInDownZoomOutUp = new AnimationBuilder(ZoomInZoomOut).add(MoveUp)
 /**
  * @deprecated since version > 0.0.1-beta.2
  */
