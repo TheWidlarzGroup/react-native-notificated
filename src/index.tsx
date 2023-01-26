@@ -6,15 +6,15 @@ import { defaultVariants } from './defaultConfig/defaultConfig'
 import { useNotificationController } from './hooks/useNotificationController'
 import {
   SlideInLeftSlideOutRight,
-  ZoomIn,
+  ZoomInZoomOut,
   MoveUp,
   ZoomInDownZoomOutUp,
   ZoomInDownZoomOutDown,
   MoveDown,
   SlideInLeft,
   RotateZIn,
-  FadeIn,
-  RotateIn,
+  FadeInFadeOut,
+  RotateInRotateOut,
   VeryCustomTransition,
   DiagonalSlideInLeftSlideOutRight,
 } from './core/utils/generateAnimationConfig'
@@ -26,7 +26,7 @@ export { defaultVariants }
 export {
   generateAnimationConfig,
   AnimationBuilder,
-  ZoomIn,
+  ZoomInZoomOut,
   ZoomInDownZoomOutDown,
   MoveDown,
   ZoomInDownZoomOutUp,
@@ -34,8 +34,8 @@ export {
   SlideInLeft,
   SlideInLeftSlideOutRight,
   RotateZIn,
-  FadeIn,
-  RotateIn,
+  FadeInFadeOut,
+  RotateInRotateOut,
   VeryCustomTransition,
   DiagonalSlideInLeftSlideOutRight,
 }
