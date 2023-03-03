@@ -23,7 +23,7 @@ yarn add react-native-notificated
 
 React-native-notificated is fully compatible with react new architecture on both Android and iOS.
 
-### 🛸 Dependencies
+## 🛸 Dependencies
 
 This library requires these dependencies to be installed in your project:
 
