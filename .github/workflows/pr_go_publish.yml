@@ -5,6 +5,8 @@ on:
     paths:
       - example-expo/**
       - src/**
+    branches-ignore:
+      - dependabot/*
 jobs:
   pr_build:
     name: Push to Expo Go on Pull Requests
