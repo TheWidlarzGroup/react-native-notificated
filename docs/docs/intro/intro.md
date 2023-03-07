@@ -21,7 +21,7 @@ yarn add react-native-notificated
 
 ## 🔥 New Architecture
 
-React-native-notificated is fully compatible with react new architecture on both Android and iOS.
+React-native-notificated is fully compatible with React new architecture on both Android and iOS.
 
 ## 🛸 Dependencies
 
