@@ -39,6 +39,8 @@ export const mergeProps = (
     theme: darkMode ? 'dark' : 'regular',
     titleSize: chooseProps('titleSize'),
     titleColor: chooseProps('titleColor'),
+    titleFamily: chooseProps("titleFamily"),
+    titleWeight: chooseProps("titleWeight"),
     descriptionColor: chooseProps('descriptionColor'),
     descriptionSize: chooseProps('descriptionSize'),
     bgColor: chooseProps('bgColor'),
