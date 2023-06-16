@@ -43,6 +43,8 @@ export const mergeProps = (
     titleWeight: chooseProps("titleWeight"),
     descriptionColor: chooseProps('descriptionColor'),
     descriptionSize: chooseProps('descriptionSize'),
+    descriptionFamily: chooseProps("descriptionFamily"),
+    descriptionWeight: chooseProps("descriptionWeight"),
     bgColor: chooseProps('bgColor'),
     borderWidth: chooseProps('borderWidth') ?? 1,
     multiline: chooseProps('multiline'),
