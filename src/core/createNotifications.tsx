@@ -17,7 +17,7 @@ export const createNotifications = <V extends VariantsMap = DefaultVariants>(
     return (
       <NotificationContext.Provider value={{ ...InAppNotificationsConfig, ...config }}>
         {children}
-        <NotificationsRenderer />
+        <NotificationsRenderer providerID={config?.providerID} />
       </NotificationContext.Provider>
     )
   }

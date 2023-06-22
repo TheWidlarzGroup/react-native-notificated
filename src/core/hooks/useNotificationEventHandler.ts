@@ -5,7 +5,7 @@ import type { AnimationAPI } from './useAnimationAPI'
 import type { EmitParam, ModifiedEmitParam, RemoveEmitParam } from '../services/types'
 
 type Props = Pick<NotificationState, 'dispatch' | 'notificationsQueue' | 'notificationEvent'> &
-  Pick<AnimationAPI, 'dismiss' | 'present'>
+  Pick<AnimationAPI, 'dismiss' | 'present'> & { providerID?: string }
 
 export const useNotificationEventHandler = ({
   dismiss,
@@ -13,6 +13,7 @@ export const useNotificationEventHandler = ({
   notificationsQueue,
   present,
   dispatch,
+  providerID,
 }: Props) => {
   useEffect(() => {
     if (notificationEvent?.id) {
@@ -22,11 +23,13 @@ export const useNotificationEventHandler = ({
 
   useEffect(() => {
     const removeListener = emitter.addListener('add_notification', (config: EmitParam) => {
+      if (providerID && config.params?.customID && providerID !== config.params?.customID) return
+
       dispatch({ type: 'add', payload: config })
     })
 
     return removeListener
-  }, [dispatch])
+  }, [dispatch, providerID])
 
   useEffect(() => {
     const modifyNotification = (modifiedConfig: ModifiedEmitParam) => {

@@ -34,6 +34,7 @@ export type NotificationConfigBase = {
   gestureConfig: GestureConfig
   isNotch?: boolean
   onClose?: () => void
+  providerID?: string
 }
 
 export type NotificationsConfig<Variants> = {

@@ -11,7 +11,7 @@ export const NotificationsRenderer = () => {
 
   const animationAPI = useAnimationAPI(config)
 
-  useNotificationEventHandler({ ...state, ...animationAPI })
+  useNotificationEventHandler({ ...state, ...animationAPI, providerID: config?.providerID })
 
   return (
     <GestureHandler state={state} animationAPI={animationAPI}>
