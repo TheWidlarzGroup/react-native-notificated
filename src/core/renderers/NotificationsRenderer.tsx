@@ -6,12 +6,16 @@ import { AnimationRenderer } from './AnimationRenderer'
 import { VariantsRenderer } from './VariantsRenderer'
 import { useAnimationAPI } from '../hooks/useAnimationAPI'
 
-export const NotificationsRenderer = () => {
+type Props = {
+  providerID?: string
+}
+
+export const NotificationsRenderer = ({ providerID }: Props) => {
   const { config, ...state } = useNotificationsStates()
 
   const animationAPI = useAnimationAPI(config)
 
-  useNotificationEventHandler({ ...state, ...animationAPI, providerID: config?.providerID })
+  useNotificationEventHandler({ ...state, ...animationAPI, providerID })
 
   return (
     <GestureHandler state={state} animationAPI={animationAPI}>

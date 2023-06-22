@@ -34,7 +34,6 @@ export type NotificationConfigBase = {
   gestureConfig: GestureConfig
   isNotch?: boolean
   onClose?: () => void
-  providerID?: string
 }
 
 export type NotificationsConfig<Variants> = {
@@ -57,7 +56,7 @@ export type UseNotification<V extends VariantsMap = Variants> = () => Emmiter<V>
 
 export type CreateNotificationsReturnType<V extends VariantsMap = Variants> = {
   useNotifications: UseNotification<V>
-  NotificationsProvider: React.FC
+  NotificationsProvider: React.FC<{ providerID?: string }>
   CustomVariantsTypeHelper: V
 } & ReturnType<UseNotification<V>>
 

@@ -23,7 +23,7 @@ export const useNotificationEventHandler = ({
 
   useEffect(() => {
     const removeListener = emitter.addListener('add_notification', (config: EmitParam) => {
-      if (providerID && config.params?.customID && providerID !== config.params?.customID) return
+      if (config.params?.customID && providerID !== config.params?.customID) return
 
       dispatch({ type: 'add', payload: config })
     })

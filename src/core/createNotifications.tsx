@@ -13,11 +13,17 @@ export const createNotifications = <V extends VariantsMap = DefaultVariants>(
   const emitter = getNotificationEmmiter<V>()
   const CustomVariantsTypeHelper = {} as V
 
-  const NotificationsProvider = ({ children = null }: { children?: ReactNode }) => {
+  const NotificationsProvider = ({
+    children = null,
+    providerID,
+  }: {
+    children?: ReactNode
+    providerID?: string
+  }) => {
     return (
       <NotificationContext.Provider value={{ ...InAppNotificationsConfig, ...config }}>
         {children}
-        <NotificationsRenderer providerID={config?.providerID} />
+        <NotificationsRenderer providerID={providerID} />
       </NotificationContext.Provider>
     )
   }
