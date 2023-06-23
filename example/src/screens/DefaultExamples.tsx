@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SafeAreaView } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import Modal from 'react-native-modal'
 import { createNotifications } from 'react-native-notificated'
 import { SuccessButton } from '../components/basicExamples/SuccessButton'
@@ -9,6 +9,7 @@ import { InfoButton } from '../components/basicExamples/InfoButton'
 import { ModifyButton } from '../components/basicExamples/ModifyButton'
 import { RemoveButton } from '../components/basicExamples/RemoveButton'
 import { styles } from './styles'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const { useNotifications, NotificationsProvider } = createNotifications({
   notificationPosition: 'top',
@@ -19,15 +20,25 @@ const { useNotifications, NotificationsProvider } = createNotifications({
   },
 })
 
+const { useNotifications: useNotifications2, NotificationsProvider: NotificationsProvider2 } =
+  createNotifications({
+    notificationPosition: 'top',
+    defaultStylesSettings: {
+      errorConfig: {
+        notificationPosition: 'bottom',
+      },
+    },
+  })
+
 export const DefaultExamples = () => {
   const { notify, remove, modify } = useNotifications()
+  const { notify: notify2, remove: remove2, modify: modify2 } = useNotifications2()
   const [id, setId] = useState('')
-  const [isVisible, setIsVisible] = useState(false)
+  const [isModalOpened, setIsModalOpened] = useState(false)
 
   return (
     <SafeAreaView style={styles.container}>
-      <NotificationsProvider />
-
+      <NotificationsProvider2 />
       <SuccessButton
         onPress={() =>
           setId(
@@ -88,30 +99,42 @@ export const DefaultExamples = () => {
         }
       />
 
-      <RemoveButton onPress={() => setIsVisible(true)} />
+      <RemoveButton onPress={() => remove(id)} />
+      <TouchableOpacity onPress={() => setIsModalOpened(true)} style={styles.modalButton}>
+        <Text>Open Modal</Text>
+      </TouchableOpacity>
 
       <Modal
-        isVisible={isVisible}
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          paddingHorizontal: 20,
-          zIndex: 2,
-        }}>
-        {/* <NotificationsProvider /> */}
-        <WarningButton
+        isVisible={isModalOpened}
+        onBackdropPress={() => setIsModalOpened(false)}
+        style={styles.modal}>
+        <NotificationsProvider providerID="id1" />
+
+        <TouchableOpacity onPress={() => setIsModalOpened(false)} style={styles.modalButton}>
+          <Text>Close Modal</Text>
+        </TouchableOpacity>
+
+        <SuccessButton
           onPress={() =>
-            notify(
-              'warning',
-              {
+            setId(
+              notify('success', {
                 params: {
                   description: 'This is where the toast text goes',
-                  title: 'Warning',
+                  title: 'Success',
+                  customID: 'id1',
                 },
-              },
-              'customId'
+                config: {
+                  notificationPosition: 'center',
+                },
+              }).id
             )
+          }
+        />
+        <ModifyButton
+          onPress={() =>
+            modify(id, {
+              params: { title: 'Modified title', description: 'Modified description' },
+            })
           }
         />
       </Modal>

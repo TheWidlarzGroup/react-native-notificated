@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { Constants } from '../config'
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,12 +12,12 @@ export const styles = StyleSheet.create({
   },
   containerIos: {
     left: `auto`,
-    right: Constants.notificationSideMargin,
+    right: `auto`,
     top: 50,
   },
   containerAndroid: {
     left: `auto`,
-    right: Constants.notificationSideMargin,
+    right: `auto`,
     top: 30,
   },
   boxWrapper: {

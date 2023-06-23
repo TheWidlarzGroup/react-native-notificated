@@ -56,7 +56,7 @@ export type UseNotification<V extends VariantsMap = Variants> = () => Emmiter<V>
 
 export type CreateNotificationsReturnType<V extends VariantsMap = Variants> = {
   useNotifications: UseNotification<V>
-  NotificationsProvider: React.FC<{ providerID?: string }>
+  NotificationsProvider: React.FC<{ providerID?: string; customTopPosition?: number }>
   CustomVariantsTypeHelper: V
 } & ReturnType<UseNotification<V>>
 
