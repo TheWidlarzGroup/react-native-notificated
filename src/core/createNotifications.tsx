@@ -16,16 +16,19 @@ export const createNotifications = <V extends VariantsMap = DefaultVariants>(
   const NotificationsProvider = ({
     children = null,
     providerID,
-    customTopPosition,
+    notificationTopPosition,
   }: {
     children?: ReactNode
     providerID?: string
-    customTopPosition?: number
+    notificationTopPosition?: number
   }) => {
     return (
       <NotificationContext.Provider value={{ ...InAppNotificationsConfig, ...config }}>
         {children}
-        <NotificationsRenderer providerID={providerID} customTopPosition={customTopPosition} />
+        <NotificationsRenderer
+          providerID={providerID}
+          notificationTopPosition={notificationTopPosition}
+        />
       </NotificationContext.Provider>
     )
   }

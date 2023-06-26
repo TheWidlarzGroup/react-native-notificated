@@ -8,10 +8,10 @@ import { useAnimationAPI } from '../hooks/useAnimationAPI'
 
 type Props = {
   providerID?: string
-  customTopPosition?: number
+  notificationTopPosition?: number
 }
 
-export const NotificationsRenderer = ({ providerID, customTopPosition }: Props) => {
+export const NotificationsRenderer = ({ providerID, notificationTopPosition }: Props) => {
   const { config, ...state } = useNotificationsStates()
 
   const animationAPI = useAnimationAPI(config)
@@ -23,7 +23,10 @@ export const NotificationsRenderer = ({ providerID, customTopPosition }: Props) 
   })
 
   return (
-    <GestureHandler state={state} animationAPI={animationAPI} customTopPosition={customTopPosition}>
+    <GestureHandler
+      state={state}
+      animationAPI={animationAPI}
+      notificationTopPosition={notificationTopPosition}>
       <AnimationRenderer state={state} animationAPI={animationAPI}>
         <VariantsRenderer config={config} notificationEvent={state.notificationEvent} />
       </AnimationRenderer>
