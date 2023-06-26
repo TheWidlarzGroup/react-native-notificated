@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, Text } from 'react-native'
 import Modal from 'react-native-modal'
 import { createNotifications } from 'react-native-notificated'
 import { SuccessButton } from '../components/basicExamples/SuccessButton'
@@ -20,19 +20,17 @@ const { useNotifications, NotificationsProvider } = createNotifications({
   },
 })
 
-const { useNotifications: useNotifications2, NotificationsProvider: NotificationsProvider2 } =
-  createNotifications({
-    notificationPosition: 'top',
-    defaultStylesSettings: {
-      errorConfig: {
-        notificationPosition: 'bottom',
-      },
+const { NotificationsProvider: NotificationsProvider2 } = createNotifications({
+  notificationPosition: 'top',
+  defaultStylesSettings: {
+    errorConfig: {
+      notificationPosition: 'bottom',
     },
-  })
+  },
+})
 
 export const DefaultExamples = () => {
   const { notify, remove, modify } = useNotifications()
-  const { notify: notify2, remove: remove2, modify: modify2 } = useNotifications2()
   const [id, setId] = useState('')
   const [isModalOpened, setIsModalOpened] = useState(false)
 
@@ -108,7 +106,7 @@ export const DefaultExamples = () => {
         isVisible={isModalOpened}
         onBackdropPress={() => setIsModalOpened(false)}
         style={styles.modal}>
-        <NotificationsProvider providerID="id1" />
+        <NotificationsProvider providerID="id1" notificationTopPosition={0} />
 
         <TouchableOpacity onPress={() => setIsModalOpened(false)} style={styles.modalButton}>
           <Text>Close Modal</Text>
@@ -122,9 +120,6 @@ export const DefaultExamples = () => {
                   description: 'This is where the toast text goes',
                   title: 'Success',
                   customID: 'id1',
-                },
-                config: {
-                  notificationPosition: 'center',
                 },
               }).id
             )
