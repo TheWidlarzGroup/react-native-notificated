@@ -125,6 +125,14 @@ config?: {
 
 ---
 
+### `Custom ProviderID and NotificationTopPosition`
+
+```tsx
+NotificationsProvider: React.FC<{ providerID?: string; notificationTopPosition?: number }>
+```
+
+---
+
 ### `NotificationParams`
 
 ```tsx
@@ -134,6 +142,7 @@ params: {
     onPress?: () => void
     style?: StyleProps
     hideCloseButton?: boolean // default false
+    customID?: string
 }
 ```
 
