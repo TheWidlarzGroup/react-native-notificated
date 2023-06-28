@@ -32,14 +32,7 @@ import { ModifyButton } from '../components/basicExamples/ModifyButton'
 import { styles } from './styles'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-const { useNotifications, NotificationsProvider } = createNotifications({
-  notificationPosition: 'top',
-  defaultStylesSettings: {
-    errorConfig: {
-      notificationPosition: 'bottom',
-    },
-  },
-})
+const { useNotifications, NotificationsProvider } = createNotifications()
 
 export const NotificationInModalExample = () => {
   const { notify, modify } = useNotifications()
@@ -58,7 +51,7 @@ export const NotificationInModalExample = () => {
         isVisible={isModalOpened}
         onBackdropPress={() => setIsModalOpened(false)}
         style={styles.modal}>
-        <NotificationsProvider providerID="id1" notificationTopPosition={-80} />
+        <NotificationsProvider providerID="id1" notificationTopPosition={0} />
 
         <TouchableOpacity onPress={() => setIsModalOpened(false)} style={styles.modalButton}>
           <Text style={styles.modalButtonsText}>Close Modal</Text>
@@ -83,7 +76,7 @@ export const NotificationInModalExample = () => {
               params: {
                 description: 'This is where the toast text goes. ',
                 title: 'Error',
-                customID: 'id1',
+                customID: 'id2',
               },
               config: {
                 duration: 2000,

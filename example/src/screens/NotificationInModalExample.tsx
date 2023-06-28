@@ -10,14 +10,7 @@ import { ModifyButton } from '../components/basicExamples/ModifyButton'
 import { styles } from './styles'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-const { useNotifications, NotificationsProvider } = createNotifications({
-  notificationPosition: 'top',
-  defaultStylesSettings: {
-    errorConfig: {
-      notificationPosition: 'bottom',
-    },
-  },
-})
+const { useNotifications, NotificationsProvider } = createNotifications()
 
 export const NotificationInModalExample = () => {
   const { notify, modify } = useNotifications()
