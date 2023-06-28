@@ -1,3 +1,25 @@
+---
+sidebar_position: 8
+---
+
+# 🪶 Notifcation In Modal Example
+
+<br/>
+
+Code has been already described step by step in the [DEFAULT EXAMPLES](./default-examples.md) section, so I think there is no use to do it here again.
+
+Here we have only a few differences I need to mention, and they are minimal:
+
+- we use `modify()` and `remove()` only in the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove the notification, or modify it, and therefore we will not be using them here and in the other examples as well. For that same reason, we will not be using `useState` and `useNotificationController` here.
+- we filled the `style` object in every notification. To read more about the single notification properties please go to the [SINGLE NOTIFICATION CONFIG](../default-variants-config/props-config.md) section.
+  <br/>
+
+In fact that's the only differences between Default Examples and Notification In Modal Example.<br/>
+Let's take a look at the code:
+
+## Code
+
+```tsx
 import React, { useState } from 'react'
 import { SafeAreaView, Text } from 'react-native'
 import Modal from 'react-native-modal'
@@ -36,7 +58,7 @@ export const NotificationInModalExample = () => {
         isVisible={isModalOpened}
         onBackdropPress={() => setIsModalOpened(false)}
         style={styles.modal}>
-        <NotificationsProvider providerID="id1" notificationTopPosition={0} />
+        <NotificationsProvider providerID="id1" notificationTopPosition={-80} />
 
         <TouchableOpacity onPress={() => setIsModalOpened(false)} style={styles.modalButton}>
           <Text style={styles.modalButtonsText}>Close Modal</Text>
@@ -61,7 +83,7 @@ export const NotificationInModalExample = () => {
               params: {
                 description: 'This is where the toast text goes. ',
                 title: 'Error',
-                customID: 'id2',
+                customID: 'id1',
               },
               config: {
                 duration: 2000,
@@ -108,3 +130,14 @@ export const NotificationInModalExample = () => {
     </SafeAreaView>
   )
 }
+```
+
+<br/>
+
+## Conclusion
+
+To display notifications over modal we have to use additional NotificationProvider. But because of how the library is built, it will result with multiple notifications being displayed (each for every NotificationProvider). To address this problem, we need to pass additional props to our NotificationProvider and notify function which are called: **providerID** and **customID**.
+
+What we should remember is that we mustn't pass **customID** without **providerID** and we shouldn't pass any of those if we have only one NotificationProvider in the application.
+
+We also have props called **notificationTopPosition**. In other example we are using **notificationPosition** but because styling in modal isn't so simple and we don't know what your modal looks like you have to pass notificationTopPosition by yourself. Keep in mind that notificationTopPosition={0} will render notification on top of your modal.
