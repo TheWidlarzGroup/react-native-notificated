@@ -23,4 +23,8 @@ export const styles = StyleSheet.create({
     top: '15%',
     borderRadius: 12,
   },
+  modalButtonsText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
 })
