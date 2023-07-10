@@ -6,7 +6,6 @@ import { SuccessButton } from '../components/basicExamples/SuccessButton'
 import { ErrorButton } from '../components/basicExamples/ErrorButton'
 import { WarningButton } from '../components/basicExamples/WarningButton'
 import { InfoButton } from '../components/basicExamples/InfoButton'
-import { ModifyButton } from '../components/basicExamples/ModifyButton'
 import { styles } from './styles'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
@@ -14,8 +13,7 @@ const { useNotifications, NotificationsProvider, ModalNotificationsProvider } =
   createNotifications()
 
 export const NotificationInModalExample = () => {
-  const { notify, modify } = useNotifications()
-  const [id, setId] = useState('')
+  const { notify } = useNotifications()
   const [isModalOpened, setIsModalOpened] = useState(false)
 
   return (
@@ -38,15 +36,13 @@ export const NotificationInModalExample = () => {
 
         <SuccessButton
           onPress={() =>
-            setId(
-              notify('success', {
-                params: {
-                  description: 'This is where the toast text goes',
-                  title: 'Success',
-                  isModalNotification: true,
-                },
-              }).id
-            )
+            notify('success', {
+              params: {
+                description: 'This is where the toast text goes',
+                title: 'Success',
+                isModalNotification: true,
+              },
+            }).id
           }
         />
         <ErrorButton
@@ -87,14 +83,6 @@ export const NotificationInModalExample = () => {
               config: {
                 notificationPosition: 'bottom',
               },
-            })
-          }
-        />
-
-        <ModifyButton
-          onPress={() =>
-            modify(id, {
-              params: { title: 'Modified title', description: 'Modified description' },
             })
           }
         />
