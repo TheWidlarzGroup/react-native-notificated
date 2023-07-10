@@ -122,3 +122,5 @@ To display notifications over modal we have to use additional ModalNotifications
 You shouldn't pass isModalNotification to notify function if you are not using it with ModalNotificationsProvider as it won't work at all.
 
 We also have props called **notificationTopPosition**. In other examples we are using **notificationPosition** but because styling in modal isn't so simple and we don't know what your modal looks like you have to pass notificationTopPosition by yourself. Keep in mind that notificationTopPosition={0} will render notification on top of your modal.
+
+This is probably a temporary solution until we find something that will work globaly and out of the box.
