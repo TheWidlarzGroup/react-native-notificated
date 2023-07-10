@@ -8,13 +8,12 @@ sidebar_position: 8
 
 Code has been already described step by step in the [DEFAULT EXAMPLES](./default-examples.md) section, so I think there is no use to do it here again.
 
-Here we have only a few differences I need to mention, and they are minimal:
+In fact the only differences between Default Examples and Notification In Modal Example are:
 
-- we use `modify()` and `remove()` only in the [DEFAULT EXAMPLES](./default-examples.md) because their usage is limited, and the explanation there is all we need to know. We can remove the notification, or modify it, and therefore we will not be using them here and in the other examples as well. For that same reason, we will not be using `useState` and `useNotificationController` here.
-- we filled the `style` object in every notification. To read more about the single notification properties please go to the [SINGLE NOTIFICATION CONFIG](../default-variants-config/props-config.md) section.
-  <br/>
+1. We are using an additional **ModalNotificationsProvider**.
+2. We are passing **isModalNotification** to notify function.
+3. We can use **notificationTopPosition** as **ModalNotificationsProvider** props to change position of our notification.
 
-In fact that's the only differences between Default Examples and Notification In Modal Example.<br/>
 Let's take a look at the code:
 
 ## Code
@@ -28,15 +27,14 @@ import { SuccessButton } from '../components/basicExamples/SuccessButton'
 import { ErrorButton } from '../components/basicExamples/ErrorButton'
 import { WarningButton } from '../components/basicExamples/WarningButton'
 import { InfoButton } from '../components/basicExamples/InfoButton'
-import { ModifyButton } from '../components/basicExamples/ModifyButton'
 import { styles } from './styles'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-const { useNotifications, NotificationsProvider } = createNotifications()
+const { useNotifications, NotificationsProvider, ModalNotificationsProvider } =
+  createNotifications()
 
 export const NotificationInModalExample = () => {
-  const { notify, modify } = useNotifications()
-  const [id, setId] = useState('')
+  const { notify } = useNotifications()
   const [isModalOpened, setIsModalOpened] = useState(false)
 
   return (
@@ -51,7 +49,7 @@ export const NotificationInModalExample = () => {
         isVisible={isModalOpened}
         onBackdropPress={() => setIsModalOpened(false)}
         style={styles.modal}>
-        <NotificationsProvider providerID="id1" notificationTopPosition={0} />
+        <ModalNotificationsProvider notificationTopPosition={0} />
 
         <TouchableOpacity onPress={() => setIsModalOpened(false)} style={styles.modalButton}>
           <Text style={styles.modalButtonsText}>Close Modal</Text>
@@ -59,15 +57,13 @@ export const NotificationInModalExample = () => {
 
         <SuccessButton
           onPress={() =>
-            setId(
-              notify('success', {
-                params: {
-                  description: 'This is where the toast text goes',
-                  title: 'Success',
-                  customID: 'id1',
-                },
-              }).id
-            )
+            notify('success', {
+              params: {
+                description: 'This is where the toast text goes',
+                title: 'Success',
+                isModalNotification: true,
+              },
+            }).id
           }
         />
         <ErrorButton
@@ -76,7 +72,7 @@ export const NotificationInModalExample = () => {
               params: {
                 description: 'This is where the toast text goes. ',
                 title: 'Error',
-                customID: 'id2',
+                isModalNotification: true,
               },
               config: {
                 duration: 2000,
@@ -91,7 +87,7 @@ export const NotificationInModalExample = () => {
               params: {
                 description: 'This is where the toast text goes',
                 title: 'Warning',
-                customID: 'id1',
+                isModalNotification: true,
               },
             })
           }
@@ -103,19 +99,11 @@ export const NotificationInModalExample = () => {
               params: {
                 description: 'This is where the toast text goes.',
                 title: 'Info',
-                customID: 'id1',
+                isModalNotification: true,
               },
               config: {
                 notificationPosition: 'bottom',
               },
-            })
-          }
-        />
-
-        <ModifyButton
-          onPress={() =>
-            modify(id, {
-              params: { title: 'Modified title', description: 'Modified description' },
             })
           }
         />
@@ -129,8 +117,8 @@ export const NotificationInModalExample = () => {
 
 ## Conclusion
 
-To display notifications over modal we have to use additional NotificationProvider. But because of how the library is built, it will result with multiple notifications being displayed (each for every NotificationProvider). To address this problem, we need to pass additional props to our NotificationProvider and notify function which are called: **providerID** and **customID**.
+To display notifications over modal we have to use additional ModalNotificationsProvider. But because of how the library is built, it will result with multiple notifications being displayed (each for every NotificationsProvider or ModalNotificationsProvider). To address this problem, we need to pass additional property to notify function params: **isModalNotification:true**.
 
-What we should remember is that we mustn't pass **customID** without **providerID** and we shouldn't pass any of those if we have only one NotificationProvider in the application.
+You shouldn't pass isModalNotification to notify function if you are not using it with ModalNotificationsProvider as it won't work at all.
 
-We also have props called **notificationTopPosition**. In other example we are using **notificationPosition** but because styling in modal isn't so simple and we don't know what your modal looks like you have to pass notificationTopPosition by yourself. Keep in mind that notificationTopPosition={0} will render notification on top of your modal.
+We also have props called **notificationTopPosition**. In other examples we are using **notificationPosition** but because styling in modal isn't so simple and we don't know what your modal looks like you have to pass notificationTopPosition by yourself. Keep in mind that notificationTopPosition={0} will render notification on top of your modal.

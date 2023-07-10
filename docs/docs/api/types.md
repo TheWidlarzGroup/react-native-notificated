@@ -125,14 +125,6 @@ config?: {
 
 ---
 
-### `Custom ProviderID and NotificationTopPosition`
-
-```tsx
-NotificationsProvider: React.FC<{ providerID?: string; notificationTopPosition?: number }>
-```
-
----
-
 ### `NotificationParams`
 
 ```tsx
@@ -164,6 +156,14 @@ params: {
 
 ```tsx
 ;'top' | 'center' | 'top'
+```
+
+---
+
+### `ModalNotificationProvider`
+
+```tsx
+ModalNotificationProvider: React.FC<{ notificationTopPosition?: number }>
 ```
 
 ---
