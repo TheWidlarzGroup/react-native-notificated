@@ -9,9 +9,10 @@ import { useAnimationAPI } from '../hooks/useAnimationAPI'
 type Props = {
   providerID?: string
   notificationTopPosition?: number
+  isModalProvider?: boolean
 }
 
-export const NotificationsRenderer = ({ providerID, notificationTopPosition }: Props) => {
+export const NotificationsRenderer = ({ isModalProvider, notificationTopPosition }: Props) => {
   const { config, ...state } = useNotificationsStates()
 
   const animationAPI = useAnimationAPI(config)
@@ -19,7 +20,7 @@ export const NotificationsRenderer = ({ providerID, notificationTopPosition }: P
   useNotificationEventHandler({
     ...state,
     ...animationAPI,
-    providerID,
+    isModalProvider,
   })
 
   return (

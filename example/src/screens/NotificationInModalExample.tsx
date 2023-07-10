@@ -10,7 +10,8 @@ import { ModifyButton } from '../components/basicExamples/ModifyButton'
 import { styles } from './styles'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-const { useNotifications, NotificationsProvider } = createNotifications()
+const { useNotifications, NotificationsProvider, ModalNotificationsProvider } =
+  createNotifications()
 
 export const NotificationInModalExample = () => {
   const { notify, modify } = useNotifications()
@@ -29,7 +30,7 @@ export const NotificationInModalExample = () => {
         isVisible={isModalOpened}
         onBackdropPress={() => setIsModalOpened(false)}
         style={styles.modal}>
-        <NotificationsProvider providerID="id1" notificationTopPosition={0} />
+        <ModalNotificationsProvider notificationTopPosition={0} />
 
         <TouchableOpacity onPress={() => setIsModalOpened(false)} style={styles.modalButton}>
           <Text style={styles.modalButtonsText}>Close Modal</Text>
@@ -42,7 +43,7 @@ export const NotificationInModalExample = () => {
                 params: {
                   description: 'This is where the toast text goes',
                   title: 'Success',
-                  customID: 'id1',
+                  isModalNotification: true,
                 },
               }).id
             )
@@ -54,7 +55,7 @@ export const NotificationInModalExample = () => {
               params: {
                 description: 'This is where the toast text goes. ',
                 title: 'Error',
-                customID: 'id2',
+                isModalNotification: true,
               },
               config: {
                 duration: 2000,
@@ -69,7 +70,7 @@ export const NotificationInModalExample = () => {
               params: {
                 description: 'This is where the toast text goes',
                 title: 'Warning',
-                customID: 'id1',
+                isModalNotification: true,
               },
             })
           }
@@ -81,7 +82,7 @@ export const NotificationInModalExample = () => {
               params: {
                 description: 'This is where the toast text goes.',
                 title: 'Info',
-                customID: 'id1',
+                isModalNotification: true,
               },
               config: {
                 notificationPosition: 'bottom',
