@@ -9,6 +9,7 @@ import { SingleCustomCases } from '../screens/SingleCustomCases'
 import { ReduxExample } from '../screens/ReduxExample'
 import { AnimationsExamples } from '../screens/AnimationsExamples'
 import { CustomCaseExamples } from '../screens/CustomCaseExamples'
+import { NotificationInModalExample } from '../screens/NotificationInModalExample'
 
 const Drawer = createDrawerNavigator<Routes>()
 
@@ -22,5 +23,6 @@ export const AppNavigator = () => (
     <Drawer.Screen name="Single Custom Cases" component={SingleCustomCases} />
     <Drawer.Screen name="Redux Example" component={ReduxExample} />
     <Drawer.Screen name="Animations Examples" component={AnimationsExamples} />
+    <Drawer.Screen name="Notification In Modal" component={NotificationInModalExample} />
   </Drawer.Navigator>
 )

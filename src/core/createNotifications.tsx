@@ -22,12 +22,31 @@ export const createNotifications = <V extends VariantsMap = DefaultVariants>(
     )
   }
 
+  const ModalNotificationsProvider = ({
+    children = null,
+    notificationTopPosition,
+  }: {
+    children?: ReactNode
+    notificationTopPosition?: number
+  }) => {
+    return (
+      <NotificationContext.Provider value={{ ...InAppNotificationsConfig, ...config }}>
+        {children}
+        <NotificationsRenderer
+          isModalProvider={true}
+          notificationTopPosition={notificationTopPosition}
+        />
+      </NotificationContext.Provider>
+    )
+  }
+
   const useNotifications = () => emitter
 
   return {
     useNotifications,
     NotificationsProvider,
     CustomVariantsTypeHelper,
+    ModalNotificationsProvider,
     ...emitter,
   }
 }

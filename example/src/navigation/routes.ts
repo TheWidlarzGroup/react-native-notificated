@@ -7,4 +7,5 @@ export type Routes = {
   'Single Custom Cases': undefined
   'Redux Example': undefined
   'Animations Examples': undefined
+  'Notification In Modal': undefined
 }
