@@ -5,7 +5,7 @@ import type { AnimationAPI } from './useAnimationAPI'
 import type { EmitParam, ModifiedEmitParam, RemoveEmitParam } from '../services/types'
 
 type Props = Pick<NotificationState, 'dispatch' | 'notificationsQueue' | 'notificationEvent'> &
-  Pick<AnimationAPI, 'dismiss' | 'present'>
+  Pick<AnimationAPI, 'dismiss' | 'present'> & { isModalProvider?: boolean }
 
 export const useNotificationEventHandler = ({
   dismiss,
@@ -13,6 +13,7 @@ export const useNotificationEventHandler = ({
   notificationsQueue,
   present,
   dispatch,
+  isModalProvider,
 }: Props) => {
   useEffect(() => {
     if (notificationEvent?.id) {
@@ -22,11 +23,13 @@ export const useNotificationEventHandler = ({
 
   useEffect(() => {
     const removeListener = emitter.addListener('add_notification', (config: EmitParam) => {
+      if (!isModalProvider && config.params.isModalNotification) return
+
       dispatch({ type: 'add', payload: config })
     })
 
     return removeListener
-  }, [dispatch])
+  }, [dispatch, isModalProvider])
 
   useEffect(() => {
     const modifyNotification = (modifiedConfig: ModifiedEmitParam) => {

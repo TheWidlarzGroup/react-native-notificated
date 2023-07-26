@@ -18,13 +18,25 @@ type Props = {
     | 'isPortaitMode'
   >
   animationAPI: Pick<AnimationAPI, 'dragGestureHandler' | 'handleDragStateChange' | 'dragStyles'>
+  notificationTopPosition?: number
 }
 
-export const GestureHandler = ({ children, state, animationAPI }: Props) => {
+export const GestureHandler = ({
+  children,
+  state,
+  animationAPI,
+  notificationTopPosition,
+}: Props) => {
   const { width } = useWindowDimensions()
   const notificationWidth = state.isPortaitMode
     ? width - Constants.notificationSideMargin * 2
     : Constants.maxNotificationWidth
+
+  const top =
+    notificationTopPosition || notificationTopPosition === 0
+      ? notificationTopPosition
+      : state.topOffset
+
   return (
     <PanGestureHandler
       ref={state.panHandlerRef}
@@ -38,7 +50,7 @@ export const GestureHandler = ({ children, state, animationAPI }: Props) => {
           styles.container,
           Constants.isAndroid ? styles.containerAndroid : styles.containerIos,
           {
-            top: state.topOffset,
+            top,
             width: notificationWidth,
           },
         ]}>

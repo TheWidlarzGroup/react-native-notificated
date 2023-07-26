@@ -32,6 +32,7 @@ export type NotificationOwnProps = {
   title: string
   description?: string
   onPress?: () => void
+  isModalNotification?: boolean
 }
 
 export type NotificationStyleConfig = Partial<{

@@ -134,6 +134,7 @@ params: {
     onPress?: () => void
     style?: StyleProps
     hideCloseButton?: boolean // default false
+    customID?: string
 }
 ```
 
@@ -155,6 +156,14 @@ params: {
 
 ```tsx
 ;'top' | 'center' | 'top'
+```
+
+---
+
+### `ModalNotificationProvider`
+
+```tsx
+ModalNotificationProvider: React.FC<{ notificationTopPosition?: number }>
 ```
 
 ---

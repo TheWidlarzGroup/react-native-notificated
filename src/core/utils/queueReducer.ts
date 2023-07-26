@@ -29,7 +29,7 @@ const pop = (state: EmitParam[], action: Pop) => {
 
 const remove = (state: EmitParam[], action: Remove) => {
   // fallback to exit animation when notification to remove is active
-  if (state[0].id === action.payload) {
+  if (state[0]?.id && state[0].id === action.payload) {
     action.onActiveNotification(action.payload)
     return state
   }

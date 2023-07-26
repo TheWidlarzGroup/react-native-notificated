@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import Layout from '@theme/Layout'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import styles from './index.module.css'
@@ -7,8 +7,10 @@ import githubWhiteIcon from '../../static/img/githubWhite.png'
 import { useColorMode } from '@docusaurus/theme-common'
 
 function HomepageHero() {
+  const [theme, setTheme] = useState('light')
+
   const themeData = useColorMode()
-  const isDarkTheme = themeData.colorMode === 'dark'
+  const isDarkTheme = theme === 'dark'
 
   const buttonStyle = isDarkTheme ? styles.heroButtonWhite : styles.heroButtonBlack
   const iconColor = isDarkTheme ? githubWhiteIcon : githubBlackIcon
@@ -16,6 +18,18 @@ function HomepageHero() {
   const rightLightningColor = isDarkTheme ? styles.whiteLightningRight : styles.blackLightningRight
   const leftLineColor = isDarkTheme ? styles.whiteLineLeft : styles.blackLineLeft
   const rightLineColor = isDarkTheme ? styles.whiteLineRight : styles.blackLineRight
+
+  useLayoutEffect(() => {
+    const initialTheme = document.documentElement.getAttribute('data-theme')
+    setTheme(initialTheme)
+  }, [])
+
+  useEffect(() => {
+    const themeColorMode = themeData.colorMode
+    if (themeColorMode !== theme) {
+      setTheme(themeData.colorMode)
+    }
+  }, [themeData.colorMode])
 
   return (
     <div className={styles.heroContainer}>
