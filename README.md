@@ -1,11 +1,10 @@
-<p align="center">
+<div align="center">
   <img alt="react-native-notificated" src="https://github.com/TheWidlarzGroup/react-native-notificated/blob/master/docs/static/img/notificated_logo_small.png?raw=true">
-</p>
-<p align="center">
-  Blazingly super fast RN notification library.<br />
-  Better than your delivery man. <br/>
-  <a href="https://thewidlarzgroup.github.io/react-native-notificated/">react-native-notificated</a>
-</p>
+<h1 align="center">
+  Blazingly super fast ⚡️ React Native toast notifications
+</h1>
+<a href="https://thewidlarzgroup.github.io/react-native-notificated/">react-native-notificated</a>
+</div>
 
 ---
 
@@ -100,4 +99,5 @@ E-mail if you have any questions or just want to talk <hello@thewidlarzgroup.com
 
 ## 🏢 License
 
-MIT
+The MIT License
+See [LICENSE](LICENSE.md) for more information.
