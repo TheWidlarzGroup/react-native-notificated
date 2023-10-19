@@ -13,15 +13,15 @@ const { useNotifications, NotificationsProvider } = createNotifications({
   notificationWidth: 300,
   defaultStylesSettings: {
     globalConfig: {
-      notificationPosition: 'bottom',
-      titleSize: 40,
-    },
-    errorConfig: {
-      notificationPosition: 'top',
+      titleSize: 30,
     },
     successConfig: {
-      notificationPosition: 'top',
+      notificationPosition: 'center',
       titleSize: 20,
+    },
+    errorConfig: {
+      notificationPosition: 'bottom',
+      titleSize: 10,
     },
   },
 })
@@ -45,6 +45,11 @@ export const DefaultExamples = () => {
                   titleSize: 10,
                 },
               },
+              config: {
+                duration: 2000,
+                notificationPosition: 'top-right',
+                notificationWidth: 200,
+              },
             }).id
           )
         }
@@ -57,13 +62,13 @@ export const DefaultExamples = () => {
               description: 'This is where the toast text goes.',
               title: 'Error',
               style: {
-                titleSize: 10,
+                titleSize: 20,
               },
             },
             config: {
               duration: 2000,
-              notificationPosition: 'bottom',
-              notificationWidth: 100,
+              notificationPosition: 'top',
+              notificationWidth: 2000,
             },
           })
         }
@@ -76,7 +81,9 @@ export const DefaultExamples = () => {
               description: 'This is where the toast text goes',
               title: 'Warning',
             },
-            config: {},
+            config: {
+              notificationPosition: 'bottom-left',
+            },
           })
         }
       />
@@ -89,7 +96,7 @@ export const DefaultExamples = () => {
               title: 'Info',
             },
             config: {
-              notificationPosition: 'bottom',
+              notificationPosition: 'bottom-right',
             },
           })
         }
