@@ -30,34 +30,26 @@ export const GestureHandler = ({
 }: Props) => {
   const { width } = useWindowDimensions()
 
-  //Jeżeli ktoś poda za dużą szerokość to czy ma zostać zastosowana cała szerokość ekranu czy może defaultowa szerokość?
-
-  //Kiedy komunikat ma zajmować całą szerokość?
-
-  /*Jak ma się zachowywać komunikat przy:
-  1) portrait: cała szerokość domyślnie, chyba że notificationWith (jest różny od undefined) 
-  2) landscape: maxNotificationWidth domyślnie chyba że notificationWith (jest różny od undefined)  
-
-*/
-
-  // fixme: TS krzyczy jak uzywa sie hasNotificationWidth, trzeba to jakos ograc sensownie
-  const hasNotificationWidth = !!state?.notificationWidth
-  const isWidthProvided = !!state?.notificationWidth && state.notificationWidth <= width
-
   const getDefaultWidth = () => width - Constants.notificationSideMargin * 2
 
-  const getMaxWidth = () => {
-    if (!!state?.notificationWidth && state.notificationWidth > width) {
-      return width - Constants.notificationSideMargin * 2
+  const notificationWidthFromState = state?.notificationWidth
+  const hasNotificationWidth = !!notificationWidthFromState
+
+  const isWidthWithinBounds = hasNotificationWidth && notificationWidthFromState <= width
+
+  const getMaxWidth = (): number => {
+    if (hasNotificationWidth && notificationWidthFromState > width) {
+      return getDefaultWidth()
     }
-    return hasNotificationWidth ? state.notificationWidth : Constants.maxNotificationWidth
+    return hasNotificationWidth ? notificationWidthFromState : Constants.maxNotificationWidth
   }
 
-  const notificationWidth = state.isPortrait
-    ? isWidthProvided
-      ? state.notificationWidth
-      : getDefaultWidth()
-    : getMaxWidth()
+  let notificationWidth: number
+  if (state.isPortrait) {
+    notificationWidth = isWidthWithinBounds ? notificationWidthFromState : getDefaultWidth()
+  } else {
+    notificationWidth = getMaxWidth()
+  }
 
   const top =
     notificationTopPosition || notificationTopPosition === 0
