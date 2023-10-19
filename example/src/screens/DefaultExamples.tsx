@@ -10,10 +10,18 @@ import { RemoveButton } from '../components/basicExamples/RemoveButton'
 import { styles } from './styles'
 
 const { useNotifications, NotificationsProvider } = createNotifications({
-  notificationPosition: 'top',
+  notificationWidth: 300,
   defaultStylesSettings: {
-    errorConfig: {
+    globalConfig: {
       notificationPosition: 'bottom',
+      titleSize: 40,
+    },
+    errorConfig: {
+      notificationPosition: 'top',
+    },
+    successConfig: {
+      notificationPosition: 'top',
+      titleSize: 20,
     },
   },
 })
@@ -31,8 +39,11 @@ export const DefaultExamples = () => {
           setId(
             notify('success', {
               params: {
-                description: 'This is where the toast text goes',
+                description: 'This is where the toast text goes.',
                 title: 'Success',
+                style: {
+                  titleSize: 10,
+                },
               },
             }).id
           )
@@ -43,11 +54,16 @@ export const DefaultExamples = () => {
         onPress={() =>
           notify('error', {
             params: {
-              description: 'This is where the toast text goes. ',
+              description: 'This is where the toast text goes.',
               title: 'Error',
+              style: {
+                titleSize: 10,
+              },
             },
             config: {
               duration: 2000,
+              notificationPosition: 'bottom',
+              notificationWidth: 100,
             },
           })
         }
@@ -60,6 +76,7 @@ export const DefaultExamples = () => {
               description: 'This is where the toast text goes',
               title: 'Warning',
             },
+            config: {},
           })
         }
       />

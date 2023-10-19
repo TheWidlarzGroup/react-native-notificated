@@ -1,5 +1,12 @@
 export type NotificationsType = 'default' | 'success' | 'warning' | 'error'
-export type NotificationPosition = 'top' | 'center' | 'bottom'
+export type NotificationPosition =
+  | 'top'
+  | 'center'
+  | 'bottom'
+  | 'top-left'
+  | 'top-right'
+  | 'bottom-left'
+  | 'bottom-right'
 
 export type NotificationConfig = {
   type: NotificationsType

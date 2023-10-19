@@ -6,6 +6,7 @@ import type { NotificationState } from '../hooks/useNotificationsStates'
 import Animated from 'react-native-reanimated'
 import { styles } from '../utils/styles'
 import { Constants } from '../config'
+import { useNotificationsStates } from '../hooks/useNotificationsStates'
 
 type Props = {
   children: ReactNode
@@ -14,7 +15,7 @@ type Props = {
     | 'longPressHandlerRef'
     | 'panHandlerRef'
     | 'setNotificationHeight'
-    | 'topOffset'
+    | 'notificationOffset'
     | 'isPortaitMode'
   >
   animationAPI: Pick<AnimationAPI, 'dragGestureHandler' | 'handleDragStateChange' | 'dragStyles'>
@@ -28,14 +29,44 @@ export const GestureHandler = ({
   notificationTopPosition,
 }: Props) => {
   const { width } = useWindowDimensions()
-  const notificationWidth = state.isPortaitMode
-    ? width - Constants.notificationSideMargin * 2
-    : Constants.maxNotificationWidth
+  const { config } = useNotificationsStates()
+
+  //Jeżeli ktoś poda za dużą szerokość to czy ma zostać zastosowana cała szerokość ekranu czy może defaultowa szerokość?
+
+  //Kiedy komunikat ma zajmować całą szerokość?
+
+  /*Jak ma się zachowywać komunikat przy:
+  1) portrait: cała szerokość domyślnie, chyba że notificationWith (jest różny od undefined) 
+  2) landscape: maxNotificationWidth domyślnie chyba że notificationWith (jest różny od undefined)  
+
+*/
+
+  const hasNotificationWidth = config?.notificationWidth
+  const isWidthProvided = hasNotificationWidth && config.notificationWidth <= width
+
+  const getDefaultWidth = () => width - Constants.notificationSideMargin * 2
+
+  const getMaxWidth = () => {
+    if (hasNotificationWidth && config.notificationWidth > width) {
+      return width - Constants.notificationSideMargin * 2
+    }
+    return hasNotificationWidth ? config.notificationWidth : Constants.maxNotificationWidth
+  }
+
+  const notificationWidth = state.isPortraitMode
+    ? isWidthProvided
+      ? config.notificationWidth
+      : getDefaultWidth()
+    : getMaxWidth()
 
   const top =
     notificationTopPosition || notificationTopPosition === 0
       ? notificationTopPosition
-      : state.topOffset
+      : state.notificationOffset.top
+
+  const left = state.notificationOffset.left
+
+  const right = state.notificationOffset.right
 
   return (
     <PanGestureHandler
@@ -51,6 +82,8 @@ export const GestureHandler = ({
           Constants.isAndroid ? styles.containerAndroid : styles.containerIos,
           {
             top,
+            left,
+            right,
             width: notificationWidth,
           },
         ]}>

@@ -33,6 +33,7 @@ export type NotificationConfigBase = {
   animationConfig: AnimationBuilder | CustomAnimationConfig
   gestureConfig: GestureConfig
   isNotch?: boolean
+  notificationWidth?: number
   onClose?: () => void
 }
 
