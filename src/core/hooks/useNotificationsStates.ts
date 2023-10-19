@@ -35,7 +35,8 @@ export const useNotificationsStates = () => {
     notificationsQueue,
     longPressHandlerRef,
     setNotificationHeight,
-    isPortaitMode: isPortraitMode,
+    isPortrait: isPortraitMode,
+    notificationWidth: config.notificationWidth,
   }
 }
 

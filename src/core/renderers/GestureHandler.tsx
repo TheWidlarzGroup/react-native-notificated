@@ -6,7 +6,6 @@ import type { NotificationState } from '../hooks/useNotificationsStates'
 import Animated from 'react-native-reanimated'
 import { styles } from '../utils/styles'
 import { Constants } from '../config'
-import { useNotificationsStates } from '../hooks/useNotificationsStates'
 
 type Props = {
   children: ReactNode
@@ -16,7 +15,8 @@ type Props = {
     | 'panHandlerRef'
     | 'setNotificationHeight'
     | 'notificationOffset'
-    | 'isPortaitMode'
+    | 'isPortrait'
+    | 'notificationWidth'
   >
   animationAPI: Pick<AnimationAPI, 'dragGestureHandler' | 'handleDragStateChange' | 'dragStyles'>
   notificationTopPosition?: number
@@ -29,7 +29,6 @@ export const GestureHandler = ({
   notificationTopPosition,
 }: Props) => {
   const { width } = useWindowDimensions()
-  const { config } = useNotificationsStates()
 
   //Jeżeli ktoś poda za dużą szerokość to czy ma zostać zastosowana cała szerokość ekranu czy może defaultowa szerokość?
 
@@ -41,21 +40,22 @@ export const GestureHandler = ({
 
 */
 
-  const hasNotificationWidth = config?.notificationWidth
-  const isWidthProvided = hasNotificationWidth && config.notificationWidth <= width
+  // fixme: TS krzyczy jak uzywa sie hasNotificationWidth, trzeba to jakos ograc sensownie
+  const hasNotificationWidth = !!state?.notificationWidth
+  const isWidthProvided = !!state?.notificationWidth && state.notificationWidth <= width
 
   const getDefaultWidth = () => width - Constants.notificationSideMargin * 2
 
   const getMaxWidth = () => {
-    if (hasNotificationWidth && config.notificationWidth > width) {
+    if (!!state?.notificationWidth && state.notificationWidth > width) {
       return width - Constants.notificationSideMargin * 2
     }
-    return hasNotificationWidth ? config.notificationWidth : Constants.maxNotificationWidth
+    return hasNotificationWidth ? state.notificationWidth : Constants.maxNotificationWidth
   }
 
-  const notificationWidth = state.isPortraitMode
+  const notificationWidth = state.isPortrait
     ? isWidthProvided
-      ? config.notificationWidth
+      ? state.notificationWidth
       : getDefaultWidth()
     : getMaxWidth()
 
