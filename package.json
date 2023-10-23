@@ -1,7 +1,7 @@
 {
   "name": "react-native-notificated",
   "version": "0.1.1",
-  "description": "Blazingly super fast RN notification library. Better than your delivery man",
+  "description": "React Native toast notifications for iOS and Android",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -36,7 +36,13 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "react native",
+    "push notifications",
+    "notifications",
+    "react native notifications",
+    "react native toast",
+    "toast notifications"
   ],
   "repository": "https://github.com/TheWidlarzGroup/react-native-notificated",
   "author": "TWG <rn-notificated@thewidlarzgroup.com> (https://thewidlarzgroup.com/)",
