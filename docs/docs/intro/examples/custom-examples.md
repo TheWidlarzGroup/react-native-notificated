@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# 🪶 Custom examples
+# 🧭 Custom examples
 
 <br/>
 

@@ -2,7 +2,7 @@
 sidebar_position: 8
 ---
 
-# 🪶 Notifcation In Modal Example
+# 🔔 Notifcation In Modal Example
 
 <br/>
 

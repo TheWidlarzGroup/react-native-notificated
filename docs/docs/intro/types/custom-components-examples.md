@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 🪬 Specifying default types
+# 🔧 Specifying default types
 
 <br/>
 

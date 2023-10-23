@@ -113,6 +113,7 @@ const { useNotifications, NotificationsProvider } = createNotifications({
   isNotch: true,
   duration: 30,
   notificationPosition: 'top',
+  notificationWidth: 400,
   animationConfig: SlideInLeftSlideOutRight,
   defaultStylesSettings: {
     darkMode: false,
@@ -139,6 +140,7 @@ All those properties:
 - isNotch
 - duration
 - notificationPosition
+- notificationWidth
 - animationConfig
 
 (defaultStylesSettings)
@@ -238,6 +240,7 @@ All those properties:
 (config)
 
 - notificationPosition
+- notificationWidth
 - animationConfig
 - duration
 

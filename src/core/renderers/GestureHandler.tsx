@@ -30,26 +30,13 @@ export const GestureHandler = ({
 }: Props) => {
   const { width } = useWindowDimensions()
 
-  const getDefaultWidth = () => width - Constants.notificationSideMargin * 2
+  const fullWidth = width - Constants.notificationSideMargin * 2
 
-  const notificationWidthFromState = state?.notificationWidth
-  const hasNotificationWidth = !!notificationWidthFromState
+  const initialNotificationWidth = state?.notificationWidth || Constants.maxNotificationWidth
 
-  const isWidthWithinBounds = hasNotificationWidth && notificationWidthFromState <= width
+  const isWidthWithinBounds = initialNotificationWidth <= width
 
-  const getMaxWidth = (): number => {
-    if (hasNotificationWidth && notificationWidthFromState > width) {
-      return getDefaultWidth()
-    }
-    return hasNotificationWidth ? notificationWidthFromState : Constants.maxNotificationWidth
-  }
-
-  let notificationWidth: number
-  if (state.isPortrait) {
-    notificationWidth = isWidthWithinBounds ? notificationWidthFromState : getDefaultWidth()
-  } else {
-    notificationWidth = getMaxWidth()
-  }
+  const notificationWidth = isWidthWithinBounds ? initialNotificationWidth : fullWidth
 
   const top =
     notificationTopPosition || notificationTopPosition === 0

@@ -10,18 +10,10 @@ import { RemoveButton } from '../components/basicExamples/RemoveButton'
 import { styles } from './styles'
 
 const { useNotifications, NotificationsProvider } = createNotifications({
-  notificationWidth: 300,
+  notificationPosition: 'top',
   defaultStylesSettings: {
-    globalConfig: {
-      titleSize: 30,
-    },
-    successConfig: {
-      notificationPosition: 'center',
-      titleSize: 20,
-    },
     errorConfig: {
       notificationPosition: 'bottom',
-      titleSize: 10,
     },
   },
 })
@@ -39,16 +31,8 @@ export const DefaultExamples = () => {
           setId(
             notify('success', {
               params: {
-                description: 'This is where the toast text goes.',
+                description: 'This is where the toast text goes',
                 title: 'Success',
-                style: {
-                  titleSize: 10,
-                },
-              },
-              config: {
-                duration: 2000,
-                notificationPosition: 'top-right',
-                notificationWidth: 200,
               },
             }).id
           )
@@ -59,16 +43,11 @@ export const DefaultExamples = () => {
         onPress={() =>
           notify('error', {
             params: {
-              description: 'This is where the toast text goes.',
+              description: 'This is where the toast text goes. ',
               title: 'Error',
-              style: {
-                titleSize: 20,
-              },
             },
             config: {
               duration: 2000,
-              notificationPosition: 'top',
-              notificationWidth: 2000,
             },
           })
         }
@@ -80,9 +59,6 @@ export const DefaultExamples = () => {
             params: {
               description: 'This is where the toast text goes',
               title: 'Warning',
-            },
-            config: {
-              notificationPosition: 'bottom-left',
             },
           })
         }
@@ -96,7 +72,7 @@ export const DefaultExamples = () => {
               title: 'Info',
             },
             config: {
-              notificationPosition: 'bottom-right',
+              notificationPosition: 'bottom',
             },
           })
         }

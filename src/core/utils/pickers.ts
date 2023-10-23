@@ -34,11 +34,11 @@ export const getNotificationOffset = ({
       break
     case 'top-left':
       topOffset = topPosition
-      leftOffset = 10
+      leftOffset = Constants.notificationSideMargin
       break
     case 'top-right':
       topOffset = topPosition
-      rightOffset = 10
+      rightOffset = Constants.notificationSideMargin
       break
     case 'center':
       topOffset = windowHeight / 2 - (notificationHeight ? notificationHeight / 2 + 10 : 75)
@@ -48,11 +48,11 @@ export const getNotificationOffset = ({
       break
     case 'bottom-left':
       topOffset = windowHeight - (notificationHeight ? notificationHeight + extraSpace : 150)
-      leftOffset = 10
+      leftOffset = Constants.notificationSideMargin
       break
     case 'bottom-right':
       topOffset = windowHeight - (notificationHeight ? notificationHeight + extraSpace : 150)
-      rightOffset = 10
+      rightOffset = Constants.notificationSideMargin
       break
     default:
       topOffset = topPosition

@@ -8,8 +8,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "postinstall": "patch-package",
-    "clear": "yarn --clearCache"
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@react-native-masked-view/masked-view": "^0.2.6",
@@ -20,7 +19,7 @@
     "@reduxjs/toolkit": "^1.7.1",
     "react": "17.0.2",
     "react-native": "0.68.5",
-    "react-native-gesture-handler": "2.9.0",
+    "react-native-gesture-handler": "^2.9.0",
     "react-native-modal": "^13.0.1",
     "react-native-reanimated": "^2.14.4",
     "react-native-safe-area-context": "^3.3.2",

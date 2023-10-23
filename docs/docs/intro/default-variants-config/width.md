@@ -2,30 +2,23 @@
 sidebar_position: 2
 ---
 
-# 📌 Notification position
+# 📏 Notification width
 
 ####
 
-## 🎛 Changing position
+## 🎛 Changing width
 
-You can change the position of the notifications displayed on the screen. <br/>
-There are seven possible options to choose from:
+You can change the width of the notifications displayed on the screen. <br/>
 
-- `top` - at the top of the screen
-- `top-right` - at the top right of the screen
-- `top-left` - at the top left of the screen
-- `center` - at the middle of the screen (y-axis)
-- `bottom`- at the bottom of the screen
-- `bottom-right` - at the bottom right of the screen
-- `bottom-left` - at the bottom left of the screen
+By default, the `notificationWidth` is set to 343 pixels. If you don't specify a value for `notificationWidth`, notifications will default to this width.
 
-The default setting for the `notificationPosition` is the `top` value.
+If the value you provide for `notificationWidth` exceeds the device's width, the notification's width will be adjusted to the device width minus the margin value.
 
-Depending on whether you want to change the notification position for the whole app or only change it for a certain notification, you can either:
+Depending on whether you want to change the notification width for the whole app or only change it for a certain notification, you can either:
 
 <br/>
 
-### Set the position for all notifications in the global config object:
+### Set the width for all notifications in the global config object:
 
 ```jsx
 import React from 'react'
@@ -34,7 +27,7 @@ import { createNotifications } from 'react-native-notificated'
 import { styles } from './styles'
 
 const { NotificationsProvider, useNotifications } = createNotifications({
-  notificationPosition: 'center',
+  notificationWidth: 400,
 })
 
 export const ExampleNotification = () => {
@@ -59,7 +52,7 @@ export const ExampleNotification = () => {
 }
 ```
 
-Now all the notifications in the app will be displayed in the middle of the screen (y-axis) because we have set the `notificationPosition` value for the `center`.
+"Now, all notifications in the application will be 400 pixels wide because we've set the `notificationWidth` value to 400."
 
 <br/>
 <br/>
@@ -73,7 +66,7 @@ import { createNotifications } from 'react-native-notificated'
 import { styles } from './styles'
 
 const { NotificationsProvider, useNotifications } = createNotifications({
-  notificationPosition: 'center',
+  notificationWidth: 400,
 })
 
 export const ExampleNotification = () => {
@@ -90,7 +83,7 @@ export const ExampleNotification = () => {
               title: 'Error',
             },
             config: {
-              notificationPosition: 'bottom',
+              notificationWidth: 500,
             },
           })
         }>
@@ -101,9 +94,9 @@ export const ExampleNotification = () => {
 }
 ```
 
-Now, all the notifications in the app (instead of this one `error` notification in the example above) will be displayed in the middle of the screen (y-axis).<br />
-But the `error` notification from the example above will be displayed at the bottom of the screen because the local config overwrites the global config.<br/>
-Of course, we can just set it locally, there is no need to set it globally if we don't need to. <br/>
+Now, all notifications in the app will be displayed with a width of 400 pixels, except for the `error` notification mentioned in the previous example.<br />
+That `error` notification will have a width of 500 pixels because local configuration overrides the global setting.<br />
+Of course, if you prefer, you can set the width locally without adjusting the global setting.<br/>
 (You can read more about props overwriting in the [ORDER OF SETTINGS OVERWRITING](../comprehensive-configuration/order-of-settings-overwriting) section)
 
 <br/>
@@ -111,10 +104,10 @@ Of course, we can just set it locally, there is no need to set it globally if we
 
 ## 🔦 Position config priority
 
-For each subsequent notification, the library looks for a notification position in the following order:
+For each subsequent notification, the library looks for a notification width in the following order:
 
 1. First, it looks for a config defined in `notify` payload
 2. Secondly, it looks for a global config from `createNotification`
-3. At last, when no config is found, it uses the default behavior, which is `top`
+3. At last, when no config is found, it uses the default behavior, which is 343 pixels
 
 <br/>
