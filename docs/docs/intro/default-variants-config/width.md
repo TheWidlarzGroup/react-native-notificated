@@ -102,7 +102,7 @@ Of course, if you prefer, you can set the width locally without adjusting the gl
 <br/>
 <br/>
 
-## 🔦 Position config priority
+## 🔦 Width config priority
 
 For each subsequent notification, the library looks for a notification width in the following order:
 
