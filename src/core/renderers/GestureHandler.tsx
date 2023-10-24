@@ -34,7 +34,7 @@ export const GestureHandler = ({
 
   const initialNotificationWidth = state?.notificationWidth || Constants.maxNotificationWidth
 
-  const isWidthWithinBounds = initialNotificationWidth <= width
+  const isWidthWithinBounds = initialNotificationWidth <= fullWidth
 
   const notificationWidth = isWidthWithinBounds ? initialNotificationWidth : fullWidth
 
