@@ -14,8 +14,9 @@ type Props = {
     | 'longPressHandlerRef'
     | 'panHandlerRef'
     | 'setNotificationHeight'
-    | 'topOffset'
-    | 'isPortaitMode'
+    | 'notificationOffset'
+    | 'isPortrait'
+    | 'notificationWidth'
   >
   animationAPI: Pick<AnimationAPI, 'dragGestureHandler' | 'handleDragStateChange' | 'dragStyles'>
   notificationTopPosition?: number
@@ -28,14 +29,23 @@ export const GestureHandler = ({
   notificationTopPosition,
 }: Props) => {
   const { width } = useWindowDimensions()
-  const notificationWidth = state.isPortaitMode
-    ? width - Constants.notificationSideMargin * 2
-    : Constants.maxNotificationWidth
+
+  const fullWidth = width - Constants.notificationSideMargin * 2
+
+  const initialNotificationWidth = state?.notificationWidth || Constants.maxNotificationWidth
+
+  const isWidthWithinBounds = initialNotificationWidth <= fullWidth
+
+  const notificationWidth = isWidthWithinBounds ? initialNotificationWidth : fullWidth
 
   const top =
     notificationTopPosition || notificationTopPosition === 0
       ? notificationTopPosition
-      : state.topOffset
+      : state.notificationOffset.top
+
+  const left = state.notificationOffset.left
+
+  const right = state.notificationOffset.right
 
   return (
     <PanGestureHandler
@@ -51,6 +61,8 @@ export const GestureHandler = ({
           Constants.isAndroid ? styles.containerAndroid : styles.containerIos,
           {
             top,
+            left,
+            right,
             width: notificationWidth,
           },
         ]}>

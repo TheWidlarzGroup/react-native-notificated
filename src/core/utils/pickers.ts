@@ -4,7 +4,7 @@ import type { DefaultKeys, DefaultStylesConfigs } from '../../defaultConfig/type
 import type { KeyType } from '../../types/misc'
 import { Constants } from '../config'
 
-type GetOffsetTopProps = {
+type GetNotificationOffsetProps = {
   globalConfig: NotificationsConfig<VariantsMap>
   notificationHeight: number
   isPortraitMode: boolean
@@ -12,13 +12,13 @@ type GetOffsetTopProps = {
   statusBarHeight: number
 }
 
-export const getTopOffset = ({
+export const getNotificationOffset = ({
   globalConfig,
   notificationHeight,
   isPortraitMode,
   windowHeight,
   statusBarHeight,
-}: GetOffsetTopProps) => {
+}: GetNotificationOffsetProps) => {
   const isNotch = globalConfig.isNotch
   const extraSpace = statusBarHeight + 10
 
@@ -26,16 +26,40 @@ export const getTopOffset = ({
   const topPosition = shouldRenderExtraSpace ? extraSpace : 10
   const notificationPosition = globalConfig.notificationPosition
 
+  let topOffset, leftOffset, rightOffset
+
   switch (notificationPosition) {
     case 'top':
-      return topPosition
+      topOffset = topPosition
+      break
+    case 'top-left':
+      topOffset = topPosition
+      leftOffset = Constants.notificationSideMargin
+      break
+    case 'top-right':
+      topOffset = topPosition
+      rightOffset = Constants.notificationSideMargin
+      break
     case 'center':
-      return windowHeight / 2 - (notificationHeight ? notificationHeight / 2 : 75)
+      topOffset = windowHeight / 2 - (notificationHeight ? notificationHeight / 2 + 10 : 75)
+      break
     case 'bottom':
-      return windowHeight - (notificationHeight ? notificationHeight + extraSpace : 150)
+      topOffset = windowHeight - (notificationHeight ? notificationHeight + extraSpace : 150)
+      break
+    case 'bottom-left':
+      topOffset = windowHeight - (notificationHeight ? notificationHeight + extraSpace : 150)
+      leftOffset = Constants.notificationSideMargin
+      break
+    case 'bottom-right':
+      topOffset = windowHeight - (notificationHeight ? notificationHeight + extraSpace : 150)
+      rightOffset = Constants.notificationSideMargin
+      break
     default:
-      return topPosition
+      topOffset = topPosition
+      break
   }
+
+  return { top: topOffset, left: leftOffset, right: rightOffset }
 }
 
 export const pickVariant = (

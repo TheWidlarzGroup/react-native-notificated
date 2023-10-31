@@ -1,7 +1,7 @@
 import { useReducer, useRef, useState } from 'react'
 import { useWindowDimensions } from 'react-native'
 import { useNotificationConfig } from './useNotificationConfig'
-import { getTopOffset, mergeConfigs } from '../utils/pickers'
+import { getNotificationOffset, mergeConfigs } from '../utils/pickers'
 import { queueReducer } from '../utils/queueReducer'
 import { useStatusBarHeightDetector } from './useStatusBarHeightDetector'
 
@@ -18,7 +18,7 @@ export const useNotificationsStates = () => {
   const notificationEvent = notificationsQueue[0]
   const config = mergeConfigs(globalConfig, notificationEvent)
 
-  const topOffset = getTopOffset({
+  const notificationOffset = getNotificationOffset({
     globalConfig: config,
     notificationHeight,
     isPortraitMode,
@@ -29,13 +29,14 @@ export const useNotificationsStates = () => {
   return {
     config,
     dispatch,
-    topOffset,
+    notificationOffset,
     panHandlerRef,
     notificationEvent,
     notificationsQueue,
     longPressHandlerRef,
     setNotificationHeight,
-    isPortaitMode: isPortraitMode,
+    isPortrait: isPortraitMode,
+    notificationWidth: config.notificationWidth,
   }
 }
 

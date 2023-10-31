@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 🪛 Basic configuration
+# 🛠 Basic configuration
 
 ### Create Notifications
 
