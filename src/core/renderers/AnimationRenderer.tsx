@@ -18,7 +18,7 @@ type Props = {
 
 export const AnimationRenderer = ({ children, animationAPI, state }: Props) => {
   return (
-    <Animated.View style={[animationAPI.animatedStyles]}>
+    <Animated.View style={[animationAPI.animatedStyles]} needsOffscreenAlphaCompositing>
       {state.notificationEvent && (
         <LongPressGestureHandler
           minDurationMs={800}
