@@ -23,7 +23,7 @@ export const useNotificationEventHandler = ({
 
   useEffect(() => {
     const removeListener = emitter.addListener('add_notification', (config: EmitParam) => {
-      if (!isModalProvider && config.params.isModalNotification) return
+      if (!isModalProvider && config.params?.isModalNotification) return
 
       dispatch({ type: 'add', payload: config })
     })
