@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import Animated from 'react-native-reanimated'
 import { LongPressGestureHandler } from 'react-native-gesture-handler'
-import { View } from 'react-native'
+import { Platform, View } from 'react-native'
 import type { NotificationState } from '../hooks/useNotificationsStates'
 import type { AnimationAPI } from '../hooks/useAnimationAPI'
 import { styles } from '../utils/styles'
@@ -18,7 +18,9 @@ type Props = {
 
 export const AnimationRenderer = ({ children, animationAPI, state }: Props) => {
   return (
-    <Animated.View style={[animationAPI.animatedStyles]} needsOffscreenAlphaCompositing>
+    <Animated.View
+      style={[animationAPI.animatedStyles]}
+      needsOffscreenAlphaCompositing={Platform.OS === 'android'}>
       {state.notificationEvent && (
         <LongPressGestureHandler
           minDurationMs={800}
