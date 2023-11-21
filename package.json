@@ -108,9 +108,9 @@
   },
   "release-it": {
     "git": {
+      "requireBranch": "master",
       "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}",
-      "requiredBranch": "master"
+      "tagName": "v${version}"
     },
     "npm": {
       "publish": true
