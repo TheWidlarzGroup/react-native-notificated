@@ -113,7 +113,7 @@
       "tagName": "v${version}"
     },
     "hooks": {
-      "after:bump": "npx auto-changelog -ps"
+      "after:bump": "npx auto-changelog -p"
     },
     "npm": {
       "publish": true
