@@ -109,7 +109,8 @@
   "release-it": {
     "git": {
       "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
+      "tagName": "v${version}",
+      "requiredBranch": "master"
     },
     "npm": {
       "publish": true
