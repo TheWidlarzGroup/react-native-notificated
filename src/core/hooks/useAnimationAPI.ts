@@ -140,11 +140,11 @@ export const useAnimationAPI = ({
   const animatedStyles = useAnimatedStyle(() => {
     if (
       ['out', 'idle_active'].includes(currentTransitionType.value) &&
-      transitionOutStylesQueue.length > 0
+      transitionOutStylesQueue?.length > 0
     ) {
       return mergeStylesFunctions(transitionOutStylesQueue, progress)
     }
-    if (transitionInStylesQueue.length > 0) {
+    if (transitionInStylesQueue?.length > 0) {
       return mergeStylesFunctions(transitionInStylesQueue, progress)
     }
     if (['out', 'idle_active'].includes(currentTransitionType.value) && transitionOutStyles) {
