@@ -130,18 +130,22 @@ export const useAnimationAPI = ({
 
   const handleDragStateChange = dragStateHandler(dismiss, resetDrag)
 
-  const animatedStyles = useAnimatedStyle(() => {
-    const animationBuilder: AnimationBuilder = animationConfig as AnimationBuilder
-    const { transitionInStyles, transitionOutStyles } = animationConfig
+  const {
+    transitionInStyles,
+    transitionOutStyles,
+    transitionInStylesQueue,
+    transitionOutStylesQueue,
+  } = animationConfig as AnimationBuilder
 
+  const animatedStyles = useAnimatedStyle(() => {
     if (
       ['out', 'idle_active'].includes(currentTransitionType.value) &&
-      animationBuilder.transitionOutStylesQueue?.length > 0
+      transitionOutStylesQueue.length > 0
     ) {
-      return mergeStylesFunctions(animationBuilder.transitionOutStylesQueue, progress)
+      return mergeStylesFunctions(transitionOutStylesQueue, progress)
     }
-    if (animationBuilder?.transitionInStylesQueue?.length > 0) {
-      return mergeStylesFunctions(animationBuilder.transitionInStylesQueue, progress)
+    if (transitionInStylesQueue.length > 0) {
+      return mergeStylesFunctions(transitionInStylesQueue, progress)
     }
     if (['out', 'idle_active'].includes(currentTransitionType.value) && transitionOutStyles) {
       return { opacity: 1, ...(transitionOutStyles(progress) as unknown as {}) }
