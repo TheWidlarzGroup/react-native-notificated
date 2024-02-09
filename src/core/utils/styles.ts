@@ -9,15 +9,16 @@ export const styles = StyleSheet.create({
     top: 0,
     zIndex: 200,
     justifyContent: 'flex-start',
+    alignSelf: 'center',
   },
   containerIos: {
-    left: `auto`,
-    right: `auto`,
+    left: 'auto',
+    right: 'auto',
     top: 50,
   },
   containerAndroid: {
-    left: `auto`,
-    right: `auto`,
+    left: 'auto',
+    right: 'auto',
     top: 30,
   },
   boxWrapper: {

@@ -6,6 +6,7 @@ import type { NotificationState } from '../hooks/useNotificationsStates'
 import Animated from 'react-native-reanimated'
 import { styles } from '../utils/styles'
 import { Constants } from '../config'
+import { calculateNotificationPositionCoordintates } from '../utils/calculateNotificationPositionCoordintates'
 
 type Props = {
   children: ReactNode
@@ -30,22 +31,13 @@ export const GestureHandler = ({
 }: Props) => {
   const { width } = useWindowDimensions()
 
-  const fullWidth = width - Constants.notificationSideMargin * 2
-
-  const initialNotificationWidth = state?.notificationWidth || Constants.maxNotificationWidth
-
-  const isWidthWithinBounds = initialNotificationWidth <= fullWidth
-
-  const notificationWidth = isWidthWithinBounds ? initialNotificationWidth : fullWidth
-
-  const top =
-    notificationTopPosition || notificationTopPosition === 0
-      ? notificationTopPosition
-      : state.notificationOffset.top
-
-  const left = state.notificationOffset.left
-
-  const right = state.notificationOffset.right
+  const { calculatedNotificationWidth, top, left, right } =
+    calculateNotificationPositionCoordintates({
+      screenWidth: width,
+      notificationOffset: state.notificationOffset,
+      notificationWidth: state.notificationWidth,
+      notificationTopPosition,
+    })
 
   return (
     <PanGestureHandler
@@ -63,7 +55,7 @@ export const GestureHandler = ({
             top,
             left,
             right,
-            width: notificationWidth,
+            width: calculatedNotificationWidth,
           },
         ]}>
         {children}
