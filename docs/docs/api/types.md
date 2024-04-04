@@ -163,7 +163,7 @@ params: {
 ### `ModalNotificationProvider`
 
 ```tsx
-ModalNotificationProvider: React.FC<{ notificationTopPosition?: number }>
+ModalNotificationsProvider: React.FC<React.PropsWithChildren<{ notificationTopPosition?: number }>>
 ```
 
 ---
