@@ -1,6 +1,6 @@
 {
   "name": "react-native-notificated",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "React Native toast notifications for iOS and Android",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
