@@ -314,7 +314,7 @@ The hook is imported from 'react-native-notificated' and can be used only inside
 import { useNotificationsController } from 'react-native-notificated'
 
 const SomeFunctionComponent = () => {
-    const { modify, remove } = useNotifications()
+    const { modify, remove } = useNotificationsController()
 
     [...]
 }
