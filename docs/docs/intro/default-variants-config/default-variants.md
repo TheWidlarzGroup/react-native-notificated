@@ -4,6 +4,8 @@ sidebar_position: 1
 
 # 🖼️ Default Variants
 
+## 🖌️ Default Notification Styling
+
 <br/>
 
 At the start, you receive from us default styling, for all 4 types of notifications (`success` / `error` / `warning` / `info`). <br/>
