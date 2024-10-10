@@ -69,7 +69,7 @@ yarn add react-native-reanimated react-native-gesture-handler
 ```
 
 **react-native-reanimated** requires additional installations
-steps: [guide here](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation) 👈
+steps: [guide here](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/getting-started/#installation) 👈
 
 **react-native-gesture-handler** requires additional installations
 steps: [guide here](https://docs.swmansion.com/react-native-gesture-handler/docs/) 👈
