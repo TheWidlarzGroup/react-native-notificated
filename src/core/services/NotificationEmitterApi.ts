@@ -7,6 +7,7 @@ import type {
   UseNotification,
   VariantsMap,
   Variants,
+  Setup,
 } from '../../types'
 import { emitter } from './NotificationEmitter'
 
@@ -15,12 +16,33 @@ export const remove: Remove = (id) => emitter.emit('remove_notification', { id }
 export const modify: Modify = (id: string, { params, config }) =>
   emitter.emit('modify_notification', { id, params, config })
 
-export const notify: Notify = (notificationType, setup) => {
+export const notify: Notify = <Variant extends keyof VariantsMap>(
+  notificationType: Variant,
+  titleOrSetup: string | Setup<VariantsMap[Variant]>,
+  descriptionOrSetup?: string | Setup<VariantsMap[Variant]>,
+  setup?: Setup<VariantsMap[Variant]>
+) => {
+  let setupObj: Setup<VariantsMap[Variant]>
+
+  if (typeof titleOrSetup === 'string') {
+    setupObj = {
+      params: {
+        title: titleOrSetup,
+        description: typeof descriptionOrSetup === 'string' ? descriptionOrSetup : undefined,
+        ...((typeof descriptionOrSetup === 'object' ? descriptionOrSetup.params : setup?.params) ||
+          {}),
+      },
+      ...(typeof descriptionOrSetup === 'object' ? descriptionOrSetup : setup),
+    }
+  } else {
+    setupObj = titleOrSetup
+  }
+
   const id = generateNotificationId(notificationType.toString())
   emitter.emit('add_notification', {
     notificationType,
     id,
-    ...setup,
+    ...setupObj,
   })
   return {
     id,
