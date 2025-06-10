@@ -8,6 +8,7 @@ import {
   withSpring,
   withTiming,
   AnimateStyle,
+  runOnJS,
 } from 'react-native-reanimated'
 import { useDrag } from './useDrag'
 import type { NotificationState } from './useNotificationsStates'
@@ -119,14 +120,17 @@ export const useAnimationAPI = ({
 
   // Used to revoke transition (progress) value after canceling it with e.g. LongPressGestureHandler
   const revokeTransitionAnimation = useCallback(() => {
-    switch (currentTransitionType.value) {
-      case 'out':
-        return dismiss()
-      case 'in':
-      case 'idle_active':
-        return resetTimer(dismiss, duration)
-    }
-  }, [currentTransitionType.value, dismiss, resetTimer, duration])
+    // Use runOnJS to safely access shared values and avoid Reanimated warning
+    runOnJS((transitionType: 'in' | 'out' | 'idle_active') => {
+      switch (transitionType) {
+        case 'out':
+          return dismiss()
+        case 'in':
+        case 'idle_active':
+          return resetTimer(dismiss, duration)
+      }
+    })(currentTransitionType.value)
+  }, [dismiss, resetTimer, duration, currentTransitionType])
 
   const handleDragStateChange = dragStateHandler(dismiss, resetDrag)
 
